@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chelsea Physic Garden — A Walk with Fanny · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Chelsea Physic Garden, SW3</div>
+  <h1>Five Pounds a Year<br>&amp; <em>Deadly Nightshade</em></h1>
+  <div class="header-sub">Chelsea Physic Garden Open Day · Guide: Fanny (Volunteer)</div>
+  <div class="header-meta">
+    <span>ROUTE: History Beds → Medicinal Quad → Pond → River Wall → Ginkgo Walk</span>
+    <span>DURATION: ~1.5 hours</span>
+    <span>GUIDE: Fanny · Chelsea Physic Garden volunteer</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Founded 1673: apothecaries, apprentices &amp; the countryside that is now Chelsea</a></li>
+    <li><a href="#sloane">Hans Sloane, £16,000, &amp; the rent that never changed</a></li>
+    <li><a href="#signatures">The doctrine of signatures &amp; how medicine worked before evidence</a></li>
+    <li><a href="#poison">Deadly nightshade &amp; the medicinal quad</a></li>
+    <li><a href="#wardian">The Wardian case: how tea got to India &amp; rubber to Malaya</a></li>
+    <li><a href="#river">The pale stone in the wall &amp; Bazalgette's embankment</a></li>
+    <li><a href="#ginkgo">Ginkgos from Hiroshima &amp; the problem with female trees</a></li>
+    <li><a href="#miller">Philip Miller: 50 years, no picture, sacked at the end</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Founded 1673:<br><em>Apothecaries in the Countryside</em></h2>
+
+    <p>Fanny opens with a word of warning that she is slightly winging it — the regular tour focuses on plants, and today she is being asked to cover buildings and history as well. Over the next hour and a half, she does both, moving through the garden with the ease of someone who has been doing this for a decade, stopping at things she loves, digressing cheerfully, and at one point pausing to note that she has just walked into the prickly plant she was warning everyone about.</p>
+
+    <p>The Chelsea Physic Garden was founded in 1673 by the Worshipful Society of Apothecaries. The word physic is simply medicinal — this was a garden for the study and correct identification of plants used in medicine. The reason that identification mattered: <span class="highlight">an apprentice who misidentified a plant could poison his patients rather than cure them.</span> It did happen. The garden was intended to prevent it.</p>
+
+    <div class="story-box" data-label="Why This Site">
+      <p>The apothecaries chose this site in Chelsea because they already had market gardens and connections in the area. In 1673, this was the middle of the countryside. The wall went up in 1674 — to keep out deer and other wild animals, and to provide storage for the Society's barges. The barges were used for botanising expeditions on the Thames, travelling between here and the Apothecaries' Hall at Blackfriars Bridge. <span class="highlight-green">River travel was considered faster and considerably safer than the roads.</span> Fanny notes that not much has changed in London today.</p>
+    </div>
+
+    <p>The garden is divided into four quadrants: the lawn and history beds, devoted to plants introduced by previous head gardeners and plant hunters; a cool fernery glasshouse showing early plants; the world woodland area; and the medicinal quad arranged like a hospital ward, by area of the body. Four glasshouses, originally built in 1903 and recently restored with a National Heritage Lottery grant, are open to visitors.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1673</div>
+      <div class="key-fact-text">Year the Chelsea Physic Garden was founded by the Worshipful Society of Apothecaries — making it one of the oldest botanical gardens in Britain, and the oldest in London still on its original site.</div>
+    </div>
+  </section>
+
+  <section class="section" id="sloane">
+    <div class="section-tag">Theme · Founding &amp; Patronage</div>
+    <h2>Hans Sloane,<br><em>£16,000 &amp; Five Pounds a Year</em></h2>
+
+    <p>The figure standing at the centre of the garden is Hans Sloane — physician, naturalist, collector, and the man who saved the garden from collapse. The statue is a copy; the original, carved in 1737, moved to the British Museum. The current one was commissioned for the garden's 350th anniversary.</p>
+
+    <div class="story-box" data-label="The Man Who Bought Chelsea">
+      <p>In 1722, Hans Sloane purchased the Manor of Chelsea — at the time, he bought the whole of Chelsea — for £16,000. Not much of a bargain in today's terms, Fanny observes, but a rather different proposition then.</p>
+      <p>The apothecaries had run into financial difficulties in the late 1720s. They made money supplying medicine chests to the Army, Navy, East India Company and private households, but were not particularly good at managing it. Sloane had trained as a physician under their auspices. As a way of thanking them, <span class="highlight">he created a deed of covenant to rent the garden to the Apothecaries for £5 a year, in perpetuity.</span></p>
+      <p>The garden still pays £5 a year to Lord Cadogan, who now owns Chelsea. Fanny notes that this is probably much to his disgust.</p>
+    </div>
+
+    <p>Sloane's fortune came partly from a trip to Jamaica in 1689, where he travelled as physician to the second Duke of Albemarle, the first British governor of Jamaica. The Duke died after a year; Sloane returned with the embalmed body, a vast collection of pickled animals and dried plants, and two things that would make his reputation: a recipe for a compound derived from the cinchona tree — quinine, effective against malaria — and a recipe for a milky chocolate drink he had seen Jamaican mothers give their babies for colic. He contributed both towards his fortune.</p>
+
+    <p>When Sloane died in 1753 at the age of 92, he had amassed 77,000 curiosities. These were auctioned by national lottery to provide dowries for his two daughters, and became the nucleus of the British Museum — and ultimately the Natural History Museum, where a statue of him still stands.</p>
+  </section>
+
+  <section class="section" id="signatures">
+    <div class="section-tag">Theme · Medical History</div>
+    <h2>The Doctrine of Signatures<br>&amp; <em>How Medicine Once Worked</em></h2>
+
+    <p>In 70 AD, a Greek physician called Dioscorides wrote something called the <em>Materia Medica</em> — a five-volume herbal that became the standard reference for plant-based medicine and was used, without significant revision, right up into the 17th century. The theory underlying most of its remedies was the doctrine of signatures: if a plant resembled part of the human body, it was thought to cure disorders of that part.</p>
+
+    <div class="story-box" data-label="What the Plants Were Supposed to Do">
+      <p><em>Pulmonaria officinalis</em>, or lungwort, has white spots on its leaves thought to resemble a diseased lung — used for respiratory complaints. <em>Hepatica nobilis</em>, or liverwort, has three-lobed leaves meant to resemble the lobes of the liver. Walnuts, with their cerebral appearance, were thought to help with the brain. Yellow-stemmed plants were prescribed for yellow fevers.</p>
+      <p><span class="highlight">"It didn't necessarily work,"</span> Fanny says, "but that's what they believed in."</p>
+      <p>The apothecaries based their practice on the four humours — blood, phlegm, yellow bile and black bile — and their remedies were either simple (one ingredient) or compound (two or more). They had their own dispensing shop at Apothecaries Hall from 1690 to 1920, and their own fire brigade, because making medicines was an exceptionally dangerous business. They were, Fanny suggests, frequently trying to blow themselves up.</p>
+    </div>
+
+    <p>The naming convention <em>officinalis</em>, meaning the plant was used medicinally, was coined by Carl Linnaeus — who also gave us binomial nomenclature, the systematic naming of species by genus and species that is still used today. Linnaeus was, apparently, not a very pleasant man. If he disliked someone, he named the most disagreeable plant he could find after them.</p>
+  </section>
+
+  <section class="section" id="poison">
+    <div class="section-tag">Stop · Medicinal Quad</div>
+    <h2>Deadly Nightshade<br>&amp; <em>the Cardiology Bed</em></h2>
+
+    <div class="location">Medicinal Quad · Chelsea Physic Garden</div>
+
+    <p>The medicinal quad is laid out like a hospital — beds organised by area of medicine, each containing plants historically or currently used in treatment of that system. The cardiology bed, the rheumatology bed, the neurology bed: walking through it, you move through a history of pharmaceutical botany.</p>
+
+    <div class="story-box" data-label="Two Plants That Can Kill You">
+      <p>In the cardiology bed, almost hidden among the other plants, is <em>Atropa belladonna</em> — deadly nightshade, probably the most poisonous plant in the garden. Named after Atropos, one of the three Fates who cut the thread of life, it produces atropine, which kills by drying up the body's secretions until, ultimately, the patient cannot breathe.</p>
+      <p>The name belladonna — beautiful woman — comes from the practice supposedly adopted by Italian women of squeezing the juice into their eyes to dilate their pupils. It causes visual hallucinations for up to three days. <span class="highlight">Probably not such a good idea.</span> The plant is in the cardiology bed because atropine is used to stimulate the heart — and is also, Fanny adds, an antidote to nerve agents including sarin and novichok. One poison treats another.</p>
+      <p>Nearby, <em>Colchicum autumnale</em> — the autumn crocus, or naked lady, which produces large green leaves in spring that all die down, leaving the flower to emerge alone. It produces colchicine, highly poisonous, with a minimal gap between therapeutic and fatal dose. It is used to treat gout, and in the cardiology bed as a treatment for pericarditis. <span class="highlight-blue">The same plant appears in multiple beds, because medicine does not respect tidy categories.</span></p>
+    </div>
+
+    <p>There is also a full poison bed in the garden. Fanny does not have time to cover it today, but notes its existence with what appears to be genuine regret.</p>
+  </section>
+
+  <section class="section" id="wardian">
+    <div class="section-tag">Stop · History Beds</div>
+    <h2>The Wardian Case:<br><em>How Tea Got to India</em></h2>
+
+    <p>Among the more peculiar objects in the garden is a large wooden case with a glass top — the Wardian case, and the story of its invention is one of the garden's finest.</p>
+
+    <div class="story-box" data-label="The Accidental Greenhouse">
+      <p>Nathaniel Bagshaw Ward was a physician connected with the garden who had a fascination for moths. He set up an experiment using an inverted bell jar, went away, came back having partly forgotten about it — and found condensation inside the jar, and a fern growing. He had accidentally invented the first self-regulating greenhouse.</p>
+      <p>This mattered enormously. In the 17th and 18th centuries, enormous numbers of plants were being transported to England from around the world, and most of them died on the journey — either from lack of water (no one was going to give up their precious freshwater supply on board ship for plants) or from salt water. The Wardian case solved both problems. Sealed, self-regulating, with a dial to control moisture levels, <span class="highlight">it revolutionised the global movement of plants.</span></p>
+    </div>
+
+    <div class="story-box" data-label="Tea, Rubber &amp; a Disguise">
+      <p>Robert Fortune — one of the garden's head gardeners — was approached by the East India Company with a commission: obtain tea plants from China and transport them to India. The difficulty: Europeans were only permitted to travel 30 miles from a Chinese port at the time. Fortune disguised himself as a Chinese man, penetrated the tea-growing interior, and smuggled 20,000 tea plants out of the country. He transported them to Assam in Wardian cases. Not all survived, but enough did to establish the British tea industry.</p>
+      <p>Rubber seedlings germinated in Brazil, were transported via Cuba, and established the British rubber industry in Malaya, also via Wardian cases. <span class="highlight-green">The case is how tea became British, and how rubber became an industry.</span></p>
+    </div>
+
+    <p>The history beds that surround this area record which plants were introduced to England by previous head gardeners and plant hunters — many of them arriving via exactly this technology.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="river">
+    <div class="section-tag">Stop · River Wall</div>
+    <h2>The Pale Stone<br>&amp; <em>Bazalgette's Embankment</em></h2>
+
+    <div class="location">Thames Wall · SW3</div>
+
+    <p>Near the bottom of the garden, a section of pale-coloured stone stands out from the rest of the wall. Fanny has been pointing to it for most of the tour, promising an explanation. Here it is: that pale stone marks the original riverline of the garden. One hundred and fifty years ago, she was standing in the Thames.</p>
+
+    <p>Hans Sloane paid £100 of his own money to build steps down from the garden to the river, because the Thames was the main thoroughfare and most visitors arrived by boat. When the garden had its river frontage, the Thames used to fill Fortune's Tank — the large wildlife pond near the south wall, which now holds twenty varieties of insects, amphibians and molluscs, and which becomes, at mating time, almost invisible under frogs.</p>
+
+    <div class="story-box" data-label="Bazalgette &amp; the Great Stink">
+      <p>In 1858, London experienced what became known as the Great Stink — a catastrophic cholera outbreak that killed around 10,000 people, initially attributed to miasma rising from the river, not yet understood to be caused by the raw sewage pouring into the Thames from the city. Joseph Bazalgette, Chief Surveyor of London, was given the task of solving it.</p>
+      <p>His solution was to embank the Thames — narrowing and deepening it, with sewers running underneath. The Thames was significantly wider before Bazalgette; the Embankment you walk along today is built on land reclaimed from the river. When he was calculating the diameter of the sewage pipes, he looked at his figures, doubled them, and said, <span class="highlight">"We don't want to have to do this again."</span> We now have the Tideway Tunnel — the super-sewer — running along the middle of the river, because Bazalgette's pipes are beginning to fail after 160 years.</p>
+      <p>The garden lost its river frontage to the embankment. It gained a small strip of land at the back in compensation.</p>
+    </div>
+
+    <p>There were once four cedars of Lebanon in the garden — great spreading conifers that occupied the space between the wall and the planting. They went with the embankment, or shortly after. Four ginkgos were planted in their place.</p>
+  </section>
+
+  <section class="section" id="ginkgo">
+    <div class="section-tag">Stop · Ginkgo Walk</div>
+    <h2>Ginkgos from Hiroshima<br>&amp; <em>the Problem with Female Trees</em></h2>
+
+    <p>The four ginkgo biloba trees — one, two, three, four, planted in a line — are living fossils. Some specimens are believed to be two and a half thousand years old. The ginkgo's claim to extraordinary resilience: when Hiroshima was bombed in 1945, six ginkgos growing near the epicentre were razed to the ground. They regenerated — sending up aerial roots, regrowing from the base. <span class="highlight">They are among the few living things known to have survived in the immediate vicinity of the blast.</span></p>
+
+    <p>Ginkgos are now being planted extensively in London, because their leaves are highly effective at absorbing airborne particulates — pulling pollution from the air and capturing it in the leaf tissue, which falls to the ground and is absorbed into the soil. For air quality, they are among the most useful urban trees.</p>
+
+    <div class="story-box" data-label="The Smell Problem">
+      <p>There is, however, a complication. The city appears to have planted predominantly female ginkgos. The female ginkgo produces a fruit — green, about the size of a small plum — which, when it falls and begins to decay, smells, Fanny says with considerable feeling, like vomit. Literally. It is disgusting. She has seen someone on the tree just the other day. The male ginkgo does not produce this fruit. <span class="highlight-blue">The choice of female trees was perhaps not the most considered horticultural decision the city has ever made.</span></p>
+    </div>
+
+    <p>The ginkgo leaf, with its distinctive fan shape and central notch, is the basis for the comb worn by sumo wrestlers in their elaborate hair — or so the story goes. Fanny notes that sumo combs are normally somewhat more elaborate than the leaf itself.</p>
+  </section>
+
+  <section class="section" id="miller">
+    <div class="section-tag">Theme · Head Gardeners</div>
+    <h2>Philip Miller:<br><em>Fifty Years, No Portrait, Sacked at the End</em></h2>
+
+    <p>The entrance gate at the far end of the garden — the private gate, set into the wall at the bottom of the garden — was created specifically for Philip Miller, who was head gardener here for fifty years and had a house just down the road. He could not be bothered to walk the full way around the wall to the main entrance. The gate was made for his convenience. <span class="highlight">There is no known portrait of him, which is unusual for someone of his significance.</span></p>
+
+    <div class="story-box" data-label="What He Did">
+      <p>Miller was a personal appointee of Hans Sloane, and when he arrived, he found the garden in considerable disorder — drunkenness between the apothecaries and gardeners, notes pinned to greenhouse doors prohibiting liquor on the premises, and the previous head gardeners having sold off exotic plants to supplement their meagre salaries.</p>
+      <p>He overhauled it completely. He introduced a vast range of new plants, mainly through seed and plant exchange rather than foreign travel — the furthest he is thought to have gone was France. He created the <em>Index Seminum</em>, the seed bank, which the garden still maintains and uses to exchange seeds with botanic gardens worldwide.</p>
+      <p>His greatest contribution was the <em>Gardener's Dictionary</em> — the first practical guide to cultivation, of which he wrote eight editions between 1733 and his old age. <span class="highlight-green">It was not until his eighth edition that he accepted Linnaeus's binomial nomenclature</span> — they apparently did not get on, which may explain the delay. After fifty years of service, he was dismissed. He died shortly afterwards.</p>
+    </div>
+
+    <blockquote>
+      <p>"He reigned supreme here for fifty years, hauled it up by its bootstraps, introduced a vast range of plants. And then he was sacked. Which is a little unfair."</p>
+      <cite>— Fanny</cite>
+    </blockquote>
+
+    <div class="practical">
+      <strong>Visiting Chelsea Physic Garden:</strong> Open most of the year, Wednesday to Sunday. Entry charge applies. The best time to visit, according to Fanny with some emphasis, is May — the garden is at its most spectacular. Four glasshouses are open and worth exploring. The poison bed exists and is not on the standard tour, so ask. Honey made from the garden's own beehives is available and described as very good and very expensive.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Chelsea Physic Garden · chelseaphysicgarden.co.uk<br><br>
+  Notes compiled from Open Day tour transcript. Guide: Fanny (volunteer) · Chelsea, SW3 · September 2025
+</footer>
+
+</body>
+</html>

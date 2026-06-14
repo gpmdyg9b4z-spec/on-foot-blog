@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>London Scottish House — Open House London 2025 · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Open House London 2025 · London Scottish House, Westminster, SW1</div>
+  <h1>Hodden Grey, Three Victoria Crosses<br>&amp; <em>a Building Saved by Prince Charles</em></h1>
+  <div class="header-sub">London Scottish House Open Day · Guide: Regimental Historian</div>
+  <div class="header-meta">
+    <span>ROUTE: Drill Hall · Regimental Museum · Balcony</span>
+    <span>DURATION: ~45 minutes</span>
+    <span>GUIDE: Regimental Historian · London Scottish House Trust</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">A drill hall without accommodation: what the London Scottish regiment was</a></li>
+    <li><a href="#building">The building that nearly wasn't: bomb damage, demolition plans &amp; a royal intervention</a></li>
+    <li><a href="#founded">Founded 1859: wealthy Scotsmen, a threat from France &amp; hodden grey</a></li>
+    <li><a href="#ww1">31 October 1914: the first territorial unit in action &amp; 400 casualties</a></li>
+    <li><a href="#ww2">Three battalions, Sicily, Italy &amp; one Victoria Cross</a></li>
+    <li><a href="#today">The largest pipe band in the country &amp; what the building is for now</a></li>
+    <li><a href="#fleming">Alexander Fleming: private soldier, Nobel laureate</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Drill Hall Without Accommodation:<br><em>What the London Scottish Regiment Was</em></h2>
+
+    <p>London Scottish House on Horseferry Road is not easy to find if you don't know it's there. Behind a door on a Westminster street that most people walk past without registering, a regimental museum, a drill hall, a bar, a pipe band, and a collection of objects from two world wars exist in quiet parallel to the surrounding city. It opens for Open House once a year. On a good day, perhaps a dozen people wander in.</p>
+
+    <p>The guide — a regimental historian who has thirty years in the territorial army — opens by explaining what a drill hall is. An army base without accommodation. The soldiers who trained here all lived locally, came to the hall to train, then went home. The hall contained everything a garrison needs except beds: armoury, stores, vehicle park, cookhouse, officers' mess, sergeants' mess. The London Scottish regiment was a volunteer regiment — a territorial force of civilian soldiers — and this was their London home.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1859</div>
+      <div class="key-fact-text">Year the London Scottish regiment was founded — making it one of the oldest volunteer regiments in the British Army, formed from expatriate Scotsmen living in London who had to pay to join and supply their own equipment.</div>
+    </div>
+  </section>
+
+  <section class="section" id="building">
+    <div class="section-tag">Theme · Architecture</div>
+    <h2>The Building That Nearly Wasn't:<br><em>Bomb Damage, Demolition &amp; a Royal Intervention</em></h2>
+
+    <div class="location">London Scottish House · Horseferry Road · SW1 · Grade II Listed · Opened 1988</div>
+
+    <p>The building that visitors see today was opened in 1988 — which seems late for a regiment founded in 1859. The explanation involves a Blitz, a near-demolition, and an intervention by the then Prince of Wales.</p>
+
+    <div class="story-box" data-label="The Old Drill Hall &amp; What Replaced It">
+      <p>The regiment's original home was at 59 Buckingham Gate, a drill hall built in 1859. In 1941, during the Blitz, the building was severely damaged. By the early 1980s it was in such a state that demolition was being seriously considered. The plan was to build a new drill hall for the regiment on the same site.</p>
+      <p>Prince Charles — who had been Colonel-in-Chief of the regiment since before he became king — visited the old building and said it couldn't be knocked down. An emergency preservation order was placed on it. The compromise that followed: the old building could not be demolished, but a new building would be constructed alongside it, incorporating specific elements from the original — the Boer War memorial, the First World War memorial, the Second World War memorial, the entrance portico, the balconies, the roof, and the original pure wall. <span class="highlight">Princess Anne opened the new building in 1988 and is recorded in a photograph over the porch in a blue dress.</span></p>
+    </div>
+
+    <p>The old building at 59 Buckingham Gate still stands, with its five original roof panels visible. The new building on Horseferry Road incorporated the historic elements and the result — while not aesthetically seamless — preserves the regiment's material history. Historic England listed the building specifically for the quality of the brickwork and grilwork produced by a now-defunct company in 1988, which it rates as exceptional for the period.</p>
+  </section>
+
+  <section class="section" id="founded">
+    <div class="section-tag">Theme · Origins</div>
+    <h2>Founded 1859:<br><em>Wealthy Scotsmen, France &amp; Hodden Grey</em></h2>
+
+    <p>The London Scottish regiment was founded in 1859 by Lord Elcho, whose statue stands on top of the building. It was for expatriate Scotsmen living in London — men who were, by the standards of the time, wealthy enough to pay their own subscription and supply their own uniform and rifle. The threat they were organized to respond to was France, which remained the assumed adversary for much of the 19th century.</p>
+
+    <div class="story-box" data-label="The Colour of the Kilt">
+      <p>One of the founding decisions was what tartan to adopt. Should it be the Gordons? The Black Watch? The Kenmare? The Camerons? The colour finally chosen was hodden grey — the working tartan of Scotland, the kilt worn by a man ploughing his field rather than attending a ceremony. Cheap, tough, practical.</p>
+      <p><span class="highlight">Only two units in the world still wear hodden grey.</span> The London Scottish is one. The other is the Toronto Scottish — a Canadian regiment that adopted the same colour when it was formed, maintaining the connection across the Atlantic. If you see hodden grey anywhere in the world, you know you are looking at one of two Scottish volunteer regiments.</p>
+    </div>
+
+    <p>The regiment also established a rifle club and a golf club. It was, the guide notes, quite a well-appointed volunteer operation. A detachment went to South Africa for the Boer War; the memorial to those who died in that conflict is visible in the building, alongside the names of two men who died — one in a Boer ambush, one, the guide believes, run over by an ox cart.</p>
+  </section>
+
+  <section class="section" id="ww1">
+    <div class="section-tag">Theme · First World War</div>
+    <h2>31 October 1914:<br><em>The First Territorial Unit in Action</em></h2>
+
+    <p>The First World War transformed the London Scottish from a well-equipped volunteer club into a fighting regiment. The 1st Battalion mobilised in August 1914 and went to Belgium and France. On 31 October 1914, they were rushed to the front at Messines — transported by London buses, a detail that sounds improbable but is documented — and found themselves holding a line against a German advance that threatened to break through.</p>
+
+    <div class="story-box" data-label="The Battle of Messines">
+      <p>Eight hundred men went in. Four hundred came out. Four hundred casualties — killed, wounded or taken prisoner — in a single engagement, fighting not as professional soldiers but as opticians, surveyors, actors, bank clerks, and all the other civilian occupations that volunteer soldiers brought to the front. They were wearing their mothers' kilts. They had not been issued proper fighting equipment. They went in anyway.</p>
+      <p>The Field Marshal John French, commanding British forces, wrote afterwards that the London Scottish had given <span class="highlight">"a glorious example to all territorial troops."</span> It was the first time a territorial unit — a volunteer rather than professional force — had been committed to major offensive action in the war. The museum board behind the balcony records the names of those who died at Messines and in the subsequent battles: Neuve Chapelle, Loos, the Somme, Arras, Salonika, Palestine.</p>
+    </div>
+
+    <p>The regiment won two Victoria Crosses in the First World War — one on the Western Front, one in Palestine, where the second battalion fought the Turks alongside Australian and New Zealand forces. Three Victoria Crosses total across both world wars, for a regiment that never had conscription, only volunteers.</p>
+  </section>
+
+  <section class="section" id="ww2">
+    <div class="section-tag">Theme · Second World War</div>
+    <h2>Three Battalions, Sicily &amp;<br><em>One More Victoria Cross</em></h2>
+
+    <p>The Second World War saw the London Scottish field three battalions. The first spent the early years in coastal defence in Suffolk before embarking in 1942 for the Middle East, eventually taking part in Operation Husky — the Allied invasion of Sicily in July 1943. From there they fought their way up Italy, from the southwest corner to the northeast, finishing the war near Trieste in 1945.</p>
+
+    <div class="story-box" data-label="Private Mitchell VC">
+      <p>During the Italian campaign, a private soldier named Mitchell won the Victoria Cross — the museum holds records and a photograph. He is pictured prodding a German soldier with his bayonet in the action for which he was decorated. He was killed shortly afterwards.</p>
+      <p>The day before the Open House event, a member of Mitchell's family turned up at the building. They had found out he was commemorated here, and came to see the record. <span class="highlight-green">The guide describes this as one of the things that makes the museum worthwhile</span> — connections made across seventy years between a photograph on a wall and a living descendant who did not know the image existed.</p>
+    </div>
+
+    <p>The second battalion remained in Britain, largely occupied with training and administrative duties including preparation for D-Day. The third battalion was an anti-aircraft unit, stationed in southeast London during the Blitz, manning 3.7-inch guns against the German bombers.</p>
+  </section>
+
+  <section class="section" id="fleming">
+    <div class="section-tag">Interlude · Famous Members</div>
+    <h2>Alexander Fleming:<br><em>Private Soldier, Nobel Laureate</em></h2>
+
+    <p>The guide pauses at a question put to visitors: one member of the London Scottish regiment went on to win the Nobel Prize. The clue — he was a very good shot, and there is silverware in the display case. The answer, after a suitable pause: <strong>Alexander Fleming</strong>, discoverer of penicillin, served for eight years with the London Scottish as a private soldier. He attempted to join the Royal Army Medical Corps at the start of the First World War but was turned down because they wanted him as a doctor rather than a fighting soldier.</p>
+
+    <p>There is no plaque in the building specifically commemorating this. The silverware is in a case. The guide mentions it as though it is one among several things worth knowing, which is about right.</p>
+  </section>
+
+  <section class="section" id="today">
+    <div class="section-tag">The Building Today</div>
+    <h2>The Largest Pipe Band<br><em>in the Country</em></h2>
+
+    <p>The army moved out of London Scottish House in 2018, when the Ministry of Defence consolidated reserve units into a purpose-built facility on Rochester Row. The trustees — who found themselves in possession of a listed building purpose-designed for a territorial army regiment, with no obvious alternative use — spent several years working through what to do with it.</p>
+
+    <p>The building now operates as a charitable hub for Scotland in London. Functions, receptions, office space, filming (BBC Question Time was recorded here the Thursday before Open House), and most visibly: the pipe band. The London Scottish pipe band is the largest in the country, with over fifty pipers. They support the regular army at events because the regular army's military bands have been reduced. They appeared at the Edinburgh Military Tattoo. They practice upstairs, and visitors on Open House day can hear them.</p>
+
+    <div class="practical">
+      <strong>London Scottish House:</strong> Open to the public for Open House London each September and for booked events and functions. The mess upstairs can be hired for dinners, birthday parties and meetings — this is how the building funds its running costs, alongside donations. Tap-to-donate stations at the entrance. The museum is free to visit on Open House day; guided tours depart on the hour.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · openhouselondon.org.uk<br><br>
+  Notes compiled from Open House tour transcript. London Scottish House, Horseferry Road, SW1 · October 2025
+</footer>
+
+</body>
+</html>

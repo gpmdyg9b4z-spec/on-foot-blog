@@ -4,39 +4,550 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>On Foot — Walking Tour Notes</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root { --ink: #141218; --paper: #f4f0e6; --gold: #a8832a; --ash: #635c52; }
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.75; min-height: 100vh; display: flex; flex-direction: column; }
-  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
-  header::before { content: '✦'; position: absolute; font-size: 20rem; opacity: 0.03; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); }
-  .masthead-label { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 300; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 24rem;
+    opacity: 0.03;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .site-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+  }
+
   header h1 em { font-style: italic; color: var(--gold); }
-  .masthead-sub { font-style: italic; font-size: 1.05rem; color: #a08870; margin-top: 0.5rem; }
-  nav { background: #1e1a16; padding: 0.6rem 2rem; display: flex; gap: 2rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; }
-  nav a { color: var(--ash); text-decoration: none; }
-  nav a:hover { color: var(--gold); }
-  main { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; flex: 1; }
-  .empty { font-style: italic; color: var(--ash); font-size: 1rem; }
-  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2rem; font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; }
+
+  .site-tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Filters */
+  .filters-bar {
+    background: var(--aged);
+    border-top: 1px solid #cfc3ab;
+    border-bottom: 1px solid #cfc3ab;
+    padding: 1.2rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .filter-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  .filter-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .filter-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid #cfc3ab;
+    background: transparent;
+    color: var(--sepia);
+    padding: 0.25rem 0.65rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--ink);
+    color: var(--gold);
+    border-color: var(--ink);
+  }
+
+  .search-group { flex: 1; min-width: 200px; }
+
+  .search-input {
+    width: 100%;
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    background: var(--paper);
+    border: 1px solid #cfc3ab;
+    color: var(--ink);
+    padding: 0.35rem 0.8rem;
+    outline: none;
+  }
+
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--ash); font-style: italic; }
+
+  /* Post grid */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  .results-count {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--ash);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .posts-list { display: flex; flex-direction: column; gap: 0; }
+
+  .post-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #cfc3ab;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.1s;
+  }
+
+  .post-card:first-child { border-top: 1px solid #cfc3ab; }
+  .post-card:hover { background: rgba(168, 131, 42, 0.04); }
+
+  .post-date {
+    text-align: right;
+    padding-top: 0.15rem;
+  }
+
+  .date-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .date-monthyear {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ash);
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .post-body { }
+
+  .post-location-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    margin-bottom: 0.3rem;
+  }
+
+  .post-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+
+  .post-title em { font-style: italic; color: var(--crimson); }
+
+  .post-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--sepia);
+    margin-bottom: 0.7rem;
+  }
+
+  .post-excerpt {
+    font-size: 0.95rem;
+    color: #4a3f30;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ash);
+    border: 1px solid #cfc3ab;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .read-link {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-left: auto;
+  }
+
+  .no-results {
+    font-style: italic;
+    color: var(--ash);
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
   footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 2rem 1.2rem 4rem; }
+    .filters-bar { padding: 1rem 1.2rem; gap: 1.2rem; }
+    .post-card { grid-template-columns: 60px 1fr; gap: 0 1.2rem; }
+    .date-day { font-size: 1.5rem; }
+    .read-link { display: none; }
+  }
 </style>
 </head>
 <body>
+
 <header>
-  <p class="masthead-label">A personal record of guided walks</p>
+  <div class="site-label">On Foot — Walking Tour Notes</div>
   <h1>On <em>Foot</em></h1>
-  <p class="masthead-sub">Notes from the street, the square &amp; the river&rsquo;s edge</p>
+  <div class="site-tagline">Notes from the street, the square and the river's edge</div>
 </header>
-<nav>
-  <a href="index.html">All Walks</a>
-  <a href="about.html">About</a>
-</nav>
+
+<div class="filters-bar">
+  <div class="filter-group">
+    <div class="filter-label">Location</div>
+    <div class="filter-buttons" id="location-filters">
+      <button class="filter-btn active" data-filter="location" data-value="">All</button>
+      <button class="filter-btn" data-filter="location" data-value="SW">SW London</button>
+      <button class="filter-btn" data-filter="location" data-value="NW">NW London</button>
+      <button class="filter-btn" data-filter="location" data-value="E">E London</button>
+      <button class="filter-btn" data-filter="location" data-value="N">N London</button>
+      <button class="filter-btn" data-filter="location" data-value="krakow">Kraków</button>
+    </div>
+  </div>
+  <div class="filter-group">
+    <div class="filter-label">Theme</div>
+    <div class="filter-buttons" id="theme-filters">
+      <button class="filter-btn active" data-filter="theme" data-value="">All</button>
+      <button class="filter-btn" data-filter="theme" data-value="architecture">Architecture</button>
+      <button class="filter-btn" data-filter="theme" data-value="history">History</button>
+      <button class="filter-btn" data-filter="theme" data-value="music">Music</button>
+      <button class="filter-btn" data-filter="theme" data-value="development">Development</button>
+      <button class="filter-btn" data-filter="theme" data-value="heritage">Heritage</button>
+      <button class="filter-btn" data-filter="theme" data-value="waterways">Waterways</button>
+      <button class="filter-btn" data-filter="theme" data-value="wartime">Wartime</button>
+      <button class="filter-btn" data-filter="theme" data-value="garden-suburb">Garden Suburb</button>
+    </div>
+  </div>
+  <div class="filter-group search-group">
+    <div class="filter-label">Search</div>
+    <input class="search-input" type="text" id="search-input" placeholder="Title, place, guide…">
+  </div>
+</div>
+
 <main>
-  <p class="empty">No posts yet — push a transcript to get started.</p>
+  <div class="results-count" id="results-count">6 posts</div>
+  <div class="posts-list" id="posts-list">
+
+    <!-- Post 1: Wandsworth LFA 2026 — newest -->
+    <a class="post-card"
+       href="wandsworth-lfa-2026.html"
+       data-location="SW"
+       data-themes="architecture development music history waterways"
+       data-search="wandsworth lfa london festival architecture jeff wandle delta funk academy xx dennis bovell artisan tower gasworks town hall sw18">
+      <div class="post-date">
+        <span class="date-day">14</span>
+        <span class="date-monthyear">Jun 2026</span>
+      </div>
+      <div class="post-body">
+        <div class="post-location-label">SW London · Wandsworth, SW18</div>
+        <div class="post-title">The Arndale, the River &amp; the <em>Funk Academy</em></div>
+        <div class="post-subtitle">Wandsworth Town &amp; the Delta — London Festival of Architecture 2026</div>
+        <div class="post-excerpt">Guide Jeff, a thirty-three-year Wandsworth resident, navigates the one-way system, the Wandle Delta's tower-studded skyline, and the borough's improbable musical legacy — The XX, Dennis Bovell, and the south London schools that shaped them both.</div>
+        <div class="post-meta">
+          <span class="tag">Architecture</span>
+          <span class="tag">Development</span>
+          <span class="tag">Music</span>
+          <span class="tag">Waterways</span>
+          <span class="tag">LFA 2026</span>
+          <span class="read-link">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Post 2: Kraków Jewish Quarter -->
+    <a class="post-card"
+       href="krakow-jewish-quarter-2026.html"
+       data-location="krakow"
+       data-themes="history heritage wartime"
+       data-search="krakow jewish quarter kazimierz jacob walkative tours">
+      <div class="post-date">
+        <span class="date-day">02</span>
+        <span class="date-monthyear">Jun 2026</span>
+      </div>
+      <div class="post-body">
+        <div class="post-location-label">Kraków · Kazimierz</div>
+        <div class="post-title">The Quarter That <em>Survived</em></div>
+        <div class="post-subtitle">Kazimierz — Kraków's Jewish District · Guide: Jacob, Walkative Tours</div>
+        <div class="post-excerpt">Jacob leads a walk through Kazimierz — once a separate city, then a walled Jewish district, then a wartime ghetto, then a film set for Schindler's List, and now a neighbourhood in the slow, complicated process of becoming itself again.</div>
+        <div class="post-meta">
+          <span class="tag">History</span>
+          <span class="tag">Heritage</span>
+          <span class="tag">Wartime</span>
+          <span class="read-link">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Post 3: Wood Green / Haringey -->
+    <a class="post-card"
+       href="wood-green-haringey-2026.html"
+       data-location="N"
+       data-themes="architecture development history"
+       data-search="wood green haringey n22 council placemaking">
+      <div class="post-date">
+        <span class="date-day">18</span>
+        <span class="date-monthyear">May 2026</span>
+      </div>
+      <div class="post-body">
+        <div class="post-location-label">N London · Wood Green, N22</div>
+        <div class="post-title">The High Road &amp; the <em>Retail Ice Age</em></div>
+        <div class="post-subtitle">Wood Green Town Centre · Guide: Haringey Council Placemaking Team</div>
+        <div class="post-excerpt">Haringey's placemaking team walks the length of Wood Green High Road — tracing the rise of the out-of-town retail shed, the slow hollowing of the high street, and the question of what comes next for one of North London's most contested town centres.</div>
+        <div class="post-meta">
+          <span class="tag">Architecture</span>
+          <span class="tag">Development</span>
+          <span class="tag">History</span>
+          <span class="read-link">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Post 4: Limekiln Wharf / City Island -->
+    <a class="post-card"
+       href="limekiln-city-island-2026.html"
+       data-location="E"
+       data-themes="architecture development waterways heritage"
+       data-search="limekiln wharf city island e14 ballymore places for london canning town">
+      <div class="post-date">
+        <span class="date-day">04</span>
+        <span class="date-monthyear">May 2026</span>
+      </div>
+      <div class="post-body">
+        <div class="post-location-label">E London · Leamouth / City Island, E14</div>
+        <div class="post-title">An Island Made of <em>Infrastructure</em></div>
+        <div class="post-subtitle">Limekiln Wharf &amp; City Island · Ballymore + Places for London</div>
+        <div class="post-excerpt">The peninsula between the Lea and the Thames — once lime kilns, then a gas works, now a residential island reached by a single bridge — and the question of how a place becomes a neighbourhood rather than just a postcode.</div>
+        <div class="post-meta">
+          <span class="tag">Architecture</span>
+          <span class="tag">Waterways</span>
+          <span class="tag">Development</span>
+          <span class="tag">Heritage</span>
+          <span class="read-link">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Post 5: Hampstead Garden Suburb -->
+    <a class="post-card"
+       href="hampstead-garden-suburb-2026.html"
+       data-location="NW"
+       data-themes="architecture heritage garden-suburb history"
+       data-search="hampstead garden suburb nw11 callum hgs trust henrietta barnett lutyens">
+      <div class="post-date">
+        <span class="date-day">19</span>
+        <span class="date-monthyear">Apr 2026</span>
+      </div>
+      <div class="post-body">
+        <div class="post-location-label">NW London · Hampstead Garden Suburb, NW11</div>
+        <div class="post-title">The Suburb That <em>Refused the Pub</em></div>
+        <div class="post-subtitle">Hampstead Garden Suburb · Guide: Callum, HGS Trust</div>
+        <div class="post-excerpt">Callum of the HGS Trust walks the Lutyens-designed central square and the Arts and Crafts streets beyond it — unpicking Henrietta Barnett's utopian vision, its Edwardian social engineering, and the conservation rules that have preserved it almost intact a century on.</div>
+        <div class="post-meta">
+          <span class="tag">Architecture</span>
+          <span class="tag">Heritage</span>
+          <span class="tag">Garden Suburb</span>
+          <span class="tag">History</span>
+          <span class="read-link">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Post 6: Kraków Old Town & Wawel -->
+    <a class="post-card"
+       href="krakow-old-town-wawel-2026.html"
+       data-location="krakow"
+       data-themes="history heritage wartime architecture"
+       data-search="krakow old town wawel iza walkative tours barbican main square cloth hall st marys jagiellonian university dragon">
+      <div class="post-date">
+        <span class="date-day">08</span>
+        <span class="date-monthyear">Apr 2026</span>
+      </div>
+      <div class="post-body">
+        <div class="post-location-label">Kraków · Stare Miasto &amp; Wawel</div>
+        <div class="post-title">From Barbican<br>to <em>Royal Hill</em></div>
+        <div class="post-subtitle">Old Town &amp; Wawel Tour · Guide: Iza, Walkative Tours</div>
+        <div class="post-excerpt">Iza leads the walk the Nazis thought was pre-German: from the medieval Barbican through the main square, into the Jagiellonian University courtyard where 183 professors were arrested in seven minutes, and up to the cathedral where every Polish king was crowned and buried.</div>
+        <div class="post-meta">
+          <span class="tag">History</span>
+          <span class="tag">Heritage</span>
+          <span class="tag">Wartime</span>
+          <span class="tag">Architecture</span>
+          <span class="read-link">Read →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+  <div class="no-results" id="no-results" style="display:none;">No posts match your search.</div>
 </main>
-<footer><span>On Foot</span> &mdash; Walking Tour Notes &mdash; Est. 2026</footer>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span><br><br>
+  Notes from the street, the square and the river's edge · Est. 2026
+</footer>
+
+<script>
+  const posts = Array.from(document.querySelectorAll('.post-card'));
+  let activeLocation = '';
+  let activeTheme = '';
+
+  function filterPosts() {
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
+    let visible = 0;
+    posts.forEach(card => {
+      const loc = card.dataset.location || '';
+      const themes = card.dataset.themes || '';
+      const search = card.dataset.search || '';
+      const title = card.querySelector('.post-title')?.textContent.toLowerCase() || '';
+      const excerpt = card.querySelector('.post-excerpt')?.textContent.toLowerCase() || '';
+
+      const locMatch = !activeLocation || loc === activeLocation;
+      const themeMatch = !activeTheme || themes.split(' ').includes(activeTheme);
+      const searchMatch = !query || search.includes(query) || title.includes(query) || excerpt.includes(query);
+
+      if (locMatch && themeMatch && searchMatch) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('results-count').textContent = visible + (visible === 1 ? ' post' : ' posts');
+    document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  document.querySelectorAll('[data-filter="location"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter="location"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeLocation = btn.dataset.value;
+      filterPosts();
+    });
+  });
+
+  document.querySelectorAll('[data-filter="theme"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter="theme"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTheme = btn.dataset.value;
+      filterPosts();
+    });
+  });
+
+  document.getElementById('search-input').addEventListener('input', filterPosts);
+</script>
+
 </body>
 </html>

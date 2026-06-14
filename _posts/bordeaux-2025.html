@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bordeaux — Three Golden Ages & a Headless Painter · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '⚜'; position: absolute; font-size: 20rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Bordeaux, France</div>
+  <h1>Three Golden Ages,<br>a <em>Headless Painter</em><br>&amp; Paris in Reverse</h1>
+  <div class="header-sub">Bordeaux Historical Walking Tour · Guide: Kaz · GuruWalk Free Tour</div>
+  <div class="header-meta">
+    <span>ROUTE: Cathédrale Saint-André → Hôtel de Ville → Place de la Bourse → Water Mirror → Grand Théâtre → Place Pey-Berland</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDE: Kaz (Irish, GuruWalk Bordeaux)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Bordeaux in context: three golden ages, a swamp &amp; a UNESCO facelift</a></li>
+    <li><a href="#eleanor">Eleanor of Aquitaine: divorced at 29, kidnapped twice, imprisoned for 15 years</a></li>
+    <li><a href="#english">Three hundred years of English rule &amp; the end of the Hundred Years War</a></li>
+    <li><a href="#wine">The 225-litre barrel &amp; why wine is not vegan</a></li>
+    <li><a href="#slave">The triangular trade &amp; the mascarons</a></li>
+    <li><a href="#theatre">The Grand Théâtre &amp; why Bordeaux is not a small Paris</a></li>
+    <li><a href="#goya">Goya in exile, a headless coffin &amp; a statue hit by a reversing van</a></li>
+    <li><a href="#mirror">The water mirror &amp; what was there before</a></li>
+    <li><a href="#canele">The canelé: egg yolks, nuns &amp; the best place to find one</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Bordeaux in Context:<br><em>A Swamp That Became UNESCO</em></h2>
+
+    <p>Kaz is Irish, has been in Bordeaux for almost three years, and runs this tour for GuruWalk — a free tour platform where visitors pay what they think the tour was worth at the end. He opens by asking the group where they are all from. The answers span France, Canada, Scotland, Australia, Germany and Italy. He declares it overwhelmingly Team Canada, which seems about right.</p>
+
+    <p>The history of Bordeaux, he explains, can be understood through three golden ages of wealth and prosperity, each separated by periods of decline. The Romans built the first city — the original name was Burdigala — after arriving in 56 BC. The second golden age was brought by the English, who controlled the region for 300 years from the 12th century and turned its wine into a global commodity. The third, and darkest, was built on the slave trade.</p>
+
+    <div class="story-box" data-label="A City on a Swamp">
+      <p>Bordeaux is built on top of a gigantic bog — an ancient marshland that was partially drained in 1599 by a Dutch engineer, a technique that also worked so well north of the city that it revealed fertile soil underneath, leading to the establishment of the Médoc vineyards in the 17th century. The bog still exists beneath the streets. <span class="highlight">The mayor of Bordeaux recently rejected proposals to build a metro in the city</span>, on the grounds that the cost of digging through and perpetually maintaining the bog is too high. The bell tower of the cathedral has been sinking by a couple of centimetres per year — for the same reason.</p>
+      <p>The year 2007 was a turning point. UNESCO designated 1,810 hectares of the city as a protected World Heritage Site. Buildings that had been blackening with coal pollution and crumbling from neglect were suddenly required by law to be maintained to a high standard, cleaned every ten years at the building owner's expense. The city that visitors see today — limestone, pale gold, gleaming — is substantially a product of the last two decades of restoration. Before UNESCO, Kaz says, Bordeaux was becoming quite dilapidated.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">2007</div>
+      <div class="key-fact-text">Year 1,810 hectares of Bordeaux was classified as UNESCO World Heritage — one of the largest urban World Heritage designations in Europe, covering almost the entire historic centre.</div>
+    </div>
+  </section>
+
+  <section class="section" id="eleanor">
+    <div class="section-tag">Stop 1 · Cathédrale Saint-André</div>
+    <h2>Eleanor of Aquitaine:<br><em>Divorced, Kidnapped, Imprisoned</em></h2>
+
+    <div class="location">Cathédrale Saint-André · Founded 1096, completed 17th century</div>
+
+    <p>The Cathédrale Saint-André took over 500 years to build — the first stone laid in 1099, the final section completed in the 17th century. It is Gothic throughout, which Kaz establishes through a multiple-choice exercise the group handles creditably. The gargoyles above the pointed arches are not decorative: they channel rainwater away from the stone. The large circular windows were designed to let sunlight fall directly on the tabernacle behind the altar.</p>
+
+    <p>The cathedral is most significant locally for one event: the marriage, in the 12th century, of Eleanor of Aquitaine. Her story takes most of the stop.</p>
+
+    <div class="story-box" data-label="The Life of Eleanor of Aquitaine">
+      <p>Eleanor was 14 when her father died on pilgrimage in northern Spain, leaving her as Duchess of Aquitaine — a kingdom covering much of what is now southwest France, including Bordeaux. Her father's dying wish to his friend King Louis VI of France was to look after Eleanor. Louis's solution: marry her to his son, Louis, who was 19. They were married in this cathedral.</p>
+      <p>The marriage lasted fifteen years and produced two daughters. No sons. Eleanor publicly blamed Louis. She was, by all accounts, formidably outspoken for a 12th-century duchess — interested in crusades, education, politics and war. Louis felt undermined. Eleanor grew tired of Louis. She travelled to Rome, demanded an audience with the Pope, and secured an annulment on the grounds that she and Louis were fourth cousins — interfamily marriages being forbidden by the Church. <span class="highlight">She was 29, single, and intended to stay that way.</span></p>
+      <p>She managed eight weeks of independence before people started trying to kidnap her. The logic was sound: marry Eleanor by force and you inherit Aquitaine. For her own safety, she decided she needed to remarry. She chose Henry Plantagenet, Duke of Normandy. Several months after the wedding, Henry's father died, making him King Henry II of England. Eleanor, former Queen of France, became Queen of England. Aquitaine merged with England under one monarchy. <span class="highlight-blue">This began 300 years of English rule over Bordeaux and the golden age of the wine trade.</span></p>
+      <p>Eleanor and Henry had eight children together, including Richard Lionheart and John Lackland (known to most people through the story of Robin Hood). In later life, Eleanor conspired with her sons against Henry. Henry won; he forgave the sons but imprisoned Eleanor for fifteen years. On his death, Richard Lionheart freed her. She was 77. She outlived all ten of her children, retired to an abbey in the Loire Valley and died at 82.</p>
+    </div>
+  </section>
+
+  <section class="section" id="english">
+    <div class="section-tag">Theme · Political History</div>
+    <h2>Three Hundred Years of English Rule<br>&amp; <em>the Cannons Aimed at His Own People</em></h2>
+
+    <p>The English presence in Bordeaux lasted from Eleanor's marriage in the 12th century until the Battle of Castillon in 1453 — the final engagement of the Hundred Years War, fought an hour from the city. The French were victorious. The English surrendered. Bordeaux had been English for 300 years, and its population was not particularly pleased to be French again.</p>
+
+    <p>The French king's response to a sullen, recently-reacquired city was to stop the wine trade and raise taxes. The golden age of wine turned into a dark age. The king, visiting Bordeaux and paranoid about his own population, stayed in the Porte Cailhau — the old city gate — which Kaz points out as the tour passes. Look up at the top: <span class="highlight">the cannon ports and arrow slits on the Porte Cailhau face inward, toward the city, not outward toward any external enemy.</span> The king was more afraid of his own people than of anyone outside the walls.</p>
+
+    <p>Bordeaux was a walled city from the 10th century until 1752, when the walls were finally torn down to allow trade to flow more freely. The Porte Cailhau is the best surviving remnant of those walls.</p>
+  </section>
+
+  <section class="section" id="wine">
+    <div class="section-tag">Theme · Wine</div>
+    <h2>The 225-Litre Barrel<br>&amp; <em>Why Wine Is Not Vegan</em></h2>
+
+    <p>Small doors set into the lower sections of buildings throughout central Bordeaux are not for storing prisoners or animals, as some visitors guess. They were built to fit the Bordeaux barrel of wine — 225 litres exactly, a figure that sounds arbitrary but is derived from the English imperial system. The English shipped wine in 50-gallon barrels. An English imperial gallon is 4.5 litres. Fifty times 4.5 equals 225. <span class="highlight">The entire Bordeaux barrel market is still based on a measurement from an English system that England itself abandoned centuries ago.</span></p>
+
+    <div class="story-box" data-label="Egg Whites, Nuns &amp; the Canelé">
+      <p>Wine aged in French oak barrels acquires tannins and oak aromas, but also a quantity of sediment that needs to be removed before bottling. The traditional method — still used — is called fining: egg whites are added to the wine, the particles bind to them, and the whole falls to the bottom of the barrel. The wine is then filtered clear. This is why wine is not vegan. It has egg white in it.</p>
+      <p>Fifty egg whites per barrel leaves quite a lot of egg yolks. In the 17th century, these were donated to a local convent of nuns. At the same time, the ports of Bordeaux were receiving quantities of rum, sugar and vanilla from the colonies. The nuns combined the surplus egg yolks with these imported ingredients and created the canelé — a small, deeply caramelised, custardy pastry that is Bordeaux's most distinctive food. <span class="highlight-green">You must not leave Bordeaux without trying one.</span></p>
+    </div>
+
+    <div class="practical">
+      <strong>Canelé — where to find them:</strong> Three recommendations from Kaz. Baillardran: most famous, most expensive. La Toque Cuivrée: same quality, much cheaper (around 75 cents). Cassonade: on Rue Saint-James near the Grosse Cloche, organic, made fresh throughout the day, approximately €2 each. Cassonade is Kaz's personal recommendation. All three are on the map sent at the end of the tour.
+    </div>
+  </section>
+
+  <section class="section" id="slave">
+    <div class="section-tag">Theme · Third Golden Age</div>
+    <h2>The Triangular Trade<br>&amp; <em>3,000 Mascarons</em></h2>
+
+    <p>The third golden age of Bordeaux — the one that paid for the neoclassical architecture lining its boulevards, the Grand Théâtre, the Place de la Bourse — was built on the slave trade. Bordeaux was the second largest slave port in Europe after Liverpool. Kaz is direct about this; it is not a footnote.</p>
+
+    <div class="story-box" data-label="How the Trade Worked">
+      <p>In 1671, the first ship set sail from the Garonne loaded with local produce — wine, textiles, weapons. It crossed the Atlantic to the coast of Africa, where the cargo was exchanged for enslaved people. The enslaved people were transported to the Americas and the Caribbean and exchanged for coffee, cotton, sugar, spices and rum — none of which Europe could produce for itself. These goods were brought back to Bordeaux and sold across Europe at substantial margins.</p>
+      <p>Bordeaux became extremely wealthy. With that money, it built the city you see today. <span class="highlight">The mascarons — the carved faces on the facades of the 18th-century buildings, of which there are over 3,000 in the city — are based on the faces of slave traders and enslaved people.</span> They are inspired by Greek mythology, which used grotesque faces to ward off evil spirits, but the human models were real.</p>
+      <p>This history was not always openly discussed in Bordeaux. Today the Musée d'Aquitaine has a permanent exhibition on the triangular trade and on all three golden ages. Kaz recommends it without qualification — five minutes' walk from the start of the tour, free on the first Sunday of the month.</p>
+    </div>
+  </section>
+
+  <section class="section" id="theatre">
+    <div class="section-tag">Stop · Place de la Comédie</div>
+    <h2>The Grand Théâtre &amp;<br><em>Bordeaux Is Not a Small Paris</em></h2>
+
+    <div class="location">Grand Théâtre · Designed by Victor Louis · 1780</div>
+
+    <p>The Grand Théâtre was built in 1780, designed by Victor Louis in neoclassical style — Corinthian columns, nine muses and three goddesses on the roofline, a Baccarat crystal chandelier inside. It was completed nine years before the French Revolution, so the wealthy audience it was designed for was about to have a difficult decade. The Intercontinental Hotel across the square, also by Victor Louis and in exactly the same style, was built to house them when they visited.</p>
+
+    <p>Parisians visiting Bordeaux often remark that it looks like a small Paris. Kaz takes evident pleasure in correcting this. All the streets and buildings they are thinking of were designed by an 18th-century architect called Tourny. Another man came to Bordeaux, saw Tourny's design, fell in love with it, and was later given the commission to build Paris — replicating Tourny's work on a larger scale. The man who built Paris is called Haussmann. <span class="highlight">Bordeaux is not a small Paris. Paris is a big Bordeaux.</span> The interior staircase of the Paris Opéra Garnier was inspired by the staircase of the Grand Théâtre, which was built first.</p>
+
+    <div class="practical">
+      <strong>Grand Théâtre:</strong> Entry free to the lobby area. To see the interior — including the chandelier and the staircase — buy a ticket for a performance (the box office is on the side) or join a guided tour. The Intercontinental Hotel opposite has a rooftop terrace open from early afternoon with views over the city; glasses of wine start at €25.
+    </div>
+  </section>
+
+  <section class="section" id="goya">
+    <div class="section-tag">Stop · Place du Chapelet</div>
+    <h2>Goya in Exile,<br><em>a Headless Coffin &amp; a Reversing Van</em></h2>
+
+    <div class="location">Église Notre-Dame · Place du Chapelet</div>
+
+    <p>The Baroque church on this square — heavily ornamented, cherubic angels on the columns, a rosary-bearing Dominican saint in the tympanum — is Notre-Dame. Its architecture style is unmistakable once Kaz has explained the telltale signs: an ornamental and detail overload, chubby decorative figures, a heavily carved exterior. It is most famous locally for the funeral held here in 1828.</p>
+
+    <div class="story-box" data-label="Goya's Head">
+      <p>Francisco Goya came to Bordeaux in political exile after the ideas of the French Revolution influenced his painting to the point where the Spanish authorities found him uncomfortable. He spent the last four years of his life here and died in 1828. His funeral was held in this church; he was buried in Bordeaux.</p>
+      <p>In 1899, the Spanish government, having reconsidered its treatment of Goya, asked the French to return his body for burial in Spain. The French agreed. When the coffin was opened: <span class="highlight">Goya's head was missing.</span> It has never been found. Multiple theories — a jealous rival, a doctor wanting to study his brain, an art collector — are all speculative. Nobody knows. His headless remains were sent to Spain regardless.</p>
+      <p>In the 20th century, to thank the French, Spain gifted Bordeaux a complete statue of Goya, which stood in the square until five months before the tour. A council worker reversing a van knocked it off its plinth. The statue is currently being repaired. The government says it should be back between this year and the next ten.</p>
+    </div>
+  </section>
+
+  <section class="section" id="mirror">
+    <div class="section-tag">Stop · Place de la Bourse</div>
+    <h2>The Water Mirror<br>&amp; <em>What Was There Before</em></h2>
+
+    <div class="location">Miroir d'eau · Place de la Bourse · Built 2006</div>
+
+    <p>The Place de la Bourse — the stock exchange square — was built in 1749 by Jacques-Ange Gabriel, the same architect responsible for the Place de la Concorde in Versailles. Louis XV commissioned it to demonstrate three things: the power and authority of the king over the city, the wealth of Bordeaux, and a welcoming openness to architecture — achieved by the semicircular shape of the square, its open arms facing the river.</p>
+
+    <p>The Three Graces fountain at the centre replaced successive statues of Louis XV and then Napoleon, both of which were torn down in successive political upheavals. The fountain has been there since, representing the three daughters of Zeus: splendour, joy and abundance.</p>
+
+    <div class="story-box" data-label="The Most Photographed View in Bordeaux">
+      <p>The water mirror in front of the Place de la Bourse was built in 2006 and was one of the final elements that tipped the city toward UNESCO designation in 2007. Inspired by the reflections seen during Venetian flooding in San Marco Square, it is a thin sheet of water — sometimes misted, sometimes still — that creates a perfect mirror reflection of the neoclassical facade behind it. <span class="highlight">It is the first image that appears when you Google the word Bordeaux.</span></p>
+      <p>Before the water mirror was built, this entire space was a car park. Hundreds of cars were the first thing that greeted you when you arrived in Bordeaux from the river. The parking has since been relocated underground. The entire Place de la Bourse embankment was restructured in the 2000s. The best time to photograph the water mirror is after sunset, on a clear still evening, with the lights of the square reflected in the water. No rain, no wind, no children running through it.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Public transport boat:</strong> From the embankment opposite the Place de la Bourse, a public ferry runs to the other bank and up to the Chartrons district and back. One ticket costs €1.90 and gives one hour of unlimited travel — the same ticket as the tram. The TBM app or tram station machines. Worth taking for the view of the city from the water.
+    </div>
+  </section>
+
+  <section class="section" id="canele">
+    <div class="section-tag">Final Stop · Chartrons &amp; Saint-Michel</div>
+    <h2>After the Tour:<br><em>Where to Go Next</em></h2>
+
+    <p>Kaz ends the tour at the Place des Quinconces, near the Monument aux Girondins — the column built between 1893 and 1902 to commemorate the Girondin political party from Bordeaux, executed by guillotine on Robespierre's orders during the Terror. The angel at the top holds a broken chain: freedom, triumphing over oppression.</p>
+
+    <p>Two neighbourhoods worth exploring that the tour does not reach:</p>
+
+    <div class="story-box" data-label="The Bordeaux Breakfast &amp; the Best Wine Bar">
+      <p><strong>Saint-Michel</strong>, thirty minutes on foot to the south: the student quarter, the market, and what Kaz calls the Bordeaux breakfast — half a dozen oysters and a glass of white wine for €12 at the Marché des Capucins, open Tuesday to Sunday from 10am to 2:30pm. The Bay of Arcachon, source of the oysters, is visible on any wine region map as the body of water between the left bank and the Atlantic.</p>
+      <p><strong>Chartrons</strong>, five minutes north: the old wine merchants' district, with antique shops, good restaurants and, most usefully, Les Caves de Saint-James. This wine bar and wine merchant operates at wholesale prices — 1,100 wines by the bottle, 30 by the glass, and a tasting card system that lets you sample 30ml of anything. <span class="highlight-green">Kaz has an arrangement with the owner: coupons available at the end of the tour entitling the holder to a first glass free.</span> He hands them out to everyone.</p>
+    </div>
+
+    <div class="practical">
+      <strong>GuruWalk Bordeaux:</strong> Free tour, pay what you think it's worth at the end (average €12–15 per person). Kaz also runs e-bike wine tours to the vineyards. For the canelé: Cassonade, Rue Saint-James at the foot of the Grosse Cloche, is his honest recommendation over the more famous Baillardran. The canelé should be eaten the same day it's made.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · GuruWalk Bordeaux<br><br>
+  Notes compiled from tour transcript. Guide: Kaz · Bordeaux, France · October 2025
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ismaili Centre — Geometry, Light & the Art of Transformation · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Open House London 2025 · The Ismaili Centre, South Kensington, SW7</div>
+  <h1>Geometry, Light<br>&amp; the <em>Art of Transformation</em></h1>
+  <div class="header-sub">Ismaili Centre Interior Tour · Open House London 2025 · Guide: Shaniel</div>
+  <div class="header-meta">
+    <span>ROUTE: Entrance Hall → Social Hall → Roof Garden → Council Chambers → Prayer Hall</span>
+    <span>DURATION: ~1 hour</span>
+    <span>GUIDE: Shaniel · Ismaili Centre community volunteer</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">The Ismaili Centre: who it is for &amp; what it is for</a></li>
+    <li><a href="#height">Lower than the Victoria &amp; Albert: why the building stays modest</a></li>
+    <li><a href="#muqarnas">The muqarnas ceiling &amp; what it does to sound</a></li>
+    <li><a href="#chandelier">The chandelier: 92 lamps, one wind system, inspired by oil lamps</a></li>
+    <li><a href="#garden">The roof garden: six tons of soil &amp; silver pear trees</a></li>
+    <li><a href="#faith">1,400 years in ten minutes: where Ismaili Muslims sit within Islam</a></li>
+    <li><a href="#prayer">The prayer hall: geometry, Arabic script &amp; materials that transform</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Building That Does Not<br><em>Overshadow Its Neighbours</em></h2>
+
+    <p>The Ismaili Centre on Cromwell Road occupies a corner site in South Kensington — one of the most architecturally dense cultural districts in the world, surrounded by the Natural History Museum, the Victoria and Albert, the Science Museum and Imperial College. The building is low. This is deliberate.</p>
+
+    <p>Shaniel is a member of the Shia Ismaili Muslim community and has guided tours here many times. He opens by locating the building in its context: it was commissioned by the late Aga Khan, the 49th Imam of the Ismaili community, who was insistent that the Centre should not overshadow or be more prominent than the established buildings around it. <span class="highlight">The site was originally earmarked for the National Theatre</span> — which eventually went to the South Bank, a location that proved considerably better for the purpose. The Ismaili Centre was built here instead, opening in 1985 with a ceremony attended by the then Prime Minister, Margaret Thatcher.</p>
+
+    <div class="story-box" data-label="What the Building Is For">
+      <p>The Ismaili Centre is used by the Shia Ismaili Muslim community for prayer, cultural engagement, education and social events. There are around 15,000 Ismailis in the UK, the majority in London and Leicester, with satellite communities in Reading, Swindon, Cardiff and Edinburgh. The network of Centres extends to Toronto, Dubai, Dushanbe and other cities worldwide.</p>
+      <p>The Centre actively engages with its neighbours. It collaborates with museums, hosts lecture series and music festivals, and opens its gardens for Open House events. <span class="highlight-green">The late Aga Khan believed in being a good citizen of the countries in which his community lived</span> — and this building embodies that principle architecturally and operationally.</p>
+    </div>
+  </section>
+
+  <section class="section" id="height">
+    <div class="section-tag">Ground Floor</div>
+    <h2>Lower Than the Victoria &amp; Albert:<br><em>The Height Constraint as Design</em></h2>
+
+    <div class="location">Entrance Hall · Ground Floor · Ismaili Centre · SW7</div>
+
+    <p>The height restriction imposed by the Aga Khan shaped every aspect of Karl Schlamminger's interior design. Where the ceiling would otherwise be flat and oppressive, Schlamminger looked to the Alhambra in Granada for a solution: the muqarnas.</p>
+
+    <div class="story-box" data-label="The Muqarnas Ceiling">
+      <p>The muqarnas — the honeycomb-like stalactite vaulting found throughout Islamic architecture — is recreated here in plasterwork, lifting the eye upward and giving the entrance hall a sense of depth and height that its actual dimensions do not possess. The design comes from the Alhambra directly, translated into a new material and a new context.</p>
+      <p>What is less obvious: the muqarnas also absorbs sound. <span class="highlight">The ceiling is simultaneously decorative and acoustic</span> — it reduces reverberation in a space that would otherwise echo badly. Every choice in this building, Shaniel explains, is both beautiful and functional. The architect was not interested in ornament for its own sake. He wanted materials and forms that did more than one thing.</p>
+    </div>
+
+    <p>The materials throughout the building are deliberately hardy and easy to maintain — chosen not for luxury but for durability. The colours are not symbolic of any particular theological concept; they were chosen because they work in this space. Shaniel makes this point clearly: not everything in an Islamic building carries hidden meaning. Sometimes a colour is just a colour that suits the room.</p>
+  </section>
+
+  <section class="section" id="chandelier">
+    <div class="section-tag">Social Hall</div>
+    <h2>92 Lamps on a Wind System:<br><em>The Chandelier from the Blue Mosque</em></h2>
+
+    <p>Every Ismaili Centre in the network has something unique to it — one feature that distinguishes it from all the others. In London, it is the chandelier in the social hall.</p>
+
+    <div class="story-box" data-label="The Design Inspiration">
+      <p>Karl Schlamminger took his inspiration from the Blue Mosque in Istanbul — specifically its oil lamps, which hang in bell-shaped brass holders, each with a wick that radiates light outward. He translated this into a contemporary chandelier: ninety-two lights, each with the same filaments found in airline cockpits, dimmable from bright to near-dark. The bell shapes are echoed in the pendant forms. The light can be warm or cool, intimate or brilliant, depending on the ceremony.</p>
+      <p>The chandelier is the only element in the building that is <span class="highlight">motorised</span> — it sits on a wind system, so that when the hall doors are opened and air moves through the space, the chandelier responds. Shaniel had not known this, he says, until someone pointed it out to him several years into giving tours here.</p>
+    </div>
+
+    <p>The social hall is used for weddings, community celebrations, museum collaborations, and lecture series. The windows have smaller panes than elsewhere in the building — slightly harder to see in from the street, giving a little more privacy to the events inside while still allowing light through. The geometry of the room — the continuous geometric patterning used in Islamic architecture generally — gives a sense of connectedness and openness, Shaniel says. Everything in life is geometrically connected. A geometric form can be reproduced, memorised, recognised. It creates coherence across vast distances of time and culture.</p>
+  </section>
+
+  <section class="section" id="garden">
+    <div class="section-tag">Roof Garden</div>
+    <h2>The Roof Garden:<br><em>Six Tons of Soil &amp; Silver Pear Trees</em></h2>
+
+    <div class="location">Roof Garden · Upper Floor · Ismaili Centre</div>
+
+    <p>The roof garden is the most startling space in the building — not because it is surprising to find a garden on a roof, but because from its edge, the Victoria and Albert Museum becomes fully visible. The two buildings, one from 1890 and one from 1985, face each other across the garden, and the contrast — ornate Victorian terracotta and the quieter geometry of the Centre — makes the Aga Khan's insistence on deference to the surrounding architecture comprehensible in an instant.</p>
+
+    <div class="story-box" data-label="What Grows Here">
+      <p>The garden contains six tons of soil, which Shaniel mentions because it becomes relevant when you think about what it takes to maintain a planted space seven floors above the ground. The plants are all species that will grow in this climate without unusual intervention — nothing that needs tropical conditions or unusual care. The exception to acknowledge: a rosemary that is currently flowering out of season. Nature does not always follow the plan.</p>
+      <p>Silver pear trees — small, ornamental — line the interior courtyard below, their silvery-green foliage giving privacy to the surrounding residential buildings while remaining delicate enough not to block light. The garden was designed by Sasaki Associates, a Japanese practice based in Boston. The two fountains — one crystalline and scattered at the entrance, one with black pearl stones here — are intended as reminders that humans have a responsibility toward nature, and that nature is healing. <span class="highlight-green">The garden engages all five senses</span>: sight, sound, smell, touch and even taste, since some of the herbs are edible.</p>
+    </div>
+  </section>
+
+  <section class="section" id="faith">
+    <div class="section-tag">Council Chambers</div>
+    <h2>1,400 Years in Ten Minutes:<br><em>Where Ismaili Muslims Sit Within Islam</em></h2>
+
+    <p>Before entering the prayer hall, Shaniel pauses in the council chambers to give a brief account of Ismaili history — because, he says, some of the design decisions in the prayer hall do not make sense without it.</p>
+
+    <div class="story-box" data-label="The Succession Question">
+      <p>When the Prophet Muhammad died, the Muslim community faced a question: who inherits leadership? One answer was that the scholars should collectively interpret the faith — this became the Sunni tradition. Another answer was that the Prophet had specifically appointed his cousin and son-in-law, Ali ibn Abi Talib, as successor. Those who believed this became known as the Shia — the followers of Ali.</p>
+      <p>Within the Shia tradition, there was a further divergence: after the sixth Imam, Jafar al-Sadiq, some followed his son Ismail, whose line eventually established the Fatimid Empire in North Africa and Egypt. These are the Ismailis. The 50th Imam — Aga Khan IV's son — now leads the community.</p>
+      <p><span class="highlight">The Ismaili belief in a living spiritual Imam who interprets the faith in real time</span> is what distinguishes them from other Muslim traditions, and it is why the photograph of the current Imam appears in the prayer hall — a living guide, not simply a historical figure.</p>
+    </div>
+
+    <p>The council chambers are where the National Council — a voluntary body appointed by the Aga Khan to support the community in each country — meets. Visitors from outside the community have been received here: Lady Thatcher, King Charles. The room has hosted state visitors when the Aga Khan chose to receive them here. The teak doors are original; the floor has been sunk slightly to give a sense of increased ceiling height. The arch within the room is not a replica of anything specific; it simply works in this space.</p>
+  </section>
+
+  <section class="section" id="prayer">
+    <div class="section-tag">Prayer Hall</div>
+    <h2>The Prayer Hall:<br><em>Materials That Transform</em></h2>
+
+    <div class="location">Prayer Hall · Ismaili Centre · SW7</div>
+
+    <p>Photography is not permitted in the prayer hall — a request made before the group enters. Inside, the carpet changes: simpler, quieter, as the geometry of the earlier spaces resolves into something more minimal. Shaniel explains that this mirrors a mystical principle — as you elevate spiritually, form loses significance, and only essence remains. The simpler carpet is not a reduction; it is an arrival.</p>
+
+    <div class="story-box" data-label="The Wooden Panels &amp; the Hidden Script">
+      <p>The wooden panels along the walls of the prayer hall appear to be decorative screens — the kind found throughout the Middle East, designed to allow airflow while maintaining privacy. Here they serve that functional purpose, because they are in front of windows. But they do something more.</p>
+      <p>In the negative space between the carved wooden elements — the gaps, not the solid parts — <span class="highlight">the name Allah is written in Arabic Kufic script</span>, running forward and backward. Behind those elements, the design folds to form the name Muhammad. And in the third panel, the name Ali — the first Imam, from whom the Ismaili line of Imams descends. The three foundational elements of Ismaili faith are encoded in the decorative screens that any visitor would see simply as woodwork.</p>
+    </div>
+
+    <p>The materials throughout the building — granite, ceramic tile, wood, plaster — were chosen by Schlamminger with a deliberate metaphor in mind. Each material has been transformed by a process: the ceramic tile fired in a kiln, the granite polished, the plaster carved. When you sit in a place of worship and look around you, everything you see has undergone a transformation to become what it is. The building is, in this sense, an argument for the possibility of transformation — which is what a place of worship is ultimately for.</p>
+
+    <div class="guide-says">"He said: when you go to a place of worship, what are you trying to do? You're trying to transform yourself. These materials have had to go through a process of change. It had to go through fire to become what it is. So it's not just the architecture, the geometry — but the materials themselves, that could be an inspiration for people sitting in the prayer hall."</div>
+
+    <div class="practical">
+      <strong>Visiting the Ismaili Centre:</strong> This is a private building that opens for Open House London each September and for occasional private tours. The Aga Khan Centre in King's Cross — the sister institution, used for Islamic studies — has an online booking system and can be visited at any time by appointment. Both are worth making an effort to see. The Ismaili Centre's roof garden is open during Open House; if you visit only once, go in September.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · openhouselondon.org.uk<br><br>
+  Notes compiled from Open House tour transcript. Guide: Shaniel · Ismaili Centre, South Kensington, SW7 · September 2025
+</footer>
+
+</body>
+</html>

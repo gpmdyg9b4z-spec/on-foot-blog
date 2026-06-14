@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chișinău — Seven Hills, a Open Book & Alina the Great · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Chișinău, Moldova</div>
+  <h1>Seven Hills, an Open Book<br>&amp; <em>Alina the Great</em></h1>
+  <div class="header-sub">Chișinău City Walk · Guide: Alina · GuruWalk Free Tour</div>
+  <div class="header-meta">
+    <span>ROUTE: Ștefan cel Mare Monument → Opera House → Parliament → Victory Arch → Pushkin Monument → Valley of the Mills Park</span>
+    <span>DURATION: ~1.5–2 hours</span>
+    <span>GUIDE: Alina · GuruWalk Chișinău</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Moldova in context: medieval, Russian, Romanian, Soviet, independent — not necessarily in that order</a></li>
+    <li><a href="#stefan">Ștefan cel Mare &amp; every banknote in the country</a></li>
+    <li><a href="#government">The parliament: an open book &amp; the 2009 revolution</a></li>
+    <li><a href="#arch">The Victory Arch &amp; the year someone erased</a></li>
+    <li><a href="#opera">The Opera House &amp; the soprano who won Japan</a></li>
+    <li><a href="#pushkin">Pushkin in exile &amp; the Netflix of the 19th century</a></li>
+    <li><a href="#language">The language that isn't Japanese: Romanian, Moldovan &amp; a manufactured controversy</a></li>
+    <li><a href="#park">The Valley of the Mills &amp; 200 stairs</a></li>
+    <li><a href="#practical">What to eat, drink &amp; where to go after the tour</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Moldova:<br><em>Independent Since 1991, Still Finding Its Feet</em></h2>
+
+    <p>Alina is Moldovan, guides in English with what she describes as a mixed-up accent — a result of learning from a teacher with a perfect British accent while also absorbing a great deal of American content. She has been doing this for several years and opens every tour by predicting rain. In autumn Chișinău, she explains, if the forecast says 20% chance of rain, it will rain. A little. But definitely something.</p>
+
+    <p>Moldova's history is compressed and complicated. The territory that is now Moldova was, in the medieval period, part of a principality that stretched into what is now Romania. In the 19th century it was annexed by the Russian Empire. After the First World War it briefly reunited with Romania. In the Second World War it became part of the Soviet Union. Independence came in 1991, after the collapse of the USSR, and the country has been navigating its position between East and West ever since.</p>
+
+    <div class="story-box" data-label="Where It Stands Now">
+      <p>Moldova applied for EU membership in 2022, alongside Ukraine. The outcome of recent elections has been closely watched — had parties funded by Russian interests won, Alina notes carefully, the trajectory would have been different, and it might have been less straightforward to be standing in central Chișinău as a visitor. The new prime minister, an economist with a background in French institutions, has generated cautious optimism.</p>
+      <p>The country is small — around 800,000 people in the capital, perhaps three to four million in the country overall. <span class="highlight">Around 40% of the working-age population has emigrated, mainly to Europe.</span> This is a fact that shapes everything: the economy, the housing market, the schools, the feeling of the city. People keep leaving, and the ones who remain are increasingly aware of it.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1991</div>
+      <div class="key-fact-text">Year Moldova declared independence after the collapse of the Soviet Union — making it one of Europe's younger states, and one that has spent much of its independence trying to decide which direction to face.</div>
+    </div>
+  </section>
+
+  <section class="section" id="stefan">
+    <div class="section-tag">Stop 1 · Central Boulevard</div>
+    <h2>Ștefan cel Mare<br>&amp; <em>Every Banknote in the Country</em></h2>
+
+    <div class="location">Monument to Ștefan cel Mare · Central Boulevard</div>
+
+    <p>The tour starts at the monument to Ștefan cel Mare — Stephen the Great — which Alina introduces as the greatest protector of the country, a 15th-century ruler who reportedly built a church or monastery every time he won a war. There are over thirty of these churches and monasteries still standing across Romania and Moldova. He holds a cross in one hand, which Alina explains represents both his Christian faith and his belief that he was defending all of Christian Europe against the Ottoman Empire.</p>
+
+    <p>His height, according to historical sources, was approximately the same as Alina's. She is not tall. The statue is enormous. <span class="highlight">Every denomination of the Moldovan leu has his face on it</span> — the designers apparently could not agree on anyone else. Streets, schools, libraries, the main boulevard of the capital: all named after him. When politicians want to be seen paying their respects, they come here and put flowers down. Alina has been giving tours past this statue for five years. She is, she says, quite ready to move on from it.</p>
+  </section>
+
+  <section class="section" id="government">
+    <div class="section-tag">Stop 2 · Parliament</div>
+    <h2>The Parliament:<br><em>An Open Book &amp; a Revolution</em></h2>
+
+    <div class="location">Parliament of the Republic of Moldova · Built 1963–1976</div>
+
+    <p>The parliament building was constructed over thirteen years, opening in 1976. Its shape — two wings extending from a central spine — is meant to represent an open book, a symbol of transparency and openness to the people. Alina delivers this information with the dry equanimity of someone who has noted the gap between symbolism and outcome.</p>
+
+    <div class="story-box" data-label="7 April 2009">
+      <p>In 2009, the Communist Party won parliamentary elections for the third consecutive time. A significant portion of the population believed the result was fraudulent. People came to the streets. Buildings were damaged, including several in the central square. One person died as a result of police brutality during the protests.</p>
+      <p><span class="highlight-blue">Every year on 7 April, Moldovans commemorate the events of that day.</span> The protests were a turning point — not immediately decisive, but part of a longer process of political change that eventually resulted in the country's current pro-European orientation. The buildings have since been repaired. The square outside the parliament is both a protest venue and, when things are going well, a party space: wine day in October, concerts, marathons.</p>
+    </div>
+
+    <p>Across the street from the parliament is the presidency — where the staff of the president work. Since 2020, Moldova has had its first female president, Maia Sandu. She opened the gate of the presidential compound to the public, something her predecessors had not done. In 2024 she was re-elected for a second term. Alina notes this without particular editorial comment, though the context — an election whose outcome significantly affected Moldova's European future — makes the sentence heavier than it sounds.</p>
+  </section>
+
+  <section class="section" id="arch">
+    <div class="section-tag">Stop 3 · Central Square</div>
+    <h2>The Victory Arch &amp;<br><em>The Year Someone Erased</em></h2>
+
+    <div class="location">Arcul de Triumf · Central Square · Originally called the Holy Gate</div>
+
+    <p>The arch at the edge of the central square was originally called the Holy Gate — it stood in front of the cathedral, and the name reflected its position as the ceremonial entrance to the religious centre of the city. After the Soviet occupation, the arch was rededicated as the Victory Arch, and the year of its original construction was erased from the stonework and replaced with a false date. The Soviets, Alina explains, decided to rewrite history and put in a fake number.</p>
+
+    <p>If you want to find the real year of construction, you can go and look — the original date is still faintly legible underneath the replacement, if you know where to look. The arch's clock still chimes, and still surprises Alina every time she walks past it at six in the morning.</p>
+
+    <p>The cathedral and its bell tower are visible from the square. The bell tower stands separately from the cathedral — structurally independent, because the weight and vibration of the bells were considered a risk to the main building. The arrangement is more common than it might appear; the same logic applies to the detached bell tower of Bordeaux's cathedral, for identical reasons.</p>
+  </section>
+
+  <section class="section" id="opera">
+    <div class="section-tag">Stop 4 · Opera House</div>
+    <h2>Maria Bieșu &amp;<br><em>The Soprano Who Won Japan</em></h2>
+
+    <div class="location">Opera Națională și Balet Maria Bieșu · Opened 1957</div>
+
+    <p>The National Opera and Ballet is one of the few buildings in central Chișinău that Alina describes as having a genuinely strong influence of brutalist architecture — its massive columns visible from what she claims is approximately space. The institution was opened in 1957 and has run continuously since, employing over 200 people.</p>
+
+    <div class="story-box" data-label="The Soprano on the Building">
+      <p>The building is named after Maria Bieșu, a mezzo-soprano who was, in the 1960s and 1970s, approximately the Madonna of Eastern European classical music. She competed in Japan and won a title — <em>Sosei Star</em> — that nobody in Moldova fully understood but everyone was extremely proud of. She died in 2012. The building was renamed in her honour, and an international festival bearing her name continues annually.</p>
+      <p><span class="highlight">If you don't understand Italian opera — and in Moldova, Alina notes, almost nobody does — you can follow subtitles on a screen</span> and understand that something is being performed. The performances are in the original language. Tickets are affordable. Alina recommends it if you are in the city for more than a day.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pushkin">
+    <div class="section-tag">Stop 5 · Pushkin Monument</div>
+    <h2>Pushkin in Exile &amp;<br><em>The Netflix of the 19th Century</em></h2>
+
+    <div class="location">Pushkin Monument · Alley of Classicists</div>
+
+    <p>The path leading to the Pushkin monument is the Alley of Classicists — twenty-eight monuments to famous people who contributed to art, history, literature, politics and diplomacy, mainly Romanian and Moldovan figures. On birthdays and memorial days, flowers appear at the relevant statues. Alina considers the Alley the Netflix of the 19th century: you paid a subscription to have cultural figures present in your public space, and on significant days, people came to engage with them.</p>
+
+    <div class="story-box" data-label="Why Pushkin Was Here">
+      <p>Alexander Pushkin — the Russian poet — arrived in Chișinău not because he wanted to, but because the Russian imperial government found him inconvenient. He was 19, famously attractive according to the history books, and writing things that made authorities uncomfortable. Rather than Siberia, they sent him to Moldova, where Russian aristocrats had villas and where the climate was thought, perhaps incorrectly, to be less damaging to his constitution.</p>
+      <p>He did not enjoy Chișinău initially, which Alina finds entirely understandable. But then he travelled across the country, fell in love with the landscape, and wrote poems about it. Children in Moldova learn these poems in school and generally find them useless. Alina is doing the tours now. She supposes it all worked out.</p>
+      <p>Chișinău was the second city after Moscow to have a dedicated Pushkin monument. <span class="highlight-green">Every year on his birthday or memorial day, people come and leave flowers — or, for reasons Alina has never fully been able to explain, apples.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="language">
+    <div class="section-tag">Theme · Identity</div>
+    <h2>The Language That Isn't<br><em>A Separate Language</em></h2>
+
+    <p>The language spoken in Moldova is Romanian. This is a fact that is, in Moldovan politics, contested — or rather, artificially contested, as Alina frames it. The question of whether Moldovans speak Romanian or a separate Moldovan language is less a linguistic question than a political one, created to divide the population and sustained by those who benefit from the division.</p>
+
+    <blockquote>
+      <p>"It's a sensitive thing. Not necessarily sensitive, but we're very conscious of what the French language has in terms of baggage. And we're intentionally replacing French with English. It's a process, and we're doing good."</p>
+      <cite>— Alina, on language in Moldova</cite>
+    </blockquote>
+
+    <p>Schools teach in Romanian. The first foreign language taught is now English — French held that position until the 1990s and is still spoken by older generations in the cities, but the shift has been deliberate and largely complete at the higher education level. Romanian is closely related to Italian — close enough that Italians visiting Moldova often find they can read signs and broadly follow conversations. <span class="highlight-blue">Romanians can learn Italian in approximately two to three months.</span> It is, linguistically, closer to Latin than any other living language.</p>
+  </section>
+
+  <section class="section" id="park">
+    <div class="section-tag">Stop 6 · Valley of the Mills</div>
+    <h2>The Valley of the Mills<br>&amp; <em>200 Stairs</em></h2>
+
+    <div class="location">Valea Morilor · Lake Park · Chișinău</div>
+
+    <p>The Valley of the Mills park — built in the Soviet period as a recreational space, with an artificial lake at its centre — is Alina's favourite part of the tour and the one she is most prepared to skip if the group is visibly tired, given the 200 stairs required to get back up. She negotiates this openly with the group before committing to the descent.</p>
+
+    <p>The lake is artificial, constructed in the 1950s. The national canoe team trains here. The Little Prince — the smallest monument in Chișinău, approximately the size of Alina's fist — is somewhere on the far side of the park; she marks it on the map so people can find it themselves. The Lenin monument, if anyone is looking for it, is also in this area, somewhat hidden in the greenery.</p>
+
+    <div class="story-box" data-label="Autumn in the Park">
+      <p>The park is at its best in October, when the trees are in full colour. Alina has been wanting to bring a tour here in autumn specifically because the colours are, she says, quite something. The stairs back up are 200 in number, which she has counted. Coming down is easy. Coming back is a challenge.</p>
+      <p>The building visible beyond the trees — the Academy of Art — is one of the access points to the park. The Tower of Water, nearby, was the city's original water supply infrastructure and now houses a photography museum and an observation platform with views over the old city centre that make the 200 stairs feel, retrospectively, worthwhile.</p>
+    </div>
+  </section>
+
+  <section class="section" id="practical">
+    <div class="section-tag">After the Tour</div>
+    <h2>What to Eat, Drink<br>&amp; <em>Where to Go</em></h2>
+
+    <p>Alina ends the tour at the Organ Hall — the National Bank of Moldova's former building, now a concert venue with an organ containing over 4,000 pipes, one of the more affordable places in Europe to hear live classical music. She distributes a list of recommendations.</p>
+
+    <div class="story-box" data-label="Alina's Recommendations">
+      <p><strong>La Placinte:</strong> The chain restaurant she keeps returning to — chicken pie with mashed potato, desserts, traditional Moldovan food done consistently. Not fancy. Reliably good.</p>
+      <p><strong>Moldovan wine:</strong> The thing to try, and the thing most visitors leave wishing they had explored more. Flintwine bar in the city centre — wine by the glass or bottle, starting with a glass and moving to a bottle being Alina's recommended strategy.</p>
+      <p><strong>Hârtopul cake:</strong> A cherry cake that appears in season and is worth finding. Only in Moldova, and in some parts of Romania.</p>
+      <p><span class="highlight-green">The circus on Ștefan cel Mare Street</span> — yes, an actual circus — is apparently worth a visit, though Alina notes she has not been herself and recommends checking what's on before going.</p>
+    </div>
+
+    <div class="practical">
+      <strong>GuruWalk Chișinău:</strong> Free tour, pay what you think it's worth at the end. Alina sends a recommendations list by WhatsApp or email after the tour. The tour finishes near Mihai Eminescu Square — the area Alina calls the heart of old Chișinău, where the coffee shops, wine bars and most of the city's social life are concentrated within a few blocks. An evening here is the best way to end a day in the city.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · GuruWalk Chișinău<br><br>
+  Notes compiled from tour transcript. Guide: Alina · Chișinău, Moldova · October 2025
+</footer>
+
+</body>
+</html>

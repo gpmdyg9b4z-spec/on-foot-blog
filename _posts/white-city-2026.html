@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White City — Imre Kiralfy, the BBC & the Japanese Garden · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — White City, W12 · London Festival of Architecture 2026</div>
+  <h1>Eight Million Visitors,<br>a <em>Question Mark</em> &amp; the Ainu Village</h1>
+  <div class="header-sub">White City Walk · Guide: Joanna · Open City</div>
+  <div class="header-meta">
+    <span>ROUTE: Cassini Tower → Wood Lane Station → Television Centre → Japanese Garden → White City Estate → Olympics Memorial</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDE: Joanna · Open City</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#kiralfy">Imre Kiralfy: from Budapest to Chicago to a brickfield in West London</a></li>
+    <li><a href="#exhibition">The Franco-British Exhibition 1908: 8 million visits, everything white</a></li>
+    <li><a href="#transport">Wood Lane Station &amp; the £170 million question</a></li>
+    <li><a href="#television">Television Centre: the question mark building</a></li>
+    <li><a href="#pops">Privately owned public spaces</a></li>
+    <li><a href="#japanese">The first public Japanese garden in the UK &amp; the Ainu village</a></li>
+    <li><a href="#estate">The White City Estate: Zeilenbau, Warren Hastings &amp; the Batman block</a></li>
+    <li><a href="#olympics">The 1908 Olympics &amp; Dorando Pietri's wrong turn</a></li>
+    <li><a href="#imperial">Imperial College's 23 acres &amp; the fins of recycled steel</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="kiralfy">
+    <div class="section-tag">Introduction</div>
+    <h2>Imre Kiralfy:<br><em>From Budapest to a West London Brickfield</em></h2>
+
+    <p>Joanna lives locally and has been running walks around White City for several years. She opens by asking the group a question she considers fundamental: does anyone know where they are? White City has changed so dramatically and so recently that people arrive at Shepherd's Bush and find they don't recognise it. The answer, she says, is a brickfield — if you had been standing here in the 1900s, you would have been in a field of clay, looking at agricultural land and the railway viaduct crossing it. White City was one of the last areas of West London to be developed, and it took a Hungarian-born theatrical impresario to do it.</p>
+
+    <div class="story-box" data-label="The Man Who Made It">
+      <p>Imre Kiralfy was born in Hungary in 1845. His family, having backed the wrong side in the Hungarian Revolution, left the country; the children became child performers. Imre and his brother emigrated to the United States in the 1860s and made a fortune in spectacle theatre — enormous musicals with large casts, elaborate special effects and, by their own cheerful admission, very weak plots. They lived on Washington Square, New York.</p>
+      <p>In 1893, Kiralfy was producing a show in Chicago at the World's Fair — the largest international exhibition America had seen. The fair was known as the White City: every building painted white, electrified for the first time, lit up at night. <span class="highlight">Kiralfy saw it, and decided to change his career.</span> He began organising international exhibitions. Starting at Earl's Court between 1895 and 1903, he then bought 140 acres on the other side of what is now Wood Lane, as part of a consortium, and set about building something even more ambitious.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exhibition">
+    <div class="section-tag">Stop 1 · The Exhibition Site</div>
+    <h2>The Franco-British Exhibition:<br><em>Eight Million Visits in Six Months</em></h2>
+
+    <p>The Franco-British Exhibition opened in May 1908. Everything on the 140-acre site was painted white, inspired by Chicago. Everything was electrified. In a London that was at the time filthy with coal smoke and pollution, the effect of arriving at a gleaming white exhibition city must have been, as Joanna puts it, mind-boggling.</p>
+
+    <div class="story-box" data-label="What Was There">
+      <p>Forty pavilions. A scenic railway. Several miles of walkways. A waterway you could boat along. The Court of Honour at the entrance, inspired by Mughal architecture — not built in marble, like Udaipur, but in a steel frame covered in concrete, painted white, with stucco applied to create exotic decorative effects. The message was deliberate: you entered through a vision of India, immediately reminded of Britain's control of the subcontinent.</p>
+      <p>The flip flap — two arms each 200 feet long, with carriages at the ends that rose slowly and then tipped over, giving views allegedly as far as Crystal Palace. A million people rode it. Two popular songs were written about it in 1908 alone.</p>
+      <p>There was also Merryland — the entertainment zone — which contained, as was entirely normal for international exhibitions of the period, <span class="highlight">villages where indigenous people from colonised territories were displayed as living exhibits.</span> France had a West African village; Britain had displays for Canada and Australia. The Japan-British Exhibition of 1910 included villages from Japan's colony of Formosa, and from the Ainu people of Hokkaido. An 18-year-old Ainu man died during the exhibition and is buried in an unmarked grave in Margravine Cemetery in Hammersmith. At the time, there was no publicity about this; it only emerged through historical research decades later.</p>
+      <p><span class="highlight-blue">Eight million visits in six months.</span> Then 1914 happened. The business model was broken. The weapons that had been on display at the exhibitions were suddenly in use. The site was never the same again.</p>
+    </div>
+
+    <p>Six exhibitions were held here between 1908 and 1914. After the First World War, a few more followed, but gradually the 140 acres were broken up — into housing, television centre, and the stadium that would eventually be used for greyhound racing.</p>
+  </section>
+
+  <section class="section" id="transport">
+    <div class="section-tag">Stop 2 · Wood Lane Station</div>
+    <h2>Wood Lane Station &amp;<br><em>£170 Million from Westfield</em></h2>
+
+    <div class="location">Wood Lane Station · Hammersmith &amp; City Line</div>
+
+    <p>The older building on this stretch — brick, Victorian, easy to mistake for a warehouse — is the oldest existing power generation plant for the London Underground. Shepherd's Bush was the terminus for the Central London Railway, which opened in 1900 and is now the Central line. This was why Kiralfy could attract eight million visitors to his exhibition: public transport made the suburbs reachable. The exhibition guide had ten pages devoted to the different ways you could arrive by public transport.</p>
+
+    <p>Wood Lane Station, on the Hammersmith &amp; City and Circle lines, was opened in connection with Westfield, which opened in 2008. As part of its Section 106 agreement — the community contribution a major development makes — <span class="highlight">Westfield paid £170 million for public transport improvements in the area.</span> TfL contributed a further £30 million. The area was previously fragmented by the Central line cutting through it, with very few bridges. The station, designed by Ian Ritchie Architects (who also worked on Jubilee line stations), was the first station built on an existing line for seventy years — and because it sits above both the Central line and other infrastructure, it has no escalators, making it lighter. It is one of the more successful pieces of architecture in the area, Joanna considers.</p>
+  </section>
+
+  <section class="section" id="television">
+    <div class="section-tag">Stop 3 · Television Centre</div>
+    <h2>Television Centre:<br><em>The Question Mark Building</em></h2>
+
+    <div class="location">Television Centre · Wood Lane · W12</div>
+
+    <p>After the Second World War, the London County Council wanted to use its compulsory purchase powers to acquire fifteen acres on this site for housing. They were not pleased to discover that the BBC was looking for land on which to build a dedicated purpose-built television centre — and that this was the only piece of land in London, close to public transport and large enough for the purpose, that worked.</p>
+
+    <p>The BBC won the argument, acquired the land in 1949, and engaged an architect called Graham Dawbarn — known for designing airports — to design something entirely new. Nobody had built a television centre before. The legend, which may or may not be true, is that Dawbarn drew a question mark, because the design challenge was so great that he had no other starting point.</p>
+
+    <div class="story-box" data-label="The Shape &amp; How It Worked">
+      <p>Television Centre, when you look at it, curves around like a question mark. This was not accidental. The circular form placed the studios around a central ring; behind the studios was an inner circular walkway for moving scenery; behind that, a road following the same curve; and behind that, the scenery construction block. Because everything was broadcast live in the early decades, the scenery was constantly in motion — the circular layout made that possible at speed.</p>
+      <p>The building opened in 1960. The spur visible from the road was added in 1970. Building continued into the 1990s. At its peak, <span class="highlight">nine thousand people worked here</span> — it was effectively a village inside Shepherd's Bush, entirely separate from the surrounding streets, a gated community. The Graham Norton Show and Loose Women are still produced here in three studios retained by the BBC after the 2012 sale.</p>
+    </div>
+
+    <p>The BBC sold Television Centre in 2012 to Stanhope and Mitsui Fudosan for £200 million — a figure that seemed, given the listed building constraints and the cost of preservation, like something of a bargain. The development now contains approximately 1,000 homes, retail, a Soho House, and those three working studios. The affordable housing — around 11% of units, reflecting decisions made under a previous political era — is located on the other side of the railway tracks. The original mosaic and handrails inside are restored. The bronze figure by the entrance, Helios spreading the light of television to the world, is now in gold leaf rather than the original gold paint.</p>
+  </section>
+
+  <section class="section" id="pops">
+    <div class="section-tag">Theme · Ownership</div>
+    <h2>Privately Owned<br><em>Public Spaces</em></h2>
+
+    <p>The walk passes through four POPs — privately owned public spaces. You walk through them feeling as though you are in a public road or park. You are not. The space is owned by a developer. If a security guard asks you to leave, you have to leave. Photography with an SLR camera in some of these spaces will bring a guard over almost immediately, because the developers control the image rights.</p>
+
+    <blockquote>
+      <p>"I've taken local residents on this walk and people are genuinely shocked that they can walk through here. The idea is that porosity — people moving through — is a good thing. But not everybody feels comfortable in these spaces."</p>
+      <cite>— Joanna</cite>
+    </blockquote>
+
+    <p>The complication at Television Centre specifically: three studios have live television productions. Anti-vaxxers invaded the Loose Women studio while it was being broadcast, which raised difficult questions about the management of a POPS that also happens to be a live television facility.</p>
+  </section>
+
+  <section class="section" id="japanese">
+    <div class="section-tag">Stop 4 · Hammersmith Park</div>
+    <h2>The First Public Japanese Garden<br><em>in the United Kingdom</em></h2>
+
+    <div class="location">Hammersmith Park · W12 · Officially named, confusingly, Hammersmith Park</div>
+
+    <p>The garden in the park is the only surviving original structure from all six exhibitions held at White City between 1908 and 1914. Everything else — the forty pavilions, the flip flap, the Court of Honour — is gone. The Japan-British Exhibition of 1910 created two gardens. The Garden of the Floating Isle is now somewhere underneath the White City Estate. The Garden of Peace survived, became a public park, and was restored for its centenary in 2010 by Japanese garden designers.</p>
+
+    <div class="story-box" data-label="Why Japan Invested">
+      <p>The Japan-British Exhibition of 1910 was the only one of the White City exhibitions organised in cooperation with a government. Japan contributed the equivalent of £8 million in today's money and sent officials to work on it for years. Japan in 1910 was a rising world power — <span class="highlight">the opportunity to project that power in London, then one of the greatest cities in the world, was too significant to miss.</span> They also wanted to correct a British stereotype of Japan as uncivilised and warlike. They chose gardens. An astute decision when dealing with the British.</p>
+      <p>A Zelkova japonica — Japanese elm — was planted for the 1910 exhibition; it is still there, behind its substantial protective fence. The Chokushimon Gate originally here was moved to Kew Gardens, where it remains. Joanna suggests, without great seriousness, that perhaps they should ask for it back.</p>
+      <p>The so-called Ten Pudding Hills — three mounds intended to represent Japanese mountains, including Mount Fuji — are covered in AstroTurf, which Joanna considers may not fully achieve the desired effect.</p>
+    </div>
+  </section>
+
+  <section class="section" id="estate">
+    <div class="section-tag">Stop 5 · White City Estate</div>
+    <h2>Zeilenbau, Warren Hastings<br>&amp; <em>the Batman Block</em></h2>
+
+    <p>The White City Estate is Hammersmith and Fulham's largest council estate — over 2,000 homes, begun in the mid-1930s, and the first major London estate to implement ideas the Labour-controlled London County Council had brought back from visits to housing in Germany and Austria. The guiding concept was <em>Zeilenbau</em>: blocks aligned north-south, so that light enters from the east in the morning and west in the evening, with generous spacing between them to allow fresh air through.</p>
+
+    <div class="story-box" data-label="What the Blocks Are Named">
+      <p>The LCC of the 1930s, looking back at the White City exhibitions as imperial enterprises, named the estate's roads after British imperial territories: South Africa Road, Australia Road. The blocks themselves are named after men who served the British Empire in military, exploratory or administrative capacities.</p>
+      <p>Hastings House is named after Warren Hastings, first Governor-General of Bengal. Lugard House is named after Frederick Lugard, first Governor-General of Nigeria and Uganda. One block is called Batman — not after the comic character, but after William Batman, a man associated with the founding of Melbourne who is also linked to the genocide of Tasmanian Aboriginal people.</p>
+      <p><span class="highlight-blue">People are aware of these connections, Joanna says, but have other priorities.</span> Nobody is actively campaigning to change the names. The exception: Mandela Block was renamed in honour of Nelson Mandela. That one is new.</p>
+    </div>
+
+    <p>The communal facilities at the centre of the estate — health centre, nursery, adventure playground, housing offices — are now the subject of a contested regeneration plan. Planning permission was recently granted for approximately 250 additional homes on the land, half affordable and half private sale, with the private sales funding renovation of the public spaces. Some residents support this; others feel the communal lung of the estate is being sacrificed.</p>
+  </section>
+
+  <section class="section" id="olympics">
+    <div class="section-tag">Stop 6 · Olympics Memorial</div>
+    <h2>The 1908 Olympics &amp;<br><em>Dorando Pietri's Wrong Turn</em></h2>
+
+    <p>The 1908 Olympics were not supposed to be in London. They were supposed to be in Rome, but Mount Vesuvius erupted in 1906 and Italy was no longer able to host them. The British Olympic Committee went to Imre Kiralfy and asked whether he could fit a stadium into his exhibition site. He said yes and paid for it himself, in exchange for the gate receipts.</p>
+
+    <div class="story-box" data-label="The Marathon &amp; the Disqualification">
+      <p>The standout event of the 1908 Olympics was the marathon, and it produced one of the most dramatic finishes in Olympic history. The race started at Windsor Castle. The distance was set at 26 miles and 385 yards — specifically calculated to bring the finishing line in front of the royal box inside the stadium. This became the standard marathon distance.</p>
+      <p>The first runner to enter the stadium was an Italian called Dorando Pietri — small, improbable-looking, with a handkerchief on his head. He had overtaken the South African front-runner on the roads outside. When he entered the stadium, exhausted and disoriented, <span class="highlight">he began running the wrong way around the track.</span> He was redirected. He fell over. He got up. He fell again. At some point, someone helped him to his feet. He crossed the line first.</p>
+      <p>An American named Johnny Hayes came in second. The Americans — who had been in ongoing tension with the British judges throughout the games — objected that Pietri had been assisted. The objection was upheld. He was disqualified. Hayes won. But for the British public, Pietri was the hero — perhaps partly, Joanna suggests, because they didn't particularly want an American to win. Queen Alexandra gave Pietri a gold cup. The close where the memorial stands is named Durando Close, after the man who was disqualified rather than the man who actually won.</p>
+    </div>
+
+    <p>The stadium served its purpose for the Olympics, then hosted greyhound racing from the 1920s until its closure in 1982. One 1966 World Cup match was played here — Uruguay vs France — because Wembley had a dog race scheduled and did not want to give up the revenue. The stadium was demolished; the memory is preserved in a developer's placemaking installation inside what is now White City Place.</p>
+  </section>
+
+  <section class="section" id="imperial">
+    <div class="section-tag">Stop 7 · Imperial College</div>
+    <h2>Imperial College's 23 Acres<br>&amp; <em>the Fins of Recycled Steel</em></h2>
+
+    <p>Imperial College has acquired 23 acres in White City — north and south of the A40 — in a development programme that will eventually see around £2 billion invested in the campus. Unlike UCL at Stratford or Central Saint Martins at King's Cross, Imperial owns its land outright rather than holding long-term leases. The model, Joanna suggests, is closer to MIT or Stanford: creating assets that generate income and reduce dependence on government funding and student fees.</p>
+
+    <p>The northern campus is largely complete. The residential tower at 88 Wood Lane is purely for rent, partly commercial and partly for key workers at the Imperial-run hospital. The Sir Robert Weston Building — the one with the distinctive fins — is dedicated to biomedical engineering and won a RIBA Regional Award. The fins are made from GGBS: ground granulated blast-furnace slag, a waste product of the steel industry. <span class="highlight-green">The material that made the donor's money is on the side of the building that bears his name.</span></p>
+
+    <div class="practical">
+      <strong>White City Place:</strong> The former BBC research and development campus, now a creative and life sciences hub. ITV is more physically present in White City now than the BBC. The POPS throughout the area are walkable but not public — follow the through-routes and enjoy the architecture, but be aware of the distinction.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open City · opencity.org.uk<br><br>
+  Notes compiled from tour transcript. Guide: Joanna · White City, W12 · March 2026
+</footer>
+
+</body>
+</html>

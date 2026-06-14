@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Australia House — Open House London 2025 · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Open House London 2025 · Australia House, Aldwych, WC2</div>
+  <h1>Gringotts, the Boomerang Club<br>&amp; <em>the Longest Brass Handrails</em></h1>
+  <div class="header-sub">Australia House Interior Tour · Open House London 2025</div>
+  <div class="header-meta">
+    <span>ROUTE: Cinema Hall → Staircase → Downer Room → Exhibition Hall</span>
+    <span>DURATION: ~30 minutes · Three rooms</span>
+    <span>GUIDE: Australia House staff · Open House London</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Building a high commission: 1913, King George V &amp; a World War in the middle</a></li>
+    <li><a href="#cinema">The cinema hall, the Boomerang Club &amp; the £10 migration bond</a></li>
+    <li><a href="#stairs">The longest continuous brass handrails in London</a></li>
+    <li><a href="#downer">The Downer Room &amp; a father-and-son High Commission</a></li>
+    <li><a href="#exhibition">The exhibition hall: Gringotts, an awkward lunch &amp; the visitors' book</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>The Oldest High Commission<br><em>in Modern London</em></h2>
+
+    <p>Australia House on the Aldwych is the oldest high commission building in London — a claim the guides make early and with some pride. It is also, by some measures, one of the most recognisable interiors in the city, though the reason for that recognition may surprise visitors who have never set foot inside: for many people, Australia House is Gringotts Bank.</p>
+
+    <p>The building occupies the wedge of land between the Strand and Aldwych, a prominent site on the curve of one of London's most theatrical junctions. The land was purchased for around £370,000 in 1913 by the first Australian High Commissioner. King George V laid the foundation stone, and building began that year.</p>
+
+    <div class="story-box" data-label="A World War in the Middle">
+      <p>Construction was interrupted almost immediately by the First World War. A special exemption was made so that Australia House could continue to be built despite wartime conditions — the diplomatic significance of the building outweighed the disruption to the construction schedule. Work resumed and the building was sufficiently complete for a small group to move in during 1916. <span class="highlight">It was not officially opened until 1918.</span> Australia House has been the only occupant of the building since then; whatever was here before was cleared when the site was purchased and the street widened in preparation for the new building.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1913</div>
+      <div class="key-fact-text">Year construction began on Australia House — making it the oldest continuously occupied high commission building in London, and the longest-serving Australian diplomatic presence anywhere in the world.</div>
+    </div>
+  </section>
+
+  <section class="section" id="cinema">
+    <div class="section-tag">Room 1 · Cinema Hall</div>
+    <h2>The Boomerang Club<br>&amp; <em>the £10 Passage to Australia</em></h2>
+
+    <div class="location">Cinema Hall · Ground Floor · Australia House</div>
+
+    <p>The first room on the Open House tour is the cinema hall — now a multipurpose events space, but with the original projection booth still visible in the upper wall, the holes where the projector once threaded its reels still apparent. It has been retrofitted with HDMI capability. The guide notes that some of the younger visitors in the room may not know what reel-to-reel film projection was. This is delivered without self-pity.</p>
+
+    <div class="story-box" data-label="What the Room Has Been">
+      <p>In 1927, the Duke and Duchess of York — the couple who would become King George VI and Queen Elizabeth — toured Australia. On their return, they came to Australia House and watched a film of their tour, here in this room. That was the beginning of its use as a screening space.</p>
+      <p>During the Second World War, the building became the <strong>Boomerang Club</strong> — a social venue for Australian servicemen and women, a place to meet, socialise, hold dances, collect mail, and feel connected to home. There is a bar behind one of the walls. Of course there is, the guide says. They are Australians.</p>
+      <p>After the war, the room served a different but equally significant purpose: <span class="highlight">Australia was actively recruiting migrants, and this was where the case was made.</span> Films ran in two formats — Australian news reels, which took five or six weeks to arrive from Sydney or Melbourne, and promotional films showing Australia's open beaches, sunny weather and unclogged roads. The pitch was direct. In the 1950s, you could migrate to Australia on a £10 assisted passage bond. The guide pauses. Times change.</p>
+    </div>
+
+    <p>The room has since hosted concerts, presentations, World Cup screenings, and press events. In 2023, when the Women's World Cup was played in Australia, the room was used to watch the Matildas play England live. The guide describes this as a fun day, though notes the result diplomatically.</p>
+  </section>
+
+  <section class="section" id="stairs">
+    <div class="section-tag">Between Rooms</div>
+    <h2>The Longest Continuous<br><em>Brass Handrails in London</em></h2>
+
+    <p>Between the cinema hall and the upper rooms, the tour ascends a grand staircase. This is flagged by the guide as a significant architectural feature — specifically, the handrails. <span class="highlight">These are the longest continuous brass handrails in London.</span> The guide acknowledges that this is a very specific category, but it is one the building holds without challenge.</p>
+
+    <p>Photographs are not permitted on the staircase or between rooms — only within the rooms themselves. The reason involves security protocols for a working diplomatic building, and the guide is matter-of-fact about it. The staircase is worth looking at on the way up, and on the way back down, if you can resist trying to photograph it.</p>
+  </section>
+
+  <section class="section" id="downer">
+    <div class="section-tag">Room 2 · First Floor</div>
+    <h2>The Downer Room &amp;<br><em>a Father-and-Son High Commission</em></h2>
+
+    <div class="location">Downer Room · First Floor · Australia House</div>
+
+    <p>The room on the first floor is named after Sir Alexander Downer, High Commissioner from 1964 to 1972. His son, Alexander Downer Jr., served as High Commissioner from 2014 to 2018 — making them, across half a century, the only father and son to have each held the position. The room is named after the father.</p>
+
+    <p>The Downer Room today hosts receptions, roundtables and high-level meetings. It was previously a library where Australian residents of London could come in and borrow books — a service that ended after 2001, when security requirements changed the nature of public access to the building significantly.</p>
+
+    <p>Around the room are facts and artefacts relating to Australia's First Nations cultures, and information about ongoing repatriation efforts. The guide gives these proper space in the tour — they are not footnotes.</p>
+  </section>
+
+  <section class="section" id="exhibition">
+    <div class="section-tag">Room 3 · Ground Floor</div>
+    <h2>Gringotts, an Awkward Lunch<br>&amp; <em>the King's Signature</em></h2>
+
+    <div class="location">Exhibition Hall · Ground Floor · Australia House</div>
+
+    <p>The exhibition hall is the room that most visitors, if they recognise any part of Australia House, will recognise. It served originally as a space to showcase Australian produce, goods and job opportunities — a kind of permanent trade exhibition. Later it became a reading room where Australian newspapers could be consulted. Now it is used for receptions, exhibitions and — most famously — film productions.</p>
+
+    <div class="story-box" data-label="The Gringotts Connection">
+      <p>The exhibition hall was used as Gringotts Bank in the first Harry Potter film — its grand scale, marble columns and ornate detail providing exactly what the production needed for the wizarding world's most intimidating financial institution. The guide mentions this with the air of someone who has mentioned it many times and does not mind doing so again, because visitors are genuinely delighted by it every time.</p>
+      <p>A second filming connection: the hall was used for an awkward lunch scene in <em>The Crown</em>, involving Princess Diana. <span class="highlight">The guide refers to her as a national treasure, which gets a good response.</span></p>
+      <p>Sports teams also pass through — the Wallabies, the Socceroos, national cricket sides — for diplomatic events and media appearances. The hall is large enough to accommodate all of them, plus the Harry Potter fans who turn up hoping to recognise something.</p>
+    </div>
+
+    <p>The tour ends with the original visitors' book, open in a display case. King George V signed it. The signature is clear. The guide invites visitors to have a look before they leave.</p>
+
+    <div class="practical">
+      <strong>Australia House:</strong> Generally closed to the public, open only for Open House London each September and occasional diplomatic events. The building is a working high commission. If you want to visit the interior, book Open House in advance — it fills quickly. The exhibition hall filming locations are not marked inside, but staff are happy to point them out.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · openhouselondon.org.uk<br><br>
+  Notes compiled from Open House tour transcript. Australia House, Aldwych, WC2 · September 2025
+</footer>
+
+</body>
+</html>

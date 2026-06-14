@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algiers — Casbah, Martyrs & an Authentic Taste · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '☽';
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Algiers, Algeria</div>
+  <h1>The Casbah,<br>the <em>Martyrs</em><br>&amp; a Liver Sandwich</h1>
+  <div class="header-sub">Algiers Unveiled · Guide: Yusra · GuruWalk Free Tour</div>
+  <div class="header-meta">
+    <span>ROUTE: Place des Martyrs → Casbah → Bastion 23 → Bab El Oued</span>
+    <span>DURATION: ~4 hours · 12 km</span>
+    <span>GUIDE: Yusra (GuruWalk, Algiers)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Algiers in context: the White City on the hill</a></li>
+    <li><a href="#martyrs">Place des Martyrs &amp; Djemaa el-Djedid</a></li>
+    <li><a href="#ketchawa">Ketchawa Mosque &amp; the layers of conquest</a></li>
+    <li><a href="#casbah">Inside the Casbah: private property &amp; crumbling palaces</a></li>
+    <li><a href="#bastion">Bastion 23 &amp; Qasr El Ryas</a></li>
+    <li><a href="#food">The liver sandwich &amp; Algerian street food</a></li>
+    <li><a href="#bab-el-oued">Bab El Oued &amp; the seafront</a></li>
+    <li><a href="#harbour">The harbour view &amp; the gas pipeline to Spain</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>The White City<br><em>That Faces the Sea</em></h2>
+
+    <p>Algiers arrives as a shock of white. Built on steep hills above a great natural bay, the city cascades down to the Mediterranean in tiers — Ottoman palaces and French boulevards and concrete housing blocks all piled on top of each other in a density that only makes sense once you are inside it, walking the streets with someone who grew up here.</p>
+
+    <p>Yusra is that person. She has been guiding in Algiers since 2025 on GuruWalk — a free tour platform where payment is left to the visitor's discretion at the end. Her pitch is not the Wikipedia version of the city. She grew up here. She knows which corner has the best liver sandwiches, which walls are Ottoman and which are French, and where to stand to see the gas pipeline that runs under the Mediterranean to Spain.</p>
+
+    <div class="guide-says">"It's not about plain details you may find on Wikipedia — I offer a true understanding of Algerian essence."</div>
+
+    <p>The tour covers twelve stops over four hours and twelve kilometres, beginning at the great square in the lower city and climbing up through the Casbah — a UNESCO World Heritage site, a living neighbourhood, and one of the most architecturally significant urban ensembles in North Africa — before dropping back down to the seafront at Bab El Oued.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">12</div>
+      <div class="key-fact-text">Kilometres walked over the course of four hours — one of the more demanding routes in this series. The Casbah is built on a steep hillside; almost nothing is flat. Comfortable shoes are not optional.</div>
+    </div>
+  </section>
+
+  <section class="section" id="martyrs">
+    <div class="section-tag">Stop 1 · Meeting Point</div>
+    <h2>Place des Martyrs &amp;<br><em>Djemaa el-Djedid</em></h2>
+
+    <div class="location">Place des Martyrs · Lower Algiers</div>
+
+    <p>The tour begins at Place des Martyrs — Martyrs' Square — the great open space at the foot of the Casbah where the old city meets the French colonial city. The name dates from independence: this is where the memory of those who died in the 1954–62 war of liberation is publicly held.</p>
+
+    <p>The meeting point is beside the minaret of Djemaa el-Djedid — the New Mosque, which has a clock on its minaret and is conspicuous enough to find without difficulty. It was built by the Ottomans in the 17th century and sits directly on the edge of the square, its white dome and minaret visible from well down the boulevard.</p>
+
+    <div class="story-box" data-label="Two Mosques, Two Conquests">
+      <p>Side by side near the square stand two mosques that together tell the compressed history of the city. Djemaa el-Djedid was built by the Ottomans when Algiers was one of the most powerful cities on the Mediterranean — a corsair capital that extracted tribute from European shipping and held European captives for ransom. At its peak, Algiers was richer and more feared than most European port cities.</p>
+      <p>Ketchawa Mosque, a short walk away, tells the next chapter. Built in the 16th century as an Ottoman mosque, it was converted to a cathedral by the French after their invasion of 1830 — its minaret demolished, its interior reconfigured for Christian worship. <span class="highlight">After independence in 1962, it was reconverted to a mosque.</span> The building holds all three phases in its stones.</p>
+    </div>
+  </section>
+
+  <section class="section" id="ketchawa">
+    <div class="section-tag">Stop 2 · Ketchawa Mosque</div>
+    <h2>Layers of Conquest,<br><em>Held in a Single Building</em></h2>
+
+    <div class="location">Ketchawa Mosque · Near the Casbah entrance</div>
+
+    <p>France invaded Algeria in 1830, ostensibly over a diplomatic dispute involving a fly swat — an insult to the French consul, allegedly struck by the Dey of Algiers with a fan during a heated exchange about debt. The real reasons were geopolitical: a weakening Ottoman presence, French domestic politics, and the enormous wealth of North Africa.</p>
+
+    <p>The occupation that followed lasted 132 years. Its physical traces are everywhere in Algiers — in the wide Haussmann-style boulevards cut through the old city, in the cathedral that was made of a mosque, in the administrative buildings along the seafront. <span class="highlight-blue">The French did not simply colonise Algeria; they attempted to replace it.</span> The Casbah above the square is what survived.</p>
+
+    <blockquote>
+      <p>"The wall is the remaining collar from the Ottoman governor's citadel — the Itadelle, where the governor used to live. If you go to Istanbul, you'll see the same wall, literally. But when it comes to the residents inside, it's completely different."</p>
+      <cite>— Yusra</cite>
+    </blockquote>
+  </section>
+
+  <section class="section" id="casbah">
+    <div class="section-tag">Stop 3 · The Casbah</div>
+    <h2>The Living Casbah &amp;<br><em>Buildings Nobody Can Fix</em></h2>
+
+    <div class="location">La Casbah d'Alger · UNESCO World Heritage Site, 1992</div>
+
+    <p>The Casbah is not a museum. It is a neighbourhood of roughly fifty thousand people, built on a hillside so steep that some of its lanes are effectively staircases. The houses are traditional courtyard structures — inward-facing, cool in summer, their decoration concentrated on the interior rather than the street facade. From outside, many look blank and deteriorating. From inside, some are extraordinary.</p>
+
+    <div class="story-box" data-label="The Problem of Private Property">
+      <p>The Casbah has been a UNESCO World Heritage Site since 1992, but designation has not solved its fundamental structural problem. <span class="highlight">Almost all the buildings are privately owned.</span> Many are at risk of collapse — some from age, some from earthquake damage, some from decades of deferred maintenance during and after the civil war of the 1990s.</p>
+      <p>The state cannot simply demolish and rebuild without the owners' consent. And the owners — even those living in buildings that are visibly failing — are often deeply resistant to any change. These are family homes, passed down through generations. The emotional attachment runs deeper than the structural risk. So the buildings stay, crumbling, loved, contested, and inhabited.</p>
+      <p>Street art has begun to appear in some of the Casbah's tighter lanes — not as gentrification, but as neighbourhood expression. In one corner, a family commissioned an elaborate calligraphic frame around their doorway. <span class="highlight-green">The door itself, Yusra points out, is the original — the calligraphy was added around it, not instead of it.</span> The Casbah absorbs things this way.</p>
+    </div>
+
+    <p>The plainclothes security presence in the Casbah is noticeable once you know to look for it. Algeria does not use CCTV cameras in civilian areas the way European cities do. Instead, plain-clothes officers — civil police — monitor key positions: corners, entrances, busy junctions. Yusra is matter-of-fact about this. It is not, she says, a sign of danger. It is the formality of a state that prefers eyes to lenses.</p>
+
+    <div class="guide-says">"The thing about Algeria — we don't have cameras in civilian areas. So they use policemen we call civil police. It's not like it's unsafe. It's just the formality of it."</div>
+  </section>
+
+  <section class="section" id="bastion">
+    <div class="section-tag">Stop 4 · Bastion 23</div>
+    <h2>Qasr El Ryas &amp;<br><em>The Last Seafront Palace</em></h2>
+
+    <div class="location">Bastion 23 · Qasr El Ryas · Lower Casbah</div>
+
+    <p>At the base of the Casbah, where the old city meets the sea wall, stands what Yusra considers the Casbah's finest surviving interior: the Qasr El Ryas — the Palace of the Rais, or corsair admirals — housed within Bastion 23 of the old Ottoman sea defences.</p>
+
+    <p>This is the last remaining seafront palace of the Casbah. When the French invaded, they demolished most of the lower Casbah to build their new city. Bastion 23 survived, incorporated into the new urban fabric, its architecture half-buried and half-forgotten until restoration work revealed what was inside.</p>
+
+    <div class="story-box" data-label="The Corsair Admirals' Palace">
+      <p>The Qasr El Ryas was the residence of the Rais — the admirals and corsair captains who commanded the Algerian fleet during the Ottoman period. Algiers at the height of its power in the 16th and 17th centuries controlled the central Mediterranean. Its corsairs raided as far as Iceland, taking captives for ransom or sale. The city's wealth was staggering.</p>
+      <p>The palace reflects that wealth. Its interior courtyards are decorated with zellige tilework, carved stucco, and painted ceilings in the Andalusian-Ottoman tradition — brought by craftsmen who had fled the Reconquista in Spain and settled in Algiers, bringing their skills with them. <span class="highlight">The entry fee is 200 Algerian dinars — approximately £1.20.</span> Yusra considers it among the most undervisited significant interiors in the Mediterranean world.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Bastion 23 / Qasr El Ryas:</strong> Entry 200 DZD (approx. £1.20 / €1.40). Outside visit included in the tour; interior entry at your own cost and timing. Allow extra time — the tilework and painted ceilings reward slow looking.
+    </div>
+  </section>
+
+  <section class="section" id="food">
+    <div class="section-tag">Interlude · Street Food</div>
+    <h2>The Liver Sandwich<br>&amp; <em>What Algerians Actually Eat</em></h2>
+
+    <p>One of Yusra's firm intentions for the tour is that visitors eat something real. Not restaurant food adjusted for foreign palates, but the things that people in the Casbah and Bab El Oued eat on a normal Saturday — bought from a cart or a counter, wrapped in bread, eaten standing up.</p>
+
+    <div class="story-box" data-label="Liver, Olive Bread &amp; a Chickpea Debate">
+      <p>The signature street food stop is the liver sandwich — <em>kbda</em> — grilled offal in a roll, a staple of Algerian street food that surprises visitors who associate liver with formal cooking. It is common across North Africa and unremarkable to anyone who grew up eating it. To the uninitiated, it is the test. Those who try it tend to come back for another.</p>
+      <p>Alongside the liver sandwich, the route passes vendors selling olive bread, sweets, and <em>karantika</em> — a chickpea flour dish baked in an open pan, somewhere between a thick pancake and a crustless quiche, eaten hot with cumin and harissa. Its texture is liquid enough to eat with a spoon, firm enough to hold in bread. <span class="highlight">It is Algiers' great unsung street food, unknown outside the country and fiercely debated within it</span> — each neighbourhood convinced its version is correct.</p>
+      <p>The group's attempt to classify karantika within known culinary categories — pie, pancake, polenta, socca — produces extended and inconclusive discussion. Yusra enjoys this. The point, she suggests, is that it doesn't map onto anything else. It is simply what it is.</p>
+    </div>
+
+    <p>Haggling over prices is part of the transaction at street food stalls in a way that surprises visitors accustomed to fixed-price food. The negotiation is not adversarial; it is social. Knowing the rough going rate — and being visibly engaged rather than passive — is taken as a sign of respect.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="bab-el-oued">
+    <div class="section-tag">Stop 5 · Bab El Oued</div>
+    <h2>Bab El Oued:<br><em>The Gate of the River</em></h2>
+
+    <div class="location">Bab El Oued · Northwestern Algiers</div>
+
+    <p>Bab El Oued — the Gate of the River — is one of the oldest and densest neighbourhoods in Algiers, spreading along the seafront north-west of the Casbah. It is not a tourist quarter. It is where people live: tightly packed apartment blocks, market streets, fishing families, the kind of everyday urban life that guidebooks tend to omit.</p>
+
+    <p>Yusra brings the group here on weekdays for the seafront, and on weekends for the neighbourhood streets — the two different faces of a place that most visitors to Algiers never see at all. The walk along the waterfront is long and breezy, with views across the bay to the lighthouse and, on clear days, a sense of the scale of the Mediterranean crossing that lies beyond.</p>
+
+    <div class="story-box" data-label="Eid Al-Adha &amp; the Rams in the Street">
+      <p>The timing of the April visit coincided with the approach of Eid Al-Adha — the Festival of the Sacrifice, when families across the Muslim world purchase a ram to slaughter at home in commemoration of Ibrahim's willingness to sacrifice his son. In Algeria, as in much of North Africa, the rams are bought live, often days in advance, and kept at home or tied in the street until the day.</p>
+      <p>Walking through Bab El Oued in the days before Eid, the rams are everywhere — in doorways, on balconies, tied to lamp posts, watched over by children. <span class="highlight-green">It is one of the more vivid pieces of urban theatre that Algiers produces</span>, and entirely invisible to anyone visiting in the wrong week. Yusra, characteristically, frames it as one of the things you can only see by being here at the right moment with the right guide.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Currency note:</strong> Algeria operates a dual exchange rate in practice — official bank rates and informal street rates diverge significantly. Euros and sterling are both useful to carry; dinars are needed for most local transactions. Your guide can advise on current rates and where to exchange. Tipping guides in euros or sterling is standard and appreciated.
+    </div>
+  </section>
+
+  <section class="section" id="harbour">
+    <div class="section-tag">Final Stop · The Harbour</div>
+    <h2>The Harbour View &amp;<br><em>the Pipeline to Spain</em></h2>
+
+    <p>The tour ends at a viewpoint above the harbour, looking back across the bay and down to the lighthouse that marks the mouth of the port. From here the whole of Algiers is visible at once — the white tiers of the Casbah climbing the hill, the French colonial grid of the lower city, the container terminals and the ferry port, and beyond it all the Mediterranean, flat and enormous.</p>
+
+    <p>Yusra points south-west across the water. Somewhere beneath the surface, invisible but real, a gas pipeline runs from Algeria under the sea to Spain — one of the main arteries through which Algerian natural gas reaches Europe. A second pipeline runs through Tunisia. The view from the harbour gives no sign of either, but knowing they are there changes the way the sea looks: not just a crossing but an infrastructure, a dependency, a relationship between the African shore and the European one that predates the pipelines by millennia.</p>
+
+    <blockquote>
+      <p>"We were writing about the traffic of the ships. There's a pipe that goes under the sea — gas pipes. There is one that goes through Tunisia. And another one to Spain."</p>
+      <cite>— Yusra, at the harbour viewpoint</cite>
+    </blockquote>
+
+    <p>The rams in the streets. The calligraphy around the door. The eel in the museum pond. The liver sandwich eaten standing up in a lane in the Casbah. The best tours leave you with images rather than facts — things you saw that you couldn't have found on Wikipedia, with someone who grew up knowing where to look.</p>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · GuruWalk · guruwalk.com/walks/59777<br><br>
+  Notes compiled from tour transcript and itinerary. Guide: Yusra · Algiers, Algeria · April 2026
+</footer>
+
+</body>
+</html>

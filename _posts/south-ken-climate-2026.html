@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Kensington — A Climate Walk · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Exhibition Road &amp; South Kensington, SW7</div>
+  <h1>Gas Lamps, Whale Bones<br>&amp; the <em>Great Smog</em></h1>
+  <div class="header-sub">South Kensington Climate Walk · South Ken Culture Quarter</div>
+  <div class="header-meta">
+    <span>ROUTE: Natural History Museum Gardens → Exhibition Road → Science Museum</span>
+    <span>DURATION: ~1.5 hours</span>
+    <span>GUIDE: South Ken Culture Quarter sustainability team</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Exhibition Road in context: one street, two boroughs, £52 million</a></li>
+    <li><a href="#nhm-garden">The Natural History Museum garden &amp; the journey through time</a></li>
+    <li><a href="#whale">The whale cemetery &amp; the eel in the pond</a></li>
+    <li><a href="#htm">Hostile vehicle mitigation &amp; the pollinator planters</a></li>
+    <li><a href="#gaslamps">The gas lamps &amp; the Gasketers</a></li>
+    <li><a href="#smog">The Great Smog of 1952 &amp; London's air today</a></li>
+    <li><a href="#tree">The baby plane tree &amp; the Range Rover</a></li>
+    <li><a href="#scraggy-grass">The scraggy grass &amp; the bee orchid nobody can see</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>One Street, Two Boroughs,<br><em>No Shade</em></h2>
+
+    <p>Exhibition Road is one of London's grandest cultural streets — a kilometre of museums, colleges and learned institutions running south from Hyde Park through the heart of South Kensington. The Natural History Museum, the Science Museum, the Victoria and Albert Museum, Imperial College, the Royal College of Music: all here, all within walking distance of each other, all drawing millions of visitors every year.</p>
+
+    <p>It was expensively remade in 2012 — a shared surface scheme costing £52 million, designed to slow traffic and give the street a more civic character. It looks beautiful on a quiet morning. On a hot summer afternoon, with museum queues stretching the length of the pavement and no meaningful shade anywhere, the limitations become apparent. <span class="highlight">There is nowhere to sit that isn't baking. People faint in the queues with some regularity.</span> For one of the world's premier cultural districts, the guide suggests, it is possible to do better.</p>
+
+    <p>The complication is political as much as financial. Exhibition Road runs along the boundary between the Royal Borough of Kensington and Chelsea and the Royal Borough of Westminster. Any intervention in the street requires agreement — and potentially co-funding — from both. Neither is currently flush. And both feel, not unreasonably, that they dealt with this street in 2012.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">£52m</div>
+      <div class="key-fact-text">Cost of the 2012 Exhibition Road shared surface redesign. The scheme transformed the street's appearance but did not address shade, flood risk, or biodiversity. Climate change has made all three significantly more urgent in the decade since.</div>
+    </div>
+  </section>
+
+  <section class="section" id="nhm-garden">
+    <div class="section-tag">Stop 1 · Natural History Museum</div>
+    <h2>The Garden as<br><em>Deep Time</em></h2>
+
+    <div class="location">Natural History Museum Garden · Opened July 2024</div>
+
+    <p>The Natural History Museum was designed by Alfred Waterhouse and opened in 1881. The building is extraordinary — a cathedral of natural science, its terracotta facades decorated with pterodactyls and giant lizards on the west wing (extinct species) and living animals on the east (extant ones). The garden behind it, however, was an afterthought: the project ran over budget, and by the time the building was finished there was no money left. Lawns went down, a fountain went up, and for over a century the garden drifted between allotments, a car park, tennis courts, an ice rink, and general neglect.</p>
+
+    <p>The garden that reopened in July 2024 — five years in the planning — is something else entirely. Its designers took the building's animating concept and extended it into the landscape: the garden is a journey through geological time, from the Pre-Cambrian to the present, travelling west to east.</p>
+
+    <div class="story-box" data-label="Every Metre is Twenty Million Years">
+      <p>At the eastern entrance, there is nothing but rock. No planting, no ornament. <span class="highlight">That is the Pre-Cambrian — the beginning of the planet, before life existed.</span> As you walk westward, the planting begins: first ferns, then cycads, then palms and monkey puzzle trees — the first plants on Earth, in sequence.</p>
+      <p>Embedded in the ground at intervals are brass silhouettes of creatures: the animals that walked the Earth at each geological moment. Every metre of path represents twenty million years. By the time you reach the main entrance of the museum, you have arrived at human evolution — footprints and handprints in the paving, the beginning of the Anthropocene. Cross to the wildlife garden on the far side and you are in the present day.</p>
+      <p>The stone paving itself changes material as you move through time — each surface corresponding to a different geological period. <span class="highlight-blue">The whole garden is a timeline you walk without necessarily realising it.</span></p>
+    </div>
+
+    <div class="practical">
+      <strong>NHM Garden:</strong> Free entry, open daily. The wildlife garden on the far side is a designated Site of Importance for Nature Conservation — over 3,000 species of plant, animal and microbe recorded. Pond dipping in summer is free and open to all; volunteers identify what you catch. The bench area beneath the tree canopy is one of the better places in SW7 to have lunch.
+    </div>
+  </section>
+
+  <section class="section" id="whale">
+    <div class="section-tag">Stop 2 · The Wildlife Garden Pond</div>
+    <h2>The Whale Cemetery<br>&amp; <em>the Eel Nobody Knew About</em></h2>
+
+    <p>The NHM garden has a history stranger than its current serenity suggests. During the Second World War the grounds were used as allotments for veterans. For years there was a popular ice rink. In the 1970s it served as a car park. But the most peculiar chapter involves whales.</p>
+
+    <div class="story-box" data-label="A Cemetery for Cetaceans">
+      <p>The NHM's scientists, when they received specimens of whales washed up on British shores, needed to prepare the skeletons before they could be studied. The process — removing flesh and allowing natural decomposition to do its work — required space and time. For years, the museum gardens were the space: an informal whale cemetery, where the carcasses of stranded cetaceans were left to decompose in the grounds of one of London's most visited museums.</p>
+      <p>When construction workers began excavating the garden for the 2024 redesign, there was considerable excitement among the team that they might find whale bones. <span class="highlight">They found nothing.</span> The Victorian and Edwardian scientists had been meticulous. Not a fragment remained. There are currently around 400 scientists conducting live research in the museum; their predecessors, it turns out, were equally thorough.</p>
+    </div>
+
+    <div class="story-box" data-label="The Scientist Who Couldn't Let Go">
+      <p>When the time came to drain and rebuild the wildlife garden pond for the 2024 redesign, the team drained it very carefully, collected all the sediment, removed it off-site, rebuilt the pond foundations, and brought the sediment back. Two things then happened.</p>
+      <p>First: at the bottom of the drained pond, they found a fully adult European river eel, approximately a metre long. River eels live in rivers. The pond has no connection to a river. The project managers sent around an email asking who was responsible.</p>
+      <p>It was one of the 400 scientists — a researcher who had been studying river eels and, when the time came to release them into the wild, couldn't bring himself to put them in the Thames. The river was too polluted. <span class="highlight-green">He had released one in the museum pond instead, and it had thrived, entirely unknown to anyone, for years.</span></p>
+      <p>Second: when the rebuilt pond was refilled with the original sediment, previously unknown plant species began to germinate — seeds that had lain dormant in the pond floor, now triggered by the disturbance. Nature, in the guide's phrase, begets nature.</p>
+    </div>
+  </section>
+
+  <section class="section" id="htm">
+    <div class="section-tag">Stop 3 · Exhibition Road</div>
+    <h2>Hostile Vehicle Mitigation<br>&amp; <em>the Pollinator Planters</em></h2>
+
+    <div class="location">Exhibition Road · SW7</div>
+
+    <p>Once you know what hostile vehicle mitigation is, you cannot stop seeing it. Every bollard, every oversized planter, every granite bench positioned at the kerb edge of a busy public space in a major city: HTM. The physical fabric of central London has been quietly rearranged since the vehicle-as-weapon attacks of 2017 to make pedestrian spaces harder to breach by car or lorry.</p>
+
+    <p>Exhibition Road is a case study. The bike racks along the pavement are HTM. The cubes — originally plain and unloved, filling with water and becoming effective mosquito nurseries — have been redesigned in collaboration with the Royal Borough of Kensington and Chelsea into planted containers filled with drought-resistant, pollinator-friendly planting. The South Kensington neighbourhood has three designated Sites of Importance for Nature Conservation; the planters are designed as stepping stones between them.</p>
+
+    <div class="story-box" data-label="The Litter Experiment That Didn't Quite Happen">
+      <p>The planters presented an opportunity for a methodologically rigorous experiment in behavioural nudging. The plan: attach signs to the planters alternating between a guilt-inducing message (the pointed finger, the frowning face) and a positive one (the community-pride appeal). Measure litter in the surrounding area every two weeks. Change the sign. Repeat. After six months, assess whether signage has any measurable effect on littering behaviour.</p>
+      <p>The experiment required volunteers to count litter at fortnightly intervals. <span class="highlight">Not enough volunteers came forward.</span> The experiment has not yet run. The signs are there. The methodology is ready. The fortnightly litter counters are still wanted.</p>
+    </div>
+
+    <div class="guide-says">"Once you know what HTM is, you will start to see it everywhere. This is an example — a bike rack, but it's also protecting people from cars coming into the museum. And these used to just be great big ugly cubes that filled with water and got used as ashtrays."</div>
+  </section>
+
+  <section class="section" id="gaslamps">
+    <div class="section-tag">Stop 4 · Exhibition Road</div>
+    <h2>The Gas Lamps &amp;<br><em>the Gasketers</em></h2>
+
+    <p>Among the anachronistic pieces of infrastructure visible on Exhibition Road — and the guide flags this one with some relish — are the gas lamps. They are still lit by gas. They have always been lit by gas. There are over six thousand gas lamps remaining in London, concentrated in the royal parks and certain central streets, and they present one of the more unusual decarbonisation challenges the city faces.</p>
+
+    <div class="story-box" data-label="The Three Surviving Lamplighters">
+      <p>Gas lamps are not merely a heritage quirk. They are protected structures in many cases, and their protection extends beyond their physical form to the quality of light they produce — the distinctive flicker, the faint popping sound, the slightly warm colour temperature that LED cannot quite replicate. The case for retention is aesthetic and experiential as much as historical.</p>
+      <p>Standing in the way of any straightforward solution is a lobby group called, without irony, <strong>the Gasketers</strong>. They represent the three surviving lamplighters of London — the last practitioners of what was once a nightly urban ritual, cycling or walking the lamp routes at dusk with a pole and a flame. The job is now almost entirely automated, but the lamplighters persist, and the Gasketers, organised and effective, have successfully blocked every attempt to convert the remaining gas lamps to electric.</p>
+      <p><span class="highlight">Twenty-five per cent of the royal parks' carbon footprint comes from the gas lamps.</span> The guide notes that this seems like exactly the kind of problem that the concentration of engineering and scientific talent in South Kensington — Imperial College is a five-minute walk — ought to be able to solve. The challenge is not technical. It is political, aesthetic, and organised.</p>
+    </div>
+
+    <blockquote>
+      <p>"Westminster City Council just wanted to cut the tops off and replace them with LEDs. That's not right. We've got to find a solution that maintains the character — the flicker, the sound, the smell — but without the gas."</p>
+      <cite>— South Ken Culture Quarter</cite>
+    </blockquote>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="smog">
+    <div class="section-tag">Theme · Air Quality</div>
+    <h2>The Great Smog of 1952<br>&amp; <em>London's Air Today</em></h2>
+
+    <p>The plane trees lining Exhibition Road are doing work that most people walking beneath them have no idea about. London plane trees — a hybrid of the American sycamore and the Asian plane, first bred in London around four hundred years ago — are among the most effective urban trees at capturing particulate matter. They draw pollution out of the air and lock it into their leaves, which fall to the ground and are absorbed into the soil.</p>
+
+    <div class="story-box" data-label="Eight Days That Changed London">
+      <p>In December 1952, a temperature inversion trapped cold air over London while residents burned coal for heating. The coal smoke mixed with fog to produce something closer to a toxic solid than a gas — a yellow-black smog so dense that visibility fell to a few feet, buses stopped running because drivers couldn't see the road ahead, and cinema performances were cancelled because the auditoriums filled with the stuff.</p>
+      <p>It lasted eight days. The official death toll at the time was around four thousand. Later research revised the figure to somewhere between <span class="highlight">twelve thousand deaths</span> — from respiratory infections, accidents walking into traffic, and direct poisoning. The bodies were brought to the city's hospitals faster than they could be processed.</p>
+      <p>The Clean Air Act followed in 1954: coal burning in London was banned. Within a generation, the way the city heated itself had been transformed. <span class="highlight-blue">London's air is now the cleanest it has been since before the Industrial Revolution</span> — a fact that is difficult to absorb when you are standing next to six lanes of traffic on the Cromwell Road, but is measurably true.</p>
+    </div>
+
+    <p>The guide's conclusion from this history is deliberately hopeful. If one generation could transform the fuel that heated every home and powered every factory in London, the structural changes required to address the current climate emergency are not categorically more difficult. They are politically and financially harder — but the precedent exists. It was done before.</p>
+
+    <div class="guide-says">"In one generation, we transformed the pollution and the air of London. So I think it's entirely possible that we can transform the rest of society to ensure that we are more adapted to reducing our carbon footprint — and to adapting to the changes in the climate that we now cannot avoid."</div>
+  </section>
+
+  <section class="section" id="tree">
+    <div class="section-tag">Interlude · Exhibition Road</div>
+    <h2>The Baby Plane Tree<br>&amp; <em>the Range Rover</em></h2>
+
+    <p>There is one new tree on Exhibition Road. The guide is visibly, unashamedly proud of it — a young plane tree, a whip, planted in December 2024 as the two-millionth tree planted by the charity Trees for Cities.</p>
+
+    <div class="story-box" data-label="How the Tree Came to Be There">
+      <p>In May 2023 or 2024, the guide was crossing Exhibition Road on the way to a meeting at the V&amp;A. A large black Range Rover was moving slowly down the street — the driver, it became clear, was on his phone. The Range Rover hit the plane tree that had been standing in that spot, becoming wedged against it at an angle. It was stuck for long enough that a crane had to be called to remove the car.</p>
+      <p>The tree — the same size as its neighbours on either side — tried to survive. It did not. Exhibition Road lost one of its few trees to a distracted driver and a phone call.</p>
+      <p>In December 2024, Trees for Cities contacted the guide looking for a location for their two-millionth tree. <span class="highlight-green">The spot was ready and waiting.</span> On 12 March 2025, the new tree was planted in a small ceremony. It is a whip — a young tree, barely head height. Give it twenty years and it will be filtering the air above the museum queues.</p>
+    </div>
+  </section>
+
+  <section class="section" id="scraggy-grass">
+    <div class="section-tag">Final Stop · Between the Museums</div>
+    <h2>The Scraggy Grass<br>&amp; <em>the Invisible Orchid</em></h2>
+
+    <div class="location">Between Natural History Museum &amp; Science Museum · SW7</div>
+
+    <p>Between the Natural History Museum and the Science Museum, two patches of grass look, to any reasonable observer, as if they could do with some attention. They are scrappy and uneven, with the appearance of somewhere that the groundskeeping has quietly given up on. A senior figure at the Science Museum once sent a letter to their counterpart at the Natural History Museum saying roughly this.</p>
+
+    <p>The Natural History Museum had to explain that the grass was fine. In fact, it was carefully managed as grassland habitat — a type of management that deliberately avoids the monoculture lawn, allowing wildflowers, long grass and invertebrate habitat to establish. Nature is messy. A tidy lawn, from an ecological standpoint, is a desert.</p>
+
+    <div class="story-box" data-label="The Bee Orchid">
+      <p>Growing somewhere in one of those scraggy patches is a bee orchid — <em>Ophrys apifera</em> — a native British orchid whose flower has evolved to mimic the appearance and scent of a female bee, thereby attracting male bees that attempt to mate with it and inadvertently pollinate it. It is rare enough to be worth protecting, common enough in the right habitat to appear unremarkably in a patch of unmown grass in SW7.</p>
+      <p><span class="highlight">Nobody is quite sure exactly where in the patch it is.</span> The fencing that went up a couple of years ago — after people began playing football on the grassland, damaging the habitat — was partly to protect it. There is no interpretation panel explaining any of this, which the guide finds sad but understandable: the museum has a large capital project coming, decanting 80 million specimens to a new research centre in Surrey over the next four to five years, and is reserving judgement on what space it might need.</p>
+    </div>
+
+    <p>The walk ends here, in front of two patches of grass that look like nothing in particular and contain, somewhere, an orchid. It is a reasonable summary of what this tour has been about: the things happening right under the nose of four hundred scientists and millions of museum visitors, visible only to those who know to look — or have someone with them who does.</p>
+
+    <div class="practical">
+      <strong>Great Exhibition Road Festival:</strong> Held annually, usually in June — two days when the institutions open their collections into the street, with free activities, demonstrations and performances. The guide gives these walks during the festival. Check the South Ken Culture Quarter website for dates and programme. <strong>South Ken CQ newsletter:</strong> Fortnightly, covering sustainability and neighbourhood events in SW7. Sign up via southkencq.org.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · South Ken Culture Quarter · southkencq.org<br><br>
+  Notes compiled from tour transcript. South Kensington, SW7 · June 2026
+</footer>
+
+</body>
+</html>

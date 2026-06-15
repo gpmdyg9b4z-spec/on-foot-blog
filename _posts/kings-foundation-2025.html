@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The King's Foundation School of Traditional Arts — Open House 2025 · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Open House London 2025 · King's Foundation School of Traditional Arts, W1</div>
+  <h1>Recovering What<br><em>Was Lost</em></h1>
+  <div class="header-sub">Studio Tour &amp; Library · King's Foundation School of Traditional Arts · Open House 2025</div>
+  <div class="header-meta">
+    <span>ROUTE: MA Studio → Library · 19–20 Dering Street, W1</span>
+    <span>DURATION: ~1.5 hours across both spaces</span>
+    <span>GUIDE: Emma (Academic) · Open House volunteer</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">What the school is: geometry, craft &amp; the knowledge that was broken</a></li>
+    <li><a href="#studio">The studio: plaster carving, shared knowledge &amp; work on every wall</a></li>
+    <li><a href="#geometry">Geometry as a universal language</a></li>
+    <li><a href="#students">Who comes: a woodworker, a chemist, someone who had never held a paintbrush</a></li>
+    <li><a href="#library">The library: 35 years of publications, bespoke furniture &amp; a visit from the King</a></li>
+    <li><a href="#poundbury">Poundbury, High Grove &amp; the institution's relationship with the Crown</a></li>
+    <li><a href="#ventilation">The building itself: natural ventilation &amp; a hidden door function</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>What the School Is:<br><em>Recovering What Was Lost</em></h2>
+
+    <p>The King's Foundation School of Traditional Arts occupies two floors of a building on Dering Street in Mayfair, easy to walk past without noticing. It was founded through the Institute of Architecture established by the then Prince of Wales, eventually becoming the School of Traditional Arts and then, on his accession, the King's Foundation. It runs an MA programme and doctoral research in traditional Islamic and related arts — geometric pattern, plaster carving, calligraphy, tile work, icon painting, book arts — with students coming from around the world.</p>
+
+    <p>Emma, who works with the research students and has been at the institution for many years, begins with a statement of the problem the school exists to solve: these art forms developed over centuries, were passed from master to apprentice in unbroken lines, and then in the 20th century, something broke. The tradition of not wanting this kind of art anymore. The lineages were interrupted. <span class="highlight">Students now arrive at the school able to see these works in museums, but unable to find anyone around them who still makes them.</span> The school attempts to rebuild what was lost — not by recreating the past, but by understanding how the knowledge was transmitted and finding ways to transmit it again.</p>
+
+    <blockquote>
+      <p>"In these pieces it's sort of centuries of knowledge. A student lives in Nepal, sees paintings from Nepal in museums that look beautiful, but doesn't see anyone around them painting those paintings. Where did they come from? Is there anyone I can learn this from? Maybe one master who's still teaching part of it."</p>
+      <cite>— Emma</cite>
+    </blockquote>
+  </section>
+
+  <section class="section" id="studio">
+    <div class="section-tag">The MA Studio</div>
+    <h2>The Studio:<br><em>Plaster Carving &amp; Work on Every Wall</em></h2>
+
+    <div class="location">MA Studio · King's Foundation School of Traditional Arts · Dering Street, W1</div>
+
+    <p>The studio is a small room that has accumulated, over years of students working and leaving work behind, an extraordinary density of objects and images. Geometric patterns in plaster, paper and ink. Calligraphic studies. Textile samples. Everything produced by previous cohorts now covers the walls and shelves, turning the room into both a workspace and an archive of what the programme has made.</p>
+
+    <div class="story-box" data-label="How Plaster Teaches">
+      <p>Emma came to the institution as a PhD student, not as an artist. When invited to follow the MA course alongside her research, she said yes. She began working in plaster — not because it was her medium, but because it was available and accessible. What she found: working with the material, carving it, understanding how it behaved, gave her an understanding of what she was studying that reading about it never had.</p>
+      <p><span class="highlight">"If I look at it and try to draw it myself — there are ways of knowing about it besides just looking at it."</span> The research students are drawing on those ways of knowing: not just observing an artwork, but making it, over and over, until the knowledge becomes embodied rather than intellectual.</p>
+      <p>The challenge is getting the plaster to the right consistency for carving. This, Emma notes, took some time. The knowledge of how to mix it is itself a piece of the transmitted tradition — not written down, just known by those who do it.</p>
+    </div>
+
+    <p>The groups are small by design. Because the aim is to piece together knowledge that has been fragmented, everyone has to share what they know. There is no hierarchy of skill. A woodworker and someone who has never held a tool are both useful — the woodworker has technical instincts the other doesn't; the beginner has no habits to unlearn. The kitchen — where everyone eats lunch together — is, Emma considers, as important to the programme as the studio.</p>
+  </section>
+
+  <section class="section" id="geometry">
+    <div class="section-tag">Theme</div>
+    <h2>Geometry as a<br><em>Universal Language</em></h2>
+
+    <p>The patterns produced by the school's students could come from Baku, Cairo, Isfahan, Samarkand or Seville. The same geometric logic — grids of squares generating star patterns, interlocking polygons, self-similar structures — appears across Islamic architecture from Spain to Central Asia, in Christian medieval floors, in Hindu temple decoration, in Japanese craft. The historical connections are real and documented. But Emma suggests something beyond history.</p>
+
+    <div class="story-box" data-label="The Connections That Go Beyond History">
+      <p>Once you begin working with geometric pattern seriously, you start to encounter connections that are not traceable through documented historical exchange. The same pattern emerges independently in different traditions, in different centuries, in places that had no known contact. <span class="highlight-blue">The geometry itself generates the connection</span> — as if the underlying mathematics of pattern is a kind of universal language that different cultures discovered separately and arrived at together.</p>
+      <p>This is what the school wants its students to experience. Not just the historical narrative — which craft came from where, which empire transmitted which technique — but the more intangible recognition that when you sit down and work with these forms, you connect into something that goes beyond any particular culture or period. You can put your finger on the history. You cannot always put your finger on this.</p>
+    </div>
+  </section>
+
+  <section class="section" id="students">
+    <div class="section-tag">Theme · Who Comes</div>
+    <h2>A Woodworker, a Chemist<br>&amp; <em>Someone Who Had Never Held a Paintbrush</em></h2>
+
+    <p>The students arrive from as close as London and as far as China. Some are already accomplished practitioners — a woodworker last year produced exhibition cabinets for the degree show that were extraordinary in their technical accomplishment. Others come from entirely different backgrounds: a chemist, a former academic, someone with no connection to art at all.</p>
+
+    <div class="story-box" data-label="The Student Who Had Never Held a Paintbrush">
+      <p>A few years ago, a student arrived whose background had nothing to do with art. She had never held a paintbrush. Emma was stunned by what happened at the end of her programme. It was as though, she says, this student should have been doing it all along — as if she had found something that had been waiting for her to arrive at it.</p>
+      <p>The second year of the MA is self-directed: students agree a project with their tutors and spend a year pursuing it. One student knew from the start that she wanted to specialise in iconography and calligraphy — the modules in those areas had confirmed it. Another came in as an expert woodworker and wanted to make large-scale furniture. <span class="highlight-green">The programme accommodates both</span>, because both are expressions of the same underlying principle: understanding traditional craft deeply enough to continue it, not replicate it.</p>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="library">
+    <div class="section-tag">The Library</div>
+    <h2>35 Years of Publications<br>&amp; <em>a Royal Visitor Who Preferred Certain Chairs</em></h2>
+
+    <div class="location">Library · Upper Floor · King's Foundation · Dering Street, W1</div>
+
+    <p>The librarian takes over for the second half of the visit. The library has been here as long as the institution — its collection seeded by donations from the founding of the Prince's Institute of Architecture, including books sent from the King's personal library and subsequently redistributed to whichever charity best matched their subject matter. There are about 1,000 books in this particular collection; a loan from the Tif Temple Gallery adds a section on icon painting.</p>
+
+    <div class="story-box" data-label="Bespoke Furniture &amp; Preferred Chairs">
+      <p>The bookcases, tables and chairs in the library were made to measure for the space by the craftsman who refurbished Clarence House when the King moved in after Diana's death. There are no walls on this floor — the bookcases create the divisions. They are all double-sided. The chairs and sofas are bespoke and upholstered. <span class="highlight">When the King used to visit the building, he had particular chairs he preferred to sit in.</span> The librarian mentions this as though it is a useful piece of practical information, which it is.</p>
+    </div>
+
+    <p>The display for this year marks the institution's 35th anniversary — publications going back to the Prince's Institute of Architecture, through the School of Traditional Arts, to the King's Foundation. There are also works on show by PhD students: watercolours by a Chinese student who has been with the programme for years, painted during a recent visit to High Grove; and work from the diploma programme, made during a week of residency at Dumfries House in Scotland.</p>
+
+    <p>The library is not open to the public except during Open House and the biannual PhD exhibitions, when students present their research to general visitors. The PhD exhibition is held twice a year, free to attend with booking, and is the best opportunity to engage with the school's research beyond the building's walls.</p>
+  </section>
+
+  <section class="section" id="poundbury">
+    <div class="section-tag">Theme · The Crown Connection</div>
+    <h2>Poundbury, High Grove<br>&amp; <em>the Institution's Relationship with the Crown</em></h2>
+
+    <p>The King's Foundation exists because of the King — this is not a point the institution is coy about. The late Prince of Wales founded the Institute of Architecture and had a direct personal interest in traditional craft, pattern and building. He was involved in the design of Poundbury — the new town built on Duchy of Cornwall land in Dorset — and in the work of the various charities that eventually merged into the King's Foundation.</p>
+
+    <div class="story-box" data-label="How Involved He Was">
+      <p>The librarian has worked here for twenty years. In the early years, the King — then Prince — used to meet the staff of his charities at High Grove as a thank you. Later there were visits to Clarence House, then to the building itself. For degree shows, he came to the studio. He stopped attending as his responsibilities increased, but the cousin of the King — who has an interest in cabinet-making and traditional crafts — now comes to graduations in his place.</p>
+      <p><span class="highlight">Even the handrail on the staircase was shaped to the contour of the King's thumb</span> — a detail someone on a previous tour had pointed out, and which the librarian confirms. The involvement was genuine and particular, not ceremonial. The bespoke furniture, the specific chairs, the handrail: all evidence of someone who was paying attention to the physical environment of the institution, not just lending his name to it.</p>
+    </div>
+
+    <p>The patron of the school is the King himself, in his capacity as founder. The present Prince of Wales has not taken over the patronage — some charities transfer with the title, others stay with the individual who created them. This is one that stays.</p>
+  </section>
+
+  <section class="section" id="ventilation">
+    <div class="section-tag">The Building</div>
+    <h2>Natural Ventilation<br>&amp; <em>a Hidden Door Function</em></h2>
+
+    <p>The building on Dering Street was designed at the end of the 1990s, when the climate had not changed as dramatically as it has since. Its ventilation system relies entirely on natural air movement — no air conditioning. Windows on the west-facing side work with ventilation shafts running through the building; windows on the east-facing side are sash windows. When both are opened correctly — sash windows top and bottom, cross-ventilated with the shafts — the system circulates air effectively.</p>
+
+    <div class="story-box" data-label="The Door Discovery">
+      <p>The boardroom door has two small clips set into the door frame at waist height. For fifteen years, nobody at the institution understood what they were for. Then someone pointed them out and asked. Further investigation revealed: the clips hold the door at a partially open position — not fully open, not closed, but fixed at a small angle that allows air to circulate through the room without the door slamming. <span class="highlight">It took fifteen years to discover a feature that had been designed into the building from the beginning.</span></p>
+    </div>
+
+    <div class="practical">
+      <strong>King's Foundation School of Traditional Arts:</strong> Not generally open to the public. Open House in September, PhD exhibitions twice a year (November and spring, free with booking). The open programme — short courses in geometric pattern, plaster carving, calligraphy and other traditional arts — is available to members of the public; see the King's Foundation website for the current schedule. Discount available for Open House visitors at the time of the September visit.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · openhouselondon.org.uk<br><br>
+  Notes compiled from Open House studio and library tours. King's Foundation School of Traditional Arts, Dering Street, W1 · September 2025
+</footer>
+
+</body>
+</html>

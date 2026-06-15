@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romans in London — Open House 2025 · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Open House London 2025 · City of London Walking Tour</div>
+  <h1>Seven Metres Below<br><em>Your Feet</em></h1>
+  <div class="header-sub">Romans in London · City of London Guide · Guide: Anne</div>
+  <div class="header-meta">
+    <span>ROUTE: Roman Wall (Tower Hill) → Aldersgate → Bastion 23 → River Walbrook → Guildhall → Roman Amphitheatre</span>
+    <span>DURATION: ~1.5 hours</span>
+    <span>GUIDE: Anne · City of London Qualified Guide</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Londinium: 400 years of Roman occupation &amp; seven metres of depth</a></li>
+    <li><a href="#wall">The Roman wall: Kentish ragstone, terracotta tiles &amp; a medieval extension</a></li>
+    <li><a href="#boudicca">Boudicca, the laundry basket &amp; the layer of black ash</a></li>
+    <li><a href="#gates">The gates of London &amp; what the Romans built outside the walls</a></li>
+    <li><a href="#roads">Watling Street, Ermine Street &amp; the A2 you drive today</a></li>
+    <li><a href="#basilica">The basilica: bigger than St Paul's &amp; the town council of Londinium</a></li>
+    <li><a href="#walbrook">The sacred river &amp; the floating Bloomberg Building</a></li>
+    <li><a href="#amphitheatre">The amphitheatre under Guildhall Yard: 6,000 seats, discovered in 1988</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Londinium:<br><em>A Fifth of London's History is Roman</em></h2>
+
+    <p>Anne is a City of London qualified guide — the certification requires a year-long intensive course, with around 110 applicants competing for 26 places. She begins by establishing the scale of what is under the streets: Roman London is approximately seven metres below current ground level. The city that existed from 47 CE to 410 CE — 400 years, a fifth of London's entire history — is not ruins scattered between modern buildings. It is a continuous buried city, occasionally revealed when something is built or bombed, generally hidden, always there.</p>
+
+    <div class="story-box" data-label="Why Seven Metres Down">
+      <p>London stayed within the Roman walls for about 1,500 years after the Romans left. During that time it was continuously occupied, continuously rebuilt, continuously raising its own ground level. Buildings were knocked down and their stone reused, or they were adapted. Debris accumulated. Centuries of rubble, refuse, building material and the general accumulation of urban life raised the street level metre by metre. <span class="highlight">The city that Boudicca burned in 60 CE is at the bottom. The City you walk through today is the top of that stack.</span></p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">400</div>
+      <div class="key-fact-text">Years of Roman occupation in London — from the founding of Londinium around 47 CE to the final withdrawal of troops in 410 CE. A fifth of London's recorded history, all of it seven metres below the streets.</div>
+    </div>
+
+    <p>Most of Roman London was unknown until the Second World War. The wall was documented; the gates were known. But the forums, the temples, the basilica, the governor's palace, the amphitheatre — all hidden, until the Blitz blew holes in the ground deep enough to reach them. The discovery of London's Roman past is in large part a story of aerial bombardment.</p>
+  </section>
+
+  <section class="section" id="wall">
+    <div class="section-tag">Stop 1 · Tower Hill Area</div>
+    <h2>The Roman Wall:<br><em>Kentish Ragstone &amp; the Telltale Tiles</em></h2>
+
+    <div class="location">Roman City Wall · Best surviving section near Tower of London</div>
+
+    <p>The best surviving section of Roman wall in the city is near the Tower of London. The Romans built their walls from Kentish ragstone — a hard, grey-green sandstone brought up the Thames from quarries in Kent. Their construction method: build two parallel skins of stone, fill the gap between with rubble, and then insert horizontal courses of terracotta tile every metre or so to level the rubble and provide structural stability. The effect is like a spirit level built into the wall every few feet.</p>
+
+    <p><span class="highlight">When you see rows of red tile running horizontally through a section of ancient wall in the City, you are looking at Roman construction.</span> That is the absolute giveaway. Above the tile courses, the wall may be medieval, Tudor or later — but below them, it is Roman. The original wall was four to five metres high. In the medieval period it was raised further, and the arched firing platforms for archers that are visible in several sections are additions from the 13th and 14th centuries. The basic wall, underneath all of that, is from the late 2nd century CE.</p>
+
+    <p>The area within the wall was approximately one square mile — hence the City of London's enduring nickname. That square mile contained everything: the forum, the basilica, the amphitheatre, temples, the governor's complex, merchants' houses with mosaic floors, the waterfront warehouses. For 1,500 years after the Romans left, London barely moved outside it.</p>
+  </section>
+
+  <section class="section" id="boudicca">
+    <div class="section-tag">Theme · Catastrophe</div>
+    <h2>Boudicca, the Laundry Basket<br>&amp; <em>the Layer of Black Ash</em></h2>
+
+    <p>The first Londinium was built quickly — a frontier town of wood and mud and clay, laid out on a simple grid, before the wall was constructed and before the city had the resources to build in stone. It was not particularly well defended. In 60 CE, this proved catastrophic.</p>
+
+    <div class="story-box" data-label="60 CE: The Burning">
+      <p>Boudicca, queen of the Iceni tribe of East Anglia, raised an army after the Romans seized her land following her husband's death and attacked her and her daughters. She marched on Londinium. The governor of the city, calculating that he was outnumbered, evacuated — taking anyone who could and would go with him. Anyone who couldn't leave, or chose to stay, was slaughtered when Boudicca arrived.</p>
+      <p>She burned the city. <span class="highlight">When archaeologists dig down through the layers of the City today, they find a reddish-black layer of fired earth and ash approximately half a metre thick</span> — the physical trace of Londinium burning in 60 CE. It is one of the most consistent stratigraphic markers in the entire area. Wherever new construction goes deep enough, it appears. Below it: the first city. Above it: the rebuilt city that the Romans constructed after the fire, more deliberately, more ambitiously, more permanently.</p>
+    </div>
+
+    <p>After Boudicca, Roman policy in Britannia shifted. Rather than impose control by force, the governor began encouraging the British population to participate in Roman urban life — to use the baths, attend the forum, enjoy the entertainments, benefit from trade. Tacitus writes about this period: suddenly people were wearing togas, using the Roman baths, coming to the forum. The policy worked. <span class="highlight-blue">Londinium grew rapidly after 60 CE</span>, eventually becoming the most important administrative centre in Britannia, probably the largest city north of the Alps.</p>
+  </section>
+
+  <section class="section" id="gates">
+    <div class="section-tag">Stop 2 · Aldersgate / Moorgate</div>
+    <h2>The Gates of London<br>&amp; <em>What Lived Outside the Walls</em></h2>
+
+    <div class="location">Aldersgate Area · EC1</div>
+
+    <p>The three-kilometre Roman wall had five original gates: Aldgate, Bishopsgate, Newgate, Ludgate and Cripplegate. Moorgate was added much later, in 1415. Each gate was a controlled point of entry, heavily secured at night. Outside the wall was a different world — the world of the dead, the rubbish, the industrial, the dangerous.</p>
+
+    <div class="story-box" data-label="Outside the Wall">
+      <p>Roman cities, by law, buried their dead outside the settlement boundary. The road leaving through each gate would be lined with tombs — the Via Appia model, scaled to the size of Londinium. The ditches outside the wall served as both defensive features and rubbish dumps. The road north of Moorgate area is called Houndsditch to this day: archaeologists have recovered the skeletons of dogs that were thrown over the wall when they died in the city, disposed of in the external ditch.</p>
+      <p><span class="highlight-green">The church of Saint Botolph — the patron saint of travellers — stood at each city gate in the Middle Ages.</span> The logic was practical: you are about to leave London, or you have just arrived, and you need a saint's blessing for the journey ahead. Saint Botolph without Aldersgate, Saint Botolph without Bishopsgate. The churches are still there.</p>
+    </div>
+  </section>
+
+  <section class="section" id="roads">
+    <div class="section-tag">Theme · Infrastructure</div>
+    <h2>Watling Street, Ermine Street<br>&amp; <em>the A2 You Drive Today</em></h2>
+
+    <p>Six major roads radiated from Londinium. The Romans are famous for their straight roads, and these were no exception — paved, cambered for drainage, maintained by the imperial road system. What is remarkable is how many of them are still in use, two thousand years later, as the structural arteries of the national road network.</p>
+
+    <p>Watling Street ran from the Kent coast through London to Staffordshire and beyond — it is now, roughly, the A2 from Dover to London and the A5 from London to the Midlands. Ermine Street ran north to Lincoln and York — now the A1. The road east to Colchester, the first capital of Roman Britannia — now the A12. <span class="highlight">The road system that radiates from the City of London today is substantially the road system that the Romans laid out in the 1st and 2nd centuries CE.</span> Two thousand years of subsequent engineering has mostly reinforced rather than replaced it.</p>
+  </section>
+
+  <section class="section" id="basilica">
+    <div class="section-tag">Stop 3 · Cornhill / Leadenhall</div>
+    <h2>The Basilica:<br><em>Bigger Than St Paul's</em></h2>
+
+    <div class="location">Leadenhall Market Area · EC3 · Site of the Roman Basilica and Forum</div>
+
+    <p>Leadenhall Market stands on the site of the forum and basilica of Londinium — the civic and commercial heart of the Roman city. The forum was an open space approximately 167 metres square: market stalls, public meetings, political assemblies. The basilica behind it was the town hall and law courts, 167 metres long. <span class="highlight">It was probably the largest basilica north of Rome</span>, and longer than the current St Paul's Cathedral. Londinium ran on this building for over two centuries.</p>
+
+    <div class="story-box" data-label="How the City Was Governed">
+      <p>Londinium was governed not by imperial appointment alone but by a local council on the Roman model: two senior magistrates, two junior magistrates, and approximately 100 elected councillors. They managed taxation, education, road maintenance, temple upkeep — the full range of local authority functions. This model — council-based urban governance with elected representatives — is a Roman invention, and the Council of the City of London that meets in Guildhall today is, in structural terms, a direct descendant.</p>
+      <p>A small section of the basilica has been discovered beneath a building near Leadenhall Market. It cannot currently be visited, but there are hopes of providing access. New construction in the City finds Roman remains with some regularity — a new building going up around the corner from Leadenhall has revealed another fragment.</p>
+    </div>
+  </section>
+
+  <section class="section" id="walbrook">
+    <div class="section-tag">Stop 4 · Walbrook / Bloomberg</div>
+    <h2>The Sacred River<br>&amp; <em>the Floating Bloomberg Building</em></h2>
+
+    <div class="location">Walbrook · EC4 · The buried river</div>
+
+    <p>The river Walbrook ran between the two gravel hills on which Londinium was built — Cornhill and Ludgate Hill — flowing south to the Thames. It was a freshwater source, a sacred river in Roman religious practice, and the location of numerous temples. It has been underground since the medieval period, buried by centuries of urban accumulation, and the road called Walbrook follows its course. On rainy days, a sculpture by Christina Iglesias installed in the street causes the river to appear to resurface — water gurgles up through a metal grate, briefly visible before draining away.</p>
+
+    <div class="story-box" data-label="The Bloomberg Building &amp; the Temple of Mithras">
+      <p>The Temple of Mithras was discovered in the 1950s on the bank of the buried Walbrook — a sensation at the time, with crowds queuing to see it. It was moved to allow construction of a new building. When Bloomberg's European headquarters was constructed on the site in 2017, the temple was reinstated seven feet below ground, very close to its original position, and opened to the public free of charge.</p>
+      <p>The Bloomberg Building itself is an example of a structure shaped by Roman remains beneath it: the building could not use deep foundations in the conventional way, so it sits on a different structural system — visible on the exterior as large diagonal X-braces at first floor level, the building effectively floating above the archaeology below. <span class="highlight-blue">The same engineering challenge — building above Roman remains without destroying them — recurs across the City.</span> Cannon Street Station is similarly constrained, sitting above what is now thought to be a large Roman temple complex.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Temple of Mithras at Bloomberg:</strong> Free entry, open daily except Monday. Allow an hour. The immersive presentation of the temple is unusual — audio, scent and light are used to recreate the atmosphere of a Mithraic ceremony. Worth booking in advance for busy periods. Artefacts found during construction are displayed in the entrance level.
+    </div>
+  </section>
+
+  <section class="section" id="amphitheatre">
+    <div class="section-tag">Final Stop · Guildhall Yard</div>
+    <h2>The Amphitheatre Under Guildhall:<br><em>Discovered in 1988, Seating 6,000</em></h2>
+
+    <div class="location">Guildhall Yard · EC2 · Roman Amphitheatre under the Art Gallery</div>
+
+    <p>Historians knew for decades that Londinium must have had an amphitheatre — every significant Roman city did. Nobody knew where it was. The City of London was too continuously built-up for the usual methods of detection, and without a gap in the urban fabric large enough to excavate, the search stalled. Then, in 1988, a planned new building for the Guildhall Art Gallery required foundation work — and the foundations hit the amphitheatre. <span class="highlight">The location of Londinium's amphitheatre had been unknown for over a thousand years, and was only discovered because a gallery needed a basement.</span></p>
+
+    <div class="story-box" data-label="What the Amphitheatre Was">
+      <p>The amphitheatre seated approximately 6,000 people — at the time, roughly a third of Londinium's population. The black line set into the paving of Guildhall Yard traces the outer edge of the arena. Everything within it was the performance space; the raked seating rose around it.</p>
+      <p>The morning programme typically featured animal hunts — bears, bulls, and in a city this size with access to North African animals through the trade networks, occasionally lions or leopards. Condemned prisoners and slaves were also put into the arena. Gladiatorial combat — two trained fighters in a formal bout — was expensive and reserved for special occasions, given the investment in training that a gladiator represented.</p>
+      <p>The remains are accessible in the basement of the Guildhall Art Gallery, free of charge, every day except Monday. The gallery above holds around 4,000 works, 250 on display, including an outstanding Victorian collection. The art gallery is itself worth visiting as a reason to go downstairs and see the amphitheatre.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Guildhall Art Gallery &amp; Roman Amphitheatre:</strong> Free entry. Open Monday to Saturday, last entry 4:45pm. The amphitheatre is in the basement, signposted from the gallery entrance. Also worth visiting on the same trip: the City Wall at Vine Street (free, open daily, excellent cafe), the Temple of Mithras at Bloomberg (free except Monday), and All Hallows by the Tower (small entry fee, Roman pavement visible in the crypt).
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · City of London Guides &amp; Lecturers Association<br><br>
+  Notes compiled from tour transcript. Guide: Anne · City of London · September 2025
+</footer>
+
+</body>
+</html>

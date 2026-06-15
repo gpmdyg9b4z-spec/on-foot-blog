@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Film Locations of the City — Open House 2025 · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Open House London 2025 · City of London Film Locations Walking Tour</div>
+  <h1>Bank Junction, Harry Potter<br>&amp; <em>Bob Cratchit's Ice Slide</em></h1>
+  <div class="header-sub">City of London Film Locations Walking Tour · Guide: Chris · Open House London</div>
+  <div class="header-meta">
+    <span>ROUTE: Bank Junction → Royal Exchange → Mansion House → Cheapside → Guildhall → Postman's Park → St Paul's</span>
+    <span>DURATION: ~1.5 hours</span>
+    <span>GUIDE: Chris McNeil · City of London Qualified Guide</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#bank">Bank Junction: the Bank of England, Britannia &amp; where to touch the gold bar</a></li>
+    <li><a href="#exchange">The Royal Exchange: Narnia, Lloyd's Coffee House &amp; Sir Thomas Gresham</a></li>
+    <li><a href="#mansion">Mansion House: Spooks, London Has Fallen &amp; a chandelier that couldn't be moved</a></li>
+    <li><a href="#cheapside">Cheapside: Mary Poppins, St Mary-le-Bow &amp; Bob Cratchit's ice slide</a></li>
+    <li><a href="#churches">Why the City has 140 churches, why they're all different &amp; Christopher Wren</a></li>
+    <li><a href="#guildhall">Guildhall, the livery companies &amp; the amphitheatre twenty feet below</a></li>
+    <li><a href="#postman">Postman's Park: the monument to heroic self-sacrifice &amp; Closer</a></li>
+    <li><a href="#stpauls">St Paul's Cathedral: Portland stone, clear glass &amp; the inscription in the crypt</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="bank">
+    <div class="section-tag">Stop 1 · Bank Junction</div>
+    <h2>Bank Junction:<br><em>The Centre of the Square Mile</em></h2>
+
+    <div class="location">Bank Junction · EC3</div>
+
+    <p>Chris is a City of London qualified guide and a committee member of the City of London Guides and Lectures Association, founded in 1983. He opens by noting that he is also a liveryman of the Worshipful Company of Pewterers, which becomes relevant later, and by checking whether anyone in the group has particular film interests. The answers include Harry Potter, the Da Vinci Code and James Bond. He has material for all of them.</p>
+
+    <p>Bank Junction is where five roads meet in the oldest part of London. To the left: the Bank of England, founded in 1694 as the nation's central bank and moved here in the 1730s. The ground floor of the original 1730s building was demolished in the 1830s; the current seven-storey structure dates from the Victorian reconstruction. Beneath it, in the vaults: the nation's gold reserves.</p>
+
+    <div class="story-box" data-label="The Bank of England Museum">
+      <p>The Bank of England Museum is accessed separately from the main building — down the street, round the corner at the Starbucks, and through a side entrance. It is free, open Monday to Friday during business hours, and contains the one object that Chris considers worth noting: a one-kilogram gold bar in a protective case with a glove fitted. <span class="highlight">You can reach in and lift it.</span> The weight is consistently surprising. Visitors always look slightly startled. The museum also traces the history of currency from its origins to the present.</p>
+    </div>
+
+    <p>Above the Bank, in the triangular pediment just below the flag, stands Britannia — a Roman creation, adopted as a symbol of trust and monetary stability. She holds a model of the Bank of England and coins. Chris observes that if you have currency with you — and he knows this is increasingly unlikely — Britannia is on it.</p>
+  </section>
+
+  <section class="section" id="exchange">
+    <div class="section-tag">Stop 2 · Royal Exchange</div>
+    <h2>The Royal Exchange:<br><em>Narnia, Lloyd's &amp; Thomas Gresham</em></h2>
+
+    <div class="location">Royal Exchange · Cornhill · EC3 · Founded 1566, current building 1844</div>
+
+    <p>The Royal Exchange was founded by Sir Thomas Gresham in the 1560s — a liveryman of the Mercers' Company who had seen exchange houses operating in Antwerp and brought the concept to London. The original building was destroyed in the Great Fire of 1666; a replacement was destroyed in a fire started, with considerable irony, in the ovens of the Lloyd's Coffee House that occupied part of the site — Lloyd's, of course, being the foundation of what became Lloyd's insurance. The current building dates from 1844.</p>
+
+    <p>For film: the Royal Exchange appears in the 1954 adaptation of <em>The Chronicles of Narnia</em> in a crowd scene on its steps. The lamp post visible on the exterior is a recognisable prop to those who know to look for it. The building itself is now shops, restaurants and offices — a general facelift in 2001 gave it its current pleasant interior. Worth going in.</p>
+
+    <div class="story-box" data-label="A Christmas Carol Country">
+      <p>Chris pauses at Cornhill to note that this is A Christmas Carol territory. Scrooge's counting house was somewhere up this road. Bob Cratchit's home was three miles west in Camden — but to get there on Christmas Eve, having persuaded Scrooge to give him the day off with pay, he would have had to walk through here. <span class="highlight">He was so happy, Dickens writes, that he slid on the ice of Cornhill twenty times with the children who were playing there</span>, before sprinting the rest of the way home.</p>
+    </div>
+  </section>
+
+  <section class="section" id="mansion">
+    <div class="section-tag">Stop 3 · Mansion House</div>
+    <h2>Mansion House:<br><em>Spooks, London Has Fallen &amp; a Chandelier That Couldn't Move</em></h2>
+
+    <div class="location">Mansion House · EC4 · Built 1752 · Official residence of the Lord Mayor</div>
+
+    <p>Mansion House has been the official residence and workplace of the Lord Mayor of the City of London since 1752 — built to provide a neutral official home for a role that had previously been hosted by whichever livery company the Lord Mayor happened to belong to. The political logic: if the Lord Mayor lives in your livery hall, your company has an influence over them. A neutral building removes the problem.</p>
+
+    <p>The Lord Mayor of the City of London is a different figure from the Mayor of London: Sadiq Khan governs Greater London from City Hall, but the Lord Mayor — elected annually by the livery companies — governs only the square mile, carries diplomatic status and travels the world on behalf of British business at cabinet rank. The position is older than the UK itself.</p>
+
+    <div class="story-box" data-label="The Chandelier Problem">
+      <p>Inside Mansion House is a chandelier that was assembled in the mid-1700s and has been a logistical challenge ever since. In its early years, it was moved between Mansion House and Guildhall depending on which venue was hosting the major event of the season. The inevitable happened — during one of these moves, pieces broke. The decision was made that the chandelier would be permanently installed in Mansion House and moved no more. It remains there.</p>
+      <p>Mansion House appears in <em>Spooks</em>, in <em>London Has Fallen</em> and in a Coldplay music video. Film production income helps fund the building's running costs. <span class="highlight-green">If you ever have the opportunity to tour the Egyptian Hall inside, the interior is extraordinary</span> — one of the finest neoclassical interiors in London, not widely known because the building is rarely open.</p>
+    </div>
+  </section>
+
+  <section class="section" id="cheapside">
+    <div class="section-tag">Stop 4 · Cheapside</div>
+    <h2>Cheapside, Mary Poppins<br>&amp; <em>the Bow Bells Cockneys</em></h2>
+
+    <div class="location">Cheapside · EC2 · The high street of Roman, medieval and modern London</div>
+
+    <p>Cheapside has been a market street since at least Roman times — <em>cheap</em> is an old English word for market, and the perpendicular streets still bear the names of what was sold there: Wood Street, Milk Street, Honey Lane, Bread Street. The street runs east-west as one of Londinium's original grid roads, and has been a commercial thoroughfare for two thousand years.</p>
+
+    <div class="story-box" data-label="Bow Bells, Cockney & Mary Poppins">
+      <p>The church at the junction with Bread Street — St Mary-le-Bow, rebuilt by Wren after the Great Fire — is the source of the Bow Bells that define a Cockney. The tradition holds that a true Cockney must be born within the sound of Bow Bells. The word Cockney itself derives from a medieval French term meaning a strange egg — something unusual, not from the countryside — applied by rural people to Londoners who seemed odd and urban and didn't farm their own food.</p>
+      <p>The chimney sweeps in <em>Mary Poppins</em> are associated with this area — and the connection to the Bow Bells is musical, not just geographical. Mary Poppins is, in part, a story about the intersection of Cockney working-class life and the Edwardian upper-middle class world of the Banks family. The chimney sweeps dance on the rooftops of Cheapside-adjacent territory. <span class="highlight">The large dragon atop the church — nine feet long — is the dragon of the City of London</span>, which appears at the boundaries of the square mile on marker posts and statues throughout the area.</p>
+    </div>
+  </section>
+
+  <section class="section" id="churches">
+    <div class="section-tag">Theme · Architecture</div>
+    <h2>Why Every Wren Church<br><em>Is Different</em></h2>
+
+    <p>At its peak, the City of London had over 140 churches. The Great Fire destroyed most of them. Christopher Wren was commissioned to rebuild more than 50 — and built none of them the same way twice. He had a method: first, build a box to get the parishioners back in. Then, come back and build a steeple. The steeple reflected the wealth of the local parish. <span class="highlight">He was not going to IKEA and buying fifty identical steeples.</span> Each one is different, according to the resources available and the character of the congregation.</p>
+
+    <p>Wren died around the age of 90. He was not, technically, an architect — the profession didn't exist as a formal category in the 17th century. He was a scientist, mathematician, artist and a very close friend of both King Charles I and King Charles II. The royal connection helps explain how he received so many commissions. He built the dome of St Paul's at a time when Italian Baroque engineering was distrusted in England as Catholic and foreign. He introduced it anyway. He got away with it.</p>
+  </section>
+
+  <section class="section" id="guildhall">
+    <div class="section-tag">Stop 5 · Guildhall</div>
+    <h2>Guildhall, the Livery Companies<br>&amp; <em>the Amphitheatre Underfoot</em></h2>
+
+    <div class="location">Guildhall · EC2 · Centre of City government since the 11th century</div>
+
+    <p>Guildhall has been the centre of the City of London's self-governance for over nine centuries. The word itself comes from a term meaning money or taxation. The current building was constructed by Caxton around 1411; the white facade facing Guildhall Yard was added in the 1700s by George Dance the Elder, who was deeply impressed by Indian architecture and incorporated Mughal elements into what is otherwise a late Gothic building.</p>
+
+    <p>Chris is a liveryman, which makes this stop personal. The livery companies — craft guilds with royal charters — elect the Lord Mayor, the two sheriffs and the Court of Common Council that governs the City. There are 113 of them. He belongs to the Pewterers, livery company number around 40. The Worshipful Company of Weavers, at number one, dates to 1055.</p>
+
+    <div class="story-box" data-label="The Black Line on the Ground">
+      <p>In Guildhall Yard, a black line is set into the paving in a curve. Chris asks the group if they know what it marks. The answer: the outer edge of the Roman amphitheatre, directly under their feet. The amphitheatre was discovered in 1988 when the Guildhall Art Gallery was being constructed — previously, its location had been unknown for over a millennium.</p>
+      <p>The black line traces the curve of the arena. Everything inside it was the performance space. The seating rose around it. <span class="highlight">Guildhall Yard is built inside a Roman amphitheatre</span> — the gallery's basement goes down to where the original structure survives, free to visit, open most days.</p>
+    </div>
+  </section>
+
+  <section class="section" id="postman">
+    <div class="section-tag">Stop 6 · Postman's Park</div>
+    <h2>Postman's Park:<br><em>Alice Ayres &amp; Closer</em></h2>
+
+    <div class="location">Postman's Park · Little Britain · EC1 · Burial ground of three churches</div>
+
+    <p>Postman's Park is named for its proximity to the former General Post Office, whose workers used it as a lunch break green. It is built on the burial grounds of three churches, and visitors entering take three or four steps up — walking onto centuries of accumulated burials, the ground raised by the layers of the dead below.</p>
+
+    <div class="story-box" data-label="The Monument to Heroic Self-Sacrifice">
+      <p>The covered walkway along one side holds the Watts Memorial — commissioned in 1900 by the Victorian artist G. F. Watts, who noticed that London's public spaces were full of monuments to royals, generals and admirals, and nothing to the ordinary people who had died trying to save others. The plaques record around 78 such individuals (of a planned 166), commemorating acts of heroism by workers, bystanders, passers-by — people who ran into burning buildings, pulled strangers from rivers, pushed children clear of vehicles.</p>
+      <p>The film connection: Julia Roberts's character in <em>Closer</em> (2004) introduces herself using the name Alice Ayres — taken from one of the plaques in this park. She saw the name and adopted it as a fiction. <span class="highlight">The most recent plaque dates from 2007</span>, suggesting that the acts being commemorated are not just Victorian. The committee managing the memorial is currently seeking to reinvigorate the process of adding new names.</p>
+    </div>
+  </section>
+
+  <section class="section" id="stpauls">
+    <div class="section-tag">Final Stop · St Paul's Cathedral</div>
+    <h2>St Paul's Cathedral:<br><em>Version Five &amp; the Inscription in the Crypt</em></h2>
+
+    <div class="location">St Paul's Cathedral · Ludgate Hill · EC4 · Built 1675–1710</div>
+
+    <p>The current St Paul's is the fifth cathedral on this site. The first was built around 600 CE. The fourth — the medieval Gothic building that preceded Wren's — was taller than the current structure by about 100 feet and was destroyed in the Great Fire. Wren's design in Portland Stone — resistant to weight, pale enough to let light in, structurally innovative in its dome — took from 1675 to 1710 to build. Wren lived to see it finished, dying around the age of 90.</p>
+
+    <div class="story-box" data-label="Why Portland Stone &amp; Why Clear Glass">
+      <p>The previous St Paul's was dark — a medieval interior, very little light, associated in Wren's mind with the pre-Reformation church. He wanted something lit by reason and clarity. He specified Portland stone for its paleness and its resistance to compression. He specified clear glass to allow maximum natural light. He left certain alcoves in the walls deliberately empty — not for statues, but to track and reflect light across the interior at different times of day.</p>
+      <p>The dome uses an innovation borrowed from Italian Baroque architecture — which English Protestants distrusted as Catholic. Wren overcame the resistance partly through his friendship with the king and partly by introducing the design gradually, through small-scale precedents at other City churches. <span class="highlight">The Mary Poppins connection is to the steps outside</span> — the scene of the bird woman selling her seeds, with St Paul's as the backdrop. It has been played, and it lands.</p>
+    </div>
+
+    <p>Wren's tomb is inside the cathedral, in the crypt. The inscription is in Latin: <em>Si monumentum requiris, circumspice</em>. If you seek his monument, look around you. Chris delivers this at the end of the tour, standing in front of the cathedral, and it lands exactly as intended.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">£2bn</div>
+      <div class="key-fact-text">Annual contribution of the film industry to London's economy, supporting around 50,000 jobs. The City of London's combination of historic architecture, visual variety and filming-friendly buildings makes it one of the most used locations in British and international film production.</div>
+    </div>
+
+    <div class="practical">
+      <strong>City of London Guides:</strong> The City of London Guides and Lectures Association (CLGLA) runs tours throughout the year, many free as part of Open House, others ticketed. The qualification requires a year-long course on the history and architecture of the square mile. For film-specific tours, the Da Vinci Code locations and the Harry Potter connections (Leadenhall Market as Diagon Alley) are usually covered. Chris McNeil's tours are bookable through the CLGLA website.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · City of London Guides &amp; Lecturers Association<br><br>
+  Notes compiled from tour transcript. Guide: Chris McNeil · City of London · September 2025
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSE Marshall Building — Open House London 2023 · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Open House London 2023 · LSE Marshall Building, WC2</div>
+  <h1>£145 Million,<br><em>Structural Trees</em> &amp; a Seagull Problem</h1>
+  <div class="header-sub">LSE Marshall Building Tour · London School of Economics · Open House 2023</div>
+  <div class="header-meta">
+    <span>ROUTE: Great Hall → Levels 1 &amp; 2 → Level 9 Terrace → Marshall Institute → Basement Sports</span>
+    <span>DURATION: ~1 hour</span>
+    <span>GUIDE: LSE Estates Team · Open House London</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">The Marshall Building: a design competition, Grafton Architects &amp; a generous donor</a></li>
+    <li><a href="#great-hall">The Great Hall: vaulted basements, structural trees &amp; escaped chairs</a></li>
+    <li><a href="#teaching">Teaching philosophy: why LSE chose small over giant</a></li>
+    <li><a href="#top">Level 9: the terrace, the costs &amp; the seagull problem</a></li>
+    <li><a href="#quiet">The problem with a building that is too quiet</a></li>
+    <li><a href="#sports">The basement: a sports hall LSE never had before</a></li>
+    <li><a href="#next">What comes next: 35 Lincoln's Inn Fields &amp; David Chipperfield</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Design Competition,<br><em>Grafton Architects &amp; a Generous Donor</em></h2>
+
+    <p>The Marshall Building at the London School of Economics sits on the corner of Portsmouth Street and Lincoln's Inn Fields, a few minutes from the Aldwych. It opened in 2022, replacing a 1970s cancer research building on the same site. The guide from LSE Estates leads a brisk, enthusiastic tour through all nine floors — he openly admits he likes talking, apologises for not stopping, and delivers one of the more technically informative Open House tours of the day.</p>
+
+    <p>The building came about through an RIBA international design competition. A brief was drawn up, published to the world, and whittled down to a shortlist of six practices. A jury panel selected the Dublin-based Grafton Architects — winners of the 2020 RIBA Gold Medal and known for their work on universities in Ireland, Peru and Italy. Their design was chosen and rolled forward into what now stands here.</p>
+
+    <div class="story-box" data-label="Where the Money Came From">
+      <p>The building is named after Stanley Marshall, who made a significant donation to LSE to enable the project to proceed. His office is on the ninth floor, with what the guide describes as pretty spectacular views — he notes with a straight face that you get what you're paying for.</p>
+      <p>The construction cost alone was £92 million. Total project cost, including VAT, furniture and project fees: <span class="highlight">£145 million</span>. It is not, the guide says, a cheap building. But it is, he thinks, a pretty spectacular one.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">£145m</div>
+      <div class="key-fact-text">Total project cost for the Marshall Building, including VAT, furniture and fees. Construction alone was £92 million. The next major LSE building — 35 Lincoln's Inn Fields, designed by David Chipperfield Architects — is currently in design.</div>
+    </div>
+  </section>
+
+  <section class="section" id="great-hall">
+    <div class="section-tag">Stop 1 · Ground Floor</div>
+    <h2>The Great Hall:<br><em>Vaulted Basements &amp; Structural Trees</em></h2>
+
+    <div class="location">Great Hall · Ground Floor · Marshall Building</div>
+
+    <p>The Great Hall is the public heart of the building — a large column-free plaza at ground level, with three entrances at different heights (the levels between Lincoln's Inn Fields, Portsmouth Street and Fortune Street are all different) and a deliberate slight camber in the floor to connect them without steps. If you drop something, the guide says, it will roll downhill. Last year's Open House tour used chairs with wheels; several made for the door. This year they have opted for chairs without.</p>
+
+    <div class="story-box" data-label="The Inspiration">
+      <p>Grafton based the design of the Great Hall on the vaulted basements of Lincoln's Inn itself — the Honourable Inn on the corner of Lincoln's Inn Fields, whose ornate undercroft in the old Gothic style gave them a reference point. The Marshall Building's Great Hall speaks the same structural language, but in a modern vocabulary.</p>
+      <p>The dominant elements are what the guide calls structural trees — branching concrete columns that start as large chunks at ground level and become progressively more slender as they rise through the building, transferring load outward and upward. During construction, <span class="highlight">as the cladding panels were added to these trees, the whole structure visibly moved</span> as engineers gradually counterweighted everything to make the system work. The floor is terrazzo. The central helical staircase was cast in situ — look closely at the wall as you climb, and you can see the small tie-holes left when the formwork was stripped after the concrete set.</p>
+    </div>
+
+    <p>The Great Hall functions as public plaza, café, event space and — this week — student registration venue for thousands of incoming students. Projectors and retractable screens are hidden in the structure. The Pritzker Prize ceremony was held here; the guide mentions David Adjaye receiving the award on the first landing of the helical staircase, surrounded by elaborate floral arrangements. Wi-Fi points are concealed within the grey boxing for the uplights — invisible unless you know to look.</p>
+
+    <div class="practical">
+      <strong>Public access:</strong> The Great Hall (ground floor) is publicly accessible Tuesday to Saturday. The café is open to all. Levels 1, 2 and above are for LSE students and staff only.
+    </div>
+  </section>
+
+  <section class="section" id="teaching">
+    <div class="section-tag">Levels 1 &amp; 2 · Teaching Floors</div>
+    <h2>Teaching Philosophy:<br><em>Why LSE Chose Small Over Giant</em></h2>
+
+    <p>Levels one and two contain social study space and teaching rooms. The approach to study space is comprehensive — banquette seating built into the walls of the lecture theatre cores (with power for laptops), booths for group work, individual desks, cluster seating. Every available surface has been considered. The palette throughout is natural timber, soft neutral floors and muted fixed furniture, creating what the guide describes as a light, quiet environment both acoustically and visually.</p>
+
+    <div class="story-box" data-label="The Decision Against Giant Lecture Theatres">
+      <p>A significant strategic decision shaped the teaching floors: Marshall has no large lecture theatres. No tiered halls of 500. No banks of seats stretching back into the dark. This was deliberate.</p>
+      <p>LSE worked extensively through its stakeholder engagement process — with departments, with lecturers, with students, and with an internal team called EDEN specifically set up to research best practice in teaching. The conclusion: <span class="highlight-blue">both staff and students strongly prefer intimate teaching spaces</span>. Lecturers can move among their students, make eye contact, read the room. Students feel more engaged in smaller classes. The large strategic lecture theatres exist elsewhere at LSE for occasions where they are needed; Marshall deliberately does not have them.</p>
+      <p>Every teaching room has at least one window with natural light — a requirement rather than a preference. The guide explains that having a visual reference to the outside world, to the time of day, is simply part of being human. The rooms facing Lincoln's Inn Fields have particularly good views of the green, and the guide is not wrong that it helps.</p>
+    </div>
+
+    <p>A small detail the guide particularly likes: the writing surfaces on the lecture theatre furniture have small rubber pencil stops fitted so that pens and pencils don't roll off. Often overlooked. Actually quite important.</p>
+
+    <p>On the question of smart boards versus traditional whiteboards: the engagement process produced an unambiguous answer. Lecturers in engineering and mathematics especially were emphatic — they wanted traditional boards for writing equations, not moving parts with opportunities for things to go wrong. <span class="highlight">Every teaching room has whiteboards.</span> There are also supplementary screens for hybrid and recorded learning — a legacy of the pandemic that has been retained — but the whiteboard remains primary.</p>
+  </section>
+
+  <section class="section" id="top">
+    <div class="section-tag">Level 9 · Terrace &amp; Marshall Institute</div>
+    <h2>The Terrace: Views, Costs<br>&amp; <em>the Seagull Problem</em></h2>
+
+    <div class="location">Level 9 · Marshall Institute · Roof Terrace</div>
+
+    <p>The ninth floor houses the Marshall Institute and gives onto a roof terrace with views across Lincoln's Inn Fields, the City and — on a clear day — considerably further. The guide draws attention to something Grafton got right at height: rather than a sheer drop at the building edge, the terrace is designed in layers, with a setback arrangement that means despite being clearly very high up, you don't get that vertiginous sense of standing at a cliff edge. It reads as safe. People are comfortable on it.</p>
+
+    <div class="story-box" data-label="The Seagull Problem">
+      <p>There is a bird scarer around the building. This requires explanation. Seagulls, it turns out, have a mating behaviour involving objects dropped into water — the larger the splash, the more impressive the display. On a clear day, a section of plate glass ceiling in the neighbouring Centre Building (designed by Rogers RSHP) looks, from above, remarkably like water. Seagulls pick up objects from the roof and drop them onto it.</p>
+      <p><span class="highlight">Each panel costs £70,000 to replace.</span> Hence the bird scarer. The problem is technically the Centre Building's, not Marshall's, but the birds are coming from the roof. The guide mentions this with the tone of a man who has had to explain it many times and still finds it slightly absurd.</p>
+      <p>The building has a meaningful biodiversity programme regardless: planted roofs, a bee colony producing small batches of LSE honey, and the bird scarer, which is doing its best.</p>
+    </div>
+  </section>
+
+  <section class="section" id="quiet">
+    <div class="section-tag">Theme · Acoustics</div>
+    <h2>The Problem with a Building<br><em>That Is Too Quiet</em></h2>
+
+    <p>The Marshall Building's mechanical plant has been designed to run almost silently. Walk through it and what you notice, beneath the ordinary sounds of people and activity, is essentially nothing. No background hum from ventilation, no faint mechanical drone. It is, for a building of this size in central London, remarkably peaceful.</p>
+
+    <blockquote>
+      <p>"It has had an alternative effect, which you wouldn't think of. You can hear more than you would normally expect to between offices. It's almost too quiet."</p>
+      <cite>— LSE Estates Guide</cite>
+    </blockquote>
+
+    <p>Standard office acoustic design assumes a certain level of background noise — from plant, from equipment, from people — and internal partition walls are specified to a decibel rating calibrated against that assumption. Remove the background noise, and suddenly those walls are not performing as expected. Sound that would have been masked by ambient hum becomes audible. The building is, acoustically, more transparent between rooms than the design anticipated.</p>
+
+    <p><span class="highlight-green">The lesson: a degree of background noise is part of how we experience acoustic privacy.</span> Silence is not always an improvement. Something to learn, the guide says, with the slightly rueful cheerfulness of someone who has thought about this more than he expected to.</p>
+  </section>
+
+  <section class="section" id="sports">
+    <div class="section-tag">Basement · Student Union</div>
+    <h2>The Basement: A Sports Hall<br><em>LSE Never Had Before</em></h2>
+
+    <p>Below the public levels of the building, managed by the LSE Students' Union rather than the university estates team, is a suite of facilities that LSE had never previously been able to offer on campus. For a central London university on a constrained site, the Marshall Building's double basement — which was possible because the former cancer research building on this site already had a double basement of labs, avoiding the cost and disruption of excavating afresh — has been transformative.</p>
+
+    <div class="story-box" data-label="What Is Down Here">
+      <p>A full-size Sport England standard sports hall, used for basketball, indoor netball and badminton. Before Marshall, LSE students had to travel off campus for any indoor sport. A suite of fully acoustically treated music rooms — one with a small grand piano and a drum kit — from which, the guide confirms, you cannot hear a thing from outside. A weight studio with protected flooring. Two squash courts.</p>
+      <p>The squash courts have a small design detail the guide always mentions on tours: <span class="highlight">balls accumulate on the windowsill and on top of a lip detail in the wall</span>, where they cannot easily be retrieved. Whether this represents a design oversight or an ongoing contribution to the university's traditions of student mischief, the guide declines to say definitively. Both possibilities are, he suggests, consistent with what he knows of LSE students.</p>
+    </div>
+
+    <p>The Students' Union also controls an entire separate building nearby — the existing SU building, with two cafes, a pub, a radio station, breakout study space and more balconies. Between the two buildings, the student facilities available at a university that occupies one of the most expensive and constrained urban campuses in Britain have expanded significantly.</p>
+  </section>
+
+  <section class="section" id="next">
+    <div class="section-tag">Future · Lincoln's Inn Fields</div>
+    <h2>What Comes Next:<br><em>35 Lincoln's Inn Fields</em></h2>
+
+    <p>The red brick building visible from the Marshall Building terrace, just past the Royal College of Surgeons, is 35 Lincoln's Inn Fields. LSE owns it. It will be redeveloped within the next three to four years, following a design competition that attracted huge international interest. <strong>David Chipperfield Architects</strong> won that competition — making Chipperfield the designer of what will become the next major set piece on the LSE campus, following Grafton's Marshall Building.</p>
+
+    <p>The guide mentions this with visible excitement, and invites the group back in a few years to see it.</p>
+
+    <div class="practical">
+      <strong>The Marshall Building</strong> is open to the public at ground floor level most weekdays. The Great Hall café is a genuinely good place to work or have coffee, and the helical staircase is worth seeing. <strong>Open House London</strong> (September each year) offers the only public access to the upper floors. Worth booking in advance — tours fill quickly.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2023 · openhouselondon.org.uk<br><br>
+  Notes compiled from tour transcript. LSE Marshall Building, Lincoln's Inn Fields, WC2 · September 2023
+</footer>
+
+</body>
+</html>

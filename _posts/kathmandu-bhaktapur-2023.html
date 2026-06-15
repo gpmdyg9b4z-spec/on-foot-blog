@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathmandu & Bhaktapur — Palaces, Temples & the Living Goddess · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Temple Walk — Bhaktapur Durbar Square &amp; Kathmandu · Nepal · August 2023</div>
+  <h1>Thirty Million Gods,<br><em>a 12-Year-Old Kumari</em> &amp; the 2015 Earthquake</h1>
+  <div class="header-sub">Bhaktapur Durbar Square &amp; Kathmandu Temples · Local Guide</div>
+  <div class="header-meta">
+    <span>ROUTE: Bhaktapur Durbar Square → Royal Palace Museum → Golden Temple → Kathmandu</span>
+    <span>DURATION: ~3 hours</span>
+    <span>LOCATION: Bhaktapur &amp; Kathmandu, Nepal</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Bhaktapur: the ancient city &amp; 2015 earthquake</a></li>
+    <li><a href="#palace">The Royal Palace: three courtyards, a living goddess &amp; a king's bath</a></li>
+    <li><a href="#temples">Durbar Square: thirty million gods &amp; which temples you can enter</a></li>
+    <li><a href="#golden">The Golden Temple &amp; the rats that cannot be killed</a></li>
+    <li><a href="#styles">Five temple styles &amp; the snake that protects</a></li>
+    <li><a href="#prison">The former prison &amp; the district court behind it</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Bhaktapur: the Ancient City<br><em>&amp; What the Earthquake Left</em></h2>
+
+    <p>Bhaktapur — one of the three royal cities of the Kathmandu Valley, alongside Kathmandu and Patan — was one of the most severely affected areas in the 2015 earthquake that killed nearly 9,000 people across Nepal and brought down temples, palaces and historic structures across the valley.</p>
+
+    <p>Walking through Bhaktapur's Durbar Square now, the guide explains what you're looking at with a mixture of pride and honesty: <span class="highlight">about 95% complete</span>. The remaining 5% is still being worked on. The reconstruction used the same materials where possible — the same stone, the same techniques of wood carving, the same traditions that produced the originals centuries ago. Distinguishing new from old requires attention, and the guide points out examples throughout.</p>
+
+    <div class="story-box" data-label="The Age of What Remains">
+      <p>The palace complex at the heart of Bhaktapur Durbar Square is approximately 500 years old. The courtyards, the carved wooden screens, the water features where the king washed his hands before prayer — all from around the 16th century, though elements have been added and restored across many periods. The square was, originally, a prison: it was where the king's family lived, enjoyed entertainment and stored valuables. <span class="highlight-blue">The district court still operates directly behind it.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="palace">
+    <div class="section-tag">Stop 1 · Royal Palace</div>
+    <h2>The Royal Palace:<br><em>Three Courtyards &amp; a Living Goddess</em></h2>
+
+    <div class="location">Bhaktapur Royal Palace Museum · Durbar Square · 16th century</div>
+
+    <p>The Royal Palace of Bhaktapur has been converted into a museum open to the public. It is organised around three main courtyards. The first is used for ritual purposes — animal sacrifice, dancing, the drinking of animal blood during festivals. The second contains the store rooms where the royal family kept jewellery and valuables. The third is the more intimate residential space.</p>
+
+    <div class="story-box" data-label="The Kumari — Living Goddess">
+      <p>In one of the inner rooms of the palace lives the current Kumari — a living goddess, a young girl selected from a specific caste and family lineage to embody the goddess Taleju. The Kumari visited during this tour is twelve years old. She sits in the window of her room. Visitors can come to see her, and she gives a blessing. Photography is permitted.</p>
+      <p>The role of Kumari is a significant one in Nepalese Hinduism. A girl serves as Kumari until she reaches puberty, at which point a new Kumari is selected. <span class="highlight">The institution predates the earthquake, predates the modern nation, and continues.</span> The guide speaks about her with straightforward reverence — she is simply part of the palace, and has been for centuries.</p>
+    </div>
+
+    <p>Also in the palace: the king's bath, a stone pool where the king would wash his hands before proceeding to prayer and then to the various temple courtyards around the square. The pool is fed by a carved water spout, itself centuries old. The woodwork throughout — on the doors, the windows, the screens — is extraordinarily detailed, with figures of gods, protective serpents, and narrative scenes carved in the dark Nepalese sal wood that survives remarkably well.</p>
+
+    <div class="story-box" data-label="What Was Stolen">
+      <p>The guide points to a water feature in one of the courtyards — a carved figure of Vishnu and Lakshmi in gold. The original was stolen. <span class="highlight-blue">The replacement is new, and covered in gold leaf.</span> He says this simply, without particular drama. In many of the temples and palaces around the Kathmandu Valley, the most valuable portable objects have been stolen — some removed during the political upheavals of the late 20th century, some earlier. What remains is largely what could not be easily carried.</p>
+    </div>
+
+    <p>The meditation space in the palace — a room used by the king for winter contemplation beside a fire — is noted by the guide as particularly beautiful, with carved wooden screens and a sense of enclosure. Upstairs is new construction; downstairs is old. The guide is clear about which is which.</p>
+
+    <div class="practical">
+      <strong>Royal Palace Museum:</strong> Entry requires a ticket (100 rupees at time of visit, with separate entry fee for the Golden Temple). The palace museum is upstairs from the main courtyard. Shoes must be removed to enter certain inner areas. Photography is generally permitted except in specific shrines.
+    </div>
+  </section>
+
+  <section class="section" id="temples">
+    <div class="section-tag">Stop 2 · Durbar Square</div>
+    <h2>Thirty Million Gods:<br><em>Which Temples You Can Enter</em></h2>
+
+    <div class="location">Bhaktapur Durbar Square · Kathmandu Valley</div>
+
+    <p>The guide opens his account of the square's temples with a clarification that saves confusion: Hinduism has approximately thirty million gods, and even he, who was raised in this tradition, does not know which deity occupies which temple at first glance. What matters is knowing which god you need for a particular purpose, and at that moment you remember.</p>
+
+    <p>The temples in Durbar Square include dedicated shrines to Nimssen (god of business), Krishna, Shiva (god of destruction and transformation), and various forms of Ganesh and other deities. They are of different architectural styles, which the guide explains in some detail:</p>
+
+    <div class="story-box" data-label="Five Temple Styles">
+      <p>Nepal has five distinct temple architectural styles. The most common in Bhaktapur is the <strong>Pagoda style</strong> (tiered roofs, multiple levels), which has its origins here and spread to East Asia — the guide notes that the pagoda form the world associates with China and Japan originated in Nepal. There is also the <strong>Shikhara style</strong> (a tall pointed tower, more North Indian in character), and three further styles including the <strong>Stupa</strong> form (domed, used for Buddhist monuments) and two others. The guide lists all five, though the translation into English is approximate.</p>
+      <p>Which temples you can enter as a non-Hindu varies. Some are open to all; others are restricted. <span class="highlight">The rule is not always posted visibly</span>, and the guide handles it straightforwardly — this one yes, this one no, this one you can see from the outside but not go in. Nobody seems to find this troubling.</p>
+    </div>
+
+    <div class="story-box" data-label="The Bird That Kills the King">
+      <p>Beside one of the temples in the square stands a column with a metal bird at the top. The guide explains its significance: according to tradition, the king will die when this bird flies. As long as the bird does not fly, the king does not die. The bird sits atop the snake — the protective serpent deity that appears throughout the temple complex. The logic is entirely internal and entirely serious.</p>
+    </div>
+  </section>
+
+  <section class="section" id="golden">
+    <div class="section-tag">Stop 3 · Uku Bahal</div>
+    <h2>The Golden Temple<br>&amp; <em>the Rats That Cannot Be Killed</em></h2>
+
+    <div class="location">Kwa Bahal (Golden Temple) · Patan · c. 12th century</div>
+
+    <p>The Golden Temple — Kwa Bahal or Hiranya Varna Mahavihar — is a Buddhist temple in the old city, its exterior covered in gilt metalwork and its courtyard framing a central stupa. Entry requires a small fee. Inside, the atmosphere changes: quieter, more contemplative, the Buddhist tradition rather than Hindu.</p>
+
+    <div class="story-box" data-label="The Rats">
+      <p>Inside the Golden Temple live rats. Many of them. They move through the courtyard and the temple spaces freely. Nobody harms them. The guide explains the history: according to temple tradition, this is the place where the rat chased the cat — and because of that historical event (whether literal or mythological, he does not say), no one may kill a rat in this temple, and the rats must be fed every day. <span class="highlight">They are offerings. They are protected.</span> They have been fed here for centuries.</p>
+      <p>The guide notes this with no particular sense that it is unusual. The rats are simply part of the temple.</p>
+    </div>
+
+    <p>The temple also contains very old paintings — murals of considerable age, the guide says, that are genuinely ancient and cannot be touched. The monastery attached to the temple has monks in residence. At the time of the visit, a group is chanting.</p>
+
+    <p>The guide also points out a green ball — a mandala, used for protection. The mandala is a form of family protection: <span class="highlight-green">kept in the home, it prevents negative forces from entering.</span> People come to the temple in the morning to pray before it. This one is centuries old.</p>
+  </section>
+
+  <section class="section" id="styles">
+    <div class="section-tag">Theme · Architecture</div>
+    <h2>The Snake That Protects<br>&amp; <em>the One-Way Window</em></h2>
+
+    <p>Throughout both the palace and the temple complex, two motifs recur with particular insistence: the protective serpent (Naga), which appears above doorways, around water spouts and at the base of columns, always in the role of guardian; and the carved lattice window, which has a specific functional quality the guide demonstrates.</p>
+
+    <p>From inside a room looking out through a carved wooden lattice screen, you can see the courtyard clearly. From outside, looking in through the same screen, <span class="highlight">you cannot see anything inside.</span> The king could observe the courtyard, the rituals, the people — without being observed himself. The screens function as one-way glass, but made of wood and carved centuries ago.</p>
+
+    <p>The woodcarving tradition in the Kathmandu Valley is one of the great craft traditions of South Asia. The guide's assistant — a young man learning English who has come along for the practice — looks at the carved doors of the palace with the expression of someone who has spent his whole life around them and still finds them beautiful. He photographs them on his phone.</p>
+  </section>
+
+  <section class="section" id="prison">
+    <div class="section-tag">Context</div>
+    <h2>The Former Prison<br>&amp; <em>What the Square Used to Be</em></h2>
+
+    <p>The guide notes in passing, as the tour ends at the edge of the square, that the whole of this area was once a prison — the city's place of detention and punishment, located here because the district court is directly behind. Kings and their families lived here too, which created the layered palimpsest of royal residence, ritual space and civic function that the square still embodies.</p>
+
+    <p>For the people of Bhaktapur, this is not history in the sense of something finished. The festivals still happen in these courtyards — the ritual dancing, the animal sacrifice, the processions. The Kumari is still chosen and still lives in the palace. The rats are still fed in the Golden Temple. The 2015 earthquake knocked things down; the community rebuilt them, using the same techniques, because these places are still in use.</p>
+
+    <div class="practical">
+      <strong>Bhaktapur:</strong> About 13km from central Kathmandu, accessible by taxi or local bus. Entry to the town itself requires a tourist fee (around USD 15 at time of visit). The Durbar Square, the Royal Palace Museum and the Golden Temple all have separate entry fees. A local guide is strongly recommended — the complexity of the temple traditions is impossible to navigate alone. <strong>Best time to visit:</strong> early morning, before tour groups arrive from Kathmandu.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Bhaktapur Durbar Square · Nepal · August 2023
+</footer>
+
+</body>
+</html>

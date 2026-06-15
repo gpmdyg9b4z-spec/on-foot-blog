@@ -10,405 +10,494 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
-  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
-  header::before { content: '✦'; position: absolute; font-size: 24rem; opacity: 0.03; top: 50%; left: 50%; transform: translate(-50%,-50%); color: var(--gold); line-height: 1; }
-  .site-label { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem,8vw,5rem); font-weight: 300; line-height: 1.05; margin-bottom: 0.8rem; }
-  header h1 em { font-style: italic; color: var(--gold); }
-  .site-tagline { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2.5rem; }
-  .filters-bar { background: var(--aged); border-top: 1px solid #cfc3ab; border-bottom: 1px solid #cfc3ab; padding: 1.2rem 2rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; max-width: 960px; margin: 0 auto; }
-  .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
-  .filter-label { font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); }
-  .filter-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .filter-btn { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #cfc3ab; background: transparent; color: var(--sepia); padding: 0.25rem 0.65rem; cursor: pointer; transition: all 0.15s; }
-  .filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--gold); border-color: var(--ink); }
-  .search-group { flex: 1; min-width: 200px; }
-  .search-input { width: 100%; font-family: 'EB Garamond', serif; font-size: 1rem; background: var(--paper); border: 1px solid #cfc3ab; color: var(--ink); padding: 0.35rem 0.8rem; outline: none; }
+
+  /* ── Compact header ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .site-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .site-name em { font-style: italic; color: var(--gold); }
+  .site-tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #7a7060;
+    display: none;
+  }
+
+  /* ── Page layout ── */
+  .page-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    background: var(--aged);
+    border-right: 1px solid #cfc3ab;
+    padding: 2rem 1.4rem;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  .sidebar-section { margin-bottom: 2rem; }
+  .sidebar-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .filter-buttons { display: flex; flex-direction: column; gap: 0.25rem; }
+  .filter-btn {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    color: var(--sepia);
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.12s;
+    border-radius: 2px;
+  }
+  .filter-btn:hover { background: rgba(122,96,69,0.12); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); color: var(--gold); }
+
+  .search-input {
+    width: 100%;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    background: var(--paper);
+    border: 1px solid #cfc3ab;
+    color: var(--ink);
+    padding: 0.4rem 0.7rem;
+    outline: none;
+    border-radius: 2px;
+  }
   .search-input:focus { border-color: var(--gold); }
   .search-input::placeholder { color: var(--ash); font-style: italic; }
-  main { max-width: 960px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-  .results-count { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--ash); margin-bottom: 2rem; text-transform: uppercase; }
-  .posts-list { display: flex; flex-direction: column; gap: 0; }
-  .post-card { display: grid; grid-template-columns: 80px 1fr; gap: 0 2rem; padding: 2rem 0; border-bottom: 1px solid #cfc3ab; text-decoration: none; color: inherit; transition: background 0.1s; }
+
+  /* ── Posts area ── */
+  .posts-area { padding: 2rem 2.5rem; }
+  .results-count {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--ash);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  /* ── Post card ── */
+  .post-card {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 0 1.6rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid #cfc3ab;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.1s;
+  }
   .post-card:first-child { border-top: 1px solid #cfc3ab; }
-  .post-card:hover { background: rgba(168,131,42,0.04); }
-  .post-date { text-align: right; padding-top: 0.15rem; }
-  .date-day { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; }
-  .date-monthyear { font-family: 'Overpass Mono', monospace; font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash); display: block; margin-top: 0.2rem; }
-  .post-location-label { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.3rem; }
-  .post-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem,3vw,1.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 0.3rem; color: var(--ink); }
+  .post-card:hover { background: rgba(168,131,42,0.04); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
+  .post-date { text-align: right; padding-top: 0.1rem; }
+  .date-day { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; }
+  .date-monthyear { font-family: 'Overpass Mono', monospace; font-size: 0.52rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ash); display: block; margin-top: 0.15rem; }
+  .post-location-label { font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.2rem; }
+  .post-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 300; line-height: 1.2; margin-bottom: 0.2rem; color: var(--ink); }
   .post-title em { font-style: italic; color: var(--crimson); }
-  .post-subtitle { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1rem; color: var(--sepia); margin-bottom: 0.7rem; }
-  .post-excerpt { font-size: 0.95rem; color: #4a3f30; line-height: 1.6; margin-bottom: 0.8rem; }
-  .post-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-  .tag { font-family: 'Overpass Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); border: 1px solid #cfc3ab; padding: 0.15rem 0.5rem; }
-  .read-link { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-left: auto; }
+  .post-subtitle { font-family: 'EB Garamond', serif; font-style: italic; font-size: 0.92rem; color: var(--sepia); margin-bottom: 0.5rem; }
+  .post-excerpt { font-size: 0.9rem; color: #4a3f30; line-height: 1.55; margin-bottom: 0.6rem; }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  .tag { font-family: 'Overpass Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash); border: 1px solid #cfc3ab; padding: 0.12rem 0.45rem; }
+  .read-link { font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-left: auto; }
+
   .no-results { font-style: italic; color: var(--ash); padding: 3rem 0; text-align: center; }
-  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2rem; font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; }
   footer span { color: var(--gold); }
-  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 2rem 1.2rem 4rem; } .filters-bar { padding: 1rem 1.2rem; gap: 1.2rem; } .post-card { grid-template-columns: 60px 1fr; gap: 0 1.2rem; } .date-day { font-size: 1.5rem; } .read-link { display: none; } }
+
+  /* ── Mobile ── */
+  @media (max-width: 720px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid #cfc3ab; }
+    .filter-buttons { flex-direction: row; flex-wrap: wrap; }
+    .filter-btn { padding: 0.25rem 0.55rem; }
+    .posts-area { padding: 1.5rem 1.2rem; }
+    .site-tagline { display: none !important; }
+  }
+  @media (min-width: 900px) { .site-tagline { display: block; } }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="site-label">On Foot — Walking Tour Notes</div>
-  <h1>On <em>Foot</em></h1>
+  <div class="site-name">On <em>Foot</em></div>
   <div class="site-tagline">Notes from the street, the square and the river's edge</div>
 </header>
 
-<div class="filters-bar">
-  <div class="filter-group">
-    <div class="filter-label">Location</div>
-    <div class="filter-buttons" id="location-filters">
-      <button class="filter-btn active" data-filter="location" data-value="">All</button>
-      <button class="filter-btn" data-filter="location" data-value="SW">SW London</button>
-      <button class="filter-btn" data-filter="location" data-value="NW">NW London</button>
-      <button class="filter-btn" data-filter="location" data-value="E">E London</button>
-      <button class="filter-btn" data-filter="location" data-value="N">N London</button>
-      <button class="filter-btn" data-filter="location" data-value="W">W London</button>
-      <button class="filter-btn" data-filter="location" data-value="C">Central London</button>
-      <button class="filter-btn" data-filter="location" data-value="krakow">Kraków</button>
-      <button class="filter-btn" data-filter="location" data-value="algeria">Algeria</button>
-      <button class="filter-btn" data-filter="location" data-value="france">France</button>
-      <button class="filter-btn" data-filter="location" data-value="moldova">Moldova</button>
-      <button class="filter-btn" data-filter="location" data-value="sweden">Sweden</button>
+<div class="page-wrap">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">Search</span>
+      <input class="search-input" type="text" id="search-input" placeholder="Place, guide…">
     </div>
-  </div>
-  <div class="filter-group">
-    <div class="filter-label">Theme</div>
-    <div class="filter-buttons" id="theme-filters">
-      <button class="filter-btn active" data-filter="theme" data-value="">All</button>
-      <button class="filter-btn" data-filter="theme" data-value="architecture">Architecture</button>
-      <button class="filter-btn" data-filter="theme" data-value="history">History</button>
-      <button class="filter-btn" data-filter="theme" data-value="heritage">Heritage</button>
-      <button class="filter-btn" data-filter="theme" data-value="nature">Nature</button>
-      <button class="filter-btn" data-filter="theme" data-value="development">Development</button>
-      <button class="filter-btn" data-filter="theme" data-value="climate">Climate</button>
-      <button class="filter-btn" data-filter="theme" data-value="music">Music</button>
-      <button class="filter-btn" data-filter="theme" data-value="wartime">Wartime</button>
-      <button class="filter-btn" data-filter="theme" data-value="film">Film</button>
-      <button class="filter-btn" data-filter="theme" data-value="roman">Roman</button>
-      <button class="filter-btn" data-filter="theme" data-value="immigration">Immigration</button>
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">Location</span>
+      <div class="filter-buttons" id="location-filters">
+        <button class="filter-btn active" data-filter="location" data-value="">All locations</button>
+        <button class="filter-btn" data-filter="location" data-value="SW">SW London</button>
+        <button class="filter-btn" data-filter="location" data-value="NW">NW London</button>
+        <button class="filter-btn" data-filter="location" data-value="E">E London</button>
+        <button class="filter-btn" data-filter="location" data-value="N">N London</button>
+        <button class="filter-btn" data-filter="location" data-value="W">W London</button>
+        <button class="filter-btn" data-filter="location" data-value="C">Central London</button>
+        <button class="filter-btn" data-filter="location" data-value="krakow">Kraków</button>
+        <button class="filter-btn" data-filter="location" data-value="algeria">Algeria</button>
+        <button class="filter-btn" data-filter="location" data-value="france">France</button>
+        <button class="filter-btn" data-filter="location" data-value="moldova">Moldova</button>
+        <button class="filter-btn" data-filter="location" data-value="sweden">Sweden</button>
+        <button class="filter-btn" data-filter="location" data-value="indonesia">Indonesia</button>
+      </div>
     </div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-label">Theme</span>
+      <div class="filter-buttons" id="theme-filters">
+        <button class="filter-btn active" data-filter="theme" data-value="">All themes</button>
+        <button class="filter-btn" data-filter="theme" data-value="architecture">Architecture</button>
+        <button class="filter-btn" data-filter="theme" data-value="history">History</button>
+        <button class="filter-btn" data-filter="theme" data-value="heritage">Heritage</button>
+        <button class="filter-btn" data-filter="theme" data-value="nature">Nature</button>
+        <button class="filter-btn" data-filter="theme" data-value="development">Development</button>
+        <button class="filter-btn" data-filter="theme" data-value="climate">Climate</button>
+        <button class="filter-btn" data-filter="theme" data-value="music">Music</button>
+        <button class="filter-btn" data-filter="theme" data-value="wartime">Wartime</button>
+        <button class="filter-btn" data-filter="theme" data-value="film">Film</button>
+        <button class="filter-btn" data-filter="theme" data-value="roman">Roman</button>
+        <button class="filter-btn" data-filter="theme" data-value="immigration">Immigration</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── Posts ── -->
+  <div class="posts-area">
+    <div class="results-count" id="results-count">25 posts</div>
+    <div class="posts-list" id="posts-list">
+
+      <a class="post-card" href="_posts/wood-green-haringey-2026.html" data-location="N" data-themes="architecture development history music" data-search="wood green haringey n22 stefania antonio placemaking youth hub record shop library wolf lane pitfield studio 306">
+        <div class="post-date"><span class="date-day">13</span><span class="date-monthyear">Jun 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">N London · Wood Green, N22</div>
+          <div class="post-title">The High Road &amp; <em>What Belongs There</em></div>
+          <div class="post-subtitle">Wood Green Town Centre Walk · Haringey Council Placemaking Team · LFA 2026</div>
+          <div class="post-excerpt">Stefania and Antonio from Haringey's placemaking team walk the High Road's six zones — from a youth hub designed by the young people who use it, through a recording studio inside a shopping mall, to an underpass that took ten years to improve and a meanwhile project that nobody wants to see leave.</div>
+          <div class="post-meta"><span class="tag">Development</span><span class="tag">Music</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/limekiln-city-island-2026.html" data-location="E" data-themes="architecture development heritage" data-search="limekiln city island e14 ballymore lea thames canning town english national ballet safety perceptions">
+        <div class="post-date"><span class="date-day">11</span><span class="date-monthyear">Jun 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">E London · City Island, E14</div>
+          <div class="post-title">An Island Made of <em>Infrastructure</em></div>
+          <div class="post-subtitle">Limekiln Wharf &amp; City Island · Ballymore + Places for London · LFA 2026</div>
+          <div class="post-excerpt">The peninsula between the Lea and the Thames — once lime kilns, then a gas works, now a residential island reached by a single bridge — and a walk themed around perceptions of safety, sight lines and what makes a public space feel welcoming or not at eleven o'clock at night.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/hampstead-garden-suburb-2026.html" data-location="NW" data-themes="architecture heritage history" data-search="hampstead garden suburb nw11 callum hgs trust henrietta barnett raymond unwin lutyens arts crafts north end heath extension">
+        <div class="post-date"><span class="date-day">7</span><span class="date-monthyear">Jun 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">NW London · Hampstead Garden Suburb, NW11</div>
+          <div class="post-title">The Suburb That <em>Refused the Pub</em></div>
+          <div class="post-subtitle">North End &amp; Hampstead Garden Suburb · Guide: Callum, HGS Trust</div>
+          <div class="post-excerpt">Callum of the HGS Trust walks from the end of Edwardian London through North End into the Heath Extension, tracing the processional route architects and clients would have walked to the trust drawing office — past Jack Straw's Castle, Wildwood Farm and the Lutyens churches of Central Square.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Heritage</span><span class="tag">History</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/wandsworth-lfa-2026.html" data-location="SW" data-themes="architecture development music history" data-search="wandsworth lfa jeff wandle delta funk academy xx dennis bovell artisan tower gasworks town hall sw18">
+        <div class="post-date"><span class="date-day">6</span><span class="date-monthyear">Jun 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · Wandsworth, SW18</div>
+          <div class="post-title">The Arndale, the River &amp; the <em>Funk Academy</em></div>
+          <div class="post-subtitle">Wandsworth Town &amp; the Delta · Jeff · London Festival of Architecture 2026</div>
+          <div class="post-excerpt">Guide Jeff, a thirty-three-year Wandsworth resident, navigates the one-way system, the Wandle Delta's tower-studded skyline, and the borough's improbable musical legacy — The XX, Dennis Bovell, and the south London schools that shaped them both.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">Music</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/south-ken-climate-2026.html" data-location="SW" data-themes="climate nature architecture history" data-search="south kensington exhibition road natural history museum gas lamps great smog plane trees sw7">
+        <div class="post-date"><span class="date-day">3</span><span class="date-monthyear">Jun 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · South Kensington, SW7</div>
+          <div class="post-title">Gas Lamps, Whale Bones &amp; the <em>Great Smog</em></div>
+          <div class="post-subtitle">Exhibition Road Climate Walk · South Ken Culture Quarter</div>
+          <div class="post-excerpt">A walk through the Natural History Museum's deep-time garden, past the gas lamps that a lobby group called the Gasketers has kept burning for decades, and through the history of London's air — from the killer smog of 1952 to a street with one new tree and an invisible bee orchid.</div>
+          <div class="post-meta"><span class="tag">Climate</span><span class="tag">Nature</span><span class="tag">History</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/white-city-2026.html" data-location="W" data-themes="architecture development history" data-search="white city w12 imre kiralfy bbc television centre japanese garden white city estate olympics imperial college joanna open city">
+        <div class="post-date"><span class="date-day">14</span><span class="date-monthyear">Mar 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">W London · White City, W12</div>
+          <div class="post-title">Eight Million Visitors, a Question Mark &amp; the <em>Ainu Village</em></div>
+          <div class="post-subtitle">White City Walk · Guide: Joanna · Open City</div>
+          <div class="post-excerpt">Joanna walks a brickfield that became an empire exhibition site, a BBC village and a council estate — taking in Imre Kiralfy's 1908 extravaganza, the Television Centre question mark, the first public Japanese garden in the UK, and a marathon runner who went the wrong way around the track.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">History</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/algiers-2026.html" data-location="algeria" data-themes="history heritage architecture" data-search="algiers casbah yusra guruwalk martyrs ketchawa bastion 23 qasr el ryas bab el oued ottoman">
+        <div class="post-date"><span class="date-day">5</span><span class="date-monthyear">Apr 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Algiers · Algeria</div>
+          <div class="post-title">The Casbah, the Martyrs &amp; <em>a Liver Sandwich</em></div>
+          <div class="post-subtitle">Algiers Unveiled · Guide: Yusra · GuruWalk Free Tour</div>
+          <div class="post-excerpt">Yusra leads twelve stops across twelve kilometres of Algiers — from Ottoman mosques at Place des Martyrs through the Casbah's crumbling privately-owned palaces, to the last seafront corsair admiral's palace and a plate of karantika eaten standing up in Bab El Oued.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/tipaza-2026.html" data-location="algeria" data-themes="history heritage roman" data-search="tipaza algeria roman ruins yusra phoenician amphitheatre camus garum olive trees numidia">
+        <div class="post-date"><span class="date-day">4</span><span class="date-monthyear">Apr 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Tipaza · Algeria</div>
+          <div class="post-title">Little Carthage on the <em>Algerian Coast</em></div>
+          <div class="post-subtitle">Tipaza Roman &amp; Phoenician Ruins · Guide: Yusra · GuruWalk</div>
+          <div class="post-excerpt">Yusra leads the ruins of a Phoenician trading port absorbed by Rome — amphitheatre, fish sauce factories, bent olive trees, marble basilica mosaics, a theatre built from flat ground — then lunch at the port where the sardines were in the water that morning.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Roman</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/krakow-jewish-quarter-2026.html" data-location="krakow" data-themes="history heritage wartime immigration" data-search="krakow kazimierz jewish quarter jacob walkative schindler ghetto synagogue remu hasidic helena rubinstein">
+        <div class="post-date"><span class="date-day">12</span><span class="date-monthyear">Apr 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Kraków · Kazimierz</div>
+          <div class="post-title">The Quarter That <em>Survived</em></div>
+          <div class="post-subtitle">Kazimierz — Kraków's Jewish District · Guide: Jacob, Walkative Tours</div>
+          <div class="post-excerpt">Jacob leads a walk through nine centuries of Jewish life in Kraków — from the Remu Synagogue to the Hasidic legend of Lilith, from Helena Rubinstein's birthplace to the chairs memorial on Ghetto Heroes Square — covering everything Schindler's List got right, and what it simplified.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Wartime</span><span class="tag">Immigration</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/krakow-old-town-wawel-2026.html" data-location="krakow" data-themes="history heritage wartime architecture" data-search="krakow old town wawel iza walkative barbican main square cloth hall jagiellonian university hejnal st marys">
+        <div class="post-date"><span class="date-day">13</span><span class="date-monthyear">Apr 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Kraków · Stare Miasto &amp; Wawel</div>
+          <div class="post-title">From Barbican to <em>Royal Hill</em></div>
+          <div class="post-subtitle">Old Town &amp; Wawel Tour · Guide: Iza · Walkative Tours</div>
+          <div class="post-excerpt">Iza leads the walk the Nazis thought was pre-German: from the medieval Barbican through the main square, into the Jagiellonian University courtyard where 183 professors were arrested in seven minutes, and up to the cathedral where every Polish king was crowned and buried.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Wartime</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/bordeaux-2025.html" data-location="france" data-themes="history heritage architecture" data-search="bordeaux kaz eleanor aquitaine wine garonne cathedral grand theatre goya water mirror triangular trade">
+        <div class="post-date"><span class="date-day">24</span><span class="date-monthyear">Oct 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Bordeaux · France</div>
+          <div class="post-title">The Port of the <em>Moon</em></div>
+          <div class="post-subtitle">Bordeaux City Walk · Guide: Kaz · Free Walking Tour</div>
+          <div class="post-excerpt">Kaz walks Bordeaux through the lens of its three golden ages — Roman wine trade, Eleanor of Aquitaine's English inheritance, and the darker wealth of the triangular slave trade that built the neoclassical city you see today. Plus Goya's missing head and a barrel that holds exactly 225 litres.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/london-scottish-house-2025.html" data-location="SW" data-themes="history heritage wartime" data-search="london scottish house regiment drill hall horseferry road victoria cross first world war second world war messines">
+        <div class="post-date"><span class="date-day">21</span><span class="date-monthyear">Oct 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · Westminster</div>
+          <div class="post-title">The Regiment's <em>Hidden House</em></div>
+          <div class="post-subtitle">London Scottish House · Open House London 2025</div>
+          <div class="post-excerpt">Behind a door on Horseferry Road, the London Scottish Regiment has kept its London home since 1888 — a regimental museum, a drill hall, a bar, three Victoria Crosses and a building saved from demolition by the personal intervention of Queen Elizabeth the Queen Mother.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Wartime</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/chisinau-2025.html" data-location="moldova" data-themes="history heritage architecture" data-search="chisinau moldova alina stefan cel mare soviet architecture independence pushkin opera organ hall park">
+        <div class="post-date"><span class="date-day">18</span><span class="date-monthyear">Oct 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Chișinău · Moldova</div>
+          <div class="post-title">The Capital at the <em>Edge of Europe</em></div>
+          <div class="post-subtitle">Chișinău City Walk · Guide: Alina · Free Walking Tour</div>
+          <div class="post-excerpt">Alina walks Chișinău with the dry wit of someone who has explained her country's complicated history many times and has made peace with it — covering Stefan cel Mare, the open-book parliament, Pushkin in exile, an abandoned Soviet café and 200 stairs to a lake.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/whitechapel-wapping-2025.html" data-location="E" data-themes="history heritage immigration wartime" data-search="whitechapel wapping martin scholar toynbee hall jewish east end cable street battle fascists peabody wiltons music hall tobacco dock">
+        <div class="post-date"><span class="date-day">26</span><span class="date-monthyear">Jul 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">E London · Whitechapel to Wapping, E1</div>
+          <div class="post-title">The People Who Came <em>Through Whitechapel</em></div>
+          <div class="post-subtitle">Whitechapel to Wapping · Guide: Martin Scholar · Open City</div>
+          <div class="post-excerpt">Martin Scholar — town planner, fourth-generation Jewish immigrant — walks from Toynbee Hall past the last traces of the Jewish East End, the German church of the sugar bakers, the Peabody Estate, the Cable Street mural, Wilton's Music Hall and Tobacco Dock to the Thames at Wapping.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Immigration</span><span class="tag">Wartime</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/little-italy-clerkenwell-2025.html" data-location="C" data-themes="history heritage immigration" data-search="little italy clerkenwell mazzini carlo gatti ice cream darby sabini saffron hill italian church arandora star sagra leather lane">
+        <div class="post-date"><span class="date-day">20</span><span class="date-monthyear">Jul 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Central London · Clerkenwell, EC1</div>
+          <div class="post-title">Mazzini, Ice Cream &amp; the <em>Gangsters of Saffron Hill</em></div>
+          <div class="post-subtitle">Little Italy Walking Tour · Clerkenwell</div>
+          <div class="post-excerpt">A walk through the streets where Italian immigrants settled from the early 19th century — covering Mazzini's exile lodgings, the telescope makers who supplied Queen Victoria, Carlo Gatti's revolution in ice cream, Darby Sabini's racecourse protection rackets, and the Sagra still running since the 1870s.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Immigration</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/kap-karoso-2025.html" data-location="indonesia" data-themes="nature heritage" data-search="kap karoso sumba indonesia farm to table horse culture traditional ceremony pasola marapu">
+        <div class="post-date"><span class="date-day">6</span><span class="date-monthyear">Aug 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Sumba · Indonesia</div>
+          <div class="post-title">Farm, Horse &amp; <em>Pasola</em></div>
+          <div class="post-subtitle">Kap Karoso Farm &amp; Culture Walk · West Sumba</div>
+          <div class="post-excerpt">A morning at the Kap Karoso farm — composting, chicken houses, Japanese cucumbers and breadfruit trees — followed by an introduction to Sumbanese culture: the Marapu animist religion, the Pasola horse-fighting festival, the enormous bride price in buffalo, and the ceremony of the sea worms.</div>
+          <div class="post-meta"><span class="tag">Nature</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/ismaili-centre-2025.html" data-location="SW" data-themes="architecture heritage" data-search="ismaili centre south kensington sw7 aga khan karl schlamminger muqarnas chandelier prayer hall geometry garden">
+        <div class="post-date"><span class="date-day">21</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · South Kensington, SW7</div>
+          <div class="post-title">The Ismaili Centre &amp; <em>the Art of Geometry</em></div>
+          <div class="post-subtitle">Ismaili Centre · Open House London 2025</div>
+          <div class="post-excerpt">A building deliberately designed not to overshadow its neighbours — lower than the V&amp;A next door, its rooftop garden an unexpected oasis, its prayer hall encoding the names of Allah, Muhammad and Ali into wooden panels that only reveal themselves if you know to look.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/australia-house-2025.html" data-location="C" data-themes="history heritage architecture film" data-search="australia house aldwych gringotts harry potter boomerang club cinema hall brass handrails downer room king george">
+        <div class="post-date"><span class="date-day">20</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Central London · Aldwych, WC2</div>
+          <div class="post-title">Gringotts, the Boomerang Club &amp; <em>the Longest Brass Handrails</em></div>
+          <div class="post-subtitle">Australia House · Open House London 2025</div>
+          <div class="post-excerpt">Australia House is the oldest high commission building in modern London — and, to most of the world, Gringotts Bank. A rare Open House visit covers the cinema hall that became the Boomerang Club, the £10 migration passage films, and the visitors' book signed by King George V.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Film</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/kings-foundation-2025.html" data-location="SW" data-themes="architecture heritage" data-search="kings foundation school traditional arts prince charles geometry calligraphy library open house">
+        <div class="post-date"><span class="date-day">20</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · South Kensington, SW7</div>
+          <div class="post-title">The School Where <em>Tradition Is the Syllabus</em></div>
+          <div class="post-subtitle">King's Foundation School of Traditional Arts · Open House London 2025</div>
+          <div class="post-excerpt">A school where students spend a year learning geometry before touching a tool, where a woodworker from a completely non-arts background produced extraordinary cabinets for the degree show, and where the King's own books line the library shelves.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/chelsea-physics-garden-2025.html" data-location="SW" data-themes="history nature heritage" data-search="chelsea physic garden fanny apothecaries hans sloane philip miller wardian case deadly nightshade ginkgo bazalgette tea rubber">
+        <div class="post-date"><span class="date-day">17</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · Chelsea, SW3</div>
+          <div class="post-title">Five Pounds a Year &amp; <em>Deadly Nightshade</em></div>
+          <div class="post-subtitle">Chelsea Physic Garden · Guide: Fanny (Volunteer)</div>
+          <div class="post-excerpt">Fanny walks the garden founded in 1673 to stop apothecaries poisoning their patients — covering Hans Sloane buying all of Chelsea for £16,000, the Wardian case that got tea to India and rubber to Malaya, deadly nightshade in the cardiology bed, and the ginkgos that survived Hiroshima.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Nature</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/romans-city-of-london-2025.html" data-location="C" data-themes="history roman heritage" data-search="romans london anne city wall boudicca basilica forum amphitheatre mithras temple walbrook guildhall">
+        <div class="post-date"><span class="date-day">14</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Central London · City of London, EC</div>
+          <div class="post-title">Londinium: Two Thousand Years <em>Underfoot</em></div>
+          <div class="post-subtitle">Romans in London Walking Tour · Guide: Anne · Open House 2025</div>
+          <div class="post-excerpt">Anne walks a circuit of Roman London — the best-preserved section of city wall, Boudicca's burning layer half a metre down in the soil, the amphitheatre discovered under Guildhall Yard in 1988, and the Temple of Mithras moved seven feet underground in the Bloomberg Building.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Roman</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/film-locations-city-2025.html" data-location="C" data-themes="history heritage film roman" data-search="film locations city of london chris mcneil bank of england royal exchange guildhall harry potter narnia christmas carol noble street roman fort">
+        <div class="post-date"><span class="date-day">14</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Central London · City of London, EC</div>
+          <div class="post-title">Harry Potter, Scrooge &amp; <em>Two Thousand Years of the Square Mile</em></div>
+          <div class="post-subtitle">City of London Film Locations Tour · Guide: Chris McNeil · Open House 2025</div>
+          <div class="post-excerpt">Chris walks from Bank Junction to St Paul's via the Bank of England's gold vault, the Roman fort wall on Noble Street, Guildhall Yard's hidden amphitheatre, a livery company celebrating its 551st anniversary, and every filming location from Harry Potter to A Christmas Carol.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Film</span><span class="tag">Roman</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/temple-bar-2025.html" data-location="C" data-themes="history heritage architecture" data-search="temple bar simon fraser christopher wren fleet street city westminster jacobites childs bank meux family">
+        <div class="post-date"><span class="date-day">13</span><span class="date-monthyear">Sep 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Central London · Fleet Street, EC4</div>
+          <div class="post-title">Temple Bar: <em>The Gate That Kept Moving</em></div>
+          <div class="post-subtitle">Temple Bar · Guide: Simon Fraser · Open House 2025</div>
+          <div class="post-excerpt">Simon traces Temple Bar from wooden barrier to Wren gateway to Victorian obstacle to its final resting place beside St Paul's — via the heads of Jacobites on spikes, a brewery heiress who kept zebras, and a cast of the last man publicly displayed above it.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/nine-elms-battersea-2025.html" data-location="SW" data-themes="architecture development history" data-search="nine elms battersea vauxhall nick edwards mi6 terry farrell st george wharf keybridge embassy gardens sky pool battersea power station northern line">
+        <div class="post-date"><span class="date-day">22</span><span class="date-monthyear">Mar 2025</span></div>
+        <div class="post-body">
+          <div class="post-location-label">SW London · Nine Elms &amp; Battersea, SW8</div>
+          <div class="post-title">Luxury Flats, a Sewer &amp; <em>Forty Years to Open</em></div>
+          <div class="post-subtitle">Nine Elms &amp; Battersea Power Station Walk · Guide: Nick Edwards · Open City</div>
+          <div class="post-excerpt">Nick Edwards — architect, community engagement specialist — walks 227 hectares of former industrial south bank that became London's most concentrated zone of residential skyscrapers, from the MI6 building that was nearly flats to the power station that took forty years and twelve bankrupt developers to open.</div>
+          <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">History</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="_posts/stockholm-2024.html" data-location="sweden" data-themes="history heritage architecture music" data-search="stockholm gamla stan city hall nobel prize abba max martin gustav vasa stockholm syndrome wallenberg strandvagen royal dramatic theatre">
+        <div class="post-date"><span class="date-day">31</span><span class="date-monthyear">Mar 2024</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Stockholm · Sweden</div>
+          <div class="post-title">Fourteen Islands, <em>30,000 More</em></div>
+          <div class="post-subtitle">Stockholm City Walk · Free Walking Tour</div>
+          <div class="post-excerpt">A walking tour covering a hundred years of City Hall, six Nobel Prize categories, the king who skied away from the Danes, the bank robbery that gave a syndrome its name, what Raoul Wallenberg did in Hungary and what the Soviets did to him afterwards, and the most expensive square metre in Scandinavia.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="tag">Music</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
+
+    </div>
+    <div class="no-results" id="no-results" style="display:none;">No posts match your search.</div>
   </div>
-  <div class="filter-group search-group">
-    <div class="filter-label">Search</div>
-    <input class="search-input" type="text" id="search-input" placeholder="Title, place, guide…">
-  </div>
+
 </div>
 
-<main>
-  <div class="results-count" id="results-count">25 posts</div>
-  <div class="posts-list" id="posts-list">
-
-    <!-- 1 Wood Green Jun 2026 -->
-    <a class="post-card" href="_posts/wood-green-haringey-2026.html" data-location="N" data-themes="architecture development history music" data-search="wood green haringey n22 nefania antonio placemaking youth hub record shop library wolf lane pitfield studio 306">
-      <div class="post-date"><span class="date-day">13</span><span class="date-monthyear">Jun 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">N London · Wood Green, N22</div>
-        <div class="post-title">The High Road &amp;<br><em>What Belongs There</em></div>
-        <div class="post-subtitle">Wood Green Town Centre Walk · Haringey Council Placemaking Team · LFA 2026</div>
-        <div class="post-excerpt">Nefania and Antonio from Haringey's placemaking team walk the High Road's six zones — from a youth hub designed by the young people who use it, through a recording studio inside a shopping mall, to an underpass that took ten years to improve and a meanwhile project that nobody wants to see leave.</div>
-        <div class="post-meta"><span class="tag">Development</span><span class="tag">Music</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 2 Limekiln Jun 2026 -->
-    <a class="post-card" href="_posts/limekiln-city-island-2026.html" data-location="E" data-themes="architecture development heritage" data-search="limekiln city island e14 ballymore lea thames canning town english national ballet safety perceptions">
-      <div class="post-date"><span class="date-day">11</span><span class="date-monthyear">Jun 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">E London · City Island, E14</div>
-        <div class="post-title">An Island Made<br>of <em>Infrastructure</em></div>
-        <div class="post-subtitle">Limekiln Wharf &amp; City Island · Ballymore + Places for London · LFA 2026</div>
-        <div class="post-excerpt">The peninsula between the Lea and the Thames — once lime kilns, then a gas works, now a residential island reached by a single bridge — and a walk themed around perceptions of safety, sight lines and what makes a public space feel welcoming or not at eleven o'clock at night.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 3 Hampstead Garden Suburb Jun 2026 -->
-    <a class="post-card" href="_posts/hampstead-garden-suburb-2026.html" data-location="NW" data-themes="architecture heritage history" data-search="hampstead garden suburb nw11 callum hgs trust henrietta barnett raymond unwin lutyens arts crafts north end heat extension">
-      <div class="post-date"><span class="date-day">7</span><span class="date-monthyear">Jun 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">NW London · Hampstead Garden Suburb, NW11</div>
-        <div class="post-title">The Suburb That<br><em>Refused the Pub</em></div>
-        <div class="post-subtitle">North End &amp; Hampstead Garden Suburb · Guide: Callum, HGS Trust</div>
-        <div class="post-excerpt">Callum of the HGS Trust walks from the end of Edwardian London through North End — Jack Straw's Castle, Wildwood Farm, Pitts Court — into the Heath Extension, and finally to Central Square and the Lutyens churches, tracing the processional route that architects and clients would have walked to the trust's drawing office.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Heritage</span><span class="tag">History</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 4 Wandsworth Jun 2026 -->
-    <a class="post-card" href="_posts/wandsworth-lfa-2026.html" data-location="SW" data-themes="architecture development music history" data-search="wandsworth lfa jeff wandle delta funk academy xx dennis bovell artisan tower gasworks town hall sw18">
-      <div class="post-date"><span class="date-day">6</span><span class="date-monthyear">Jun 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · Wandsworth, SW18</div>
-        <div class="post-title">The Arndale, the River<br>&amp; the <em>Funk Academy</em></div>
-        <div class="post-subtitle">Wandsworth Town &amp; the Delta · Jeff · London Festival of Architecture 2026</div>
-        <div class="post-excerpt">Guide Jeff, a thirty-three-year Wandsworth resident, navigates the one-way system, the Wandle Delta's tower-studded skyline, and the borough's improbable musical legacy — The XX, Dennis Bovell, and the south London schools that shaped them both.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">Music</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 5 South Ken Climate Jun 2026 -->
-    <a class="post-card" href="_posts/south-ken-climate-2026.html" data-location="SW" data-themes="climate nature architecture history" data-search="south kensington exhibition road natural history museum gas lamps great smog plane trees sw7">
-      <div class="post-date"><span class="date-day">3</span><span class="date-monthyear">Jun 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · South Kensington, SW7</div>
-        <div class="post-title">Gas Lamps, Whale Bones<br>&amp; the <em>Great Smog</em></div>
-        <div class="post-subtitle">Exhibition Road Climate Walk · South Ken Culture Quarter</div>
-        <div class="post-excerpt">A walk through the Natural History Museum's deep-time garden, past the gas lamps that a lobby group called the Gasketers has kept burning for decades, and through the history of London's air — from the killer smog of 1952 to a street with one new tree and an invisible bee orchid.</div>
-        <div class="post-meta"><span class="tag">Climate</span><span class="tag">Nature</span><span class="tag">History</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 6 White City Mar 2026 -->
-    <a class="post-card" href="_posts/white-city-2026.html" data-location="W" data-themes="architecture development history" data-search="white city w12 imre kiralfy bbc television centre japanese garden white city estate olympics imperial college westfield joanna open city">
-      <div class="post-date"><span class="date-day">14</span><span class="date-monthyear">Mar 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">W London · White City, W12</div>
-        <div class="post-title">Eight Million Visitors, a Question Mark<br>&amp; the <em>Ainu Village</em></div>
-        <div class="post-subtitle">White City Walk · Guide: Joanna · Open City</div>
-        <div class="post-excerpt">Joanna walks a brickfield that became an empire exhibition site, a BBC village and a council estate — taking in Imre Kiralfy's 1908 extravaganza, the Television Centre question mark, the first public Japanese garden in the UK, and a marathon runner who went the wrong way around the track.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">History</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 7 Algiers Apr 2026 -->
-    <a class="post-card" href="_posts/algiers-2026.html" data-location="algeria" data-themes="history heritage architecture" data-search="algiers casbah yusra guruwalk martyrs ketchawa bastion 23 qasr el ryas bab el oued ottoman">
-      <div class="post-date"><span class="date-day">5</span><span class="date-monthyear">Apr 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Algiers · Algeria</div>
-        <div class="post-title">The Casbah, the Martyrs<br>&amp; <em>a Liver Sandwich</em></div>
-        <div class="post-subtitle">Algiers Unveiled · Guide: Yusra · GuruWalk Free Tour</div>
-        <div class="post-excerpt">Yusra leads twelve stops across twelve kilometres of Algiers — from Ottoman mosques at Place des Martyrs through the Casbah's crumbling privately-owned palaces, to the last seafront corsair admiral's palace and a plate of karantika eaten standing up in Bab El Oued.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 8 Tipaza Apr 2026 -->
-    <a class="post-card" href="_posts/tipaza-2026.html" data-location="algeria" data-themes="history heritage roman" data-search="tipaza algeria roman ruins yusra phoenician amphitheatre camus garum olive trees numidia">
-      <div class="post-date"><span class="date-day">4</span><span class="date-monthyear">Apr 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Tipaza · Algeria</div>
-        <div class="post-title">Little Carthage on<br>the <em>Algerian Coast</em></div>
-        <div class="post-subtitle">Tipaza Roman &amp; Phoenician Ruins · Guide: Yusra · GuruWalk</div>
-        <div class="post-excerpt">Yusra leads the ruins of a Phoenician trading port absorbed by Rome — amphitheatre, fish sauce factories, bent olive trees, marble basilica mosaics, a theatre built from flat ground — then lunch at the port where the sardines were in the water that morning.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Roman</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 9 Kraków Jewish Quarter Apr 2026 -->
-    <a class="post-card" href="_posts/krakow-jewish-quarter-2026.html" data-location="krakow" data-themes="history heritage wartime immigration" data-search="krakow kazimierz jewish quarter jacob walkative schindler ghetto synagogue remu hasidic helena rubinstein">
-      <div class="post-date"><span class="date-day">12</span><span class="date-monthyear">Apr 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Kraków · Kazimierz</div>
-        <div class="post-title">The Quarter That<br><em>Survived</em></div>
-        <div class="post-subtitle">Kazimierz — Kraków's Jewish District · Guide: Jacob, Walkative Tours</div>
-        <div class="post-excerpt">Jacob leads a walk through nine centuries of Jewish life in Kraków — from the Remu Synagogue to the Hasidic legend of Lilith, from Helena Rubinstein's birthplace to the chairs memorial on Ghetto Heroes Square — covering everything Schindler's List got right, and what it simplified.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Wartime</span><span class="tag">Immigration</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 10 Kraków Old Town Apr 2026 -->
-    <a class="post-card" href="_posts/krakow-old-town-wawel-2026.html" data-location="krakow" data-themes="history heritage wartime architecture" data-search="krakow old town wawel iza walkative barbican main square cloth hall jagiellonian university dragon hejnal st marys">
-      <div class="post-date"><span class="date-day">13</span><span class="date-monthyear">Apr 2026</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Kraków · Stare Miasto &amp; Wawel</div>
-        <div class="post-title">From Barbican<br>to <em>Royal Hill</em></div>
-        <div class="post-subtitle">Old Town &amp; Wawel Tour · Guide: Iza · Walkative Tours</div>
-        <div class="post-excerpt">Iza leads the walk the Nazis thought was pre-German: from the medieval Barbican through the main square, into the Jagiellonian University courtyard where 183 professors were arrested in seven minutes, and up to the cathedral where every Polish king was crowned and buried.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Wartime</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 11 Bordeaux Oct 2025 -->
-    <a class="post-card" href="_posts/bordeaux-2025.html" data-location="france" data-themes="history heritage architecture" data-search="bordeaux kaz eleanor aquitaine wine garonne cathedral grand theatre goya water mirror triangular trade">
-      <div class="post-date"><span class="date-day">24</span><span class="date-monthyear">Oct 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Bordeaux · France</div>
-        <div class="post-title">The Port of the<em> Moon</em></div>
-        <div class="post-subtitle">Bordeaux City Walk · Guide: Kaz · Free Walking Tour</div>
-        <div class="post-excerpt">Kaz walks Bordeaux through the lens of its three golden ages — Roman wine trade, Eleanor of Aquitaine's English inheritance, and the darker wealth of the triangular slave trade that built the neoclassical city you see today. Plus Goya's missing head and a barrel that holds exactly 225 litres.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 12 London Scottish Oct 2025 -->
-    <a class="post-card" href="_posts/london-scottish-house-2025.html" data-location="SW" data-themes="history heritage wartime" data-search="london scottish house regiment drill hall horseferry road victoria cross first world war second world war messines">
-      <div class="post-date"><span class="date-day">21</span><span class="date-monthyear">Oct 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · Westminster</div>
-        <div class="post-title">The Regiment's<br><em>Hidden House</em></div>
-        <div class="post-subtitle">London Scottish House · Open House London 2025</div>
-        <div class="post-excerpt">Behind a door on Horseferry Road, the London Scottish Regiment has kept its London home since 1888 — a regimental museum, a drill hall, a bar, three Victoria Crosses and a building saved from demolition by the personal intervention of Queen Elizabeth the Queen Mother.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Wartime</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 13 Chisinau Oct 2025 -->
-    <a class="post-card" href="_posts/chisinau-2025.html" data-location="moldova" data-themes="history heritage architecture" data-search="chisinau moldova alina stefan cel mare soviet architecture independence pushkin opera organ hall park">
-      <div class="post-date"><span class="date-day">18</span><span class="date-monthyear">Oct 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Chișinău · Moldova</div>
-        <div class="post-title">The Capital at the<br><em>Edge of Europe</em></div>
-        <div class="post-subtitle">Chișinău City Walk · Guide: Alina · Free Walking Tour</div>
-        <div class="post-excerpt">Alina walks Chișinău with the dry wit of someone who has explained her country's complicated history many times and has made peace with it — covering Stefan cel Mare, the open-book parliament, Pushkin in exile, an abandoned Soviet café with a fairy-tale character on the roof, and 200 stairs to a lake.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 14 Ismaili Sep 2025 -->
-    <a class="post-card" href="_posts/ismaili-centre-2025.html" data-location="SW" data-themes="architecture heritage" data-search="ismaili centre south kensington sw7 aga khan karl schlamminger muqarnas chandelier prayer hall geometry garden">
-      <div class="post-date"><span class="date-day">21</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · South Kensington, SW7</div>
-        <div class="post-title">The Ismaili Centre &amp;<br><em>the Art of Geometry</em></div>
-        <div class="post-subtitle">Ismaili Centre · Open House London 2025</div>
-        <div class="post-excerpt">A building deliberately designed not to overshadow its neighbours — lower than the V&A next door, its rooftop garden an unexpected oasis, its prayer hall encoding the names of Allah, Muhammad and Ali into wooden panels that only reveal themselves if you know to look.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 15 Australia House Sep 2025 -->
-    <a class="post-card" href="_posts/australia-house-2025.html" data-location="C" data-themes="history heritage architecture film" data-search="australia house aldwych gringotts harry potter boomerang club cinema hall brass handrails downer room king george">
-      <div class="post-date"><span class="date-day">20</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Central London · Aldwych, WC2</div>
-        <div class="post-title">Gringotts, the Boomerang Club<br>&amp; <em>the Longest Brass Handrails</em></div>
-        <div class="post-subtitle">Australia House · Open House London 2025</div>
-        <div class="post-excerpt">Australia House is the oldest high commission building in modern London — and, to most of the world, Gringotts Bank. A rare Open House visit covers the cinema hall that became the Boomerang Club, the £10 migration passage films, and the visitors' book signed by King George V.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Film</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 16 Kings Foundation Sep 2025 -->
-    <a class="post-card" href="_posts/kings-foundation-2025.html" data-location="SW" data-themes="architecture heritage" data-search="kings foundation school traditional arts poundbury prince charles geometry calligraphy library open house">
-      <div class="post-date"><span class="date-day">20</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · South Kensington, SW7</div>
-        <div class="post-title">The School Where<br><em>Tradition Is the Syllabus</em></div>
-        <div class="post-subtitle">King's Foundation School of Traditional Arts · Open House London 2025</div>
-        <div class="post-excerpt">A school where students spend a year learning geometry before touching a tool, where a woodworker from a completely non-arts background produced extraordinary cabinets for the degree show, and where the King's own books — loaned from his personal collection — line the library shelves.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 17 Chelsea Physic Sep 2025 -->
-    <a class="post-card" href="_posts/chelsea-physics-garden-2025.html" data-location="SW" data-themes="history nature heritage" data-search="chelsea physic garden fanny apothecaries hans sloane philip miller wardian case deadly nightshade ginkgo bazalgette tea rubber">
-      <div class="post-date"><span class="date-day">17</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · Chelsea, SW3</div>
-        <div class="post-title">Five Pounds a Year<br>&amp; <em>Deadly Nightshade</em></div>
-        <div class="post-subtitle">Chelsea Physic Garden · Guide: Fanny (Volunteer)</div>
-        <div class="post-excerpt">Fanny walks the garden founded in 1673 to stop apothecaries poisoning their patients — covering Hans Sloane buying all of Chelsea for £16,000, the Wardian case that got tea to India and rubber to Malaya, deadly nightshade in the cardiology bed, and the ginkgos that survived Hiroshima.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Nature</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 18 Romans Sep 2025 -->
-    <a class="post-card" href="_posts/romans-city-of-london-2025.html" data-location="C" data-themes="history roman heritage" data-search="romans london anne city wall boudicca basilica forum amphitheatre mithras temple walbrook guildhall">
-      <div class="post-date"><span class="date-day">14</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Central London · City of London, EC</div>
-        <div class="post-title">Londinium: Two Thousand Years<br><em>Underfoot</em></div>
-        <div class="post-subtitle">Romans in London Walking Tour · Guide: Anne · Open House 2025</div>
-        <div class="post-excerpt">Anne walks a circuit of Roman London in the rain — the best-preserved section of city wall, the gates and the roads that became the A1 and A2, Boudicca's burning layer half a metre down in the soil, the amphitheatre discovered under Guildhall Yard in 1988, and the Temple of Mithras moved seven feet underground in the Bloomberg Building.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Roman</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 19 Film Locations Sep 2025 -->
-    <a class="post-card" href="_posts/film-locations-city-2025.html" data-location="C" data-themes="history heritage film architecture roman" data-search="film locations city of london chris mcneil bank of england royal exchange guildhall harry potter narnia christmas carol noble street roman fort">
-      <div class="post-date"><span class="date-day">14</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Central London · City of London, EC</div>
-        <div class="post-title">Harry Potter, Scrooge<br>&amp; <em>Two Thousand Years of the Square Mile</em></div>
-        <div class="post-subtitle">City of London Film Locations Tour · Guide: Chris McNeil · Open House 2025</div>
-        <div class="post-excerpt">Chris walks from Bank Junction to St Paul's via the Bank of England's gold vault, the Roman fort wall on Noble Street, Guildhall Yard's hidden amphitheatre, a livery company that celebrates its 551st anniversary this year, and every filming location from Harry Potter to A Christmas Carol.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Film</span><span class="tag">Roman</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 20 Temple Bar Sep 2025 -->
-    <a class="post-card" href="_posts/temple-bar-2025.html" data-location="C" data-themes="history heritage architecture" data-search="temple bar simon fraser christopher wren fleet street city westminster jacobites childs bank meux family">
-      <div class="post-date"><span class="date-day">13</span><span class="date-monthyear">Sep 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Central London · Fleet Street, EC4</div>
-        <div class="post-title">Temple Bar:<br><em>The Gate That Kept Moving</em></div>
-        <div class="post-subtitle">Temple Bar · Guide: Simon Fraser · Open House 2025</div>
-        <div class="post-excerpt">Simon traces Temple Bar from wooden barrier to Wren gateway to Victorian obstacle to its final resting place beside St Paul's — via the heads of Jacobites on spikes, a brewery heiress who kept zebras, and a cast of the last man publicly displayed above it.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 21 Whitechapel Jul 2025 -->
-    <a class="post-card" href="_posts/whitechapel-wapping-2025.html" data-location="E" data-themes="history heritage immigration wartime" data-search="whitechapel wapping martin scholar toynbee hall jewish east end cable street battle fascists peabody wiltons music hall tobacco dock">
-      <div class="post-date"><span class="date-day">26</span><span class="date-monthyear">Jul 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">E London · Whitechapel to Wapping, E1</div>
-        <div class="post-title">The People Who Came<br><em>Through Whitechapel</em></div>
-        <div class="post-subtitle">Whitechapel to Wapping · Guide: Martin Scholar · Open City</div>
-        <div class="post-excerpt">Martin Scholar — town planner, fourth-generation Jewish immigrant — walks from Toynbee Hall past the last traces of the Jewish East End, the German church of the sugar bakers, the Peabody Estate, the Cable Street mural, Wilton's Music Hall and Tobacco Dock to the Thames at Wapping.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Immigration</span><span class="tag">Wartime</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 22 Little Italy Jul 2025 -->
-    <a class="post-card" href="_posts/little-italy-clerkenwell-2025.html" data-location="C" data-themes="history heritage immigration" data-search="little italy clerkenwell mazzini carlo gatti ice cream darby sabini saffron hill italian church arandora star sagra leather lane">
-      <div class="post-date"><span class="date-day">20</span><span class="date-monthyear">Jul 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Central London · Clerkenwell, EC1</div>
-        <div class="post-title">Mazzini, Ice Cream &amp; the<br><em>Gangsters of Saffron Hill</em></div>
-        <div class="post-subtitle">Little Italy Walking Tour · Clerkenwell</div>
-        <div class="post-excerpt">A walk through the streets where Italian immigrants settled from the early 19th century onwards — covering Giuseppe Mazzini's exile lodgings, the telescope makers who supplied Queen Victoria, Carlo Gatti's revolution in ice cream, and Darby Sabini's racecourse protection rackets, all ending at the Sagra still running since the 1870s.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Immigration</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 23 Nine Elms Mar 2025 -->
-    <a class="post-card" href="_posts/nine-elms-battersea-2025.html" data-location="SW" data-themes="architecture development history" data-search="nine elms battersea vauxhall nick edwards mi6 terry farrell st george wharf keybridge embassy gardens sky pool battersea power station northern line">
-      <div class="post-date"><span class="date-day">22</span><span class="date-monthyear">Mar 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">SW London · Nine Elms &amp; Battersea, SW8</div>
-        <div class="post-title">Luxury Flats, a Sewer<br>&amp; <em>Forty Years to Open</em></div>
-        <div class="post-subtitle">Nine Elms &amp; Battersea Power Station Walk · Guide: Nick Edwards · Open City</div>
-        <div class="post-excerpt">Nick Edwards — architect, community engagement specialist — walks 227 hectares of former industrial south bank that became London's most concentrated zone of residential skyscrapers. From the MI6 building that was nearly flats, to the sky pool nobody asked for, to the power station that took forty years and twelve bankrupt developers to open.</div>
-        <div class="post-meta"><span class="tag">Architecture</span><span class="tag">Development</span><span class="tag">History</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 24 Stockholm Mar 2024 -->
-    <a class="post-card" href="_posts/stockholm-2024.html" data-location="sweden" data-themes="history heritage architecture music" data-search="stockholm gamla stan city hall nobel prize abba max martin gustav vasa stockholm syndrome wallenberg strandvagen royal dramatic theatre">
-      <div class="post-date"><span class="date-day">31</span><span class="date-monthyear">Mar 2024</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Stockholm · Sweden</div>
-        <div class="post-title">Fourteen Islands,<br><em>30,000 More</em></div>
-        <div class="post-subtitle">Stockholm City Walk · Free Walking Tour</div>
-        <div class="post-excerpt">A walking tour of Stockholm covering a hundred years of City Hall, six Nobel Prize categories, the king who skied away from the Danes, the bank robbery that gave a syndrome its name, what Raoul Wallenberg did in Hungary and what the Soviets did to him afterwards, and the most expensive square metre in Scandinavia.</div>
-        <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="tag">Music</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-    <!-- 25 Kap Karoso Aug 2025 — placeholder -->
-    <a class="post-card" href="_posts/kap-karoso-2025.html" data-location="indonesia" data-themes="nature heritage" data-search="kap karoso sumba indonesia farm to table horse culture traditional ceremony">
-      <div class="post-date"><span class="date-day">6</span><span class="date-monthyear">Aug 2025</span></div>
-      <div class="post-body">
-        <div class="post-location-label">Sumba · Indonesia</div>
-        <div class="post-title">Farm, Horse &amp;<br><em>Pasola</em></div>
-        <div class="post-subtitle">Kap Karoso Farm &amp; Culture Walk · West Sumba</div>
-        <div class="post-excerpt">A morning at the Kap Karoso farm — composting, chicken houses, Japanese cucumbers and breadfruit trees — followed by an introduction to Sumbanese culture: the Marapu animist religion, the Pasola horse festival, the enormous bride price in buffalo, and the ceremony of the sea worms.</div>
-        <div class="post-meta"><span class="tag">Nature</span><span class="tag">Heritage</span><span class="read-link">Read →</span></div>
-      </div>
-    </a>
-
-  </div>
-  <div class="no-results" id="no-results" style="display:none;">No posts match your search.</div>
-</main>
-
 <footer>
-  <span>ON FOOT — WALKING TOUR NOTES</span><br><br>
-  Notes from the street, the square and the river's edge · Est. 2026
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Notes from the street, the square and the river's edge · Est. 2026
 </footer>
 
 <script>
@@ -433,16 +522,14 @@
     document.getElementById('results-count').textContent = visible + (visible === 1 ? ' post' : ' posts');
     document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
   }
-  document.querySelectorAll('[data-filter="location"]').forEach(btn => {
+  document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-filter="location"]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active'); activeLocation = btn.dataset.value; filterPosts();
-    });
-  });
-  document.querySelectorAll('[data-filter="theme"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-filter="theme"]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active'); activeTheme = btn.dataset.value; filterPosts();
+      const f = btn.dataset.filter;
+      document.querySelectorAll(`[data-filter="${f}"]`).forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (f === 'location') activeLocation = btn.dataset.value;
+      if (f === 'theme') activeTheme = btn.dataset.value;
+      filterPosts();
     });
   });
   document.getElementById('search-input').addEventListener('input', filterPosts);

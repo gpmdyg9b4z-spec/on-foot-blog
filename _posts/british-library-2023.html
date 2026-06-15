@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>British Library Treasures — 12 Million Books & 100,000 Years of Reading · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Treasures Tour — British Library, King's Cross, N1 · July 2023</div>
+  <h1>12 Million Books<br>&amp; <em>100,000 Years of Reading</em></h1>
+  <div class="header-sub">British Library Treasures Tour · King's Cross</div>
+  <div class="header-meta">
+    <span>ROUTE: Piazza → Treasures Gallery · Sir John Ritblat Gallery</span>
+    <span>DURATION: ~1 hour</span>
+    <span>LOCATION: British Library · 96 Euston Road, N1</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#legal">Legal deposit: why the British Library can't say no</a></li>
+    <li><a href="#size">The size of the collection: six double-decker buses of newspapers, monthly</a></li>
+    <li><a href="#history">From the British Museum to King's Cross: 250 years in brief</a></li>
+    <li><a href="#site">The site: what was here before &amp; what it cost</a></li>
+    <li><a href="#basement">Where the books actually are: under your feet</a></li>
+    <li><a href="#others">The other legal deposit libraries &amp; why the British Library is biggest</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="legal">
+    <div class="section-tag">Introduction</div>
+    <h2>Legal Deposit:<br><em>Why the British Library Can't Say No</em></h2>
+
+    <p>The Treasures Tour at the British Library begins not with the treasures themselves but with something more fundamental: the reason the library has them at all, and the legal mechanism that ensures it keeps getting more. The guide's opening is characteristically dry — he notes that if you read five books a day from the British Library's collection, it would take you 100,000 years to finish. By which time, of course, the collection would have grown considerably further.</p>
+
+    <p>Legal deposit is the law requiring publishers to send a copy of everything they publish in the United Kingdom to the British Library. Not just books. Not just newspapers. <span class="highlight">Everything printed in the UK.</span> Magazines. Catalogues. An IKEA catalogue published in the UK must be deposited. An Argos catalogue. Any printed matter, however mundane, if it was published here.</p>
+
+    <div class="story-box" data-label="The Scale of a Month's Newspapers">
+      <p>The guide offers a way to grasp the scale. If you were to stack up all the newspapers and magazines the British Library is legally required to acquire in a single month, the height of that stack would be equal to six double-decker buses.</p>
+      <p>The Legal Deposit Act, which began with books, has been expanded several times through Parliament and now also covers digital publications — websites, online journals, digital-only content. <span class="highlight-blue">Around 150,000 books are published in the UK each year</span>, each of which triggers a mandatory copy for the British Library. The collection grows by something in the region of three million items annually across all formats.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">12m</div>
+      <div class="key-fact-text">Books currently in the British Library's collection. Reading five a day would take 100,000 years to finish. The collection grows by approximately three million items per year across all formats.</div>
+    </div>
+  </section>
+
+  <section class="section" id="size">
+    <div class="section-tag">Theme · Scale</div>
+    <h2>The Other Legal Deposit Libraries<br><em>&amp; Why the British Library Is Biggest</em></h2>
+
+    <p>The British Library is not the only legal deposit library in the UK. There are six in total: the British Library, the Bodleian in Oxford, Cambridge University Library, the National Library of Scotland, the National Library of Wales, and Trinity College Dublin. All six receive copies under the legal deposit provisions.</p>
+
+    <p>The difference is that the other five can, in practice, be selective. If a book arrives at the Bodleian and there is no space, or the subject is too obscure to justify retention, there are decisions to be made. <span class="highlight">The British Library cannot turn anything down.</span> Everything published in the UK, they keep. This is why the British Library is considerably larger than any of the others, and why it keeps needing more basement space.</p>
+  </section>
+
+  <section class="section" id="history">
+    <div class="section-tag">Theme · History</div>
+    <h2>From the British Museum<br><em>to King's Cross: 250 Years</em></h2>
+
+    <p>The British Library is, as a standalone institution, only 50 years old. But its collections are considerably older, because it grew out of the British Museum Library — and to understand how it got here requires going back to 1753.</p>
+
+    <div class="story-box" data-label="1753: The British Museum Begins">
+      <p>In 1753, the British Museum was formed to house the collections of three men: Hans Sloane (the physician and collector whose Chelsea garden we know from elsewhere on these walks), Robert Cotton, and Robert Harley, Earl of Oxford. The idea — revolutionary for its time — was that the public should be able to come and see these great manuscripts and objects, free of charge. The British Museum Library became, in effect, the first public library in Britain.</p>
+      <p>For 200 years, the books and manuscripts that now form the British Library's treasures collection were at the British Museum. The famous circular Reading Room — the domed space where Karl Marx, Lenin, Gandhi and Virginia Woolf all worked — is still there, at the British Museum. <span class="highlight">Visitors who arrive at the British Library asking to see the Round Reading Room are looking in the wrong place.</span> That room stayed with the museum.</p>
+    </div>
+
+    <p>In 1973, the British Library Act was passed, creating a separate national library. The books from the British Museum were transferred here — or rather, they were eventually transferred here, because the building at King's Cross was not yet built. The British Library spent several years in temporary accommodation while the site was developed.</p>
+  </section>
+
+  <section class="section" id="site">
+    <div class="section-tag">Theme · The Building</div>
+    <h2>The Site: What Was Here Before<br><em>&amp; What the Government Paid</em></h2>
+
+    <div class="location">British Library · 96 Euston Road, N1 · Opened 1998 · Colin St John Wilson</div>
+
+    <p>The government acquired this site in 1975. It was, at the time, a goods yard adjacent to St Pancras station — not quite wasteland, but a functional industrial site serving the railway. The government paid around £7 million for it.</p>
+
+    <div class="story-box" data-label="The Original Plan That Didn't Happen">
+      <p>The British Library was not originally going to be here. The first plan was to build it adjacent to the British Museum, in Bloomsbury. This would have been the obvious location — keep the library near the museum it was coming from, in the neighbourhood where it had always been. The plan was scrapped at the eleventh hour because building it would have required demolishing some listed buildings in Bloomsbury. Given what the British Museum looks like, the guide suggests, this was probably the right decision.</p>
+      <p>The building at King's Cross was designed by Colin St John Wilson and took an unusually long time — from commission to completion, the project spanned around 30 years. <span class="highlight-blue">It opened in 1998, making it one of the longest-running building projects in modern British history.</span> It is Grade I listed.</p>
+    </div>
+  </section>
+
+  <section class="section" id="basement">
+    <div class="section-tag">Theme · The Collection</div>
+    <h2>Where the Books Actually Are:<br><em>Under Your Feet</em></h2>
+
+    <p>The guide saves what he considers his best detail for the transition between the introductory talk and the Treasures Gallery itself. Visitors arriving at the British Library walk across the piazza at ground level, see the building, perhaps look up at the external brick and the tower, and walk in. The guide asks them to think about where the 12 million books are — because what is visible above ground is clearly not large enough to hold them.</p>
+
+    <blockquote>
+      <p>"When you were standing outside on the piazza before you came in, you were actually standing on the collection. Half of it is under your feet — in our four basements."</p>
+      <cite>— British Library Treasures Tour Guide</cite>
+    </blockquote>
+
+    <p>The British Library has four basement levels extending beneath the piazza. <span class="highlight">The collection is stored largely underground</span>, in controlled conditions of temperature and humidity, retrieved by automated systems when readers request items. The visible building above ground — impressive as it is — houses the reading rooms, the galleries, the staff offices and the public spaces. The books themselves are mostly below the surface, beneath the feet of people walking in from Euston Road.</p>
+
+    <div class="practical">
+      <strong>British Library Treasures (Sir John Ritblat Gallery):</strong> Free entry. Open daily. Contains the Lindisfarne Gospels, the Gutenberg Bible, the Magna Carta, Lewis Carroll's Alice's Adventures Underground (the handwritten original), Beatles lyrics handwritten on an envelope, and many other items. One of the finest free cultural experiences in London. Photography is permitted in most of the gallery without flash. <strong>Guided Treasures Tours</strong> run regularly — book in advance on the British Library website.
+    </div>
+  </section>
+
+  <section class="section" id="others">
+    <div class="section-tag">Coda</div>
+    <h2>The Collection That<br><em>Keeps Growing</em></h2>
+
+    <p>The Treasures Tour ends at the entrance to the Sir John Ritblat Gallery — named after the property developer who made a significant donation to the library — where the most famous items in the collection are displayed. The guide lists some of them: the Lindisfarne Gospels, one of the greatest works of early medieval art; two copies of Magna Carta; the Gutenberg Bible; original musical manuscripts; maps and globes; and the handwritten originals of texts that most people have only ever encountered in print.</p>
+
+    <p>These treasures came from those original three collections — Sloane, Cotton and Harley — assembled in the 18th century with the explicit aim of making them available to the public. The first public library in Britain, the guide notes, was not a civic institution built by local government but a national institution assembled from private collections and opened to anyone who wanted to come.</p>
+
+    <p><span class="highlight-green">The collection is 250 years old, has 12 million books, and acquires roughly three million more items every year.</span> It is, by any measure, one of the great accumulations of human knowledge — and half of it is in the basement, under the piazza, below street level, waiting to be read.</p>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · British Library · 96 Euston Road, N1 · bl.uk<br><br>
+  Notes compiled from Treasures Tour transcript · July 2023
+</footer>
+
+</body>
+</html>

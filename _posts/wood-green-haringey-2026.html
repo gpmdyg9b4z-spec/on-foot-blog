@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wood Green — The High Road & What Belongs There · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Wood Green High Road, N22 · London Festival of Architecture 2026</div>
+  <h1>The High Road &amp;<br><em>What Belongs There</em></h1>
+  <div class="header-sub">Wood Green Town Centre Walk · Guides: Nefania &amp; Antonio · Haringey Council Placemaking Team</div>
+  <div class="header-meta">
+    <span>ROUTE: Youth Hub → Record Shop → Library Balcony → Tunnel Underpass → Pitfield → Artist Studios</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDES: Nefania &amp; Antonio · Haringey Council Placemaking Team</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Wood Green Central: the vision document &amp; what belonging means in a high street</a></li>
+    <li><a href="#hub">The Youth Hub: designed by the young people who use it</a></li>
+    <li><a href="#record">The Record Shop: free studio time in a former restaurant in a mall</a></li>
+    <li><a href="#library">The library balcony, Wolf Lane &amp; putting the green back in Wood Green</a></li>
+    <li><a href="#tunnel">The tunnel underpass: safety, ownership &amp; the New River connection</a></li>
+    <li><a href="#pitfield">Pitfield: meanwhile uses, a meanwhile project &amp; the next phase</a></li>
+    <li><a href="#studios">The artist studios: Studio 306 &amp; the ceramics made by people in recovery</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Wood Green Central:<br><em>A Placemaking Vision</em></h2>
+
+    <p>Nefania and Antonio from Haringey Council's Placemaking Team are not conventional walking tour guides. They are planners and regeneration officers who have spent the last several years asking what Wood Green High Road is for — and whether it is currently doing what it should. The walk they lead is not a heritage tour. It is a report from the field: six stops through a town centre in deliberate, considered transition.</p>
+
+    <p>The starting point is a document. Haringey undertook a wide public consultation to develop a vision for Wood Green Central — what the council calls a place-making framework — covering six zones along and around the High Road, including a new name for the retail centre: Wood Green Central. The framework emerged from what residents said they valued, what they said was missing, and where they felt the council and its partners should focus effort. <span class="highlight">Everything the team does is anchored in that document</span>, which has cabinet approval and therefore carries political weight.</p>
+
+    <div class="story-box" data-label="What the Consultation Said">
+      <p>The voices gathered through the consultation were clear on several things. The High Road has too many vacant units and too much passing-through traffic. People want more green. The connection between the High Road and Alexandra Palace — visually obvious from certain points, physically awkward on foot or by bike — needs to be improved. And young people need spaces that are genuinely theirs, not spaces that happen to tolerate them.</p>
+      <p>Five place-making zones are being worked on, one of which is Wood Green Central itself — focused on eleven major buildings directly opposite the station. Planning permission has been sought to redesign and develop that cluster. <span class="highlight-blue">Everything flows from what the community said.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="hub">
+    <div class="section-tag">Stop 1 · Youth Hub</div>
+    <h2>The Youth Hub:<br><em>Designed in Colour, During COVID</em></h2>
+
+    <div class="location">Wood Green Youth Hub · High Road, N22</div>
+
+    <p>The Youth Hub opened in 2022, designed by Freehouse Architects following a design process that ran — largely online — during COVID. Young people from across the borough were involved not just in consultations but in specific decisions: the colour palette, the spatial layout, the kitchenette, the see-through glass panels. What you see is what they asked for.</p>
+
+    <div class="story-box" data-label="What the Young People Chose">
+      <p>The colours are deliberately bold — bright, representing the idea of a bright future. The see-through quality of the walls was a specific request: young people wanted to be visible enough that someone could intervene if needed, but not so exposed that they felt observed. The balance between safety and privacy was something they talked about seriously.</p>
+      <p>The kitchenette is prominent. It matters because many young people cannot afford food near school, and having somewhere to prepare a meal — or find one — is not a luxury. <span class="highlight">A warm meal is available here every day.</span></p>
+      <p>Upstairs is a recording studio, a podcast room, a space painted with murals by the young people themselves. One of the regular users explains what the hub has meant to her since she started coming at thirteen — the opportunities it opened up, the professionals and organisations she has been able to meet, the sense that her voice is taken seriously. The Youth Council meets here, with elected representatives from schools across the borough. They discuss planning, waste management, safety. Sometimes a councillor or cabinet member comes to do activities with them.</p>
+    </div>
+
+    <p>The building sits within a larger complex — a shopping centre, car park, residential — and Antonio explains that a roof garden was considered but proved structurally impossible: the old building beneath cannot bear the weight. The project for green on the roof is parked. Other ideas for the site continue to be developed.</p>
+  </section>
+
+  <section class="section" id="record">
+    <div class="section-tag">Stop 2 · The Record Shop</div>
+    <h2>Free Studio Time<br><em>in the Mall</em></h2>
+
+    <div class="location">The Record Shop · Wood Green Shopping City · N22</div>
+
+    <p>The Record Shop started eleven years ago in Tottenham as a pop-up recording studio. Its founder has been based in Haringey throughout. In 2020, she proposed to the mall that they take on a former restaurant space — lights not working, floors sticky, half the size she needed but twice the size of anything she had before. The mall said yes. Haringey Council supported the proposal. She took the risk.</p>
+
+    <blockquote>
+      <p>"How often do you get to set up a gorgeous studio in a shopping centre? Even just to say that I've done it — it was worth it."</p>
+      <cite>— Founder, The Record Shop</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="What It Does">
+      <p>The Record Shop's primary focus is making the music industry accessible. Free studio time, free workshops, performance opportunities, work experience. The music industry is notoriously hard to break into; the Record Shop tries to lower every financial and cultural barrier it can find. Whether you want a professional career or just want to see if music is something you love — the offer is the same.</p>
+      <p>The Breakfast Festival — run twice, in 2023 and 2025 — is a music festival held in the mall itself. It came out of the same instinct: <span class="highlight">music belongs in the places where people already are</span>, not only in venues that require you to travel, pay and know about them in advance. The Record Shop was recently featured on the Mayor of London and TfL's Grassroots Music Venue Map — the first such venue in Wood Green to appear on it.</p>
+      <p>Being in the mall has changed the business. People who work in other mall shops hire out the live music space for birthday parties. Footfall brings in people who would never have found the studio otherwise. The model has adapted continuously. Funding is an ongoing challenge; volunteers and a committed team keep the youth programme running in the gaps between grants.</p>
+    </div>
+  </section>
+
+  <section class="section" id="library">
+    <div class="section-tag">Stop 3 · Library Balcony</div>
+    <h2>Wolf Lane &amp; the Balcony<br><em>Putting the Green Back</em></h2>
+
+    <div class="location">Wood Green Library · High Road, N22 · 1970s building</div>
+
+    <p>The 1970s library is not a beautiful building. But it has balconies that face the High Road — long, shallow runs of space above street level — and for years those balconies were inaccessible from the library side, despite being clearly visible from below. Nefania explains what the team did about it.</p>
+
+    <div class="story-box" data-label="The Balcony Garden">
+      <p>Wolf Lane is a horticultural social enterprise based about ten minutes from the High Road, with particular work in food growing through an organisation called Black Roots, which focuses on involving the Black community in growing food and food production. The council worked with Wolf Lane and Black Roots to gain access to the library balcony and create a growing space there — planters, back-in access, vegetable growing, workshops with young children.</p>
+      <p>The structure for the planters was built by Blocks, a construction company from Enfield that doubles as a community enterprise — they have a warehouse where anyone can rent a workspace and make things. They designed and made the planters. The whole project is, as Antonio puts it, <span class="highlight">about putting the green back in Wood Green</span> — a borough name that promises something the High Road itself, constrained by its infrastructure, mostly does not deliver. Trees are very difficult to plant along the main road. The balcony garden is one answer.</p>
+    </div>
+
+    <p>On the library's exterior wall, a mural by local artist Mac Doza — who has work across Haringey and recently had an exhibition at King's Cross — runs along the length of the building. The flags incorporated into the mural are shipping flags: the connection to the maritime history of trade that shaped the borough, rendered in colour on a building that otherwise offers little to look at. The mural was commissioned alongside the library and the local community. Antonio notes that when you design with the people who are going to use and live near something, they tend to look after it.</p>
+  </section>
+
+  <section class="section" id="tunnel">
+    <div class="section-tag">Stop 4 · Tunnel Underpass</div>
+    <h2>Safety, Ownership<br>&amp; <em>the New River</em></h2>
+
+    <p>The underpass connecting the High Road to the residential streets beyond the railway was, until recently, narrow, poorly lit, frequently unsafe and avoided by most people who knew of an alternative route. It is also one of the only pedestrian and cycling connections between Wood Green and Alexandra Palace — the long way round is significantly longer. The underpass is the C20 cycling route.</p>
+
+    <div class="story-box" data-label="What Changed">
+      <p>The project to improve the underpass took ten years. Not because the design was complicated, but because of ownership. The railway runs overhead; Network Rail owns the tunnel. Getting Network Rail to commit to maintenance and improvements — specifically fixing the damp that would have undone anything the council built — took years of negotiation. Once that commitment was secured, the work happened relatively quickly.</p>
+      <p>The underpass was widened. Cyclists were separated from pedestrians and then, after it became clear that configuration was creating conflict, the separation was reversed — pedestrians on one side, cyclists on the other, following user behaviour rather than assumptions. New lighting was installed. Artist Emma Smith, working with local young people, designed sculptural seating elements inspired by the New River — the historic water channel that runs nearby and that has supplied parts of London for centuries. <span class="highlight">Each piece of sculpture contains a number representing the proportion of water in the human body.</span> The idea was that the space should invite people to dwell rather than hurry through.</p>
+      <p>It is now one of the busiest pedestrian and cycling routes in the area. School children use it as a matter of course. The connection to Alexandra Palace — via this underpass — is one the placemaking team considers essential, and they took the new Green councillors through it the week before this tour.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pitfield">
+    <div class="section-tag">Stop 5 · Pitfield</div>
+    <h2>The Meanwhile Project<br>&amp; <em>What Comes Next</em></h2>
+
+    <div class="location">Pitfield · Former Car Park · Wood Green, N22</div>
+
+    <p>Pitfield is a meanwhile project on a council-owned former car park site — a cluster of modular structures designed by Young Katkin Architects, housing small businesses including a café, a Sicilian ice cream shop (the owner is Italian; the project lead finds this delightful), a vintage clothing stall, and a handful of other tenants who found each other through the project and have since connected into a small network of enterprises.</p>
+
+    <div class="story-box" data-label="Meanwhile Logic">
+      <p>The principle of meanwhile use is simple: a site is allocated for development but not yet ready to build. Rather than letting it sit empty, you activate it temporarily — affordably, flexibly, with occupants who understand they will eventually move on. Pitfield was planned as a five-year project; it has now run longer, because the site's development hasn't progressed to the point where relocation is imminent.</p>
+      <p>The council owns the land. When development does proceed, Antonio says, the intention is to find the Pitfield businesses somewhere else in the borough rather than simply dispersing them. <span class="highlight-green">The network that has built up between these tenants is genuinely valuable</span> — people have started collaborations, shared equipment, referred customers to one another. That is harder to rebuild than a physical space.</p>
+      <p>One of the unexpected successes: Pitfield has hosted open-air cinema events. Not something that was planned, but something that worked — because the space is relatively sheltered, has reasonable clearance, and is big enough. Antonio notes that Wood Green does not have a great deal of open-air cultural offer. When events like this happen, people come.</p>
+    </div>
+
+    <p>The challenge Antonio identifies: the site is slightly hidden. Getting out of the station, you don't see it. One of the ongoing placemaking questions is how to make Pitfield and the spaces around it feel like somewhere worth heading towards rather than a place you stumble upon.</p>
+  </section>
+
+  <section class="section" id="studios">
+    <div class="section-tag">Stop 6 · Ruthin Road Studios</div>
+    <h2>Studio 306 &amp; the Art<br><em>Made in Recovery</em></h2>
+
+    <p>The final stop is a building on the third and fourth floors of a council-owned block — leased to a group of artists and creative practitioners including painters, milliners, a leather saddler, filmmakers. The building has been open to artists for about a decade. The corridor outside the studios has photographs of each of the residents and what they make.</p>
+
+    <div class="story-box" data-label="Studio 306">
+      <p>Studio 306 is not-for-profit. Its founder has a master's degree in community mental healthcare; she runs the studio specifically for people experiencing or recovering from mental illness. The offer is simple: come in, learn jewellery making, ceramics, screen printing, sewing, and in doing so, build confidence, social connection and skill. Referrals come from GPs, psychiatrists, occupational therapists, and self-referrals.</p>
+      <p>The work produced is handmade and sold from the studio — silver jewellery, ceramics, screen-printed pieces. All silver is from a reputable supplier; quality matters, the founder says, because what you make should reflect what you are worth. <span class="highlight">People have completed training courses and gone on to teach in schools. One person who came through the studio recently bought their first house.</span></p>
+      <p>A painter from West Africa who studied in Gambia talks about her series of thirty-three paintings called <em>Arrival</em> — about belonging, about crossing thresholds, about the idea that wherever you lay your feet is your soil. Her work is being shown alongside a textile artist whose weavings reference Quipu, the Andean knotted-cord accounting system, and incorporate repurposed materials — including hair — woven into mandalas and nests. The LFA theme this year is belonging. Both artists have been thinking about it independently for years.</p>
+    </div>
+
+    <div class="practical">
+      <strong>The Record Shop:</strong> Located inside Wood Green Shopping City. Open to anyone wanting to try the studio; workshops run regularly. Free. <strong>Wolf Lane:</strong> Horticultural centre about 10 minutes from the High Road; regular community events. <strong>Studio 306:</strong> Open studio events periodically; self-referrals accepted for the mental health programme. <strong>Pitfield:</strong> Open most days; café on site. The underpass to Alexandra Palace is well worth taking.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · London Festival of Architecture 2026 · architecture.com/lfa<br><br>
+  Notes compiled from tour transcript. Guides: Nefania &amp; Antonio · Haringey Council Placemaking Team · Wood Green, N22 · June 2026
+</footer>
+
+</body>
+</html>

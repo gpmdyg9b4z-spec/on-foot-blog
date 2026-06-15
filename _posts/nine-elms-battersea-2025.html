@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nine Elms & Battersea — Skyscrapers, Sewers & a Power Station Finally Opening · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Nine Elms &amp; Battersea, SW8/SW11</div>
+  <h1>Luxury Flats, a Sewer<br>&amp; <em>Forty Years to Open</em></h1>
+  <div class="header-sub">Vauxhall, Nine Elms &amp; Battersea Power Station Walk · Guide: Nick Edwards · Architect &amp; Open City</div>
+  <div class="header-meta">
+    <span>ROUTE: Vauxhall Bus Station → MI6 → St George Wharf → Keybridge → Embassy Gardens → Battersea Power Station</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDE: Nick Edwards · Architect · Open City</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">The opportunity area: 227 hectares, 20,000 homes, one very catchy name</a></li>
+    <li><a href="#history">Fox the Brute, Vauxhall Gardens &amp; the industries of the south bank</a></li>
+    <li><a href="#bazalgette">Bazalgette's sewers &amp; the Tideway Tunnel</a></li>
+    <li><a href="#mi6">The MI6 building: designed as flats, repurposed as a spy HQ</a></li>
+    <li><a href="#st-george">St George Wharf &amp; the skyscraper that opened the floodgates</a></li>
+    <li><a href="#keybridge">Keybridge: what good regeneration can actually look like</a></li>
+    <li><a href="#embassy">Embassy Gardens &amp; the infamous Sky Pool</a></li>
+    <li><a href="#power">Battersea Power Station: forty years, twelve bankrupt developers</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>The Opportunity Area:<br><em>227 Hectares of Brownfield</em></h2>
+
+    <p>Nick Edwards trained as an architect in the late 1980s and early 1990s, and has spent most of his career at what he calls the soft end of the profession — community engagement, master planning, working with young people in East London around the Olympics. He currently leads walking tours for Open City. He is carrying a microphone because the Vauxhall gyratory system, five lanes of traffic in a continuous roar, would otherwise make much of the tour inaudible.</p>
+
+    <p>The walk covers what Transport for London and the GLA call the Vauxhall Nine Elms Battersea opportunity area — a 227-hectare strip of former brownfield land running from Lambeth Bridge to Battersea Power Station, split between the London boroughs of Lambeth and Wandsworth. By 2041, the plan proposes 20,000 new homes, 25,000 new jobs and 600,000 square metres of commercial space, all connected by a 4.8-hectare linear park running through the centre of the site.</p>
+
+    <div class="story-box" data-label="What Was Here Before">
+      <p>For most of the 20th century, this was a hinterland of industrial sheds and service uses. The New Covent Garden Market moved here in the late 1960s and established enormous warehouses. The post office had depots here. Freight companies. Light industrial users of various kinds. <span class="highlight">Strangely industrial, given that it sits one mile from Parliament and directly across the river from Chelsea Embankment.</span> That proximity is precisely why developers wanted it — and why, once planning permission became easier to obtain under the 2008 planning regime, the cranes arrived quickly and in large numbers.</p>
+      <p>The 2008 global financial crash coincided with this. International investors flooded into London real estate. The Conservative government made it easier to build tall buildings quickly. The result is the panorama visible from Vauxhall Bridge today: a skyline of largely residential skyscrapers, mainly selling river views to buyers who may or may not live in them.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">15bn</div>
+      <div class="key-fact-text">Approximate value of the Vauxhall Nine Elms Battersea development area — one of the largest regeneration projects in London's history. About a third of the planned homes have been built so far.</div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="section-tag">Theme · History</div>
+    <h2>Fox the Brute, Vauxhall Gardens<br>&amp; <em>the Industries of the South Bank</em></h2>
+
+    <p>Twenty-five rivers run into the Thames in London. The River Effra ran more or less through the site of what is now the MI6 building. The River Tyburn entered the Thames just upstream. The area was marshy and flood-prone — which is partly why the north bank developed first, and partly why the south bank has always been more industrial than residential.</p>
+
+    <div class="story-box" data-label="The Name Vauxhall">
+      <p>One of King John's knights — Faux le Brun, anglicised over centuries into Fox the Brute and eventually into Vauxhall — built a grand hall somewhere near the present-day MI6 building in the medieval period. The hall became known as Foxhall, then Vauxhall. The name has nothing to do with cars; the car company chose it for its London associations.</p>
+      <p>Around 1660, Vauxhall Gardens emerged as one of the first genuinely public parks in London — important because most of the other parks were royal, effectively closed to the general public. It became fashionable, then populist, then gradually declined. The industries that replaced it in the 19th century included candle and soap manufacture, glass, starch, sugar baking, distilling, vinegar production and brewing. Up towards Battersea, the land flooded often enough that the soil was very fertile; a large market garden supplied much of London. <span class="highlight-blue">New Covent Garden is the direct descendant of that market garden tradition.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="bazalgette">
+    <div class="section-tag">Theme · Infrastructure</div>
+    <h2>Bazalgette's Sewers<br>&amp; <em>the Tideway Tunnel</em></h2>
+
+    <p>Joseph Bazalgette built the Albert Embankment on this side of the river as part of his solution to the Great Stink of 1858 — the catastrophic cholera outbreak that killed 10,000 people and was traced to the raw sewage pouring into the Thames. His sewers run underneath the embankment you walk along today.</p>
+
+    <p>Bazalgette calculated the diameter of the pipes he needed, then doubled it. The population of London at the time was around 2.5 million. He built capacity for 4 million. The sewers are still in use, still working, 160 years later — though they are beginning to fail. <span class="highlight">The Tideway Tunnel — a seven-metre-diameter overflow sewer running 25 kilometres from Acton to Becton — is just about to open.</span> As Bazalgette's pipes eventually give out, the sewage will be transferred to the new tunnel, which is gravity fed and will not need pumping. Where the Tideway crosses the surface, there will be public parks. A large one is opening at Blackfriars; another near Chelsea Hospital.</p>
+  </section>
+
+  <section class="section" id="mi6">
+    <div class="section-tag">Stop 1 · Albert Embankment</div>
+    <h2>The MI6 Building:<br><em>Designed as Flats, Repurposed as Spies</em></h2>
+
+    <div class="location">SIS Building · Albert Embankment, SE1 · 1993 · Sir Terry Farrell</div>
+
+    <p>The Secret Intelligence Service building — known universally as MI6 — was designed by Sir Terry Farrell and opened in 1993. The story of how it came to be what it is involves a last-minute change of use.</p>
+
+    <div class="story-box" data-label="What It Was Supposed to Be">
+      <p>A developer held an architectural competition to design luxury riverside apartments. Terry Farrell won. He designed what is essentially a residential building — which is why it has those large terraced balconies facing the river, which would have been spectacular outdoor space for flats, and which now serve no obvious purpose for a spy headquarters.</p>
+      <p>In the early 1990s recession, the project stalled. The brief changed — from luxury flats to speculative offices. Farrell stripped out the partitions and created open floor plates. Then the Thatcher government decided MI6 needed a new home and took the building. Everything had to change again: bomb-proof concrete was added, <span class="highlight">triple glazing installed not for thermal or acoustic reasons but for spy reasons</span>, the whole building made as secure as possible. It became the most recognisable spy building in the world, partly because James Bond drove past it in Skyfall and partly because it was spectacularly blown up in the same film. Farrell, now in his 90s and still practicing, has noted this with some equanimity.</p>
+    </div>
+  </section>
+
+  <section class="section" id="st-george">
+    <div class="section-tag">Stop 2 · St George Wharf</div>
+    <h2>St George Wharf &amp;<br><em>The Skyscraper That Opened the Floodgates</em></h2>
+
+    <p>St George Wharf — the massive development with the 49-storey tower visible from Vauxhall Bridge — was the first major sign that this area was about to change. 1,400 homes, designed by Broadway Malyan in a style clearly influenced by the Terry Farrell building it faces: cream render panels, green glazing.</p>
+
+    <p>The tower required planning permission that Lambeth Council refused. Under the New Labour government, John Prescott — the Deputy Prime Minister — overruled the refusal and approved it. Nick Edwards notes that Prescott knew a great deal about a great many things, as his obituaries made clear.</p>
+
+    <blockquote>
+      <p>"Once you allow one skyscraper through, you set planning precedent, and you will really not stop them."</p>
+      <cite>— Nick Edwards</cite>
+    </blockquote>
+
+    <p>The tower subsequently became famous for a different reason: a helicopter crashed into a crane on its roof during construction, killing two people. The penthouse at the top — five storeys, the entirety of London's swimming pool notoriously described as fitting inside it — sold for a figure that illustrated exactly who this development was aimed at.</p>
+  </section>
+
+  <section class="section" id="keybridge">
+    <div class="section-tag">Stop 3 · Keybridge</div>
+    <h2>Keybridge:<br><em>What Good Regeneration Looks Like</em></h2>
+
+    <div class="location">Keybridge · South Lambeth Road, SW8 · Allies &amp; Morrison</div>
+
+    <p>Keybridge is, in Nick Edwards's view, the best example on this walk of what this kind of regeneration can actually achieve when a good architect and a good planning officer are involved. It sits away from the gyratory, in a more traditional urban setting with existing shops and a church on one side. It is 1.2 hectares — a former BT telephone exchange that has been converted and extended into 598 homes across three towers and two mansion blocks.</p>
+
+    <div class="story-box" data-label="What It Got Right">
+      <p>Money was put into renovating the church on the corner. A primary school opposite that was landlocked and needed more classroom space got new classrooms built into the ground floor of the development. A nearby community café that was struggling received renovation funding. And ten affordable duplex and town houses were provided as part of the Section 106 agreement — not the minimum possible, but a genuine contribution.</p>
+      <p>The landscape is high quality: real investment in the spaces between the buildings, not concrete mixed and left. The brick cladding — not structural brick but brick slips on a concrete frame — is handled with care, the joints detailed properly, the windows considered. <span class="highlight-green">It looks like somewhere rather than simply like a housing block.</span> The commercial and office uses occupy the ground floors facing the main road, so the space is activated and the worst of the noise is buffered before you reach the residential courtyard.</p>
+    </div>
+  </section>
+
+  <section class="section" id="embassy">
+    <div class="section-tag">Stop 4 · Nine Elms</div>
+    <h2>Embassy Gardens<br>&amp; <em>the Sky Pool</em></h2>
+
+    <div class="location">Embassy Gardens · Nine Elms Lane, SW8</div>
+
+    <p>The American Embassy — a Foster + Partners building, fortress-like, surrounded by a defensive moat, the US State Department having put considerable money into the public realm around it — anchors one end of the linear park. Embassy Gardens is the development immediately adjacent.</p>
+
+    <p>Embassy Gardens became internationally famous for the Sky Pool: a glass-bottomed swimming pool suspended between two residential towers, ten storeys up, so that swimmers could look straight down at the street below. The pool connects residents of the two buildings and is available only to residents. Nick Edwards notes that the marketing for it — "swim between buildings" — was extremely effective and generated coverage in newspapers worldwide. <span class="highlight">The coverage was largely incredulous. This was precisely the point.</span></p>
+
+    <p>The interior design of the luxury units was by Versace Home. The developer, Damac, has strong relationships with Donald Trump, having built trophy golf developments for him in the Middle East. The student accommodation building further along — 841 beds, 37 storeys — was completed in 2021 by T.P. Bennett architects.</p>
+  </section>
+
+  <section class="section" id="power">
+    <div class="section-tag">Stop 5 · Battersea</div>
+    <h2>Battersea Power Station:<br><em>Forty Years &amp; Twelve Bankrupt Developers</em></h2>
+
+    <div class="location">Battersea Power Station · Battersea, SW8 · Built 1929–1955 · Closed 1983</div>
+
+    <p>Battersea Power Station was built in two phases: the first between 1929 and 1935, the second — a mirror image of the first — in the 1950s. Together they created the famous four-chimney silhouette. The station closed in 1983. What followed was forty years of failed redevelopment proposals.</p>
+
+    <div class="story-box" data-label="Why It Took So Long">
+      <p>The core problem: the site was enormous, listed, extremely expensive to restore, and — until the Northern Line extension opened in 2021 — completely unconnected to public transport. At least ten or twelve developers went bankrupt trying to make something work here, Nick Edwards says. Without a tube station, you simply cannot get enough people to a site of this scale to make any retail, leisure or commercial use economically viable.</p>
+      <p>The Northern Line extension cost £1.2 billion to build two new stations — Nine Elms and Battersea Power Station itself. TfL, the GLA and central government contributed, but the developers around both stations were also required to put money in. Some of them have since reneged on their affordable housing commitments, claiming that their contribution to the tube extension takes precedence. <span class="highlight-blue">The three towers consented on top of the station boxes have been started and then stopped again.</span> Nobody is sure whether they will be built.</p>
+      <p>The power station itself is now open — shops, restaurants, offices, events space, apartments. The chimneys were rebuilt from scratch, the originals having deteriorated beyond repair. The renovation took years longer and cost considerably more than anyone anticipated. Apple has its European headquarters in the turbine hall. The public realm around the river frontage is impressive.</p>
+    </div>
+
+    <blockquote>
+      <p>"This whole area is really a glorious mishmash. Compare it to King's Cross — one landowner, one architect, one vision, one timeline. Here you've got desperate pots of land with different owners, different tastes, different timescales. And somehow it all collides."</p>
+      <cite>— Nick Edwards</cite>
+    </blockquote>
+
+    <div class="practical">
+      <strong>Battersea Power Station:</strong> Open daily. Free to enter the main hall and most of the retail space. The lift up to the chimney viewing platform has a charge. <strong>The Northern line</strong> now has a station directly underneath — making it about 15 minutes from the West End. <strong>Keybridge</strong> is about 15 minutes' walk from Vauxhall tube.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open City · opencity.org.uk<br><br>
+  Notes compiled from tour transcript. Guide: Nick Edwards · Nine Elms &amp; Battersea, SW8 · March 2025
+</footer>
+
+</body>
+</html>

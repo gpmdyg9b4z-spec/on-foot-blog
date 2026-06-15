@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temple Bar — The Gate That Moved & Came Back · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Open House London 2025 · Temple Bar, Paternoster Square, EC4</div>
+  <h1>The Gate That<br><em>Moved &amp; Came Back</em></h1>
+  <div class="header-sub">Temple Bar Open Day · Guide: Simon Fraser · Trustee, Temple Bar Trust</div>
+  <div class="header-meta">
+    <span>LOCATION: Temple Bar · Paternoster Square · EC4</span>
+    <span>DURATION: ~45 minutes</span>
+    <span>GUIDE: Simon Fraser · Trustee, Temple Bar Trust</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Temple Bar: what a bar is &amp; why this one matters</a></li>
+    <li><a href="#wren">Christopher Wren's gate: inspired by Paris &amp; decorated with heads</a></li>
+    <li><a href="#history">The legal district, Pepys, Dr Johnson &amp; a very busy crossing</a></li>
+    <li><a href="#removal">1876: 11 days to dismantle, numbered stones &amp; a country estate</a></li>
+    <li><a href="#theobalds">Theobalds Park: Lady Meux, her zebras &amp; a rescued gate</a></li>
+    <li><a href="#return">The return: a 1980s architectural competition &amp; how it got back</a></li>
+    <li><a href="#today">Temple Bar today: the chapter house, Wren's only other Paris visit &amp; renting the space</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Temple Bar:<br><em>What a Bar Actually Is</em></h2>
+
+    <p>Simon Fraser is a trustee of the Temple Bar Trust and a liveryman of the Worshipful Company of Joiners and Ceilers — the livery company whose offices adjoin the space where Temple Bar now stands. He begins by clarifying a common confusion: Temple Bar in London is not, and has never been, a pub. A bar, in this context, is literally a bar across a road — a threshold, a boundary marker, a point of control.</p>
+
+    <p>Temple Bar marks the historic boundary between the City of London and Westminster. The name derives from the Temple — the area of the Inns of Court, whose name in turn comes from the Knights Templar, who established their London headquarters here in the 12th century. The Temple Church, built by the Templars and still standing, is one of the finest examples of Norman round-church architecture in England.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1670s</div>
+      <div class="key-fact-text">Decade in which Christopher Wren designed the Temple Bar gate — one of over 50 commissions he received after the Great Fire of London, and one of the very few of his works that has been moved and rebuilt rather than demolished or remaining in situ.</div>
+    </div>
+  </section>
+
+  <section class="section" id="wren">
+    <div class="section-tag">Theme · Architecture</div>
+    <h2>Christopher Wren's Gate:<br><em>Inspired by Paris &amp; Decorated with Heads</em></h2>
+
+    <p>The gate that stands in Paternoster Square today was designed by Christopher Wren in the early 1670s, replacing a wooden predecessor that burned in the Great Fire. Wren's design draws directly on French precedent — curved pediments and niched figures similar to a church he had seen in Paris. The detail is remarkable: <span class="highlight">the only time Wren had physically been outside England was a single visit to Paris</span>, from which he brought back books and drawings. That one trip provided the visual vocabulary for several of his post-Fire works.</p>
+
+    <div class="story-box" data-label="What Was on Top">
+      <p>The upper sections of the original gate carried something that modern visitors find startling: human heads. The heads of traitors and executed criminals — particularly Jacobites and others convicted of treason — were displayed on spikes at the top of Temple Bar as a warning and a spectacle. Samuel Pepys writes about seeing them; so does Charles Dickens. The practice was standard for London's major gateways through much of the 17th century.</p>
+      <p>A cast of one of the last such heads — Sir Francis Talbot, executed in 1746 at the end of the Jacobite rising — is displayed at the site today. <span class="highlight-blue">The historical reality of Temple Bar as a place of display and deterrence sits uncomfortably alongside its current role as an elegant pedestrian gateway</span>, but Simon does not shy away from it. The gate's history is part of its character.</p>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="section-tag">Theme · Fleet Street</div>
+    <h2>The Legal District, Pepys<br>&amp; <em>a Very Busy Crossing</em></h2>
+
+    <p>In the 17th and 18th centuries, the area around Temple Bar was one of the liveliest in London — booksellers, coffee houses, printers, lawyers, and the unceasing traffic of the main road between the City and Westminster. The Inns of Court were immediately behind the gate on the City side; the legal profession generated enormous foot traffic.</p>
+
+    <p>The gate straddled the road. Pedestrians passed through side archways; vehicles through the central arch. The bustle became, eventually, the problem. Carts, coaches, sedan chairs, pedestrians — Fleet Street and the Strand were chronically congested, and Temple Bar sat in the middle of the chokepoint. Childs Bank, which occupied premises nearby and used the gate's ledges for storage, was one of the organisations that inadvertently contributed to structural loading beyond Wren's design. The bank's symbol was the gate — it continued to appear on Childs Bank cheques until the bank was taken over a few years before this tour.</p>
+  </section>
+
+  <section class="section" id="removal">
+    <div class="section-tag">1876 · Demolition</div>
+    <h2>Eleven Days to Dismantle,<br><em>Numbered Stones &amp; a Country Estate</em></h2>
+
+    <p>By the 1870s, the City of London Corporation had decided that Temple Bar had to go. The congestion it caused was genuinely severe, and it was deteriorating structurally. In 1876, the gate was taken down in eleven days — quickly, by a workforce operating with the efficiency of a Victorian demolition gang and none of the health and safety constraints that would make such a project take ten times as long today.</p>
+
+    <div class="story-box" data-label="The Numbered Stones">
+      <p>Every stone was numbered before demolition. The Corporation had no fixed plan for what would happen to the gate after removal, but they understood that its historical significance made simple disposal unacceptable. The numbered stones went into storage — for years, then for decades.</p>
+      <p>What rescued them was a wealthy eccentric. Lady Valerie Meux — a former barmaid and banjo player who had married the owner of a brewing family and become a celebrated socialite — bought the stones, transported them to the family's country estate at Theobalds Park in Hertfordshire, and had Temple Bar rebuilt in the grounds as a feature. She kept zebras. She donated money to British soldiers during the Boer War. A soldier named Hedworth Lambton came to thank her in person, and she — having no children — asked him to take the family name. He became Sir Hedworth Meux. <span class="highlight">Temple Bar stood at Theobalds Park for over a century</span>, gradually deteriorating, saved from complete ruin by being inside a private estate and out of the rain.</p>
+    </div>
+  </section>
+
+  <section class="section" id="theobalds">
+    <div class="section-tag">1970s · Rescue</div>
+    <h2>Temple Bar in Decline:<br><em>The Lead Roof Goes Missing</em></h2>
+
+    <p>By the 1970s, photographs of Temple Bar at Theobalds Park show a gate in serious difficulty. The lead roof had been removed — by thieves, or deliberately, or through neglect; accounts differ. Without the lead, rainwater penetrated the stone. The sculptures in the niches had been crated and put in storage. The gate sat in a field, slowly returning to its constituent parts.</p>
+
+    <p>Various proposals to relocate it circulated — one montage showed it installed on Ludgate Circus, which Simon considers might have worked but was rejected. The problem was money and ownership: who would pay for the restoration, and where would it go?</p>
+  </section>
+
+  <section class="section" id="return">
+    <div class="section-tag">2000s · Return</div>
+    <h2>The Return:<br><em>How Temple Bar Got Back</em></h2>
+
+    <div class="location">Paternoster Square · EC4 · Current location since 2004</div>
+
+    <p>The reconstruction of Paternoster Square — the area between St Paul's Cathedral and Newgate Street — in the early 2000s provided the opportunity. The scheme involved a significant architectural competition in the 1980s that became a major public debate: the Prince of Wales famously favoured a classically-inspired scheme by John Simpson, which would have placed a new building very close to where Temple Bar now stands. The competition ultimately settled on a scheme by Sir William Whitfield, which produced the more conventional office buildings you see today.</p>
+
+    <div class="story-box" data-label="Coming Back">
+      <p>The Temple Bar Trust, formed to raise funds for the gate's restoration and relocation, secured the stones from Theobalds Park and began the process of bringing them back to London. The restoration took years and was expensive — the Trust is still working to raise money, and donations via tap-to-pay are available at the site. <span class="highlight">Temple Bar was reinstalled in Paternoster Square in 2004</span>, 128 years after it was taken down from Fleet Street, approximately 300 metres from its original position.</p>
+      <p>The reinstallation included the sculptures — now back in their niches, rather than in crates in a barn. The statues on the gate represent James I and Anne of Denmark on one side, and Charles I and Charles II on the other — the Stuart monarchs under whose reigns the bar was most significant. The gates themselves are closed in a way that would have been normal in their active years.</p>
+    </div>
+  </section>
+
+  <section class="section" id="today">
+    <div class="section-tag">Today</div>
+    <h2>The Chapter House, the Last Surviving Gate<br>&amp; <em>What You Can Hire</em></h2>
+
+    <p>Temple Bar is the last surviving gateway of the original London — the only structure that marked the boundary between the medieval City and the world beyond it that still exists in three dimensions. The other gates — Aldgate, Newgate, Cripplegate — are known only from documents and archaeological traces. Temple Bar was designed by the greatest architect of the post-Fire period, survived two centuries of use, spent another century in a field in Hertfordshire, and is now back where it belongs.</p>
+
+    <div class="story-box" data-label="Wren's Only Paris Visit — Again">
+      <p>Adjacent to Temple Bar is the Chapter House of St Paul's Cathedral — a small building designed by Wren, restored in the 20th century, with a column that may be a replica of a feature originally designed by Inigo Jones for the old cathedral. Simon is careful about this attribution: Grant, the usual guide for Temple Bar who is taking a break today, knows more about the detail.</p>
+      <p>The curved pediments of Temple Bar are directly comparable to the architecture Wren saw on his single Paris trip. It is the same vocabulary he used at Temple Bar and at other post-Fire works — <span class="highlight-green">the entire visual idiom of Christopher Wren's secular architecture can be traced back to a few books and drawings brought back from a single journey to France.</span></p>
+    </div>
+
+    <p>The space under and around Temple Bar is available for private hire — dinners, corporate events, receptions. This is how the Trust funds its running costs alongside donations. The space is unusual: the gate itself forms part of the room. Events held here are, in an entirely literal sense, inside one of Christopher Wren's buildings.</p>
+
+    <div class="practical">
+      <strong>Temple Bar:</strong> The gate stands in Paternoster Square, free to walk through at all times. Open House tours run on the September weekend and by arrangement. The Chapter House adjacent is sometimes open for further viewing. The Temple Church, five minutes' walk toward the river, is open most days and is well worth the visit — one of the finest Norman interiors in London, and the setting of several scenes in the Da Vinci Code.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open House London 2025 · Temple Bar Trust<br><br>
+  Notes compiled from Open House tour transcript. Guide: Simon Fraser · Temple Bar, Paternoster Square, EC4 · September 2025
+</footer>
+
+</body>
+</html>

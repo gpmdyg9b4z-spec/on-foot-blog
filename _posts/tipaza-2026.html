@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipaza — Little Carthage on the Algerian Coast · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '☽';
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Tipaza, Algeria</div>
+  <h1>Little Carthage<br>on the <em>Algerian Coast</em></h1>
+  <div class="header-sub">Tipaza Roman &amp; Phoenician Ruins · Guide: Yusra · GuruWalk</div>
+  <div class="header-meta">
+    <span>ROUTE: Amphitheatre → Decumanus Maximus → Villas → Basilica → Theatre → Christian Cemetery</span>
+    <span>DURATION: ~4–5 hours</span>
+    <span>GUIDE: Yusra (GuruWalk, Algiers)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Tipaza in context: Little Carthage between two empires</a></li>
+    <li><a href="#amphi">The amphitheatre &amp; the lions of North Africa</a></li>
+    <li><a href="#roman-vs-phoenician">Roman cement vs Phoenician clay: two philosophies of building</a></li>
+    <li><a href="#decumanus">The Decumanus Maximus &amp; walking above the sewers</a></li>
+    <li><a href="#villas">The Villa of the Lotus Nymph &amp; the bent olive trees</a></li>
+    <li><a href="#garum">The garum factories &amp; the fish sauce nobody makes anymore</a></li>
+    <li><a href="#basilica">The basilica mosaics &amp; the marble columns</a></li>
+    <li><a href="#theatre">The theatre built from flat ground</a></li>
+    <li><a href="#cemetery">The Christian cemetery &amp; shifting burial rites</a></li>
+    <li><a href="#camus">Albert Camus, the pied-noir question &amp; the view from the tower</a></li>
+    <li><a href="#lunch">Lunch at the port: matlua, grilled sardines &amp; Algerian soda</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Little Carthage:<br><em>A City Between Two Worlds</em></h2>
+
+    <p>Tipaza sits on the Algerian coast roughly seventy kilometres west of Algiers, its Roman and Phoenician ruins spilling down a headland toward the Mediterranean. The mountain that dominates every photograph of the site is actually behind the town; the ruins themselves occupy a promontory above the sea, surrounded by olive trees and, in spring, wildflowers growing between the columns.</p>
+
+    <p>Yusra, who guides the Algiers city tour on GuruWalk, also brings groups here the following day. The site is large enough to spend a full day — some groups arrive at half-past eleven and are still at the restaurant by the port at half-past six. The pace is part of the experience: Tipaza rewards wandering as much as guided explanation.</p>
+
+    <div class="story-box" data-label="The Most Roman Country After Italy">
+      <p>Algeria is, after Italy itself, the country with the most Roman ruins in the world. They run across the entire northern strip of the country — from Tipaza in the west to Timgad and Djémila in the interior mountains, sites so intact and so remote that visiting them feels less like archaeology and more like discovery.</p>
+      <p>Tipaza is unusual among these sites in being embedded in a living coastal town. <span class="highlight">You can see the ruins from the restaurants. The fishing boats moor below the headland.</span> Locals come here not for the history but for the view, the swimming and the fishing — a relationship with the ancient city that has been continuous for two thousand years.</p>
+    </div>
+
+    <p>The city was founded around 100 BC, already active during the Numidian empires that dominated North Africa before Rome. It sits geographically and historically between Carthage to the east — modern-day Tunisia — and Cherchell to the west, which was the capital of the Numidian kingdom of Mauretania. For this reason it was nicknamed, even in antiquity, <em>Little Carthage</em>.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">100 BC</div>
+      <div class="key-fact-text">Approximate founding of Tipaza, already a significant trading port before Rome absorbed the region. The city connects Phoenician, Numidian and Roman layers of history in a single site — which is what makes it architecturally unlike any purely Roman ruin.</div>
+    </div>
+  </section>
+
+  <section class="section" id="amphi">
+    <div class="section-tag">Stop 1 · The Amphitheatre</div>
+    <h2>The Amphitheatre<br>&amp; <em>the Lions of North Africa</em></h2>
+
+    <div class="location">Amphitheatre · Tipaza Roman Site</div>
+
+    <p>The amphitheatre is the first major structure encountered entering the site, and its scale immediately establishes something about the wealth of the city that built it. Entertainment at this scale — and the maintenance of the animals it required — was expensive. <span class="highlight">The size of the amphitheatre reflects the size of the business class that funded it.</span></p>
+
+    <p>The structure is not entirely intact — a major earthquake hit the coastal cities of this region and caused significant damage — but the essential form is legible. The entrance tunnels, the raised seating banks, the arena floor: all still present in outline if not in detail.</p>
+
+    <div class="story-box" data-label="What Happened in the Arena">
+      <p>Gladiatorial combat is the first association most visitors bring to an amphitheatre. But the arena served many purposes: animal hunts, public executions, theatrical spectacles, and the particular Roman entertainment of setting large carnivores against condemned prisoners or each other.</p>
+      <p>North Africa at the time had lions. Not in the numbers that existed before Roman occupation — the systematic hunting of lions for arena use across the empire contributed significantly to their eventual extinction from the region — <span class="highlight-blue">but enough that the amphitheatres of the Algerian coast could source them locally.</span> The Barbary lion, the subspecies native to North Africa, was one of the largest lions ever to have existed. It is now extinct in the wild; a small captive population survives.</p>
+      <p>Panthers — more precisely, leopards — are still occasionally reported in the wild in the southern Algerian mountains. Lions are gone.</p>
+    </div>
+  </section>
+
+  <section class="section" id="roman-vs-phoenician">
+    <div class="section-tag">Theme · Architecture</div>
+    <h2>Roman Cement vs<br><em>Phoenician Clay</em></h2>
+
+    <p>What makes Tipaza architecturally distinctive is the fusion visible throughout the site between two building traditions with fundamentally different philosophies. Yusra frames it as a contrast between durability and function — or, more pointedly, between permanence and pragmatism.</p>
+
+    <div class="story-box" data-label="Two Philosophies of Building">
+      <p>The Romans built to last. Their cement — a mixture of volcanic ash, lime and seawater that the modern construction industry has spent decades trying to understand and replicate — was designed to harden over time rather than weaken. The monumental public structures at Tipaza are Roman: the amphitheatre, the theatre, the basilica, the forum. These were built to announce the empire's presence and to endure.</p>
+      <p>The Phoenicians built to adapt. Their cement had more clay in it — flexible, revisable, suited to structures intended to be modified as trade conditions changed. They were, Yusra suggests, extraordinarily capable businesspeople who thought of their buildings the way a merchant thinks of a warehouse: useful while needed, replaceable when not. Their focus at Tipaza was the port — wooden wharves, clay-bonded structures that could be rebuilt after a storm.</p>
+      <p><span class="highlight">This is why the Phoenician traces at Tipaza are largely invisible.</span> The port structures used wood and clay; two thousand years of Mediterranean weather has left almost nothing. The Roman structures, built from their remarkable concrete, are still standing. Function versus durability, preserved in the ruins themselves.</p>
+    </div>
+
+    <blockquote>
+      <p>"The Phoenicians are more like really smart businessmen who love trade. They would rather build buildings that can be changed over time whenever they need. While the Romans wanted big, huge buildings that would last forever. Both of them impacted the other — so there is some kind of fusion in the middle."</p>
+      <cite>— Yusra</cite>
+    </blockquote>
+  </section>
+
+  <section class="section" id="decumanus">
+    <div class="section-tag">Stop 2 · The Main Street</div>
+    <h2>The Decumanus Maximus<br>&amp; <em>the Sewers Underfoot</em></h2>
+
+    <div class="location">Decumanus Maximus · Tipaza</div>
+
+    <p>Every Roman city was organised around the same two axes: the Cardo Maximus running north to south, and the Decumanus Maximus running east to west. At their intersection stood the forum and the temples — the civic and religious heart of the settlement. Tipaza follows this plan with enough precision that standing at the crossing, even now, you can orient yourself within the logic of the city.</p>
+
+    <p>The paving stones of the Decumanus are largely gone — removed over the centuries by later inhabitants who needed building material. But carved into the surviving stones at intervals are the grooves left by caravan wheels, worn over decades of repetition into channels several centimetres deep. <span class="highlight">Two thousand years of traffic, recorded in stone.</span></p>
+
+    <div class="story-box" data-label="Walking Above the Roman Sewers">
+      <p>The major Roman streets were not just thoroughfares. Beneath them ran a sophisticated sewage system — covered channels that drained waste to the sea, fed by the baths, the fountains and the private villas. The system was famous enough in the ancient world that Roman engineers exported it to every new city the empire founded.</p>
+      <p>At Tipaza, the sewers are still under the path. Walking the Decumanus, you are walking directly above infrastructure that is two thousand years old and still, in its basic engineering logic, intact. <span class="highlight-green">Where the paving stones have been lifted or shifted, you can sometimes see the channel below.</span></p>
+    </div>
+
+    <p>The temples that stood at the forum junction served purposes beyond religion. Roman civic temples were also social gathering spaces, assembly halls and, in a city whose prosperity depended on trade, a kind of neutral ground where merchants from different backgrounds could transact business under the symbolic protection of the gods. Tipaza's temples were not exclusively Roman in character — the city's Numidian and Phoenician heritage meant a more syncretic religious life than a purely Roman foundation would have had.</p>
+  </section>
+
+  <section class="section" id="villas">
+    <div class="section-tag">Stop 3 · The Residential Quarter</div>
+    <h2>The Villa of the Lotus Nymph<br>&amp; <em>the Bent Olive Trees</em></h2>
+
+    <div class="location">Roman Villas · Western Quarter, Tipaza</div>
+
+    <p>The residential quarter of Tipaza contains several substantial villas, the largest of which is known as the Villa of the Lotus Nymph — named for a mosaic discovered within it, now held in the museum at Cherchell. The layout of the villa is still readable from ground level: the atrium, the surrounding rooms, the courtyard at the centre where a fountain would have stood.</p>
+
+    <p>Some of the villas at Tipaza had their own fountains. The mechanics of running water at this period relied on elevation — water from a source at higher ground, channelled through lead or ceramic pipes to storage tanks above the fountain, creating sufficient pressure for the jet. The Muslim scholar Al-Jazari, working in the twelfth century, later developed mechanical pump systems that would have solved the same problem differently; his work in hydraulic engineering is considered foundational to modern robotics.</p>
+
+    <div class="story-box" data-label="The Olive Trees That Face the Sea">
+      <p>The villas are surrounded by olive trees that have been on the site for hundreds of years. Olive trees can live for eight hundred years or more; some of those at Tipaza may have been saplings during the Roman period. What is immediately striking about them is their shape: every tree on the seaward side of the headland has been bent by the prevailing wind into a permanent lean away from the water, their trunks twisted and their canopies flattened on one side.</p>
+      <p><span class="highlight">This is consistent wind over consistent decades, recorded in living wood.</span> The olive trees at Tipaza have been shaped by the same Mediterranean weather system that the Roman ships navigated, the Phoenician traders endured, and that Albert Camus sat in front of while he wrote.</p>
+      <p>The pine trees scattered among the olives are, Yusra notes, interlopers. The French planted them during the colonial period. They are not native to the site and are, in the ecological sense, invasive — drawing water that the older trees would otherwise have access to.</p>
+    </div>
+  </section>
+
+  <section class="section" id="garum">
+    <div class="section-tag">Theme · Food</div>
+    <h2>The Garum Factories<br>&amp; <em>the Fish Sauce Nobody Makes Anymore</em></h2>
+
+    <p>On the route back through the site toward the market area, Yusra points out the ruins of what were once fish sauce factories — the production facilities for <em>garum</em>, the fermented fish condiment that was to the Roman world what soy sauce is to East Asian cooking: ubiquitous, indispensable, and produced on an industrial scale.</p>
+
+    <div class="story-box" data-label="Garum: The Roman World's Favourite Condiment">
+      <p>Garum was made by layering whole small fish — anchovies, mackerel, sprats — with salt in large ceramic vats and leaving them to ferment in the sun for weeks or months. The liquid that resulted was drained off, filtered, bottled in amphorae and shipped across the empire. It was used in almost every Roman dish, sweet and savoury alike, as a seasoning and umami intensifier.</p>
+      <p>Tipaza had the raw material in abundance: the Mediterranean off the Algerian coast was extraordinarily rich in small pelagic fish. The chimneys of the garum factories are still partially visible at the site. <span class="highlight">The tradition did not survive the end of the Roman period in North Africa.</span> Modern Algerians eat fish fresh, not fermented — a cultural shift of roughly fifteen centuries that has left no trace in contemporary cuisine.</p>
+      <p>Fish sauce survives in Southeast Asian cooking as a direct descendant of the Roman tradition, carried there through separate culinary evolution rather than historical continuity. When visitors note that Vietnamese or Thai fish sauce tastes remarkably like descriptions of garum, they are not wrong.</p>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="basilica">
+    <div class="section-tag">Stop 4 · The Basilica</div>
+    <h2>The Basilica Mosaics<br>&amp; <em>the Marble Columns</em></h2>
+
+    <div class="location">Basilica · Tipaza Roman Site</div>
+
+    <p>The basilica is the best-preserved major structure in the site — the most legible in terms of its original scale and purpose. Its marble columns are still standing, the front column polished enough that the grain of the stone is still visible. The arches that spanned between the columns are partially intact.</p>
+
+    <p>The floor mosaics are the basilica's greatest treasure — or were. The finest pieces were removed to the museum at Cherchell for protection, leaving the patterns that remain in their original location exposed to the sea air and the feet of two thousand years of visitors. What remains underfoot is fragmentary but still recognisable: geometric patterns that Yusra traces directly to the decorative tradition that persisted in Algerian architecture through the Islamic period and can still be seen in the tilework of traditional houses in Algiers.</p>
+
+    <blockquote>
+      <p>"The tile art paintings were initially inspired by the Roman mosaics. In the Algiers city tour tomorrow, we will notice mosaics on the ground that continue that tradition — the patterns you see here are still part of Algerian visual culture, just transformed."</p>
+      <cite>— Yusra</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="The Amazigh Emperors of Rome">
+      <p>The Amazigh people — the indigenous North Africans, also known as Berbers — were not simply subjects of the Roman Empire. When a region became Roman, its Amazigh inhabitants became citizens, and citizenship meant participation. Yusra points out that at least two Roman emperors were of Amazigh origin.</p>
+      <p>Most famously, <strong>St Augustine of Hippo</strong> — theologian, philosopher, one of the most influential thinkers in the history of Western Christianity — was Amazigh, born in what is now eastern Algeria. <span class="highlight">The Roman ruins of Algeria are not the remnants of a foreign occupation imposed on a passive population.</span> They are the material culture of a society in which the local people were fully embedded — contributing to the empire, shaped by it, and in turn shaping it.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Cherchell Museum:</strong> Many of the finest mosaics from Tipaza and other nearby sites are held here, including figured mosaics with mythological scenes that give a clearer picture of Roman artistic life in the region than anything remaining in situ at Tipaza. Worth combining with a visit to the ruins if time allows.
+    </div>
+  </section>
+
+  <section class="section" id="theatre">
+    <div class="section-tag">Stop 5 · The Theatre</div>
+    <h2>The Theatre Built<br><em>from Flat Ground</em></h2>
+
+    <div class="location">Roman Theatre · Tipaza</div>
+
+    <p>The theatre at Tipaza is, Yusra argues, the most remarkable structure on the site — and the least immediately obvious to a visitor who has come expecting amphitheatre-scale drama. Its interest is engineering rather than spectacle.</p>
+
+    <p>Roman theatres were typically built into hillsides — the natural slope providing the raked seating that allowed audiences to see the stage below. Tipaza's theatre has no hill. <span class="highlight">It was built from flat ground upward</span>, the entire semicircular bank of seating constructed on foundations that rise from the level coastal plain, without any natural topography to assist. This required a degree of structural engineering confidence that the size of the building — which was substantial — makes all the more impressive.</p>
+
+    <div class="story-box" data-label="The Arabic Tradition of Debate Theatre">
+      <p>Plays as a form largely disappeared from the cultural life of the Mediterranean after the classical period. But Yusra points to a parallel tradition in Arabic literature that performs some of the same social functions: the <em>munabara</em>, a formalised debate-performance in which two participants each present a piece — a story, an argument, a poetic position — in opposition to the other's.</p>
+      <p>The tradition is still alive in Mauritania, where poets improvise in response to each other, following a shared rhythm and metre, sometimes at weddings. It is, as Yusra describes it, something between a poetry slam and a legal disputation — <span class="highlight-green">a form of public verbal performance with its roots in the same cultural world that built these theatres.</span></p>
+      <p>The eucalyptus trees that have colonised the seating area of the theatre — their roots now running through the ancient foundations — were, like the pines near the villas, introduced to Algeria by the French. They are large water consumers, suppressing native vegetation around them. They are also, Yusra notes, burned in Algerian homes during flu season: their aromatic smoke is considered medicinal.</p>
+    </div>
+  </section>
+
+  <section class="section" id="cemetery">
+    <div class="section-tag">Stop 6 · The Christian Cemetery</div>
+    <h2>The Christian Cemetery<br>&amp; <em>Shifting Burial Rites</em></h2>
+
+    <div class="location">Christian Cemetery · Above the Port, Tipaza</div>
+
+    <p>The path from the theatre climbs over the remaining section of the city wall — the tower at the top affords one of the best views over the site and the sea — and descends into the Christian cemetery, which occupies the highest ground of the headland.</p>
+
+    <p>The cemetery documents the shift in the city's religious life as Christianity spread through the Roman Empire from the second century onward. Earlier burials on the site were pre-Christian: cremation urns, or interment in the Numidian tradition. The Christian graves are different in form — rectangular stone-lined pits, with a low structure built over the top, the shape echoing both Roman tomb architecture and the circular tumuli of the Numidian royal burial tradition.</p>
+
+    <div class="story-box" data-label="Earthquake, Flood &amp; the Displaced Graves">
+      <p>Some of the grave structures in the cemetery are not in their original positions. Earthquakes and coastal flooding have shifted them over the centuries, and in some cases later inhabitants moved them deliberately to make room or to reuse the stone. <span class="highlight">The Algerian coast sits on the boundary between the African and Eurasian tectonic plates</span> — an active seismic zone that has produced repeated significant earthquakes throughout recorded history, and that is still generating them today.</p>
+      <p>The same earthquake that damaged the amphitheatre affected other structures across the site. The Mediterranean has always been geologically restless; the ruins of Tipaza carry its record in their cracks and displacements as much as in their standing walls.</p>
+    </div>
+
+    <div class="practical">
+      <strong>The site in context:</strong> Among Algerian Roman sites, Tipaza is unusual in being accessible from a living town. Timgad and Djémila — both larger, and in some ways more intact — are in the interior mountains, surrounded by nothing but landscape. They offer a different, more isolated encounter with the ancient world. Tipaza offers history alongside the sea and lunch.
+    </div>
+  </section>
+
+  <section class="section" id="camus">
+    <div class="section-tag">Interlude · Literature &amp; History</div>
+    <h2>Albert Camus,<br><em>the Pied-Noir Question</em></h2>
+
+    <p>Somewhere between the city wall tower and the Christian cemetery, a visitor asks Yusra about Albert Camus. Camus wrote about Tipaza — most famously in the essay <em>Noces</em> (Nuptials), composed in the 1930s, in which the ruins and the sea become the occasion for a meditation on happiness, the body and the present moment. The essay is one of the finest pieces of writing about the Algerian coast, and it is difficult not to think of it standing on the headland in spring sunlight.</p>
+
+    <p>Yusra's response is measured and honest. Camus was a <em>pied-noir</em> — a French settler, born in Algeria but of European origin, part of the colonial population that occupied Algeria for 132 years. The term itself is Algerian: the black boots of the French soldiers gave the settlers their name.</p>
+
+    <blockquote>
+      <p>"He was not exactly a person I want to advertise. He was a French settler — what we call a pied-noir. This is probably about where he wrote his novel. You can't be really precise, but it's between the tower and this side, where he got his inspiration from."</p>
+      <cite>— Yusra</cite>
+    </blockquote>
+
+    <p>The complexity is real and worth sitting with. Camus wrote about Algeria with genuine love and perceptiveness. He also benefited from a colonial system that denied citizenship and rights to the vast majority of the population he lived among. The ruins he wrote about were as much Algerian as Roman; the country he described was one whose history and identity he could access while its people could not fully access their own. The view from the tower is beautiful. The question of whose view it is has not gone away.</p>
+  </section>
+
+  <section class="section" id="lunch">
+    <div class="section-tag">After the Ruins · The Port</div>
+    <h2>Lunch at the Port:<br><em>Matlua, Sardines &amp; Algerian Soda</em></h2>
+
+    <p>Yusra's standard practice after the Roman ruins is to walk through the port area and stop for lunch at a restaurant on the seafront. The fishing boats are moored below. The fish on the menu was likely in the water that morning.</p>
+
+    <div class="story-box" data-label="What to Eat">
+      <p><strong>Matlua</strong> — the round semolina flatbread, dense and slightly sweet — comes to the table automatically. It is the bread of the region, eaten at breakfast dipped in olive oil or with honey, and at lunch alongside fish. The correct approach, Yusra advises, is to tear rather than cut.</p>
+      <p>The fish changes daily. Sardines are ubiquitous and excellent — grilled with olive oil, cumin and harissa, the hot sauce that distinguishes Algerian from Tunisian heat (Tunisia uses more). Sepia — cuttlefish — is common and worth trying. The restaurant may also offer skewers of merguez sausage, and grilled peppers dressed with olive oil and olives: a combination that is more the sum of its parts than the description suggests.</p>
+      <p><strong>Garantita</strong> — the chickpea flour dish encountered the previous day in Algiers — reappears at the port, sometimes with olives mixed in. In Tipaza, as in Algiers, it is street food as much as restaurant food. <span class="highlight-green">Its name, Yusra notes, is close to the Italian word for guaranteed — guarantita — and the resemblance may not be coincidental, given the centuries of Mediterranean exchange between the two coasts.</span></p>
+      <p>To drink: the local lemonade with mint, or the Algerian soda that Yusra describes as the original — a fizzy, slightly herbal drink that is neither cola nor the commercial lemonade that has displaced local soft drinks across much of the Mediterranean world.</p>
+    </div>
+
+    <p>The port at Tipaza is where the ruins and the living town meet most naturally. Fishermen mend nets below the Roman headland. The orange buoys of fish farms dot the bay. Seagulls — better behaved here than in London or Rome, Yusra observes — patrol the water without bothering the tables. The mountain that appears in every image of the site looms behind the town. Somewhere under the headland, the Phoenician port structures have dissolved back into the sea.</p>
+
+    <div class="practical">
+      <strong>Getting to Tipaza:</strong> About 70km west of Algiers. Organised with a guide or driver from the city — public transport is possible but complex. Yusra arranges this as a day trip following the Algiers city tour; ask her directly via GuruWalk. Allow a full day. Bring sun protection — the site has almost no shade in the open sections. The spring visit coincided with unseasonably good weather after weeks of rain; winter tours are cooler but the site is quieter.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · GuruWalk · guruwalk.com<br><br>
+  Notes compiled from tour transcript. Guide: Yusra · Tipaza, Algeria · April 2026
+</footer>
+
+</body>
+</html>

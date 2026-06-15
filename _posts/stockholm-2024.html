@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stockholm — Islands, Nobel Prizes & the Stockholm Syndrome Bank · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Stockholm Gamla Stan &amp; City · March 2024</div>
+  <h1>Fourteen Islands,<br><em>30,000 More</em></h1>
+  <div class="header-sub">Stockholm City Walk · Free Walking Tour</div>
+  <div class="header-meta">
+    <span>ROUTE: City Hall → Gamla Stan → Parliament → Royal Palace → Strandvägen → Royal Dramatic Theatre</span>
+    <span>DURATION: ~2 hours</span>
+    <span>CITY: Stockholm · Sweden</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Stockholm: fourteen islands in the city, 30,000 in the archipelago</a></li>
+    <li><a href="#cityhall">The City Hall: 100 years old, Nobel Prize dinners &amp; the Blue Saloon that isn't blue</a></li>
+    <li><a href="#abba">The Swedish music miracle: from ABBA to Max Martin</a></li>
+    <li><a href="#gamla">Gamla Stan: the speech of the oak &amp; the oldest building in the city</a></li>
+    <li><a href="#founders">Gustav Vasa: the king who skied away from the Danes</a></li>
+    <li><a href="#palace">Parliament vs Royal Palace: which one is more beautiful?</a></li>
+    <li><a href="#syndrome">The Stockholm Syndrome bank robbery, 1973</a></li>
+    <li><a href="#wallenberg">Raoul Wallenberg &amp; what happened to him</a></li>
+    <li><a href="#strandvagen">Strandvägen: the most expensive square metre in Scandinavia</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Fourteen Islands<br><em>&amp; 30,000 More</em></h2>
+
+    <p>Stockholm is built on fourteen islands, at the point where Lake Mälaren — freshwater — meets the Baltic Sea — salt water. The guide explains that the meeting of the two happens here, at this precise point in the city, where there is a gap of only a few centimetres between the two water bodies at certain tidal conditions. You can see the mixing if you know where to look.</p>
+
+    <p>The archipelago beyond the city contains more than 30,000 islands. Only around 200 are inhabited, but many more are accessible. A Stockholm public transport ticket covers boats to about twenty of them. The guide recommends going.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">30,000</div>
+      <div class="key-fact-text">Islands in the Stockholm archipelago. The city itself sits on fourteen. The word Stockholm is mentioned in written records for the first time in 1252, and is thought to mean "log island" — a reference to the wooden barrier built across the water to control passage through.</div>
+    </div>
+
+    <p>Sweden is a parliamentary democracy and has been a monarchy throughout its modern history, though the current king holds no political power. The guide gives a frank account of the royal family: the king's children have married ordinary people, one a gym instructor, one a television celebrity, and the youngest has moved to the United States after marrying an American billionaire. The royal bloodline, the guide observes, dilutes a little with each generation.</p>
+  </section>
+
+  <section class="section" id="cityhall">
+    <div class="section-tag">Stop 1 · Kungsholmen</div>
+    <h2>The City Hall:<br><em>100 Years Old, Built to Look Older</em></h2>
+
+    <div class="location">Stockholm City Hall · Kungsholmen · Inaugurated 1923</div>
+
+    <p>The Stockholm City Hall was inaugurated on 23 June 1923 — the same day of the year, but exactly 400 years after the first king of Sweden, Gustav Vasa, was crowned. That coincidence was not accidental. The building is only 100 years old but was designed to feel as though it had always been there, its red brick and copper roofline sitting comfortably against the water and the old city visible across the inlet.</p>
+
+    <div class="story-box" data-label="The Nobel Prize Dinner">
+      <p>Every year on 10 December, the Nobel Prize dinner takes place here, in the Blue Saloon — which is not, in fact, blue. It was painted blue during construction, and everyone started calling it the Blue Saloon; when the decision was made to leave the brick exposed rather than paint it, the name stuck. The laureates and nominees gather here each December, after the prizes are awarded at the Concert Hall nearby.</p>
+      <p>The Nobel Prize was first awarded in 1901 across six categories: medicine, peace, physics, chemistry, literature and economics. The economics prize is a slight exception — it is awarded by the Swedish national bank rather than the Nobel Foundation, and has only existed since 1968. <span class="highlight">The peace prize is the anomaly awarded in Oslo rather than Stockholm</span>, following the instructions in Nobel's will. Alfred Nobel himself invented dynamite. The guide suggests this may have contributed to his interest in establishing a prize for people who reduce suffering rather than cause it.</p>
+    </div>
+
+    <div class="practical">
+      <strong>City Hall:</strong> The inner courtyard is free to enter. The Blue Saloon and tower require paid tickets (around 170 SEK / €15). The tower offers excellent views over the water and the old city. One of Stockholm's better-value visits.
+    </div>
+  </section>
+
+  <section class="section" id="abba">
+    <div class="section-tag">Theme · Music</div>
+    <h2>The Swedish Music Miracle:<br><em>From ABBA to Max Martin</em></h2>
+
+    <p>Sweden, with a population of ten million, has produced a disproportionate share of the world's popular music since the 1970s. ABBA. Roxette. Swedish House Mafia. Avicii. And behind many of the bestselling artists of the 1990s and 2000s — Britney Spears, Backstreet Boys, a long list of others — Max Martin, the Stockholm producer. The guide calls him the founding father of the modern Swedish music industry, though he was born in Gothenburg.</p>
+
+    <p>The area around the terrace named after the 19th-century composer Evert Taube — himself born in Gothenburg, himself a wandering figure who spent time in South America and wrote songs about the Argentinian pampas — is the visible acknowledgement that Stockholm takes its musical culture seriously. <span class="highlight-green">There is even a Polar Prize, the Swedish equivalent of the Grammy for lifetime achievement, worth €1 million</span> — though the guide notes that giving a million euros to Paul McCartney is roughly equivalent to giving an ordinary person a single coin.</p>
+  </section>
+
+  <section class="section" id="gamla">
+    <div class="section-tag">Stop 2 · Gamla Stan</div>
+    <h2>Gamla Stan:<br><em>The Oldest Building &amp; the Speech of the Oak</em></h2>
+
+    <div class="location">Gamla Stan · Old Town · Founded 13th century</div>
+
+    <p>Stockholm has very few buildings older than 700 or 800 years, for a simple reason: it was built of wood, and wood burns. Several major fires destroyed large portions of the city over the centuries. The oldest surviving building in regular use dates from the 1300s — a former Franciscan monastery that became Protestant after the Reformation of 1527. The monks were expelled. The building survived and is now used as a museum.</p>
+
+    <div class="story-box" data-label="The Speech of the Oak">
+      <p>The old town of Gamla Stan was originally built on three islands. It has kept, over the centuries, what locals call <em>stockholmska</em> — the speech of the oak — a distinct urban accent that marks people as genuinely from the old city. It is recognisably different from standard Swedish and has survived the city's expansion around it.</p>
+      <p>Sweden had a great castle, Tre Kronor, that burned down in 1697. While the new Royal Palace was being built — a process that took nearly sixty years — the royal family lived in the Riddarholmen building, the former monastery, for almost sixty years. The new palace opened in 1754. <span class="highlight-blue">From 1776 onwards, it has served as the seat of the Swedish parliament</span>, meaning the oldest building in continuous use in Stockholm has housed monks, royalty and politicians.</p>
+    </div>
+  </section>
+
+  <section class="section" id="founders">
+    <div class="section-tag">Theme · Swedish History</div>
+    <h2>Gustav Vasa:<br><em>The King Who Skied Away from the Danes</em></h2>
+
+    <p>Gustav Vasa is considered the founder of modern Sweden — the man who led the rebellion against Danish rule in 1521 and crowned himself the first Swedish king, breaking the Kalmar Union that had tied Sweden, Denmark and Norway together under Danish leadership.</p>
+
+    <div class="story-box" data-label="The Stockholm Bloodbath">
+      <p>The Danish king who preceded Vasa — Christian II, known in Sweden as Christian the Tyrant and in Denmark as Christian the Good — invited all the Swedish nobility and clergy to Stockholm for a celebration. Around 90 people were gathered and executed. This became known as the Stockholm Bloodbath of 1520.</p>
+      <p>Gustav Vasa narrowly escaped — he arrived late, which saved his life, and fled north on skis to avoid Danish capture. <span class="highlight">This flight is commemorated every year in the Vasaloppet</span> — a cross-country ski race covering 90 kilometres between the two towns where Vasa sought shelter, held each March. It is one of the largest sporting events in Sweden. The guide notes that Vasa may not have actually skied the whole distance, but at least part of it.</p>
+    </div>
+
+    <p>The royal family of today are not, technically, descended from Vasa. The bloodline has been interrupted, diluted and replaced over the centuries — most significantly in 1810, when Sweden had to adopt a new king from France, a general in Napoleon's army named Bernadotte. The current royal family are the descendants of that French general. The guide notes this with a certain amusement: the Swedish royals have no Swedish royal blood in any meaningful sense.</p>
+  </section>
+
+  <section class="section" id="palace">
+    <div class="section-tag">Stop 3 · Parliament Island</div>
+    <h2>Parliament vs Royal Palace:<br><em>Which Is More Beautiful?</em></h2>
+
+    <p>The Swedish Parliament — the Riksdag, with 349 members, on Helgeandsholmen — sits directly across the water from the Royal Palace. The guide poses a question to the group: which is more beautiful? The common answer, he says, is the parliament. The Royal Palace is larger and grander, but the parliament building is more elegant from the water.</p>
+
+    <p>Sweden has 349 parliamentary seats, which is considered a relatively high number for a population of ten million. There are discussions about reducing it. Elections happen every four years; 2022 brought a right-wing coalition to power, ending eight years of left-wing government. Next elections in 2026.</p>
+
+    <p>The king attends the parliament as head of state — for receiving foreign delegations and ceremonial functions — but has no political power whatsoever. He lives not in the Royal Palace (a working palace only) but at Drottningholm, outside the city, which can be reached by public transport in about forty minutes.</p>
+  </section>
+
+  <section class="section" id="syndrome">
+    <div class="section-tag">Stop 4 · Norrmalmstorg</div>
+    <h2>The Stockholm Syndrome<br><em>Bank Robbery, 1973</em></h2>
+
+    <div class="location">Former Kreditbanken · Norrmalmstorg, Stockholm · 1973</div>
+
+    <p>The term "Stockholm syndrome" was coined here — at this address, in August 1973. A man named Jan-Erik Olsson entered the bank, took hostages, and demanded the release of his former cellmate, Clark Olofsson. The government negotiated, Olofsson was released from prison and brought to the bank, and for six days the two men and their four hostages were trapped together.</p>
+
+    <div class="story-box" data-label="What Made It Famous">
+      <p>The hostages did not side with the police. Instead, they began identifying with their captors — making phone calls defending them, saying they were not afraid, asking that the police not hurt them when the siege ended. One hostage was shot in the leg, non-fatally, and even this did not shake their apparent loyalty to the men holding them.</p>
+      <p>The police eventually pumped gas into the bank and forced a surrender. The robbers were jailed. The hostages testified on their behalf at trial. Psychologists coined a term for the phenomenon. <span class="highlight">The term is now used globally for any situation in which captives develop sympathy or positive feelings for their captors</span> — though the guide notes that the mechanism is still not fully understood and the original case was more complicated than the simplified version suggests.</p>
+      <p>Jan-Erik Olsson, now in his 70s, is still alive. He has continued to have run-ins with the law throughout his life. He has reportedly not changed his ways. Clark Olofsson was jailed for years and subsequently became something of a celebrity in Scandinavia, which the guide considers a peculiar outcome.</p>
+    </div>
+  </section>
+
+  <section class="section" id="wallenberg">
+    <div class="section-tag">Theme · Second World War</div>
+    <h2>Raoul Wallenberg<br>&amp; <em>What Happened to Him</em></h2>
+
+    <p>The square commemorates Raoul Wallenberg, a Swedish diplomat posted to Hungary during the Second World War. Using his diplomatic status, he issued Swedish protective passports and helped around 10,000 Hungarian Jews avoid deportation to the death camps. He is recognised as Righteous Among the Nations by Israel and has been honoured by multiple countries, including Canada, the United States and Australia.</p>
+
+    <p>What happened to him after the war is only partially known. He was taken by the Soviets in January 1945 and never released. The Soviet Union claimed for decades that he had died in custody in 1947. What happened in between his arrest and that claimed date — or whether the date was accurate — has never been definitively established. <span class="highlight-blue">His fate remains one of the unresolved questions of the Second World War.</span> His family and advocates spent decades trying to get answers from successive Soviet and then Russian governments, with very limited success.</p>
+  </section>
+
+  <section class="section" id="strandvagen">
+    <div class="section-tag">Stop 5 · Östermalm</div>
+    <h2>Strandvägen:<br><em>€150,000 per Square Metre</em></h2>
+
+    <div class="location">Strandvägen · Östermalm · Stockholm's most expensive address</div>
+
+    <p>The walk ends in Östermalm — the wealthiest quarter of Stockholm, home to Chanel, Gucci, Louis Vuitton and the most expensive residential real estate in Scandinavia. Strandvägen, the main boulevard along the water, has apartments selling for up to €150,000 per square metre. The largest, with twenty rooms, can be compared to what a typical Stockholm apartment looks like — usually between one and three rooms.</p>
+
+    <p>The Royal Dramatic Theatre — where most of Sweden's internationally known film actors began their careers — sits at the end of the boulevard. Sweden's film industry, unlike most countries', trains its actors in theatre first. The guide reels off names: many of them will be recognisable from international productions.</p>
+
+    <div class="story-box" data-label="The Water and the Club Scene">
+      <p>The water alongside Strandvägen — several people have apparently entered it after a night out and not been found until morning, the guide mentions, with a careful neutrality. There is a night train that runs this stretch, known informally as the Norrmalm Express, connecting the wealthy Östermalm to NK, Stockholm's equivalent of Harrods. The guide calls it public transport for rich people, and then qualifies: not really, but it sometimes feels that way.</p>
+      <p>Some of the clubs along this stretch charge €25 for entry. The guide mentions this without recommendation. The view from the water at any time of day or night, he does recommend. <span class="highlight-green">A boat trip into the archipelago is the single best thing you can do in Stockholm with a few hours to spare.</span></p>
+    </div>
+
+    <div class="practical">
+      <strong>Gamla Stan:</strong> Worth exploring on foot for an hour or two — the medieval street pattern is intact and the side streets away from the souvenir shops are genuinely atmospheric. <strong>Vasaloppet:</strong> If you are in Sweden in early March, worth watching at least online. <strong>Archipelago boats:</strong> Depart from several points along the Strandvägen waterfront; the SL transit card covers about twenty islands. A half-day trip is very much worthwhile.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Stockholm Free Walking Tour · March 2024
+</footer>
+
+</body>
+</html>

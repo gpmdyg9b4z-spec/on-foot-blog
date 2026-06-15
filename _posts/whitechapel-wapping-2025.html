@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitechapel to Wapping — Immigration, Industry & the London Docks · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Notes — Whitechapel to Wapping, E1 · Open City</div>
+  <h1>The People Who<br>Came Through <em>Whitechapel</em></h1>
+  <div class="header-sub">Whitechapel to Wapping · Guide: Martin Scholar · Open City</div>
+  <div class="header-meta">
+    <span>ROUTE: Toynbee Hall → Whitechapel Gallery → St George's German Church → Peabody Estate → Cable Street → Wilton's Music Hall → Tobacco Dock → Wapping</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDE: Martin Scholar · Town Planner · Open City</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Martin Scholar: planner, fourth-generation immigrant, walking guide</a></li>
+    <li><a href="#toynbee">Toynbee Hall &amp; the settlement movement</a></li>
+    <li><a href="#jewish">The Jewish East End: 100,000 people, three synagogues left</a></li>
+    <li><a href="#gallery">Whitechapel Gallery &amp; the gilded leaves of 2012</a></li>
+    <li><a href="#german">St George's German Church &amp; the sugar bakers</a></li>
+    <li><a href="#peabody">The Peabody Estate: George Peabody, JP Morgan &amp; shared toilets until the 1970s</a></li>
+    <li><a href="#cable">The Battle of Cable Street, 1936</a></li>
+    <li><a href="#wiltons">Wilton's Music Hall: the last surviving grand music hall</a></li>
+    <li><a href="#tobacco">Tobacco Dock &amp; the London Docks</a></li>
+    <li><a href="#wapping">Wapping: warehouse flats, Turner's pub &amp; the Thames</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Planner, Immigrant,<br><em>Walking Guide</em></h2>
+
+    <p>Martin Scholar has been leading this walk for Open City for around four years. His day job is town planning — thirty years of working in London, public and private sector, with a particular focus on the east of the city. He co-founded an architecture centre in Stratford in 2002, when it was already clear that the Olympic bid, if successful, would transform the Lower Lea Valley.</p>
+
+    <p>His interest in this part of London is also personal. His family arrived here in the 1880s, following the pogroms in Russia. He is, as he puts it, a fourth-generation Jewish immigrant. <span class="highlight">He has good childhood memories of visiting his grandparents in the 1970s when they still lived around here.</span> The professional and the personal interest are inseparable.</p>
+
+    <p>The walk goes from Whitechapel to Wapping and takes about two hours. It is not a Jack the Ripper tour. Martin is at pains to say this early. Jack the Ripper tours operate in this area; he will not be giving one. He mentions it so that nobody is disappointed.</p>
+  </section>
+
+  <section class="section" id="toynbee">
+    <div class="section-tag">Stop 1 · Whitechapel</div>
+    <h2>Toynbee Hall &amp;<br><em>The Settlement Movement</em></h2>
+
+    <div class="location">Toynbee Hall · Commercial Street, E1 · 1884</div>
+
+    <p>Toynbee Hall was the first settlement house — the first time anyone tried this particular approach to the social problems of the East End. The idea: bring Oxford and Cambridge students into the neighbourhood to experience firsthand the lives of the people there. The future leaders of Britain would carry that understanding with them. This was the Settlement Movement, and it spread throughout Britain, Australia and America. Toynbee Hall was where it began.</p>
+
+    <div class="story-box" data-label="Who Came Through Here">
+      <p>Clement Attlee — Britain's first Labour Prime Minister after the Second World War — spent time here. William Beveridge, who founded the welfare state, was here too. The connections between the people who worked in Toynbee Hall and the social legislation of the 20th century are direct and documented.</p>
+      <p>The building itself dates from the 1880s, Grade II listed, modelled on an Oxford or Cambridge college — the point being that the architecture itself would signal the ambition of the institution. <span class="highlight">It is still used for welfare purposes.</span> During the week, people come to learn about immigration law, access education, use the facilities. It was built as a civic institution and it functions as one.</p>
+    </div>
+
+    <p>Next to it, Martin points out the site of the 4% Industrial Dwellings Company — one of the early model dwellings initiatives, initiated by Nathaniel Rothschild. The idea: private investors put money in and received a 4% return; the capital built housing for the poor. The 1970s housing visible today replaced a six-storey Victorian block that was deemed unfit for habitation. The Industrial Dwellings Society still exists and operates across the East End.</p>
+  </section>
+
+  <section class="section" id="jewish">
+    <div class="section-tag">Theme · Jewish East End</div>
+    <h2>100,000 People &amp;<br><em>Three Synagogues Left</em></h2>
+
+    <p>At its peak, the Jewish population of Whitechapel and the surrounding streets was estimated at around 100,000 people. They came primarily from Russia and Eastern Europe following the pogroms of the 1880s and after, settling in the area because it was the cheapest part of London to live and because communities from home were already there.</p>
+
+    <div class="story-box" data-label="Why They Left">
+      <p>Two reasons, Martin says. Some moved out — to Stamford Hill, Golders Green, Ilford — as they became more prosperous, following the pattern of immigrant upward mobility familiar from every other group in this area. And the Bangladeshi community, which now makes up roughly a third of the local population, moved in as the Jewish community moved out.</p>
+      <p>Of what was once 100,000 people and hundreds of institutions — synagogues, newspapers, schools, cultural societies, Yiddish theatre — only three synagogues remain and perhaps 2,000 people. <span class="highlight-blue">The Jewish Daily Post building survives on Whitechapel Road, its Star of David signage still visible.</span> It was a Yiddish newspaper; what you're looking at is one of the last physical traces of a world that has almost entirely gone.</p>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="section-tag">Stop 2 · Whitechapel Gallery</div>
+    <h2>The Gallery &amp;<br><em>The Leaves Added in 2012</em></h2>
+
+    <div class="location">Whitechapel Gallery · Whitechapel High Street, E1 · 1901</div>
+
+    <p>The Whitechapel Gallery — together with the Whitechapel Library next door, now absorbed into the gallery — dates from the 1880s and 1890s, the creation of Samuel and Henrietta Barnett, the social reformers whose names come up repeatedly on this walk. The purpose: to bring art to people who had no access to it, in a part of London where most people worked six days a week and had very little else.</p>
+
+    <p>Cézanne was exhibited here. Hockney. Gilbert and George. It has remained, throughout its history, a serious exhibition space with a particularly strong record for showing work before it was widely recognised elsewhere.</p>
+
+    <div class="story-box" data-label="The Leaves on the Facade">
+      <p>The gilded leaves at the very top of the building were only added in 2012 — by the artist Rachel Whiteread. There was always meant to be decoration at that level, but it was never executed. <span class="highlight">More than a century after the building opened, the original design was finally completed.</span> The leaves are intended to represent the Tree of Life, a reference to the area's Jewish heritage. The weather vane is also a recent addition, put up for the 2012 Olympics.</p>
+    </div>
+  </section>
+
+  <section class="section" id="german">
+    <div class="section-tag">Stop 3 · Alie Street</div>
+    <h2>St George's German Church<br>&amp; <em>the Sugar Bakers</em></h2>
+
+    <div class="location">St George's German Lutheran Church · Alie Street, E1 · 1762</div>
+
+    <p>Germans were, at one time, the largest immigrant population in London — 13,000 people, arriving for employment as their own economy faltered. They were known particularly for their work in the sugar refining industry and on the docks. St George's German Lutheran Church was their institution, dating from 1762 and still standing.</p>
+
+    <p>When the First World War came along, anti-German feeling in Britain was severe. The German population of the East End largely relocated — back to Germany, or elsewhere. The community that had built this church and school essentially ceased to exist. The church continued as a place of worship until 1996; it is now used for performances and events. It has box pews and a gallery inside, and is one of the more atmospheric small buildings in the area.</p>
+  </section>
+
+  <section class="section" id="peabody">
+    <div class="section-tag">Stop 4 · Whitechapel</div>
+    <h2>The Peabody Estate:<br><em>Shared Toilets Until the 1970s</em></h2>
+
+    <p>George Peabody was an American banker who lived in Britain, loved it, and wanted to do something for his adopted country. He originally donated £150,000 to improve housing for the poor of London — a sum that eventually rose to half a million pounds, an enormous amount in the 1870s and 1880s. He also established JP Morgan, the bank. There is a statue of him near the Royal Exchange in the City.</p>
+
+    <div class="story-box" data-label="How the Estates Work">
+      <p>The first Peabody estate was built near where this walk starts, just off Commercial Street. The second wave — of which this is one — came in a cluster across East and central London: Covent Garden, Islington, Finsbury, and here. They all look broadly similar: five stories, simple brickwork, inset windows, generous entrances, blocks identified by letters.</p>
+      <p>Each block had its own scullery and shared toilet facilities — until the 1960s and 1970s, when every flat was given its own. Some flats were also made bigger during that renovation to accommodate larger Bangladeshi families. <span class="highlight">Peabody today is one of the biggest social landlords in the country, providing around 100,000 homes across London and the southeast.</span></p>
+      <p>One block on this estate was hit by a fire bomb in the Second World War. A number of people died. There is a memorial. The block was eventually rebuilt. A second block was partially destroyed and then demolished in the 1970s — the realization having come that this dense urban neighbourhood needed somewhere for children to play more urgently than it needed another block of flats.</p>
+    </div>
+  </section>
+
+  <section class="section" id="cable">
+    <div class="section-tag">Stop 5 · Cable Street</div>
+    <h2>The Battle of Cable Street,<br><em>4 October 1936</em></h2>
+
+    <div class="location">Cable Street Mural · St George's Town Hall, E1 · Painted 1983</div>
+
+    <p>Germany had Hitler. Italy had Mussolini. Britain had Oswald Mosley and the British Union of Fascists. To mark their fourth anniversary, they planned a march through the Jewish East End, with all routes converging at Victoria Park. A petition signed by over 100,000 people asked the Home Secretary to ban it. He allowed it to proceed.</p>
+
+    <div class="story-box" data-label="What Happened">
+      <p>On 4 October 1936, approximately 100,000 counter-demonstrators gathered. There were around 5,000 marchers and 6,000 police. <span class="highlight">The march was turned back</span> — sent instead to Bethnal Green and then dispersed. It was not allowed to proceed through the Jewish neighbourhood.</p>
+      <p>Recent historical reassessment has complicated the original narrative. Much of the disorder was between demonstrators and police, not between demonstrators and fascists. But the symbolic significance remains: Britain, in a moment when fascism was gaining ground across Europe, turned it back from the streets of the East End. Two concrete results followed: it became illegal to wear a political uniform in public, and any march now requires prior approval from the police and ultimately the Home Secretary.</p>
+    </div>
+
+    <p>The Cable Street mural was painted in 1983 — 40 years old now, and still looking good. It was painted by Dave Binnington and three others. Among its images: Hitler in his underpants above Oswald Mosley, the phrase <em>No pasarán</em> (a reference to the Spanish anti-fascist resistance), marbles thrown at police horses, milk bottles, and a mix of Jewish, Irish and broader East End figures. <span class="highlight-green">Asian figures were added later, because the artist wanted to make clear that fascism didn't end in 1936.</span></p>
+  </section>
+
+  <section class="section" id="wiltons">
+    <div class="section-tag">Stop 6 · Grace's Alley</div>
+    <h2>Wilton's Music Hall:<br><em>The Last One Left</em></h2>
+
+    <div class="location">Wilton's Music Hall · Grace's Alley, E1 · 1690s (rebuilt 1870s)</div>
+
+    <p>Wilton's Music Hall is the last surviving grand music hall in the world. The building originates from the 1690s — the first version burned down, was rebuilt in the 1870s, and then lasted only about ten years as a music hall before closing. It was used as a Methodist hall, then as a tailor's warehouse, and faced demolition in the 1970s before being gifted to the London Music Hall Trust.</p>
+
+    <p>Over the course of twenty or thirty years, it was slowly restored. It is now a fully functioning performance venue and film location — Martin has seen it used for things he can't quite place but remembers the candles in the sconces. Frankie Goes to Hollywood filmed a video here. It has been used for Sherlock. It runs panto at Christmas.</p>
+
+    <div class="story-box" data-label="Why It Matters">
+      <p>Before the Central line existed, before public transport made the west end of London accessible to ordinary people, the music hall was where East Enders came for their entertainment. This was a place of genuine popular culture — and the fact that Wilton's survives, intact and still in use, while every other music hall of comparable age and character has been demolished or converted, makes it genuinely rare. <span class="highlight">It is slightly off the beaten track, which is probably why it survived.</span> People who find it are usually glad they did.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Wilton's Music Hall:</strong> Grace's Alley, E1. Check listings — it runs a full programme. The bar is worth visiting on its own. Very atmospheric on a weekday lunchtime.
+    </div>
+  </section>
+
+  <section class="section" id="tobacco">
+    <div class="section-tag">Stop 7 · Wapping Lane</div>
+    <h2>Tobacco Dock &amp;<br><em>What the London Docks Were</em></h2>
+
+    <div class="location">Tobacco Dock · Wapping Lane, E1 · Grade I listed · 1815–1819</div>
+
+    <p>Tobacco Dock is one of the finest industrial buildings in London — Grade I listed, which means the highest possible protection. It was completed between 1815 and 1819 as part of the London Dock (originally called London Dock, not Tobacco Dock; the current name came later). The distinctive lantern lights at the top, the vaulted storage space below, the very high walls: all of it designed to hold high-value goods — tobacco, rice, wine, brandy — under conditions that discouraged theft and satisfied the customs authorities.</p>
+
+    <p>The London Docks closed in 1969. Containerisation had changed everything — goods now arrived in much larger ships, in standard containers, which required deep-water facilities further downstream. The dock closed almost overnight, and with it the entire supporting economy of hotels, lodging houses, shops and workshops that had grown up around it.</p>
+
+    <div class="story-box" data-label="The Brief Career as a Shopping Centre">
+      <p>In the late 1980s, Terry Farrell — the same architect who designed the MI6 building at Vauxhall — converted Tobacco Dock into a shopping centre. It lasted two years. <span class="highlight">Wapping at the time was too quiet, too far from where people habitually shopped, too difficult to get to.</span> Nobody came.</p>
+      <p>Since then it has been used as an events and conference space. It is worth going inside if the building is open — the atmosphere is remarkable, and the two replica ships (the Sea Lark and the Three Sisters, brought here in the 1980s so that local children could learn about the dock's history) are now themselves decaying curiosities, untouched for thirty years.</p>
+    </div>
+  </section>
+
+  <section class="section" id="wapping">
+    <div class="section-tag">Stop 8 · Wapping</div>
+    <h2>Wapping: Warehouse Flats,<br><em>Turner's Pub &amp; the River</em></h2>
+
+    <p>Wapping has a quietly atmospheric feel that sets it apart from the wider development activity of the riverfront. The high walls of the old dock are still there. The canals that connected the warehouses to the river are still there, now used as decorative features in the public realm. The Georgian houses occupied by the dock managers are still there, on either side of what was the main dock entrance.</p>
+
+    <div class="story-box" data-label="Turner's Old Star">
+      <p>Turner's Old Star pub — named after Joseph Turner, the painter — stands on this stretch. Turner owned this building in the early 19th century and lived in it, in a house he called by a different name. He would spend long periods in the East End, close to the river, painting the Thames and its working life. <em>The Fighting Temeraire</em> is the most famous result. The pub was renamed in his honour by later owners.</p>
+      <p>The first conversion of a warehouse to residential use in Wapping happened in 1970. <span class="highlight-green">It must have taken real nerve</span> — the area was desolate, the dock had only just closed, and there was almost no residential community here at all. The flats in that converted warehouse are lovely, overlooking either the river or this side. That first conversion started something; fifty years later the transformation is more or less complete, with much taller new buildings now filling the gaps between the old warehouses.</p>
+    </div>
+
+    <p>Martin ends the tour at the riverside, with the Thames and the south bank in front of the group. It is one mile from Parliament. On a clear day you can see across to Chelsea and Pimlico. Wapping Station is five minutes away. Tower Bridge is fifteen minutes' walk in one direction; St Katharine Docks and the City in the other.</p>
+
+    <div class="practical">
+      <strong>Turner's Old Star:</strong> Wapping High Street, E1. Lovely East End pub with outdoor space. <strong>Town of Ramsgate:</strong> further along Wapping High Street, with a small deck overlooking the Thames — one of the best pub riverside views in East London. There were 36 pubs in Wapping at the height of the docks. Three or four remain.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Open City · opencity.org.uk<br><br>
+  Notes compiled from tour transcript. Guide: Martin Scholar · Whitechapel to Wapping, E1 · July 2025
+</footer>
+
+</body>
+</html>

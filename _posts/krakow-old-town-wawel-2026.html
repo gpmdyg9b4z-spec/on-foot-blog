@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kraków Old Town & Wawel — A Walking Tour with Iza · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '⚜'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Stare Miasto &amp; Wawel, Kraków</div>
+  <h1>From Barbican<br>to <em>Royal Hill</em></h1>
+  <div class="header-sub">Old Town &amp; Wawel Tour with Guide Iza · Walkative Tours</div>
+  <div class="header-meta">
+    <span>ROUTE: Barbican → Main Square → Jagiellonian University → Wawel</span>
+    <span>DURATION: ~2.5 hours</span>
+    <span>GUIDE: Iza · Walkative Tours</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Kraków in context: capital, decline, survival</a></li>
+    <li><a href="#barbican">The Barbican &amp; St Florian's Gate</a></li>
+    <li><a href="#florianska">Floriańska Street &amp; the saving of the city walls</a></li>
+    <li><a href="#czartoryski">The Czartoryski Museum &amp; the Lady with a Weasel</a></li>
+    <li><a href="#square">The Main Square: Rynek Główny</a></li>
+    <li><a href="#cloth-hall">The Cloth Hall &amp; medieval commerce</a></li>
+    <li><a href="#trumpet">The Hejnał &amp; St Mary's Basilica</a></li>
+    <li><a href="#obwarzanek">The obwarzanek</a></li>
+    <li><a href="#university">Jagiellonian University &amp; the professors' arrest</a></li>
+    <li><a href="#wawel-palace">Wawel Royal Palace</a></li>
+    <li><a href="#wawel-cathedral">Wawel Cathedral</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Capital That Forgot<br>It Was <em>No Longer Capital</em></h2>
+
+    <p>Iza opens with the thing Kraków visitors most need to understand: the city's historical importance, its sudden eclipse, and — critically — why it survived intact when Warsaw did not.</p>
+
+    <p>Poland coalesced from several Slavic communities in the 10th century. The first capital was Gniezno, in the north. But by the early 11th century, rulers recognised Kraków as better developed and more strategically placed. <span class="highlight">From 1320, when the first coronation took place here, Kraków was the undisputed capital of Poland</span> — and remained so until the end of the 16th century, when the king moved to Warsaw.</p>
+
+    <div class="story-box" data-label="The Capital That Never Changed">
+      <p>When the court moved to Warsaw, no one bothered to officially change the capital. So each subsequent Polish king still had to come to Kraków at least once — to be crowned here, and ultimately to be buried in the cathedral on Wawel Hill.</p>
+      <p>The effect on Kraków was swift. Nobles followed the king north. Rich families followed the nobles. Within a generation, <span class="highlight-blue">one of the most important cities in Central Europe became a forgotten provincial town.</span> It would not truly revive until the second half of the 19th century.</p>
+    </div>
+
+    <p>Kraków's decline deepened through the 17th century. The Swedish invasion of the 1650s caused severe damage, and with no wealthy patrons left to fund restoration, the city simply stayed ruined. In 1795, Poland ceased to exist entirely — partitioned between Russia, Prussia and Austria. Kraków fell to Austria, remaining under Habsburg rule for 123 years.</p>
+
+    <p>While Russian and Prussian-held Polish territories faced active suppression of Polish identity, <span class="highlight">Austrian Galicia was comparatively tolerant</span>. Kraków became a refuge for artists, intellectuals and noble families who wanted to express themselves as Poles. A quieter second golden age began.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">123</div>
+      <div class="key-fact-text">Years Poland spent off the map of Europe, partitioned between Russia, Prussia and Austria. Independence returned after the First World War in 1918 — and Warsaw, not Kraków, became the capital of the new state.</div>
+    </div>
+
+    <p>The city's physical survival through the Second World War requires its own explanation. Warsaw — the capital — had 84% of it deliberately destroyed, building by building, after the 1944 Warsaw Uprising. Kraków was never the military target. And when the Nazis arrived, they made an unusual decision.</p>
+
+    <blockquote>
+      <p>"The Nazis decided that Kraków was so beautiful, and so much to their taste, it couldn't possibly be a Polish city. According to their logic, Kraków was pre-German."</p>
+      <cite>— Iza</cite>
+    </blockquote>
+
+    <p>Germans had indeed settled in Kraków during the Middle Ages, as they did across Central Europe — merchants invited to help develop cities. The Nazis twisted this historical fact into a claim of ownership. The result: rather than destroying the city, they spent money on it. The statues of Polish heroes were removed. The Jews were murdered. But the buildings survived.</p>
+  </section>
+
+  <section class="section" id="barbican">
+    <div class="section-tag">Stop 1 · Barbican</div>
+    <h2>The Barbican &amp;<br><em>St Florian's Gate</em></h2>
+
+    <div class="location">Barbakan · Late 15th century</div>
+
+    <p>The Barbican is one of the best-preserved medieval barbicans in Europe — a circular forward fort positioned outside the main city wall, connected to St Florian's Gate by a covered bridge over a moat. Its defensive logic was simple: if an enemy breached the outer gate, they found themselves trapped in a circular kill-zone, forced to change direction while defenders above rained down boiling oil, stones, arrows and firearms.</p>
+
+    <p>The additional trick built into St Florian's Gate: the entrance passage contains a deliberate dog-leg, forcing any attacker to stop and change direction inside a confined space — exposed, slowed, visible from above.</p>
+
+    <div class="story-box" data-label="The Man with a Button">
+      <p>In the 18th century, the Russians approached the city. A single defender remained inside the Barbican — with no ammunition. He loaded one of the buttons from his coat into his gun and fired. The button nearly killed the Russian commander on the other side.</p>
+      <p>There is a commemorative plaque on the far wall of the Barbican. <span class="highlight-green">Since it was built, no enemy ever entered the city through this gate.</span> The other seven gates were not so fortunate.</p>
+    </div>
+
+    <p>The Barbican defended only the northern approach — historically the most vulnerable, with no natural river barrier. Kraków had eight gates and over forty towers in its full medieval circuit. Only the Barbican and St Florian's Gate survive.</p>
+  </section>
+
+  <section class="section" id="florianska">
+    <div class="section-tag">Stop 2 · Floriańska Street</div>
+    <h2>Why the City Walls<br><em>Almost Disappeared</em></h2>
+
+    <p>By the early 19th century, medieval city walls across Europe had become liabilities. No military function, expensive to maintain, and associated with urban problems: thieves, beggars, wooden slum structures built against the walls, a moat full of rubbish.</p>
+
+    <p>A single city council member argued for preserving at least the St Florian's Gate fragment. His first argument — that it should be kept as a symbol of national identity for a people who had just lost their country — <span class="highlight">convinced nobody</span>.</p>
+
+    <p>So he tried a second argument: the wall was needed to protect the city from cold northern winds. Without it, those winds would blow up the long skirts of the ladies on Floriańska Street — the most elegant street in the city — posing a danger to public morality. <span class="highlight-blue">This argument worked.</span> The wall survived.</p>
+
+    <p class="guide-says">"Kraków 200 years ago was a small provincial town. Traditions mattered to people." — Iza</p>
+
+    <p>Where the rest of the walls and moat once stood, the <strong>Planty</strong> was created — a ring of parkland encircling the entire Old Town, still intact today.</p>
+  </section>
+
+  <section class="section" id="czartoryski">
+    <div class="section-tag">Floriańska Street · Czartoryski Museum</div>
+    <h2>The Lady with<br><em>a Weasel</em></h2>
+
+    <div class="story-box" data-label="Poland's First Public Museum">
+      <p>The yellow building on Floriańska houses part of Poland's first public museum, established when the Czartoryski family donated their collection to the city in the 1870s. They chose Kraków because, under Austrian rule, it was the only part of Poland where such a national institution could legally exist.</p>
+      <p>The collection was begun by Princess Izabela Czartoryska — a sentimentalist more interested in historical objects than fine art. She acquired, among other things, a chair from Shakespeare's house and the undergarment of the last King of Poland.</p>
+      <p>Her son, buying in Italy on her behalf and repeatedly told she wanted no paintings, sent home a box anyway. Inside was a Leonardo da Vinci. <span class="highlight">The mother was not thrilled — she didn't want faces, didn't understand paintings.</span> For a long time the work was known in Poland as <em>Lady with a Weasel</em>, the animal's identity being unclear. It is now the museum's — and arguably Poland's — greatest treasure.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Czartoryski Museum:</strong> Closed Mondays. Free entry on Tuesdays. If you have time for one museum in Kraków, Iza would send you here.
+    </div>
+  </section>
+
+  <section class="section" id="square">
+    <div class="section-tag">Stop 3 · Rynek Główny</div>
+    <h2>The Main Square &amp;<br><em>Medieval Justice</em></h2>
+
+    <div class="location">Rynek Główny · Laid out 1257</div>
+
+    <p>When the Mongols destroyed Kraków in 1241, the city was rebuilt from scratch on a German urban model — re-chartered under German law, as was common across Central Europe. The very word Iza uses — <em>Rynek</em> — comes from the German <em>Ring</em>. Medieval market squares weren't fully paved; a single circular path ran around the perimeter, the rest covered with stalls and mud.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">200m</div>
+      <div class="key-fact-text">Each side of Rynek Główny. When laid out in 1257, one of the largest market squares in Europe — deliberately oversized to attract international trade routes through the city. Within a century, it was too small.</div>
+    </div>
+
+    <p>Medieval justice was administered here, in the open square, around the town hall building — now demolished, its leaning tower the only remnant. Prison was not used to punish common criminals until the 18th century; nobody wanted to pay to maintain them. Punishment was immediate, public and designed to mark the offender permanently.</p>
+
+    <div class="story-box" data-label="How Justice Worked Here">
+      <p>The principle: mark the criminal so that everyone in the city would always know who he was — but leave him functional enough to survive and work. Thieves had their ears cut off. Occasionally a piece of the nose. <span class="highlight">Without an ear, a man was marked for life. But he still had both hands. He could survive.</span></p>
+      <p>A knife hung in the centre of the square as a public reminder of these consequences. A replica is still displayed, though originals are routinely stolen by souvenir hunters. A more authentic version can be bought inside the Cloth Hall.</p>
+    </div>
+  </section>
+
+  <section class="section" id="cloth-hall">
+    <div class="section-tag">Stop 4 · Sukiennice</div>
+    <h2>The Cloth Hall &amp;<br><em>Eight Centuries of Commerce</em></h2>
+
+    <div class="location">Sukiennice · 13th century, rebuilt 15th–16th century</div>
+
+    <p>The Cloth Hall was very nearly demolished in the 19th century. It was deteriorating, nobody could quite see what it might become, and city authorities were looking for a home for the National Gallery. Restoring the Sukiennice seemed too expensive — until someone decided it was in good enough taste to try. The gallery moved upstairs. The ground floor has been occupied by market stalls — selling cloth, then amber, then crafts and souvenirs — in an almost unbroken line since the 13th century. <span class="highlight">Almost 800 years, and it never ceased to be a marketplace.</span></p>
+
+    <div class="practical">
+      <strong>Underground Museum:</strong> Beneath the square, entered through the Cloth Hall — the archaeology of medieval Kraków, with preserved street levels and market structures. Allow 1–1.5 hours.
+    </div>
+  </section>
+
+  <section class="section" id="trumpet">
+    <div class="section-tag">Stop 5 · St Mary's Basilica</div>
+    <h2>The Hejnał &amp;<br><em>The Myth of the Trumpeter</em></h2>
+
+    <div class="location">Bazylika Mariacka · Founded ~1222, current form 14th–15th century</div>
+
+    <p>Every hour, on the hour, a trumpeter appears in the higher tower of St Mary's and plays the <em>Hejnał mariacki</em> — a short melody that cuts off abruptly, mid-phrase, before the final note. The famous explanation: in 1241, a watchman spotted the Mongol advance and began sounding the alarm. A Mongol arrow struck him in the throat mid-note. All subsequent trumpeters, in his honour, stop at precisely the same point.</p>
+
+    <blockquote>
+      <p>"The story was actually made up about a hundred years ago by a writer from here. He told it to a visitor from the United States, who went home and wrote an international bestseller for children — <em>The Trumpeter of Kraków</em>. Now you can never change the story."</p>
+      <cite>— Iza</cite>
+    </blockquote>
+
+    <p>Iza's own theory: the trumpeters originally played to signal the opening and closing of the city gates, and may have left the pause to listen for an answering signal from the city walls. When the walls became redundant, the pause simply remained.</p>
+
+    <p><span class="highlight">The Hejnał has been played every hour, day and night, since the Middle Ages.</span> The trumpeters are firefighters by profession. They need to pass a musical test. Not all of them play equally well.</p>
+
+    <p>St Mary's itself is the main parish church of Kraków — older than the cathedral on Wawel. The centrepiece is the <strong>altarpiece by Veit Stoss</strong>: the largest Gothic wooden altarpiece in Europe at 13 metres high, carved in the late 15th century with figures modelled on real people living in Kraków at the time.</p>
+
+    <div class="practical">
+      <strong>Visiting St Mary's:</strong> Tourist entrance through the back of the church. Tickets approximately 20 złoty (c. €5). The main door is for worshippers only — non-praying visitors found inside can be asked to leave, which happens every day.
+    </div>
+  </section>
+
+  <section class="section" id="obwarzanek">
+    <div class="section-tag">Street Food · The Main Square</div>
+    <h2>The <em>Obwarzanek</em></h2>
+
+    <p>The ring-shaped bread sold from the blue carts around the square — the <em>obwarzanek krakowski</em> — has been a symbol of the city since the Middle Ages. The carts are blue because blue is the official colour of Kraków. The obwarzanek is boiled in water and sugar before baking, then finished with poppy seeds, sesame, salt, or left plain. Related to but distinct from a bagel: smaller hole, harder texture, less soft.</p>
+
+    <p class="guide-says">"The first time you taste it, it doesn't seem very impressive. It's bread. A little bit hard. But if you live here, you eat them constantly. It's a thing to try." — Iza</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="university">
+    <div class="section-tag">Stop 6 · Collegium Maius</div>
+    <h2>The Jagiellonian University &amp;<br><em>The Professors' Arrest</em></h2>
+
+    <div class="location">Collegium Maius · Founded 1364</div>
+
+    <p>The Jagiellonian University was founded in 1364 by King Casimir the Great — the second university in Central Europe, after Prague. It was re-established by <strong>Queen Jadwiga</strong>, who married the Lithuanian prince Władysław Jagiełło and endowed the university with her personal fortune, including her jewellery. Her husband funded the building complex around the Collegium Maius courtyard that stands today. Copernicus studied here before going on to prove that the Earth orbits the sun.</p>
+
+    <div class="story-box" data-label="6 November 1939 — Sonderaktion Krakau">
+      <p>The Germans entered Kraków on 6 September 1939 without resistance. In November 1939, the university professors made the fateful decision to reopen. When the Nazis found out, they invited all professors to a conference at the Collegium Novum across the street. <span class="highlight">183 men arrived. They should have noticed the trucks surrounding the building.</span> The conference lasted seven minutes.</p>
+      <p>All 183 were arrested and sent to concentration camps — initially Sachsenhausen, near Berlin. Most were eventually released following protests from German academics. The Jewish professors among them were not.</p>
+      <p>With schools officially closed, Poles organised a clandestine education system. In Kraków alone, almost 500 people studied secretly at the university during the occupation. Twelve doctoral degrees were awarded. Being caught meant the concentration camps — or death.</p>
+    </div>
+
+    <p>The Collegium Maius building became, under Nazi occupation, the headquarters of the <em>Institut für Deutsche Ostarbeit</em> — its purpose to falsify Polish and Kraków history, proving that anything of cultural value was German in origin. It published guidebooks promoting German tourism to the occupied city. Auschwitz was recommended as a pleasant day trip from Kraków.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="wawel-palace">
+    <div class="section-tag">Stop 7 · Wawel Hill</div>
+    <h2>The Royal Palace &amp;<br><em>What Survives</em></h2>
+
+    <div class="location">Zamek Królewski na Wawelu · 16th century Renaissance</div>
+
+    <p>The palace you see today is largely a 16th-century Italian Renaissance creation. The king invited architects from Florence to modernise the old Gothic structure — which meant working with irregular foundations and no straight walls anywhere in the courtyard. The solution was to vary the spacing between columns slightly on each arcade, disguising the irregularity through rhythm rather than symmetry.</p>
+
+    <div class="story-box" data-label="Why the King Left">
+      <p>The palace was finished just as the king who commissioned it died. The king who finally and definitively moved to Warsaw had a dangerous hobby: alchemy. During one experiment he started a fire, left for repairs to be made — and simply never came back. <span class="highlight">Warsaw was also the pragmatic choice.</span> The Polish-Lithuanian Commonwealth was enormous — spanning what is now Poland, Lithuania, Latvia, Ukraine and Belarus. Kraków sat at its southwestern edge. Warsaw was roughly central.</p>
+    </div>
+
+    <p>The subsequent centuries were not kind to the palace. Swedish invasions stripped it bare — the Swedes took everything, including tiles from the floors. Russian and Austrian occupations converted it into a military barracks. Restoration was funded by donations from Polish emigrant communities worldwide. The work was finally completed in the late 1930s, just before the German governor Hans Frank moved in and converted one of the royal rooms into a swimming pool.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">0</div>
+      <div class="key-fact-text">Royal regalia remaining in the Crown Treasury on Wawel. The Swedish invasions took most of it; what survived was later melted down by the Prussians. One of the only crown treasuries in Europe without its crown.</div>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting the palace:</strong> Free entry on Mondays. Iza's assessment: the interiors disappoint relative to the courtyard — very little is original after four centuries of neglect and occupation. The courtyard itself is the thing.
+    </div>
+  </section>
+
+  <section class="section" id="wawel-cathedral">
+    <div class="section-tag">Stop 8 · Wawel Cathedral</div>
+    <h2>The Cathedral:<br><em>"The Most Important Church in Poland"</em></h2>
+
+    <div class="location">Katedra Wawelska · Founded 11th century, current form 14th century onward</div>
+
+    <p>While the Royal Palace suffered centuries of stripping and neglect, the cathedral on the same hill was treated with far greater care — because it was sacred, because the Church had resources, and because successive monarchs continued to be crowned and buried here long after the court moved to Warsaw.</p>
+
+    <blockquote>
+      <p>"The best-preserved part of Wawel, without any doubt, is the cathedral. Do you know why? It's a church — so people had respect for it. They came back and restored it again and again. The palace is a ruin compared to it."</p>
+      <cite>— Iza</cite>
+    </blockquote>
+
+    <p>The current building is largely 14th century, but its exterior is an extraordinary palimpsest — every generation added to it in whatever style was dominant, without a unifying plan. The result is architectural chaos that somehow coheres: Romanesque foundations, Gothic towers, Renaissance chapels, Baroque additions, all colliding on the same hilltop.</p>
+
+    <div class="story-box" data-label="Two Very Different Chapels">
+      <p><strong>Sigismund I's chapel</strong> has the golden dome — the entire dome was gilded from a single gold coin melted down, according to tradition. Inside, it is pure Italian Renaissance: the king on his sarcophagus appears not dead but sleeping, the decoration confident and luminous, full of humanist optimism.</p>
+      <p><strong>Sigismund III's chapel</strong> is Baroque: darker, dense with <em>memento mori</em> imagery, the awareness of death insistent throughout. <span class="highlight">Both are impressive. They couldn't be more different in philosophy.</span></p>
+    </div>
+
+    <p>One king broke the coronation tradition entirely: <strong>Stanisław August Poniatowski</strong>, the last King of Poland, crowned himself in Warsaw rather than making the journey to Kraków. He was the only one ever to do so.</p>
+
+    <p class="guide-says">"It's very symbolic that the first time the tradition was broken, absolutely the worst possible thing for the country happened." — Iza</p>
+
+    <p>Within years of his self-coronation in Warsaw, the country was so weakened that he was forced to abdicate. Poland ceased to exist for 123 years.</p>
+
+    <div class="practical">
+      <strong>Visiting the cathedral:</strong> A ticket is required even on Mondays. Sold in the building to the right. Includes the royal crypts and the Sigismund Tower. Iza's recommendation: if you can visit only one thing on Wawel, make it this.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>WALKATIVE TOURS</span> · walkative.eu · Book direct to avoid commission<br><br>
+  Transcript lightly edited for clarity. All errors in attribution are transcription errors.<br>
+  Guide: Iza · Old Town &amp; Wawel, Kraków
+</footer>
+
+</body>
+</html>

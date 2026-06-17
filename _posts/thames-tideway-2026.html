@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thames Tideway Walk — The Great Stink, Drop Shafts & Bronze Sandbags · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Thames Tideway Walking Tour · Isle of Effra to Blackfriars · 2026</div>
+  <h1>The Great Stink,<br><em>Bronze Sandbags &amp; a 25-Metre Drop</em></h1>
+  <div class="header-sub">Thames Walking Tour: Reconnecting With Our River · Hawkins\Brown · Guide: Benedict O'Looney</div>
+  <div class="header-meta">
+    <span>ROUTE: Isle of Effra → Vauxhall → Albert Embankment → Tyburn Key → Blackfriars</span>
+    <span>DURATION: ~2.75 hours · 4.75km</span>
+    <span>GUIDES: Marco Venezuela &amp; Hawkins\Brown Team · Benedict O'Looney</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Why Tideway exists: London's sewers and the Great Stink</a></li>
+    <li><a href="#effra">Effra Key: a split site, a duck tour and a hidden river</a></li>
+    <li><a href="#vauxhall">Vauxhall Bridge: Alfred Drury's sculptures &amp; the Doves typeface</a></li>
+    <li><a href="#albert">Albert Embankment: the Royal Doulton works &amp; bronze toilets</a></li>
+    <li><a href="#tyburn">Tyburn Key: floodable terraces &amp; the Port of London's anxiety</a></li>
+    <li><a href="#bazalgette">Bazalgette's memorial &amp; the forgotten Charles Henry Driver</a></li>
+    <li><a href="#blackfriars">Blackfriars: Nathan Coley's sculptures &amp; the lions that drown London</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Why Tideway Exists:<br><em>London's Sewers &amp; the Great Stink</em></h2>
+
+    <p>This tour, led by Marco Venezuela of Hawkins\Brown alongside colleagues Fiona Stewart and Tess Davis, and joined by architect-historian Benedict O'Looney, covers three of the new public spaces created above the Thames Tideway Tunnel — London's "super sewer." Hawkins\Brown, working in a joint venture with Spanish contractor FCC and Irish tunnelling specialist Murphy, delivered eight of the project's 26 sites in the central section, working alongside landscape designers Gillespies (also known for the Olympic Park). The project began in 2014 and took twelve years.</p>
+
+    <div class="story-box" data-label="The Great Stink of 1855">
+      <p>Before the Victorian sewer system, London's waste flowed into open rivers — the city's "lost rivers" — which carried it into the Thames. <span class="highlight">In the hot, dry summer of 1855, the rivers dried up and the stench became so severe that Parliament had to suspend its sittings.</span> This became known as the Great Stink.</p>
+      <p>Parliament responded by forming the Metropolitan Board of Works and commissioning engineer Joseph Bazalgette to solve the problem. Bazalgette enclosed the lost rivers in proper sewer tunnels, intercepted the waste before it reached the Thames, and piped it east to treatment works. The system was built for a population of up to four million; <span class="highlight-blue">London today has nine million people</span>, and the Victorian sewers have been overwhelmed for decades, spilling raw sewage into the Thames whenever it rains heavily.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">25km</div>
+      <div class="key-fact-text">Length of the new Thames Tideway Tunnel, running roughly along the river from west to east to Beckton treatment works, 40 to 60 metres below ground depending on location.</div>
+    </div>
+
+    <p>Tideway intercepts the same lost rivers Bazalgette once tamed — the Effra, the Tyburn, the Fleet — and drops their flow down vertical shafts into the new tunnel rather than letting it overflow into the Thames during storms. Because central London had so little spare space, these drop shafts were built within existing riverside sites, and rather than fencing them off after construction, Tideway gave the surface back to Londoners as new public parks.</p>
+  </section>
+
+  <section class="section" id="effra">
+    <div class="section-tag">Stop 1 · Vauxhall</div>
+    <h2>Effra Key:<br><em>a Split Site &amp; a Hidden River</em></h2>
+
+    <div class="location">Effra Key · Vauxhall · Thames Tideway</div>
+
+    <p>The tour begins at Effra Key, which intercepts the River Effra — one of London's lost rivers, now entirely culverted underground. This is an unusual site: because of its proximity to the bridge and to the nearby MI6 building (referred to obliquely throughout the tour as "SIS"), the river interception point and the actual drop shaft had to be located in two separate areas of the site.</p>
+
+    <p>The Effra's outfall historically emerged just on the other side of the building here — site of the famous duck tours that used to launch into the Thames, though the guide is uncertain whether they still operate.</p>
+  </section>
+
+  <section class="section" id="vauxhall">
+    <div class="section-tag">Stop 2 · Vauxhall Bridge</div>
+    <h2>Vauxhall Bridge:<br><em>Alfred Drury's Sculptures</em></h2>
+
+    <div class="location">Vauxhall Bridge · LCC · 1900s</div>
+
+    <p>The first Vauxhall Bridge was built around 1815, creating a great Georgian thoroughfare from western London down to Rochester, Dover and Canterbury — still visible in the oval space and rows of listed Georgian houses on Camberwell New Road and Peckham Road. The current bridge, built around 1900 by the London County Council, was one of the earliest steel bridges in London, built wider and deeper than its predecessor to carry the expanding tram network.</p>
+
+    <div class="story-box" data-label="Alfred Drury's New Sculpture">
+      <p>When the bridge's original design was deemed architecturally unsatisfactory, the Victorian architect Norman Shaw was brought out of retirement to improve it. The result includes monumental bronze figures by sculptor <strong>Alfred Drury</strong> — a leading figure in the "New Sculpture" movement, known also for his statue of Sir Joshua Reynolds outside the Royal Academy and the City of London War Memorial outside the Royal Exchange.</p>
+      <p>The downstream figures represent <span class="highlight">science, agriculture, industry, architecture and the decorative arts</span>; the upstream figures are by F.W. Pomeroy, another leading sculptor of the period. The narrow traffic island beside the bridge gives an unusually close view of these sculptures — most Londoners crossing the bridge never see them properly.</p>
+    </div>
+
+    <p>The site also features an artwork by London-based artist Richard Wentworth — a letter to passers-by questioning their relationship with the city, rendered in a typeface called Doves.</p>
+
+    <div class="story-box" data-label="The Doves Type">
+      <p>The Doves Type was created for the Doves Press in Hammersmith. According to the story the guide tells, the partners of the press had a bitter falling out, and one of them threw the metal type — the individual letter "sorts" — into the Thames, deliberately destroying the typeface forever. <span class="highlight-blue">Decades later, mudlarks began finding individual sorts in the river</span>, and a man named Robert Green spent years piecing the typeface back together from the recovered letters and digitising it. When Hawkins\Brown began this project, they contacted Green and asked to use the revived typeface — which now appears on inscriptions across all the Tideway sites, marking each site's name and its depth above the tunnel.</p>
+    </div>
+
+    <p>Standard architectural elements recur across all the Hawkins\Brown Tideway sites: a particular open balustrade design with only vertical elements (deliberately avoiding horizontals, so as not to obstruct river views), granite paving and bronze detailing, and decorative vent columns shaped to echo the spiral movement of water descending the drop shafts — engineered this way so that water doesn't simply free-fall and erode the concrete base over decades.</p>
+  </section>
+
+  <section class="section" id="albert">
+    <div class="section-tag">Stop 3 · Albert Embankment</div>
+    <h2>The Royal Doulton Works<br>&amp; <em>Bronze Toilets</em></h2>
+
+    <div class="location">Albert Embankment · Lambeth · Royal Doulton Pottery Works (former)</div>
+
+    <p>The Effra Key site sits on what was once one of the largest stretches of urban beach in central London, which inspired the landscape design — paving that mimics a receding tide, with a gradient from light to dark, and timber benches shaped like driftwood washed up on shore.</p>
+
+    <div class="story-box" data-label="Richard Wentworth's Bronze Toilets">
+      <p>Among the artworks here are bronze-cast toilet-shaped benches by artist Richard Wentworth — a playful reference to the fact that visitors are sitting directly above a sewer, and to the nearby Royal Doulton Sanitary Ware factory that once dominated this stretch of riverside. <span class="highlight">The factory, demolished after the Clean Air Acts of the 1950s closed London's polluting industries</span>, made its early fortune supplying salt-glazed sewer pipes to the Metropolitan Board of Works for Bazalgette's original sewer network.</p>
+    </div>
+
+    <p>The surviving Doulton building nearby — now dwarfed by the scale of the original works — showcases the company's celebrated architectural terracotta, known in the trade as faience (after Faenza, the Italian ceramic-producing town). Henry Doulton, encouraged by Prince Albert and Henry Cole, exhibited Doulton's decorative ware at the Great Exhibition of 1851 and the International Exhibition of 1862. The frieze on the building was modelled by George Tinworth, the factory's chief modeller, and depicts Henry Doulton himself alongside the women who were major employers in the factory's decorating workshops.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1875</div>
+      <div class="key-fact-text">Approximate completion date of the surviving Doulton terracotta frieze — fired ceramic that has kept its crisp detail and vivid colour for 150 years, in contrast to stone, which erodes.</div>
+    </div>
+
+    <p>Doulton's Carrara Ware — their branded glazed terracotta — appears across London: the Savoy Hotel facade, the Russell Hotel on Russell Square, Thomas Collcutt's Palace Theatre on Cambridge Circus (current home of the Harry Potter stage play), and Finlay's Corner near London Bridge, which the guide's own practice restored. The material's appeal was practical as much as decorative — fired ceramic is harder than stone and resistant to weathering, which is why it was later adopted extensively for London Underground station tiling, where surfaces needed to be both decorative and washable.</p>
+
+    <p>Further along, the site passes Lambeth Palace's medieval gatehouse (built around 1480–90 by Archbishop Morton, in the Tudor diaper-pattern brick that predates the Doulton terracotta by 400 years), St Mary's Lambeth church, and St Thomas' Hospital — designed by Henry Currey in consultation with Florence Nightingale following her work in the Crimean War, its pavilion plan designed to maximise light and air circulation as part of the new Victorian science of sanitation.</p>
+  </section>
+
+  <section class="section" id="tyburn">
+    <div class="section-tag">Stop 4 · Tyburn Key</div>
+    <h2>Floodable Terraces &amp;<br><em>the Port of London's Anxiety</em></h2>
+
+    <div class="location">Tyburn Key · Westminster · adjacent to Bazalgette Embankment</div>
+
+    <p>Tyburn Key intercepts the River Tyburn, another of London's lost rivers. The site's granite facade is engraved with circular profiles representing the different cross-sections of Bazalgette's original Victorian tunnels — some perfectly round, some flat-bottomed, some egg-shaped — a deliberate homage to the engineering experimentation that shaped how water flowed through the original system.</p>
+
+    <div class="story-box" data-label="Negotiating With the Port of London Authority">
+      <p>One of the more striking design decisions here: rather than building a solid flood wall, Hawkins\Brown raised the public ground to flood defence level and created stepped, floodable terraces below it. <span class="highlight">At very high tide, or when a large boat passes, visitors standing on the lowest terrace can get their feet wet.</span></p>
+      <p>This proved controversial during consultation with the Port of London Authority, whose concerns centred on safety — people falling in, or interfering with the navigation channel — rather than aesthetics. <span class="highlight-blue">The terraces include a moveable barrier system that can be deployed to close off the lower level when needed.</span> The negotiation, the team notes, took considerable time.</p>
+    </div>
+
+    <p>Richard Wentworth's artwork appears again here, in the form of bronze-cast sandbags scattered across the flood terraces — realistic enough that visitors sometimes mistake them for the real thing. The reference, again, is to London's "make do and mend" culture, disrupting the formality of this otherwise serious civic site.</p>
+
+    <p>This is one of the only Tideway sites where the ventilation columns are genuine cast bronze rather than painted ductile iron — a material choice reflecting the site's proximity to Westminster's most sensitive heritage context. The existing listed river wall, made of Cornish granite from the De Lank quarry, was matched as closely as possible in the new construction, though built using precast concrete-faced panels for speed rather than solid granite blocks.</p>
+  </section>
+
+  <section class="section" id="bazalgette">
+    <div class="section-tag">Context · Victoria Embankment</div>
+    <h2>Bazalgette's Memorial &amp;<br><em>the Forgotten Charles Henry Driver</em></h2>
+
+    <div class="location">Victoria Embankment · Bazalgette Memorial</div>
+
+    <p>The tour passes the Victoria Embankment Gardens — a gift from the Metropolitan Board of Works to the city, transforming what had been a chaotic stretch of private wharves and commercial quays (some nineteen separate jetties once stood between Blackfriars and Westminster bridges) into one of London's first great public parks.</p>
+
+    <div class="story-box" data-label="The Bazalgette Memorial">
+      <p>Joseph Bazalgette's memorial here, with its Renaissance-inspired marble surround, commemorates the engineer who built the original sewer network, "putting the river in chains" after decades of pollution and political inaction. But Benedict O'Looney notes a quieter injustice: <span class="highlight">Bazalgette ran the project and pushed it through Parliament, but the detailed design of the cast-iron lamp standards, benches and granite steps was largely the work of architect Charles Henry Driver</span>, whose contribution was only acknowledged in his own obituary.</p>
+      <p>Driver — designer of Fenchurch Street, Peckham Rye, and Denmark Hill stations — was part of a generation of architects who recognised that cast iron could be both structurally useful and aesthetically rich. O'Looney, who has restored several of Driver's railway stations professionally, makes the point that this collaboration between engineers and architect-decorators is exactly what the new Tideway sites are continuing.</p>
+    </div>
+
+    <p>The lamp standards along the embankment came from a competition that produced no clear single winner — three different designs were ultimately installed side by side, one of them Bazalgette's own.</p>
+
+    <p>Nearby, the granite piers of the old Hungerford Suspension Bridge — designed by Isambard Kingdom Brunel in the 1840s, demolished when the railway came through to build Charing Cross station — survive, subsumed into the embankment. The bridge's chains were reused at Brunel's Clifton Suspension Bridge in Bristol, which still carries them today.</p>
+  </section>
+
+  <section class="section" id="blackfriars">
+    <div class="section-tag">Stop 5 · Bazalgette Embankment</div>
+    <h2>Nathan Coley's Sculptures &amp;<br><em>the Lions That Drown London</em></h2>
+
+    <div class="location">Bazalgette Embankment · Blackfriars · largest Tideway site</div>
+
+    <p>The tour's final stop is the largest site in the entire Tideway project, intercepting the River Fleet — London's largest lost river, which runs from Hampstead through Camden, past Smithfield Market and outfalls beneath Blackfriars Bridge.</p>
+
+    <div class="story-box" data-label="Building a Floating Concrete Boat">
+      <p>Because the site sits hard against an operational live railway and close to the bridge's foundations, conventional construction was impossible. <span class="highlight">Engineers built the structure offsite as a giant concrete caisson — essentially a floating concrete boat — in a dry dock, then floated it down the river and into position, flooding the dock to lower it into place.</span> This unusual method is one reason the site occupies so much space, and why it was given the most extensive landscaping of any Tideway site in the project.</p>
+    </div>
+
+    <p>Five monumental sculptures by Turner Prize-nominated Glasgow artist <strong>Nathan Coley</strong> dominate the site. Coley, working through a competitive selection process alongside the other Tideway artists, produced non-narrative forms that reference the heroic scale of the engineering — particularly the difficulty of achieving the black hole effect of the drop shaft itself. Though they appear solid, the sculptures are panelised and built using the same modern construction methods as the river wall, tied together internally with steel.</p>
+
+    <blockquote>
+      <p>"They give opportunities for seating, for performance, for people to have a moment of romance with the river."</p>
+      <cite>— Hawkins\Brown team, describing Nathan Coley's artist brief</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="The Lions' Urban Legend">
+      <p>Among the most popular features at this site are the original stone lions from the historic river wall, which had to be raised to match the new flood-defence ground level. Rather than excavate or hide them behind glass, the team simply lifted the lions on granite plinths to their new height — a solution that has proven unexpectedly successful, allowing visitors (and especially children) to come face to face with them.</p>
+      <p><span class="highlight-blue">London tradition holds that if the lions on the Thames ever drown — that is, if the water rises high enough to submerge them — London itself will sink.</span> The team did not, they admit, factor flood risk modelling around this particular piece of folklore.</p>
+    </div>
+
+    <p>The planting scheme here narrates the journey of the River Fleet itself — moving from a woodland character at the top of the site towards a more open, riverine character at the bottom, tracing the river's symbolic path from Hampstead to the Thames. A future kiosk building, shaped to evoke a tunnel boring machine's cutting head, will eventually house a café operator.</p>
+
+    <div class="practical">
+      <strong>The Tideway public sites</strong> are free and open to the public year-round. <strong>Guided tours</strong> with Hawkins\Brown and Benedict O'Looney run periodically and are bookable via Eventbrite or the architects' own channels — search "Thames Walking Tour: Reconnecting With Our River." The full route covers Effra Key, Vauxhall, Albert Embankment, Tyburn Key, Victoria Embankment and Bazalgette Embankment at Blackfriars — roughly 4.75km and worth two and a half unhurried hours.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Thames Tideway · Hawkins\Brown · London<br><br>
+  Notes compiled from tour transcript · 2026
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mersea Island — A Walking Tour with a Local Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── Sticky home nav ── */
+  .home-nav {
+    background: var(--ink);
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .home-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .home-nav a:hover { text-decoration: underline; }
+  .home-nav span {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #8a8272;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="home-nav">
+  <a href="../index.html">← On Foot</a>
+  <span>Walking Tour Notes</span>
+</div>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Mersea Island, Essex</div>
+  <h1>Marsh Island,<br><em>Sinking Slowly</em></h1>
+  <div class="header-sub">West &amp; East Mersea Walk with a Local Guide</div>
+  <div class="header-meta">
+    <span>ROUTE: East Mersea → The Strood → St Peter &amp; St Paul → The Square → West Mersea Front</span>
+    <span>DURATION: ~3 hours</span>
+    <span>GUIDE: Island resident, born here, home again after seven years</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">An island shaped like an arrowhead</a></li>
+    <li><a href="#deep-time">Deep time: London Clay, hippos and Red Hills</a></li>
+    <li><a href="#trinovantes">The Trinovantes &amp; Boudica</a></li>
+    <li><a href="#strood">The Strood: a Saxon causeway</a></li>
+    <li><a href="#blockhouse">The Tudor blockhouse &amp; the Civil War</a></li>
+    <li><a href="#well">St Peter's Well</a></li>
+    <li><a href="#church">St Peter &amp; St Paul: septaria, not flint</a></li>
+    <li><a href="#barrow">The Roman barrow &amp; the missing bones</a></li>
+    <li><a href="#monkey-steps">Monkey Steps &amp; the smugglers</a></li>
+    <li><a href="#square">The Square &amp; the black houses</a></li>
+    <li><a href="#oysters">Oysters, follies &amp; a houseboat wireless star</a></li>
+    <li><a href="#tides">Bradwell across the water &amp; the rising tide</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Five Miles Long,<br><em>Pointing at the Sea</em></h2>
+
+    <p>Mersea Island sits off the Essex coast between two estuaries: the Blackwater, which flows down from Maldon, and the Colne, which flows down from Colchester. They meet just beyond the island's southern tip, at a stretch of water called East Mersea Way — and on the far side of that water, as the guide put it, is Holland. <span class="highlight">The island is roughly five miles long and two miles wide, and its southern point looks straight out across the North Sea toward the Netherlands.</span></p>
+
+    <p>The Blackwater has not always been called the Blackwater. Until the end of the 17th century it was known as the Pant — a name that survives in places along its upper reaches even now.</p>
+
+    <div class="story-box" data-label="Why the River Turned Black">
+      <p>The change of name has a specific, slightly grim origin. Silk workers upstream in Braintree used to tip their waste dye straight into the river. The dye discoloured the water so consistently that people simply started calling it the Blackwater — and the name stuck, eventually displacing the older one almost entirely.</p>
+    </div>
+
+    <p>The island's own name is older still, and more literal than it sounds. <em>Mersea</em> derives from Old English: the first half meaning marsh or pool, the second meaning island. <span class="highlight-blue">Mersea is, quite simply, Marsh Island</span> — a naming pattern shared with island names across the old Anglo-Saxon and Norse-influenced coastline, from the Scottish islands down.</p>
+  </section>
+
+  <section class="section" id="deep-time">
+    <div class="section-tag">Geology &amp; Prehistory</div>
+    <h2>Hippos, Bears &amp; <em>the Red Hills</em></h2>
+
+    <p>Underneath most of the island is London Clay — the same unglamorous bedrock that sits under the capital forty miles away, despite the name having nothing obviously to do with Essex. It is not, by the guide's own admission, a thrilling geological story.</p>
+
+    <p>East Mersea is another matter. During the interglacial period between two ice ages, the area was warm enough to support genuinely startling wildlife. <span class="highlight">Hippopotamus remains have been found at East Mersea, alongside the bones of pigs, bears and wolves</span> — all now on display at Mersea Island Museum, alongside the geological explanation for how they came to be preserved in local clay and gravel.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">5,000</div>
+      <div class="key-fact-text">Years since Bronze Age people — the Trinovantes — first settled Mersea. Long before the hippo bones were understood for what they were, the island's Iron Age and Roman-era inhabitants were already exploiting its coastline for salt.</div>
+    </div>
+
+    <p>That salt production has left a visible mark on the landscape: the <strong>Red Hills</strong>, low mounds found all along the Essex coast where prehistoric and Roman salt-makers built fires to evaporate seawater, permanently reddening the soil beneath. A well-known example lies on the edge of the salt marsh at East Mersea, just over half a mile from the Strood — from the top of a passing bus, ordinary vegetation is visible on the surface, with the red hill itself hidden underneath.</p>
+  </section>
+
+  <section class="section" id="trinovantes">
+    <div class="section-tag">Iron Age &amp; Roman Britain</div>
+    <h2>Joining Boudica's <em>Revolt</em></h2>
+
+    <div class="location">Trinovantian Territory · c. 1st century AD</div>
+
+    <p>The Trinovantes, the tribe who occupied Mersea and the surrounding mainland, are chiefly remembered today for one act: joining forces with the Iceni under Boudica to burn Colchester — Roman Britain's first capital — to the ground in around AD 60/61, after decades of Roman mistreatment that included the flogging of Boudica herself and the assault of her daughters.</p>
+
+    <blockquote>
+      <p>"Boudica took her lot, the Iceni, and our lot, the Trinovantes, and burnt down every vestige of that Roman city, and killed absolutely everybody there."</p>
+      <cite>— Local Guide</cite>
+    </blockquote>
+
+    <p class="guide-says">Colchester Castle now has an interactive display asking visitors, "Was Boudica right?" — and, in the guide's telling, the women who vote invariably say yes.</p>
+
+    <p>Boudica herself is generally placed further north, in Suffolk, rather than on Mersea — she is remembered here chiefly because the island's own tribe rode out to join her.</p>
+  </section>
+
+  <section class="section" id="strood">
+    <div class="section-tag">Stop 1 · The Causeway</div>
+    <h2>The Strood:<br>A <em>Saxon</em> Crossing</h2>
+
+    <div class="location">The Strood · Causeway dated to c. 650 AD</div>
+
+    <p>The only road link between Mersea and the Essex mainland is the Strood — a causeway whose name is itself Anglo-Saxon, referring to a marshy crossing. It is, by any measure, a remarkably old piece of infrastructure to still be in daily use.</p>
+
+    <div class="story-box" data-label="A Piece of Wood 1,400 Years Old">
+      <p>At the far end of Mersea Island Museum stands an ordinary-looking oak post — a pile driven in to support the original Saxon crossing. It has been radiocarbon dated to roughly AD 650. Documentation survives recording that a given landowner on the island installed a thousand such piles to build the causeway.</p>
+      <p>It is, by the guide's own admission, her favourite object in the museum — not because it is beautiful, but because of how precisely its origin is known: a specific piece of wood, from a specific crossing, dated to a specific century.</p>
+    </div>
+
+    <p>For a long time it was assumed the Romans had built the Strood, since a water main laid across it in the twentieth century uncovered timber that seemed too old to be anything else. Later dating settled the matter in the Saxons' favour instead — though the Romans, as it turns out, built a crossing of their own nearby, now lost beneath higher modern water levels.</p>
+  </section>
+
+  <section class="section" id="blockhouse">
+    <div class="section-tag">Stop 2 · East Mersea</div>
+    <h2>The Blockhouse &amp; <em>the Civil War</em></h2>
+
+    <p>Along the seawall at the end of Coppermore Grove — the guide's note, not a promise of certainty on the spelling — stands the remains of a blockhouse built under the Tudors as a coastal artillery position. Archaeological excavation of the site was scheduled to begin the following week at the time of the walk.</p>
+
+    <p>The blockhouse saw use again during the English Civil War. <span class="highlight">Mersea's own loyalties were mixed — islanders were wary of both sides — but the fighting here mostly involved Royalist forces attempting to force their way into the mainland town nearby.</span> Ships were laid up in the river during a later national crisis too: on one occasion, 23 vessels, including the Royal Yacht Britannia, sheltered in the water off the island.</p>
+  </section>
+
+  <section class="section" id="well">
+    <div class="section-tag">Stop 3 · The Monkey Steps</div>
+    <h2>St Peter's Well</h2>
+
+    <p>Nearly every landmark on Mersea carries the name St Peter, since the parish church is dedicated to St Peter and St Paul — and St Peter's Well, at the top of the Monkey Steps, is no exception.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1925</div>
+      <div class="key-fact-text">The year mains water finally reached Mersea Island. Until then, St Peter's Well was the only source of fresh water for the boats working this stretch of coast — islanders came down with buckets, much as is still shown in charity appeals for water access elsewhere in the world today.</div>
+    </div>
+
+    <p>The guide, who grew up drawing water from a well in her own garden, remembers it as better tasting than what replaced it: council water so heavily fluoridated in this part of Essex that a generation of local children's teeth turned visibly black — a phenomenon she says was recorded in only one or two places in Britain. Gas reached the island later still, not arriving until the late 1980s.</p>
+  </section>
+
+  <section class="section" id="church">
+    <div class="section-tag">Stop 4 · St Peter &amp; St Paul</div>
+    <h2>Septaria,<br><em>Not Flint</em></h2>
+
+    <div class="location">Parish Church of St Peter &amp; St Paul · Saxon origins, Norman tower</div>
+
+    <p>The core of the church is Saxon, though the tower is Norman, and a small effigy of St Peter over the door is a comparatively recent addition. Much of the fabric was recycled from elsewhere: a rood loft and other timber came from a church in Tollesbury when it was pulled down, and thin, tile-like Roman bricks are visible built into the tower — reused from a Roman structure nearby, as was common practice across Essex.</p>
+
+    <div class="story-box" data-label="The Stone That Isn't Flint">
+      <p>Much of the church's stonework looks, to an untrained eye, like flint — but it is not. It is <strong>septaria</strong>: a natural concretion found in the local clay, similarly hard and irregular but browner and rougher in texture. The same material was used to build the Roman walls of Colchester, and it remains something of a regional curiosity — nobody the guide has asked seems entirely sure where, geologically, it actually forms.</p>
+    </div>
+
+    <p>The building has its own disaster story. <span class="highlight">In 1884, Britain's only earthquake ever recorded as causing real damage struck the region, shattering every pane of glass in the church.</span> No one was hurt. One of the replacement windows, in the Arts and Crafts style, dates from 1905; another, far more recent, was installed roughly a century after that.</p>
+
+    <p class="guide-says">"Sorry about my dates — but you wouldn't remember them anyway, would you?"</p>
+
+    <div class="story-box" data-label="The Chest and the Peasants' Revolt">
+      <p>An oak chest inside the church, over 400 years old, was built to store parish records — a direct response, the guide explains, to the Peasants' Revolt, during which records across the country were deliberately burned by rebels seeking to destroy evidence of feudal obligations. The chest that replaced whatever was lost has itself now stood for four centuries.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting the church:</strong> Open to visitors; look for the reused Roman brick in the tower, the septaria stonework throughout, and the 1905 Arts and Crafts window. The organ was played for twenty years by the guide's own father — a detail with no historical significance whatsoever, and included for exactly that reason.
+    </div>
+  </section>
+
+  <section class="section" id="barrow">
+    <div class="section-tag">Stop 5 · Mersea Mount</div>
+    <h2>The Roman Barrow &amp;<br>the <em>Missing Bones</em></h2>
+
+    <div class="location">Mersea Mount · Excavated early 20th century</div>
+
+    <p>East Mersea holds a burial mound, or barrow, large enough to be mistaken for a natural hill. When it was excavated in the early twentieth century, archaeologists found a lead casket welded shut, and inside it a glass vessel — <span class="highlight">a piece of Roman glass roughly 1,700 years old, remarkably intact</span> — containing cremated remains, presumed to belong to a person of some local importance.</p>
+
+    <blockquote>
+      <p>"Two years ago we became conscious that we weren't looking after it right — we told the Colchester museum, and we think they've lost our bones. Nobody's giving them back."</p>
+      <cite>— Local Guide</cite>
+    </blockquote>
+
+    <p>The dispute, as the guide describes it, remains unresolved: the remains were sent away for safekeeping and analysis, and the island has not had confirmation of their return. Whatever the outcome, the barrow itself — and the glass vessel recovered from it — stand as one of the clearest physical links between Mersea and the Roman world.</p>
+  </section>
+
+  <section class="section" id="monkey-steps">
+    <div class="section-tag">Stop 6 · The Foreshore</div>
+    <h2>The Monkey Steps &amp;<br>the <em>Smugglers</em></h2>
+
+    <p>A flight of narrow steps down to the water is known locally as the Monkey Steps — a name nobody can definitively explain, though the most persistent theory involves the Coast Guard.</p>
+
+    <div class="story-box" data-label="Calling the Coast Guard 'Monkeys'">
+      <p>According to island tradition, a Coast Guard hut once stood at the bottom of the steps. Local smugglers, who had little love for the Coast Guard, are said to have nicknamed them "monkeys" — much as police in other eras were called by their own uncomplimentary slang — and the steps took the name from the disliked officials rather than from the smugglers themselves.</p>
+      <p><span class="highlight-green">Nobody actually knows whether this is true.</span> Old rhymes about ponies "trotting through the dark" hint at a wider local smuggling folklore along this stretch of coast, most of it, by the guide's account, sympathetic to the smugglers rather than the authorities chasing them.</p>
+    </div>
+
+    <p>Today the steps are used less for evading the Coast Guard than for reaching the water to swim — something the guide does daily, tide permitting.</p>
+  </section>
+
+  <section class="section" id="square">
+    <div class="section-tag">Stop 7 · West Mersea</div>
+    <h2>The Square &amp;<br>the <em>Black Houses</em></h2>
+
+    <p>West Mersea's old fishing quarter is centred on a cluster of streets known as the Square — despite being, as the guide points out with some amusement, rectangular rather than square. The cottages here were built for fishermen and their families; one was destroyed during the Second World War and later rebuilt in the same style.</p>
+
+    <p>Many of the older houses along the waterfront are tarred black — a traditional coastal treatment applied for weatherproofing rather than any aesthetic preference, though the effect, especially with white-painted houses interspersed among them, has become part of the area's visual identity. All of the older houses stand detached from one another; none share a party wall, a pattern distinct from terraced housing elsewhere.</p>
+
+    <div class="story-box" data-label="A Shipowner's Charity">
+      <p>One striking building near the Square was funded by a shipowner concerned for the welfare of local fishermen and sailors — a piece of Victorian maritime philanthropy repeated in port towns across Britain, where wealthy owners funded reading rooms, shelters or almshouses for the men whose labour built their fortunes.</p>
+    </div>
+  </section>
+
+  <section class="section" id="oysters">
+    <div class="section-tag">Stop 8 · The Front</div>
+    <h2>Oysters, Follies &amp;<br>a <em>Houseboat on the Wireless</em></h2>
+
+    <p>Oyster farming has shaped Mersea's economy for longer than almost anything else on the island. <span class="highlight">Shells identified as coming from Mersea oysters have been found in excavations in Rome</span> — evidence of a trade route running from this stretch of Essex coast to the heart of the Roman Empire nearly two thousand years ago. Oyster processing continues today from a shed the guide calls the "combination shed," though the traditional open-air rinsing sheds she remembers from her return to the island seven years ago have mostly disappeared.</p>
+
+    <div class="story-box" data-label="What a Folly Is, on Mersea">
+      <p>Locally, a "folly" does not mean an eccentric ornamental building — it means a narrow alleyway running between two rows of houses down to the water, more like a passage or ginnel elsewhere in England. Mersea has several, tucked between the older cottages, each leading back toward the museum or the front.</p>
+    </div>
+
+    <p>Along the East Mersea shoreline, a scatter of houseboats — some occupied full-time, all fitted with walkways for when the tide comes in and strands them on the mud — includes one with a small annexe that once belonged to a well-known wireless broadcaster of the mid-twentieth century, a detail the guide offers with the caveat that this is essentially all she knows about him.</p>
+
+    <div class="story-box" data-label="The Man Who Invented the Mulberry Harbour">
+      <p>A house near the site of the old Victory pub is said, in island tradition, to have been the home of the engineer credited with inventing the Mulberry Harbour — the artificial floating harbours towed across the Channel to support the 1944 Normandy landings, built because the invasion fleet could not simply pull landing craft up onto open beaches. Winston Churchill is said to have visited the house to meet him.</p>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="tides">
+    <div class="section-tag">Stop 9 · Looking Across the Water</div>
+    <h2>Bradwell, Isostasy &amp;<br>the <em>Rising Tide</em></h2>
+
+    <div class="location">View across the Blackwater to Bradwell-on-Sea</div>
+
+    <p>Looking east across the water from Mersea, a distant chapel marks the site of Bradwell — once home to a Roman fort the guide calls Othona, whose stones were reused to build the chapel of St Peter-on-the-Wall, a building still consecrated and still used for occasional services and pilgrimages today. Beside it stands Bradwell nuclear power station, built in 1962 and watched under construction by islanders who, at the time, were genuinely proud of it. It has since been decommissioned.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">2mm</div>
+      <div class="key-fact-text">Approximate annual rate at which southern England is sinking, relative to Scotland, in a slow seesaw effect called isostasy — the land rebounding from the weight of Ice Age glaciers, with Scotland rising as the south subsides. Combined with sea level rise, it is one reason the Strood floods more often than it used to.</div>
+    </div>
+
+    <p>The Strood is Mersea's only road connection to the mainland, and it goes under water at high tide — often enough that islanders check tide tables before planning a journey off the island, much as they might check the weather. <span class="highlight-blue">Full and new moons bring the highest tides, sometimes closing the causeway for two or three hours in the middle of the day.</span> A high tide of around 4.7 metres is manageable; anything above roughly 5 metres and the crossing is best avoided altogether.</p>
+
+    <blockquote>
+      <p>"We always have to check it out. I've got a little tide app — Mersea Tides — and it tells you whether you're okay or not."</p>
+      <cite>— Local Guide</cite>
+    </blockquote>
+
+    <div class="practical">
+      <strong>Getting there and back:</strong> Mersea Island is reached from Colchester by bus, crossing the Strood causeway. Check tide times before travelling, particularly around the middle of the day near a full or new moon — the causeway does flood. Mersea Island Museum, home to the Ice Age bones, the Strood's original oak pile and material on the Roman barrow, is open until 5pm.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>MERSEA ISLAND</span> · Local Guide, on foot from East to West Mersea<br><br>
+  Transcript lightly edited for clarity from a recorded conversation. Dates and spellings as best determined; some local names (the Monkey Steps, "follies," Coppermore Grove) reflect oral tradition rather than official record.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The North Wing — A Walking Tour of St Bartholomew's Hospital</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ── Sticky home nav ── */
+  .home-nav {
+    background: var(--ink);
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 300;
+    border-bottom: 1px solid #2a2420;
+  }
+  .home-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .home-nav a:hover { color: #c9a24a; }
+  .home-nav span {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #8a8070;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="home-nav">
+  <a href="../index.html">← On Foot</a>
+  <span>Walking Tour Notes</span>
+</nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — North Wing, St Bartholomew's Hospital, EC1</div>
+  <h1>Nine Hundred Years,<br>a <em>Pie Full of Pigeons</em></h1>
+  <div class="header-sub">North Wing &amp; Great Hall Tour · Guide: Barts Heritage Volunteer</div>
+  <div class="header-meta">
+    <span>ROUTE: Henry VIII Gatehouse → North Wing Hall → Staircase → The Great Hall</span>
+    <span>DURATION: ~1 hour</span>
+    <span>GUIDE: Barts Heritage volunteer, born in the hospital's East Wing</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#intro">Nine hundred years on one site</a></li>
+    <li><a href="#gibbs">Sir James Gibbs & the free commission</a></li>
+    <li><a href="#entrance">The North Wing: a building with no medicine in it</a></li>
+    <li><a href="#admission">Governors, petitions & the deserving poor</a></li>
+    <li><a href="#staircase">The staircase: an Italian vs. an Englishman</a></li>
+    <li><a href="#bethesda">The Pool of Bethesda</a></li>
+    <li><a href="#samaritan">The Good Samaritan</a></li>
+    <li><a href="#conservation">Cleaning three centuries of candle soot</a></li>
+    <li><a href="#charter">The Charter Window</a></li>
+    <li><a href="#ceiling">The ceiling: stucco, poppies & gaslight</a></li>
+    <li><a href="#donors">The donor boards</a></li>
+    <li><a href="#uses">Dinners, exams, a strike & a pie full of pigeons</a></li>
+    <li><a href="#attic">The signatures nobody was meant to see</a></li>
+    <li><a href="#rahere">Rahere & the vision at Smithfield</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="intro">
+    <div class="section-tag">Introduction</div>
+    <h2>The Oldest Hospital in Britain<br>Still on <em>Its Original Site</em></h2>
+
+    <p>Our guide opens with the fact that anchors everything else about the place: St Bartholomew's — Barts — has stood on this exact patch of Smithfield since 1123. <span class="highlight">Over 900 years of continuous use on one site</span>, which makes it the oldest hospital in the UK still operating where it began.</p>
+
+    <p>The connection is personal rather than professional. An email went round a few years ago, forwarded on by the guide's parents, asking for volunteers to help during a major restoration of the North Wing. The guide's father trained as a doctor here in the 1970s and 80s — and the guide herself was born in the hospital's East Wing, in the Bayford Operating Theatre.</p>
+
+    <div class="story-box" data-label="Scaffolding & Wellies">
+      <p>Volunteering meant more than handing out leaflets. During the restoration, with the North Wing's scaffolding still up, the guide led tours in hard hats and wellies through the working site — watching the building return, piece by piece, to something closer to its original state.</p>
+    </div>
+
+    <p>What the medieval hospital actually looked like is hard to picture now: a scattered, ramshackle collection of buildings, chaotic by the standards of any century. By the early 1700s, with London's population climbing fast, the governors decided the whole site needed replacing — something organised, fit for purpose, and built to last.</p>
+  </section>
+
+  <section class="section" id="gibbs">
+    <div class="section-tag">Stop 1 · The Square</div>
+    <h2>Sir James Gibbs &<br><em>the Free Commission</em></h2>
+
+    <div class="location">The Square · Rebuilt from the 1730s</div>
+
+    <p>The governors had an unusual stroke of luck: one of their own number was Sir James Gibbs, among the most sought-after architects working in London at the time. He offered his services to the hospital for free.</p>
+
+    <p>Gibbs had trained in Rome under Carlo Fontana and worked in both the Baroque and Palladian idioms. By the time he took on Barts he had already designed St Mary le Strand and was midway through his second London church commission — St Martin-in-the-Fields, in Trafalgar Square. His Palladian credentials ran deeper still: the Radcliffe Camera in Oxford, the building that ends up behind every news report filed from the city, is also his.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">4</div>
+      <div class="key-fact-text">Buildings arranged around a central courtyard, now known simply as The Square. Gibbs's plan let the governors build one block at a time as money came in — and kept fire and disease from spreading easily between wings.</div>
+    </div>
+
+    <p>Because the hospital relied entirely on donations to rebuild itself — raise a bit, build a bit, raise a bit more — the four-block plan was as practical as it was handsome. It also gave Gibbs the chance to stage an entrance: visitors arriving off a noisy, chaotic Smithfield market square would pass through narrow hallways and emerge into the calm, ordered geometry of The Square beyond. The effect, by design, was reassurance — <span class="highlight">these governors know what they are doing.</span></p>
+
+    <div class="practical">
+      <strong>Architecture terms:</strong> Palladianism (a British classical style, 1715–1760, based on the 16th-century Venetian architect Andrea Palladio) and Baroque (the ornate, decorative style that reached Britain from 17th-century Italy) both appear across the site — Palladian in the exterior symmetry, Baroque in the plasterwork inside.
+    </div>
+  </section>
+
+  <section class="section" id="entrance">
+    <div class="section-tag">Stop 2 · North Wing Entrance</div>
+    <h2>The Building With<br><em>No Medicine in It</em></h2>
+
+    <div class="location">North Wing · First of the four blocks completed</div>
+
+    <p>The North Wing was the first of Gibbs's four buildings to go up — and, our guide points out, the one oddity of a hospital's first building is that it contains no medical facilities whatsoever. Its job was fundraising.</p>
+
+    <p>The entrance hall is a grand, double-height space with two murals by William Hogarth looking down over it. The whole wing was built to attract London's wealthy — dinners, events, a place to rub shoulders with other people of standing — and, not incidentally, to encourage exactly those people to donate. <span class="highlight-blue">The North Wing is best understood as a machine for softening people up before they were asked for money.</span></p>
+
+    <p>Above the entrance are the hospital's arms — a black-and-white shield that recurs across the site, marking donations from generations of governors.</p>
+  </section>
+
+  <section class="section" id="admission">
+    <div class="section-tag">Stop 3 · The Governors' Room</div>
+    <h2>Petitions, Patronage<br>& the <em>Deserving Poor</em></h2>
+
+    <p>Governors ran the hospital with no medical training whatsoever, and — this is the detail that lands hardest — they had complete control over who was admitted for treatment.</p>
+
+    <div class="story-box" data-label="How Admission Actually Worked">
+      <p>To be admitted, you needed a letter of recommendation from a governor, an admission fee, and — grimly — the name of whoever would cover your burial costs if you died in the hospital's care. Fees could be paid by an employer or parish, but the destitute, or anyone judged incurable, were simply turned away.</p>
+      <p>A governor's letter did double duty: it helped the admission board judge whether Barts could actually treat you, and it vouched for your "moral character." Patients who broke house rules faced real penalties — miss church on a Sunday and you lost your evening meal.</p>
+    </div>
+
+    <p>The system also worked as patronage. Donate money or become a governor, and you gained the right to nominate your own workers for preferential treatment — obviously useful if your business depended on a healthy workforce. The wealthy, meanwhile, were never treated here at all; they were seen in their own homes. Barts was built for the working poor, not the upper classes who funded it.</p>
+
+    <blockquote>
+      <p>"They were completely in control of who was treated in the hospital — no medical experience whatsoever. There seemed to be a real link, in people's minds, between being destitute and having some kind of moral failing."</p>
+      <cite>— our guide</cite>
+    </blockquote>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="staircase">
+    <div class="section-tag">Stop 4 · The Hogarth Stair</div>
+    <h2>An Italian, an Englishman<br>& <em>a Free Rivalry</em></h2>
+
+    <div class="location">The Staircase · Painted 1734–1737</div>
+
+    <p>The staircase leading up to the Great Hall was meant to do the same job as the entrance hall below it — impress and loosen the purse strings of visiting donors. Large-scale historical or mythological murals were fashionable in grand houses and institutions of the period, and the hospital first approached the well-known, and expensive, Venetian painter Giacomo Amigoni for the commission.</p>
+
+    <div class="story-box" data-label="Hogarth's Free Offer">
+      <p>William Hogarth heard about it and offered his services for free. Hogarth was famous chiefly for social satire — works like <em>A Rake's Progress</em> — rather than the grand biblical or mythological scenes usually reserved for foreign masters. Taking on the staircase was, for him, a departure and something of a gamble.</p>
+      <p>Hogarth was, as our guide puts it, as local an artist as it was possible to be: born in St Bartholomew's Close, right next to the hospital, and baptised in the font at St Bartholomew the Great across the square. He became a governor in 1734. He was also passionate about supporting English artists over foreign imports, and believed himself every bit Amigoni's equal — a rivalry that had simmered for years before this commission gave it somewhere to land.</p>
+    </div>
+
+    <p>Hogarth assembled a small team. Landscape painter and set designer George Lambert added the scenery behind both large paintings — he had a studio in Covent Garden that may be where <em>The Pool of Bethesda</em> was painted before being brought here. An assistant known only as Mr Richards painted the smaller scenes from the life of Rahere, made to resemble terracotta, along with the scrollwork and the ceiling decoration leading into the Great Hall.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1736–37</div>
+      <div class="key-fact-text"><em>The Pool of Bethesda</em> was completed off-site and fixed to the wall in 1736; <em>The Good Samaritan</em>, painted in-situ on the opposite wall, followed in 1737 — deliberately staggered so the colours in both paintings would match under the same light.</div>
+    </div>
+  </section>
+
+  <section class="section" id="bethesda">
+    <div class="section-tag">Stop 5 · The Staircase</div>
+    <h2>The Pool of <em>Bethesda</em></h2>
+
+    <p>The larger of Hogarth's two paintings depicts a miracle from the Gospel of St John: an angel occasionally stirs the waters of a pool in Jerusalem, and whoever reaches it first is healed. A man who has never once won that race lies on the ground; Jesus tells him to take up his bed and walk, and — miraculously — he does.</p>
+
+    <p>As a hospital governor, Hogarth had access to the wards at Barts, and the people gathered round the pool may well be modelled on patients he had actually observed. <span class="highlight">Medical students have since identified specific, plausible conditions in the painted figures</span> — a woman with a swollen, reddened breast (a sign of mastitis or possibly cancer), and a pale, greenish-skinned figure suggesting anaemia, historically nicknamed "the green sickness" for exactly that colouring.</p>
+
+    <div class="story-box" data-label="A Painting With an Edge">
+      <p>Look closer and the painting is quietly critical of its own audience. An attendant pushes aside a mother and her baby to make room for a wealthy woman being carried into the water by servants — first in line by privilege rather than need. It's a pointed message for the paying donors filing past on their way to the Great Hall: charity, done properly, doesn't queue-jump for money.</p>
+    </div>
+
+    <p>Underneath the main scene, Mr Richards's smaller panels — painted to imitate terracotta — show scenes from the life of Rahere, the hospital's founder, whose own story forms the tour's final stop.</p>
+  </section>
+
+  <section class="section" id="samaritan">
+    <div class="section-tag">Stop 6 · The Staircase</div>
+    <h2>The Good <em>Samaritan</em></h2>
+
+    <p>Facing <em>Bethesda</em> on the opposite wall is the parable of the Good Samaritan — an Israelite traveller, robbed and left injured by the roadside, passed over by a priest and a Levite before a Samaritan stranger stops, tends his wounds, and pays an innkeeper for his recovery.</p>
+
+    <p>The message to potential donors is not subtle, and isn't meant to be: a reminder of the charitable duty to help people from any background, not only one's own community. <span class="highlight-green">Hogarth signs the painting with a small, personal joke</span> — his own pug, known to have been called Trump, appears jumping down at the edge of the scene, tucked in alongside a second dog in the shadows.</p>
+
+    <div class="guide-says">"Where's the black dog? — just in the corner there, jumping down off the ledge."</div>
+  </section>
+
+  <section class="section" id="conservation">
+    <div class="section-tag">Behind the Scenes</div>
+    <h2>Cleaning Three Centuries<br>of <em>Candle Soot</em></h2>
+
+    <p>Coal fires, candle soot and simple sunlight had done real damage by the time of the recent restoration. Hogarth's canvases needed cleaning and varnishing within twenty years of completion — against his own explicit instructions, since he worried varnish would leave a distracting sheen. A condition report from 1810 recorded that <em>Bethesda</em> had "suffered much from the sun," and that <em>The Good Samaritan</em>, cleaned around 1780, had been pressed so hard against its frame that the canvas creased.</p>
+
+    <div class="story-box" data-label="Seven Layers of Varnish">
+      <p>By the time proper restoration began in the 1980s, the paintings were caked in seven layers of natural resin varnish, hardened and discoloured after two centuries. Some earlier over-cleaning had gone the other way, stripping paint down to bare canvas in places.</p>
+      <p>The most recent conservation work, part of the Sharing Historic Barts project, involved a gentle clean with deionised water and only localised retouching — tiny amounts of reversible paint added where original paint was lost. Removing the accumulated dirt revealed something new: infra-red photography has picked up <em>pentimenti</em>, faint traces of changes Hogarth made to the composition mid-painting, now visible as the later paint layers have grown more transparent with age.</p>
+    </div>
+
+    <p>One visitor on the tour — training as an architect specialising in building conservation — pointed out a detail easy to miss entirely: a full modern heating and cooling system now runs beneath the historic floor of the Great Hall, installed to regulate temperature and humidity for the sake of the paintings and plasterwork above, with the original floorboards lifted, cleaned and relaid on top so that none of it shows.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="charter">
+    <div class="section-tag">Stop 7 · The Great Hall</div>
+    <h2>The Charter Window</h2>
+
+    <div class="location">The Charter Window · Made in the 1600s</div>
+
+    <p>The stained glass Charter Window celebrates the hospital's re-founding by Henry VIII in 1546 — a necessity after the earlier dissolution of the monasteries had stripped Barts of its priory status and its funding. The king is shown handing over the hospital's royal charter, officially signed in 1547, just weeks before Henry VIII's death. The charter itself survives in the hospital's own archives.</p>
+
+    <p>The kneeling figure receiving the charter is disputed: possibly Sir John Gresham, Lord Mayor of London — which would represent the City of London formally taking on responsibility for the hospital — or Thomas Vicary, surgeon to Henry VIII and the hospital's first superintendent.</p>
+
+    <div class="story-box" data-label="The Only Survivor">
+      <p>The window is the sole surviving feature of the medieval Great Hall, moved into the new North Wing in the 1740s, a decade after the building itself was finished. When it was made in the 1600s, decorative stained glass was reserved for only the grandest public buildings — churches, guildhalls — and the governors wanted their new hall to compete with the City's finest, both to impress guests and to encourage donations.</p>
+      <p><span class="highlight">Generations of glaziers, working between 1652 and 1946, etched their own names and dates into the glass</span> — an accidental chronology of repair that conservators still use today to date each pane and plan careful restoration.</p>
+    </div>
+
+    <blockquote>
+      <p>Restoring the glass after the Second World War, conservator Wilfred Drake dismissed the window as having "little artistic merit," calling its newest panes "ALL UGLY." Hospital staff disagreed — and the window survived.</p>
+    </blockquote>
+
+    <p>Conservation work resumed in 2024, cleaning the glass, stabilising old repairs and correcting areas where panels had bowed with age — generously supported by the Pilgrim Trust and the Barts League of Nurses.</p>
+  </section>
+
+  <section class="section" id="ceiling">
+    <div class="section-tag">Stop 8 · The Great Hall</div>
+    <h2>Stucco, Poppies<br>& <em>Gaslight</em></h2>
+
+    <div class="location">The Ceiling · Designed by Gibbs</div>
+
+    <p>Look up, and the ceiling is the room's real showpiece: designed by James Gibbs and executed by the master plasterer Jean Baptiste St Michele, in the decorative lime plaster known as stucco — his only identified work anywhere in Britain. Stucco is easily worked while wet and can be left in its natural white or painted once dry; here, it was modelled entirely by hand, on site.</p>
+
+    <p>The design is Baroque, packed with botanical motifs chosen for their associations with healthcare: oak leaves for strength, laurel wreaths for triumph, palm branches for peace. <span class="highlight">Some of the rosettes are poppies</span> — a quiet nod to the historic use of opium for pain relief. The gilded detail was added only in the 19th century; most of the plaster underneath is original.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1950s</div>
+      <div class="key-fact-text">The three largest ceiling roses, originally featuring bellflowers at their centre, were removed in the 19th century to make way for gas lighting. Their current replacements, moulded from gypsum plaster rather than lime, date only from the 1950s.</div>
+    </div>
+
+    <p>Conservation was mostly about cleaning rather than replacing: a team of five spent weeks removing dirt and soot residue with soft animal-hair brushes and conservation-grade vacuums, retouching gilding by hand with acrylic gold paint, and repairing a section of water damage in the north-east corner where plaster had come away from the wall entirely.</p>
+  </section>
+
+  <section class="section" id="donors">
+    <div class="section-tag">Stop 9 · The Great Hall</div>
+    <h2>The Donor Boards</h2>
+
+    <p>The walls carry framed and painted panels listing over 3,000 donor names, the earliest from 1547 and the most recent added by Barts Heritage between 2020 and 2025. In 1736 the governors commissioned "a Mr Richards" — a different Richards to Hogarth's assistant — to letter the panels, the earliest names in gold leaf.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">£4–£9,347</div>
+      <div class="key-fact-text">The range of individual donations recorded on the boards. Names at floor level on the south wall belong to governors who were required to pay a £50 "fine" on nomination and election to the board — sometimes recorded oddly as "52 10," meaning 50 guineas converted into pounds.</div>
+    </div>
+
+    <p>Not every gift was cash. Nicholas Dickens is recorded in 1653 as donating "two Acres of Land, in Shoreditch." Institutions appear too — the City of London Brewery Company (1869) and the Post Office (1855) both have their names on the south wall.</p>
+
+    <div class="story-box" data-label="Uncomfortable Money">
+      <p>Like most charities dependent on donation, some of the wealth that funded Barts came directly from the exploitation of others. Hans Sloane — whose collection forms the basis of the British Museum — the Beckford family, and Edward Colston, a Barts governor whose Bristol statue was famously toppled in 2020, were all connected to the transatlantic slave trade.</p>
+      <p>Other names cut differently. Angela Burdett-Coutts, once called "the richest heiress in England," gave £100 in 1850 and spent most of her fortune on philanthropy; 30,000 people are said to have attended her wake. William Sharp, a private surgeon whose clients included George III, became a governor in 1778 — he and his brother Granville were prominent slavery abolitionists.</p>
+    </div>
+  </section>
+
+  <section class="section" id="uses">
+    <div class="section-tag">Stop 10 · The Great Hall</div>
+    <h2>Dinners, Exams, a Strike<br>& <em>a Pie Full of Pigeons</em></h2>
+
+    <p>Built in the 1730s as a formal room for governors' meetings — recorded in the minutes as "a large Hall for the meeting of the Governours at a General Court" — the North Wing also housed administrative rooms, a home for the hospital clerk, and a room for admitting, triaging and discharging patients.</p>
+
+    <div class="story-box" data-label="A Room for Everything">
+      <p>Governors' dinners were a regular fixture, including the "Buck Feast," a tradition dating to the 1600s, and an annual Old Students' dinner where Barts alumni returned to the hall via the Hogarth stair — the paintings' themes of charity and healing serving, quite deliberately, as a reminder of the guests' own obligations.</p>
+      <p>Less formally, the hall hosted exhibitions and performances — and, in its early years, laundry, much to the hospital clerk's irritation. From the late 1880s until the Second World War, the Barts Amateur Dramatics Club staged Christmas shows here, with patients and staff invited to dress rehearsals free of charge. During the 1926 General Strike, the hall became a makeshift dormitory for medical students recruited into the Special Constabulary.</p>
+    </div>
+
+    <p><span class="highlight">The hospital's 850th anniversary in 1973</span> was marked here with a mock Tudor feast — including a pie filled with live pigeons — and an art exhibition opened by the Poet Laureate, John Betjeman, who wrote a short poem for his friend, Barts surgeon John Wickham:</p>
+
+    <blockquote>
+      <p>"The ghost of Rahere still walks in Bart's<br>It gives an impulse to generous hearts."</p>
+      <cite>— John Betjeman</cite>
+    </blockquote>
+
+    <p>Above each fireplace hang portraits of three figures significant to the hospital's history: Henry VIII, in the style of Hans Holbein the Younger; Saint Bartholomew, shown with the flaying knife of his martyrdom; and King Edward VII, painted by Luke Fildes while still Prince of Wales, who dined in the Great Hall in January 1868 on his first official royal visit.</p>
+  </section>
+
+  <section class="section" id="attic">
+    <div class="section-tag">Hidden From View</div>
+    <h2>The Signatures<br>Nobody Was Meant to See</h2>
+
+    <p>The donor boards record who paid for the Great Hall. A quieter, less deliberate record survives in the attic space above it, hidden from any visitor: a wall carved with almost 100 signatures, left by the craftspeople who actually built and maintained the room, often noting their trade alongside their name and date.</p>
+
+    <div class="story-box" data-label="Carpenter Tobias Priest">
+      <p>Carpenter Tobias Priest worked at Barts for around fifteen years. He was commissioned to mount the King Henry VIII portrait in the Great Hall and carved the moulds the plasterers used for the ceiling above it. When he died in 1749, his wife Ann took over and managed his carpentry contract for the West Wing — a rare surviving record of a woman running a skilled trade in her own right in the mid-18th century.</p>
+    </div>
+
+    <p>In the Charter Window itself, glaziers working between 1652 and 1946 left the same kind of mark, scratching their names and the date into the glass they repaired — creating, without meaning to, a working chronology of the window's conservation history.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="rahere">
+    <div class="section-tag">The Founding Story</div>
+    <h2>Rahere &<br>the <em>Vision at Smithfield</em></h2>
+
+    <div class="location">St Bartholomew the Great · Founded 1123</div>
+
+    <p>The hospital's origin is recounted almost as a piece of medieval hagiography, and the tour closes with it told in something close to that voice: Rahere, a courtier at the court of King Henry I, undertook the month-long pilgrimage to Rome — dangerous going, by all accounts, with robbers and wild beasts on the road. There he fell gravely ill with what was called the Roman fever.</p>
+
+    <p>Believing himself close to death, Rahere prayed to St Bartholomew and vowed that if he recovered, he would build a hospital for the poor on returning home. He recovered — and, on the journey back, had a vision in which St Bartholomew himself instructed him to found both a priory and a hospital in his name, at a place called Smithfield, just outside the walls of the City of London.</p>
+
+    <div class="story-box" data-label="Smooth Field">
+      <p>Smithfield — "smooth field" — was, at the time, a fearful and unclean place: marshland outside the city walls, used for public executions and little else. Building anything there at all was itself a kind of statement.</p>
+      <p>Rahere kept his promise. Work began in 1123, and within a few years the priory and hospital were ready to heal both bodies and souls. Miracles were quickly credited to the new foundation — sight restored to a boy blind from birth, a woman's swollen tongue healed, twisted limbs straightened. Rahere served as prior for around twenty years until his death in 1145.</p>
+    </div>
+
+    <p>His tomb survives today in the church of St Bartholomew the Great, immediately across the square from the hospital — one of London's best-preserved medieval churches, rebuilt in its current form after the original Great Hall's predecessor but still holding the original font in which William Hogarth himself was baptised centuries later. A statue of Saint Bartholomew, holding the flaying knife of his own martyrdom, stands nearby — the same vision, and the same saint, that gave the hospital its name in 1123 and, after Henry VIII's brief interruption, its charter again in 1546.</p>
+
+    <div class="practical">
+      <strong>Visiting:</strong> Tours of the Great Hall and North Wing run through Barts Heritage. St Bartholomew the Great, the medieval church across the square, is open separately for visits and services — look for the Damien Hirst sculpture of Saint Bartholomew near the entrance, and note the church's long history as a film location, from <em>Four Weddings and a Funeral</em> onward. A short documentary on the hospital's history has also aired on Channel 5, for anyone who wants the fuller 900 years.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>BARTS HERITAGE</span> · Restoration of the North Wing completed 2025, supported by the National Lottery Heritage Fund<br><br>
+  Transcript lightly edited for clarity. All errors in attribution are transcription errors.<br>
+  Guide: Barts Heritage volunteer · North Wing &amp; Great Hall, St Bartholomew's Hospital
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>East End Homes — A Walking Tour from Bethnal Green</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Bethnal Green &amp; Hoxton, East London</div>
+  <h1>Homes for People Who<br>Kept Trying to <em>Leave</em></h1>
+  <div class="header-sub">East End Homes: A Walking Tour with Lachlan Anderson-Frank · Museum of the Home</div>
+  <div class="header-meta">
+    <span>ROUTE: Bethnal Green Village Green → Waterlow Estate → Weavers Fields → Winkley Estate → Keeling House → Dorset Estate → Museum of the Home, Hoxton</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDE: Lachlan Anderson-Frank (Chartered Town Planner)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#intro">A museum's commission: housing as laboratory</a></li>
+    <li><a href="#green">The village green: Daniel Mendoza &amp; Jewish Bethnal Green</a></li>
+    <li><a href="#migration">The 1905 Aliens Act &amp; Churchill's crossing of the floor</a></li>
+    <li><a href="#waterlow">The Waterlow Estate: tenements, concrete &amp; the reformers</a></li>
+    <li><a href="#weavers">Weavers Fields: from Huguenot looms to bomb damage</a></li>
+    <li><a href="#abercrombie">The County of London Plan: emptying the city to save it</a></li>
+    <li><a href="#winkley">The Winkley Estate &amp; the live-work streets</a></li>
+    <li><a href="#keeling">Keeling House: the point block that nearly fell</a></li>
+    <li><a href="#stpeter">A different kind of council estate</a></li>
+    <li><a href="#dorset">The Dorset Estate &amp; the fight for Bangladeshi housing</a></li>
+    <li><a href="#lesson">The Avebury Estate &amp; "The Lesson" in bronze</a></li>
+    <li><a href="#closing">Ending at the Museum of the Home</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="intro">
+    <div class="section-tag">Introduction</div>
+    <h2>A Museum's Commission:<br>Housing as <em>Laboratory</em></h2>
+
+    <p>The group gathers outside Bethnal Green tube station on one of the hottest days of the summer — enough of a heatwave that the guide has already had to cancel one tour this season and is quietly monitoring the thermometer for this one. Lachlan Anderson-Frank introduces himself as a chartered town planner rather than a professional tour guide by trade, which turns out to matter: this is a walk built from planning documents, census returns and slum-clearance reports as much as from anecdote.</p>
+
+    <p>The museum commissioned the tour in 2024 to tie into its refreshed period-rooms exhibition, <strong>Rooms Through Time</strong>. The museum itself — formerly the Geffrye Museum, a set of 18th-century almshouses converted for display — has been showing domestic interiors to the public for close to a century. Its seven period rooms trace the history of housing and migration in Britain through reconstructed interiors: an 1870s middle-class parlour, a Jewish tenement flat of 1913, an Irish family's front room from the 1950s, a well-known 1970s living room, and an ex-council flat dated 2005.</p>
+
+    <div class="story-box" data-label="Why This Neighbourhood">
+      <p>The tour exists to do something the museum's interiors can't: show the streets those rooms came from. Almost all housing built in this corner of East London during the 20th century was social housing, making it — in the guide's words — a kind of laboratory for how Britain has tried to house its poorest citizens for over 150 years.</p>
+      <p>It was, for more than a century, one of the poorest parts of the country: chronic overcrowding, entrenched poverty, and — not unrelated — a long history of political activism. Social reformers who worked here include the sociologist Charles Booth, the housing reformer Octavia Hill, and the prison reformer Elizabeth Fry.</p>
+    </div>
+
+    <p>London's population exploded from roughly a million people in 1800 to around six million by 1900, driven first by migration from rural Britain during industrialisation, and then by international migration — much of it funnelled straight through the East End, historically the city's entry point for new arrivals off the docks and the railways.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">~40%</div>
+      <div class="key-fact-text">Of homes in Inner London today are still social housing — a legacy of the scale of state and philanthropic building that this walk traces from the 1860s onward. The figure is far lower in outer London and beyond.</div>
+    </div>
+  </section>
+
+  <section class="section" id="green">
+    <div class="section-tag">Stop 1 · The Old Village Green</div>
+    <h2>Daniel Mendoza &amp;<br><em>Jewish Bethnal Green</em></h2>
+
+    <div class="location">Bethnal Green Village Green · Georgian terraces</div>
+
+    <p>The group stands on a small patch of green — the survivor of what was once the actual village green of Bethnal Green, swallowed whole as London's expanding city closed in around it. The Georgian and early-Victorian terraces facing it were, in their day, genuinely fashionable addresses, well before the neighbourhood's long 19th- and 20th-century decline.</p>
+
+    <p>One listed house carries a plaque to <strong>Daniel Mendoza</strong>, a champion bare-knuckle boxer of the Georgian era and a Sephardic Jew, who lived here. His presence is the guide's entry point into a much bigger story: <span class="highlight">Bethnal Green was, for well over a century, a genuinely Jewish neighbourhood</span>, and its Jewish community was central to the area's development.</p>
+
+    <p>Jews had lived in Bethnal Green throughout the 19th century, many of the earlier arrivals reasonably prosperous and settled in houses much like the ones facing the green. But the character of that migration changed sharply in the century's final decades, as large-scale flight from the pogroms of the Russian Empire — in what is now Russia, Poland and neighbouring territory — sent much greater numbers into East London. The Jewish population spread outward from its historic centre in Whitechapel, into Bethnal Green and around the edges of Boundary Street.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">125,000</div>
+      <div class="key-fact-text">Jewish East Londoners at the community's peak around 1900 — by which point some 90% of the capital's Jewish population lived in the East End. There were roughly ten synagogues here at that peak. Today none remain in the immediate area; most of the community left after the First World War, part of a much longer pattern of people arriving here and, as soon as they could, moving on.</div>
+    </div>
+
+    <p class="guide-says">"Most people, particularly if they'd migrated here, landed in Bethnal Green and then mostly wanted to leave. It was a very bad place to live, and people wanted to get out to the suburbs — that had already begun in the 19th century, and it only accelerated."</p>
+  </section>
+
+  <section class="section" id="migration">
+    <div class="section-tag">Stop 1 (Continued) · Migration &amp; Politics</div>
+    <h2>The 1905 Aliens Act &amp;<br>Churchill's <em>Crossing of the Floor</em></h2>
+
+    <p>Researching the tour sent Lachlan into the history of the <strong>Aliens Act 1905</strong> — Britain's first immigration act, and one whose original provisions, he notes, remained on the statute book well into the modern era. Britain wasn't first to legislate on immigration (the United States and Australia had already done so), but the 1905 Act matters for a reason that has mostly fallen out of popular memory.</p>
+
+    <div class="story-box" data-label="The Footnote Britain Forgot">
+      <p>In May 1904, a young Winston Churchill — then a Conservative MP — opposed the government's Aliens Bill so strongly that he crossed the floor of the House of Commons to join the Liberals, partly over this issue. He argued the bill would appeal to prejudice against foreigners, against Jews specifically, and against labour competition, and declared himself in favour of what he called the old, tolerant and generous practice of free asylum from which the country had so greatly benefited.</p>
+      <p>Although the Act's text never mentioned Jews by name, its intent and effect were squarely aimed at the wave of Jewish migration then arriving from the Russian Empire's pogroms — and the MP for Stepney, whose constituency covered much of this migration's landing ground, was among those spearheading the legislation.</p>
+    </div>
+
+    <p>It's a footnote, the guide suggests, that tends to get lost in the grander story Britain tells itself about Churchill — but it sits at the start of a theme the tour keeps returning to: migration into this small patch of London, and the tensions it has repeatedly produced, again and again, for well over a century.</p>
+
+    <p>Tower Hamlets today remains highly diverse — <span class="highlight">47% of its residents were born abroad</span> — though the borough with the highest proportion of foreign-born residents in London is actually Brent, a leafy outer-London suburb, not one of the traditional East End boroughs. Newham, next door to Tower Hamlets, tops 50%. Bethnal Green itself, the guide suggests, may simply be a harder place to afford today than it once was to arrive in — alongside a longer-standing pull toward suburban aspiration that has shaped migrant settlement patterns in London for well over a century.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="waterlow">
+    <div class="section-tag">Stop 2 · Waterlow Estate</div>
+    <h2>Concrete, Tenements &amp;<br>the <em>Sanitary Reformers</em></h2>
+
+    <div class="location">Wilmot, Ainsley &amp; Corfield Streets · 1869–1890</div>
+
+    <p>The group reaches a cluster of Victorian tenement blocks lining several streets near what is now Weavers Fields — the <strong>Waterlow Estate</strong>, built between 1869 and 1890 by Sir Sydney Waterlow's Improved Industrial Dwellings Company. It replaced a cleared slum, part of the earliest wave of what could be called slum clearance in Britain — a period before local government really had, in the guide's phrase, the powers to clear areas for public health reasons at all.</p>
+
+    <p>The museum's 1913 Jewish tenement room is modelled directly on this kind of building — specifically, on a flat once described in a memoir by someone who lived in the <strong>Rothschild Buildings</strong>, a similar and now-demolished tenement scheme in Whitechapel, built by the Rothschild family explicitly as mutual aid for other Jews who faced discrimination finding housing elsewhere.</p>
+
+    <div class="story-box" data-label="Sanitary Ramblings, 1848">
+      <p>In the mid-19th century, only around 9% of streets in Bethnal Green had any sewer at all — this despite the 1848 Public Health Act's requirement that drainage connect to sewers. The Scottish physician Hector Gavin toured the district that year and recorded what he found in a report titled <em>Sanitary Ramblings</em>:</p>
+      <blockquote>
+        <p>"I found eight persons who live and sleep in one room. The room is ten feet by six feet and nine feet high... the children had low fever... at the corner of this is a large open cesspool."</p>
+        <cite>— Hector Gavin, Sanitary Ramblings, 1848</cite>
+      </blockquote>
+      <p>The social reformer and journalist Henry Mayhew, visiting in 1850, described roads unmade and often little more than alleys, houses built without foundations and repeatedly subdivided, and drainage so poor that pigs, tanneries, boiling tripe and heaps of putrefying night-soil sat alongside the housing itself.</p>
+    </div>
+
+    <p>The <strong>Artisans and Labourers Dwellings Improvement Act 1875</strong> was the first legislation letting councils clear slums from landlords with public funding — but the Waterlow Estate itself predates that, built by a philanthropic company on private investment, engineered to return 4% to its investors. It managed that return partly through genuinely innovative construction: the estate was built using early reinforced concrete, with its decorative facade elements precast off-site and its floors poured in concrete, chiefly for fireproofing.</p>
+
+    <p>The architect behind that innovation, Matthew Allen, is not well documented — early use of concrete rarely was — but he built extensively for the Improved Industrial Dwellings Company and other housing associations of the period. His great-great-grandson, an architect himself, happened to be on this particular tour.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">125,000</div>
+      <div class="key-fact-text">People housed by London's nine charitable housing trusts by 1905 — around 2% of the East End's population. Of the roughly 150,000 "improved workers' dwellings" ever built by these philanthropic schemes nationally, it was a strikingly small fraction of what London actually needed.</div>
+    </div>
+
+    <p>Much of this was shaped by the leasehold system: landowners leased plots — sometimes for as little as twenty or thirty years — to speculative builders, with the land and buildings reverting to the freeholder at the lease's end. Short leases gave builders little incentive to build well, a pattern the trade journal <em>The Builder</em> (ancestor of today's <em>Building</em> magazine) campaigned against for decades, repeatedly urging denser, better-built European-style flats over the low-density housing that speculative builders preferred and the working poor could never have afforded anyway.</p>
+
+    <div class="practical">
+      <strong>Nearby:</strong> The Waterlow Estate's surviving blocks now sit alongside Weavers Fields — much of the original estate was cleared for the park itself in the mid-20th century, along with the streets that once surrounded it.
+    </div>
+  </section>
+
+  <section class="section" id="weavers">
+    <div class="section-tag">Stop 3 · Weavers Fields</div>
+    <h2>From Huguenot Looms<br>to <em>Bomb Damage</em></h2>
+
+    <div class="location">Weavers Fields · Park created after 1945</div>
+
+    <p>A sculpture — <em>Weaving Identities</em>, by Peter Dunn, installed in the early 2000s — marks the entrance to Weavers Fields, the largest park in Bethnal Green at around 15.6 acres. The name commemorates the district's Huguenot silk-weaving industry: French Protestant refugees who settled here and in nearby Spitalfields and became renowned for their skill, until competition from Chinese and Indian imports put them out of business in the 1820s and the weavers largely left the area.</p>
+
+    <p>But the park itself is a much more recent creation than its name suggests. <span class="highlight">Weavers Fields did not exist as parkland before the Second World War</span> — it was cleared from streets of ordinary housing devastated by the Blitz. A Victorian school, now stranded incongruously in the middle of open grass, is the clearest surviving clue to where the old street pattern once ran.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">15.6</div>
+      <div class="key-fact-text">Acres of Weavers Fields — created from bomb-damaged terraces after 1945 and, along with Victoria Park and several smaller postwar parks, part of a deliberate wartime plan to give East London the open space it had never had.</div>
+    </div>
+
+    <p class="guide-says">"It's not to imagine that this green space was always here. It would have been much denser originally — these homes were criticised at the time for being barrack-like, for jamming people in."</p>
+  </section>
+
+  <section class="section" id="abercrombie">
+    <div class="section-tag">Stop 3 (Continued) · Postwar Planning</div>
+    <h2>The County of London Plan:<br><em>Emptying the City to Save It</em></h2>
+
+    <p>The creation of Weavers Fields, along with several other East London parks, traces back to the <strong>County of London Plan</strong>, published in 1943 — during the war — by Sir Patrick Abercrombie, the dominant figure in postwar British town planning. It built on the earlier Barlow Report, a government commission from the late 1930s that had already flagged deep concern about population and industry over-concentrating in London and the South East.</p>
+
+    <p>Abercrombie's analysis found parts of inner London — Shoreditch among them — with less than half a square metre of open public space per resident, against a target he set of sixteen square metres per person. The Plan proposed decentralising roughly 1.5 million people out of the congested inner boroughs into suburban rings and entirely new towns beyond the Green Belt, while licensing controlled where new industry could be built at all.</p>
+
+    <div class="story-box" data-label="A Population Halved">
+      <p>The programme, by most measures, worked — dramatically. London's population fell by more than a fifth between 1941 and 1961, even as the country's population grew overall. Planners hadn't actually predicted this: they expected population to keep falling through the postwar decades, and were caught out when the economy — and the birth rate — took off from the mid-1950s.</p>
+      <p><span class="highlight">Bethnal Green's own population fell from 110,000 in 1931 to just 50,000 in 1961</span> — more than a fifty percent collapse within one generation. The Greater London Council struck formal agreements with towns as far away as Swindon to absorb displaced inner-London families, arrangements that continued into the 1960s.</p>
+    </div>
+
+    <p class="guide-says">"You'd feel like a survivor, in a way. You'd lived through the war, and then you watched almost everyone you knew leave. It must have felt like a kind of collapse — a literal, physical decline."</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="winkley">
+    <div class="section-tag">Stop 4 · Winkley Estate</div>
+    <h2>The Live-Work Streets<br>of <em>Old Bethnal Green Road</em></h2>
+
+    <div class="location">Winkley Estate · Built 1899–1904</div>
+
+    <p>Faced in a noticeably redder brick than the surrounding streets, the Winkley Estate was built between 1899 and 1904 by the builder brothers Henry and Charles Winkley, replacing an older cluster of terraced streets. Charles Winkley went on to become Mayor of Hackney and, later, a London County Council Alderman — enough of a civic career that the guide reads a genuine charitable intent into the scheme, even if it wasn't run as a formal philanthropic trust.</p>
+
+    <p>Unusually for the period, the estate deliberately mixed terraced houses over shops with small workshops and even a handful of light-industrial units — designed to serve the furniture-making, cabinet trade and clothing manufacture that dominated local employment, in a conscious attempt to replicate the mixed uses of an organic, older neighbourhood rather than build pure housing.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">£675,000</div>
+      <div class="key-fact-text">The asking price, at the time of the tour, for a one-bedroom flat of around 675 square feet on the Winkley Estate — a striking measure of how far this once-deprived corner of Bethnal Green has travelled.</div>
+    </div>
+
+    <p>The estate is also, in the guide's telling, one of the few genuinely listed buildings on the route otherwise dominated by terraced houses of no special protection — a reminder that "historic" here is as often 1900s workers' housing as it is anything grander.</p>
+  </section>
+
+  <section class="section" id="keeling">
+    <div class="section-tag">Stop 5 · Keeling House</div>
+    <h2>The Point Block<br>That <em>Nearly Fell</em></h2>
+
+    <div class="location">Keeling House, Claredale Street · 1957, Sir Denys Lasdun</div>
+
+    <p>Rising in an unmistakable butterfly plan above the surrounding streets, Keeling House was designed by Sir Denys Lasdun for Bethnal Green Metropolitan Borough Council and completed in 1957: sixteen storeys of maisonette flats arranged as a cluster block around a central service tower, originally with 64 homes across eight per floor.</p>
+
+    <p>The building's whole logic is light and air: rather than a conventional slab with windows on both long sides, Lasdun arranged four wings so that every flat faces roughly south, avoiding the north-facing "cold" units that plagued so much postwar housing. It was one of the earliest point blocks built in Britain, cast largely in reinforced concrete — high quality construction for its day, though not one that spared it decades of maintenance trouble.</p>
+
+    <div class="story-box" data-label="Listed to Save It, Not to Celebrate It">
+      <p>By the early 1990s, Keeling House had deteriorated badly enough that Tower Hamlets council voted to demolish it. Historic England intervened, and in 1993 the building was listed — <span class="highlight">the first piece of postwar social housing ever to receive listed status in Britain</span>, saving it from the wrecking ball days before it was due.</p>
+      <p>It was sold to a private developer in 1999, refurbished in consultation with Lasdun himself, and converted entirely into private ownership. Architects reportedly live there today. The flats, built to a pre-1963 space standard, remain notably small by modern expectations — some maisonettes were shown, some years ago, being reconfigured on a television design programme, opening up the bedroom floor above a ground-floor living space.</p>
+    </div>
+
+    <p class="guide-says">"I wonder how warm or cold these flats actually are. It's a lot of thermal mass — big, brutalist, reinforced concrete. I don't see anyone with makeshift shades hung up, though, so maybe it's fine."</p>
+  </section>
+
+  <section class="section" id="stpeter">
+    <div class="section-tag">Stop 6 · St Peter's Close</div>
+    <h2>A Different Kind<br>of <em>Council Housing</em></h2>
+
+    <div class="location">St Peter's Close · Greater London Council, 1976</div>
+
+    <p>Two council estates sit close together here, separated by only ten or twenty years of construction — and, in the guide's words, an enormous shift in architectural thinking. Where the earlier blocks pursue strict uniformity — everyone gets the same access to light and air — <strong>St Peter's Close</strong>, built by the Greater London Council in 1976 and named after the neighbouring St Peter's Church of 1841, is deliberately asymmetrical: low-rise, informally arranged, with unusually generous ground-floor entrances and what planners of the period called a "street in the sky" ethos, still recognisably brutalist in its materials but consciously rejecting the tower block as a model.</p>
+
+    <p>It belongs to a small cluster of same-year, same-style GLC infill schemes scattered around St Peter's Church — Grayling Square, Lampern Square, Mullet Gardens, Zander Court, Nelson Gardens and Cobden House among them, several reportedly named after a long-vanished fishpond once on the site. The period fits the low-key, human-scaled housing the GLC's architecture department pursued under chief architect Sir Roger Walters, whose approach favoured exactly this kind of irregular, pattern-language-influenced layout over the high-rise ethic of the preceding decades.</p>
+
+    <div class="story-box" data-label="An American in an English Council Estate">
+      <p>St Peter's Close had a moment of unexpected fame as a filming location for Lena Dunham's 2025 Netflix series <em>Too Much</em>: the American lead character's flat — arrived at expecting something more like a country house — was shot here, on an estate about as far from a Richard Curtis film set as London gets.</p>
+    </div>
+
+    <p class="guide-says">"I really love this estate. It's quite unusual — some flats face north, some face south, and the idea is that everybody's different, and there might be a different plot, a different outlook, for everybody."</p>
+  </section>
+
+  <section class="section" id="dorset">
+    <div class="section-tag">Stop 7 · Dorset Estate</div>
+    <h2>Lubetkin's Towers &amp;<br>the <em>Bangladeshi Housing Struggle</em></h2>
+
+    <div class="location">Dorset Estate · 1957, Skinner, Bailey &amp; Lubetkin</div>
+
+    <p>The Dorset Estate, designed by the firm of Skinner, Bailey and the Russian émigré architect <strong>Berthold Lubetkin</strong>, is named after the Tolpuddle Martyrs — the early 19th-century agricultural labourers transported for organising for workers' rights, an apt namesake, the guide suggests, for a council housing scheme. Its two distinctive Y-shaped eleven-storey towers, George Loveless House and James Hammett House, are instantly recognisable and have appeared in television drama for exactly that reason.</p>
+
+    <p>Lubetkin, a committed communist who had already built acclaimed housing and a medical centre for Finsbury Borough Council, brought a Russian-constructivist sensibility to the blocks: precast, roughened concrete elements set against plain brickwork in a way that reads as distinctly his own.</p>
+
+    <div class="story-box" data-label="Squatting, Firebombing &amp; Altab Ali">
+      <p>By the 1960s and 70s, a Bangladeshi community — many from the Sylhet region, initially single men working the local textile trade — had begun settling in this part of Bethnal Green. They faced severe, organised racism in accessing both private and council housing; the local social club here was a well-known National Front meeting place, and racist violence, including the firebombing of flats, was endemic through the 1970s.</p>
+      <p>Facing exclusion from official housing lists, Bangladeshi families squatted in estates like this one — then considered hard to let, with many flats standing vacant — as well as in Victorian terraces nearby, part of a wider wave of over 20,000 squats across London in the period. The Bengali Housing Action Group, supported by the radical <em>Race Today</em> collective, organised to fight for formal housing rights.</p>
+      <p>On the night of local elections in 1978 — in which 41 National Front candidates stood for election in Bethnal Green — the young Bangladeshi clothing worker <strong>Altab Ali</strong> was murdered nearby. A 7,000-strong funeral march carried his coffin to Downing Street to demand police protection. That summer's Rock Against Racism carnival in Victoria Park, headlined by Tom Robinson and The Clash, drew huge crowds. The National Front won no seats.</p>
+    </div>
+
+    <p>The guide points to the area's contemporary politics as a direct legacy of that history: Tower Hamlets is unusual in Britain for how dominant a single community-rooted political party has become in local government, a pattern he traces back to decades of having to fight, street by street, for the right to a home here at all.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="lesson">
+    <div class="section-tag">Stop 8 · Avebury Estate</div>
+    <h2>"The Lesson"<br>in <em>Bronze</em></h2>
+
+    <div class="location">Avebury Estate, Turin Street · Sculpture unveiled 1959</div>
+
+    <p>On a green corner of the Avebury Estate — an LCC scheme completed in 1948 — stands <em>The Lesson</em>: a mother guiding a toddler through his first steps, cast in concrete by the sculptor <strong>Franta Belsky</strong>, a Czech Jewish émigré born in Brno who fled the Nazi occupation of Czechoslovakia in 1939 and, later, the Communist takeover of 1948. The London County Council installed it here in 1959 as part of a scheme to commission public art specifically for housing estates — the idea, in Belsky's own words, that an estate needs something more than newspaper kiosks and bus shelters to feel like it has spirit.</p>
+
+    <p>A second casting of the same sculpture stands at a former school site in Wandsworth. The LCC filmed a short, gently propagandistic newsreel about the sculpture's installation in 1959 — footage that has since been reused by a contemporary artist, who interviewed local schoolchildren about the statue today and cut their indifferent, half-curious reactions against the earnest 1950s film crew who thought they were unveiling something momentous.</p>
+
+    <div class="story-box" data-label="An Argument for Optimism">
+      <p>Placed against the backdrop of everything the tour has covered so far — decline, bomb damage, mass emigration from the borough — a sculpture of a mother teaching her child to walk reads as a small, deliberate act of civic optimism: an argument, in concrete, that this was somewhere worth raising a family after all.</p>
+    </div>
+
+    <p class="guide-says">"People who grew up around here today are pretty much inured to it — they know it's there, but they don't think about it much. In the 1950s, people thought it was a huge waste of money putting a piece of art on a housing estate at all."</p>
+  </section>
+
+  <section class="section" id="closing">
+    <div class="section-tag">Closing · Museum of the Home</div>
+    <h2>Ending Where<br>the <em>Rooms</em> Begin</h2>
+
+    <div class="location">Museum of the Home, Hoxton · Founded early 20th century</div>
+
+    <p>The tour ends at the Museum of the Home itself, recently reopened after an extensive refurbishment, its entrance now moved and a new café finally, gratefully, open on a punishing summer afternoon. Inside wait the seven period rooms the whole walk has been circling: the middle-class Victorian parlour, the 1913 Jewish tenement flat modelled on the Waterlow Estate's own history, the 1950s Irish family home, the 1970s living room, and the 2005 ex-council flat — each one now legible, the guide hopes, against the streets just walked.</p>
+
+    <div class="practical">
+      <strong>The museum:</strong> Free entry, 10am–5pm, Tuesday to Sunday and bank holiday Mondays. Allow at least 20 minutes for the period rooms, longer if the gardens are open. Lachlan also leads walking tours of other London neighbourhoods for anyone who wants more of this kind of close reading of ordinary streets.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>MUSEUM OF THE HOME</span> · museumofthehome.org.uk · East End Homes: A Walking Tour<br><br>
+  Transcript lightly edited for clarity. All errors in attribution are transcription errors.<br>
+  Guide: Lachlan Anderson-Frank · Bethnal Green to Hoxton, East London
+</footer>
+
+</body>
+</html>

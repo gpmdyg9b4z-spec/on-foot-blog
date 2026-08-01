@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Stade & Old Town, Hastings — A Walking Tour with Jan</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Sticky home nav */
+  .home-nav {
+    background: var(--ink);
+    padding: 0.7rem 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    position: sticky;
+    top: 0;
+    z-index: 300;
+  }
+  .home-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .home-nav a:hover { color: #c9a54a; }
+  .home-nav span {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #7a7060;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .jan-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="home-nav">
+  <a href="../index.html">← On Foot</a>
+  <span>Walking Tour Notes</span>
+</div>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — The Stade & Old Town, Hastings</div>
+  <h1>Nets, Tar<br>& the <em>Ghost of Dunkirk</em></h1>
+  <div class="header-sub">The Stade Historic Fishing Quarter Walk with Guide Jan · Old Hastings Preservation Society</div>
+  <div class="header-meta">
+    <span>ROUTE: Fishermen's Museum → Net Shops → Rock-a-Nore → East Hill Lift → RNLI Station → Winkle Island → Old Town Twittens</span>
+    <span>DURATION: ~2.5 hours</span>
+    <span>GUIDE: Jan (OHPS Volunteer, born in Hastings)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Nine hundred years on the beach</a></li>
+    <li><a href="#museum">The Fishermen's Museum & Half Sovereign Cottage</a></li>
+    <li><a href="#boatbuilding">How a Hastings boat is built</a></li>
+    <li><a href="#netshops">The net shops</a></li>
+    <li><a href="#dunkirk">Dunkirk & a fleet in decline</a></li>
+    <li><a href="#capstan">Horses, capstans & the Ice House</a></li>
+    <li><a href="#rockanore">Rock-a-Nore, the cliffs & the hermit's cave</a></li>
+    <li><a href="#easthill">The East Hill Lift</a></li>
+    <li><a href="#rnli">The RNLI lifeboat house & two Ferraris</a></li>
+    <li><a href="#winkle">Winkle Island & the Winkle Club</a></li>
+    <li><a href="#swain">A fisherman shot on his own boat</a></li>
+    <li><a href="#capell">East Cliff House, the twittens & the Lookout</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Nine Hundred Years<br><em>on the Beach</em></h2>
+
+    <p>Jan has lived in Hastings her whole life — she opens by mentioning that her brother-in-law's father was a fisherman here, and that his sons took over the boat when he died. It is the kind of connection that runs through most families in the Old Town, where fishing has continued, in one form or another, for close to a millennium.</p>
+
+    <blockquote>
+      <p>"My name is Jan, and I was born in Hastings, so I have got a bit of a head start."</p>
+      <cite>— Jan</cite>
+    </blockquote>
+
+    <p>The walk follows the Stade — the Old English word for a landing place — from the Fishermen's Museum along the working beach to Rock-a-Nore, up the East Hill and back through the Old Town's narrow lanes. <span class="highlight">This stretch of shingle claims to hold the largest beach-launched fishing fleet in Europe</span>, boats hauled straight up onto the pebbles with no harbour to shelter them, exactly as they have been since the Middle Ages.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">&lt;10</div>
+      <div class="key-fact-text">Boats now working from the Stade, against a fleet that numbered close to a hundred within living memory. The decline is a running theme of the walk: European quota rules, competition from large trawlers, and a younger generation unwilling to take on a trade that can go months without reliable income.</div>
+    </div>
+
+    <p>Much of what follows is about how a fishing community that the borough wanted, at various points, to push out of sight entirely — because Hastings was reinventing itself as a genteel Victorian resort — instead ended up as the thing visitors most want to see.</p>
+  </section>
+
+  <section class="section" id="museum">
+    <div class="section-tag">Stop 1 · Rock-a-Nore Road</div>
+    <h2>The Fishermen's Museum<br>&amp; <em>Half Sovereign Cottage</em></h2>
+
+    <div class="location">Fishermen's Museum · Built 1854</div>
+
+    <p>The museum occupies the former Church of St Nicholas, built in 1854 as a "chapel of ease" to All Saints — a subsidiary mission church, put up on the beach itself because the fishing community mostly wasn't attending services at the two parish churches on the hill above. The building cost around £529 and opened for worship on 26 March 1854.</p>
+
+    <p>The centrepiece inside is a genuine fishing boat, pushed in sideways after part of the wall was taken down and rebuilt around it. <span class="highlight">This is the RX ENTERPRISE, the last sailing boat built in Hastings</span>, according to the guide's dating, in the early 1910s — installed inside the church-turned-museum in 1956, when the derelict building was restored by the Old Hastings Preservation Society and opened as the Fishermen's Museum.</p>
+
+    <div class="story-box" data-label="A Church That Struggled, Then Didn't">
+      <p>The fishing community was not, at first, especially welcoming to its new church — some of the men had wanted the plot of ground for themselves, and Sunday was, for many, still a working day. The mission closed for a period in the 1870s.</p>
+      <p>It closed for good at the start of the Second World War, when Rock-a-Nore became a restricted military zone; the building was requisitioned as a store and suffered war damage, including the loss of a stained-glass east window. Afterwards it served time as an ironmonger's warehouse before the preservation society leased it from the council and converted it into today's museum.</p>
+    </div>
+
+    <p>Beside the museum stands <strong>Half Sovereign Cottage</strong> — half of a boat's hull, fitted out as a tiny dwelling, with what was once a fish-roll stall in the other half. Jan tells the traditional story attached to it: that boats caught smuggling were sometimes deliberately sawn in two by customs officers, a punishment severe enough that the culprit could never put to sea in that boat again.</p>
+
+    <div class="story-box" data-label="A Real Punishment, a Later Boat">
+      <p>The practice itself is documented — 18th- and 19th-century Preventive Men did "saw boats asunder amidships" when smuggling was suspected, and several of the half-boat shacks along this stretch of beach are said to descend from that habit.</p>
+      <p><span class="highlight-blue">The specific cottage on display, however, is a later addition built for the museum</span> from a boat registered RX40 and known as the <em>Golden Sovereign</em>, cut in two around 1990 and set up here as an illustration of the old custom rather than as a surviving example of it — the "Half Sovereign" name is a play on that boat's name, not a record of an actual prosecution.</p>
+    </div>
+  </section>
+
+  <section class="section" id="boatbuilding">
+    <div class="section-tag">Stop 2 · The Beach</div>
+    <h2>How a Hastings<br><em>Boat Is Built</em></h2>
+
+    <p>Jan uses two boats side by side to explain construction. Hastings boats are clinker-built — planked with overlapping strakes rather than flush — because they are never left afloat. Pulled up onto shingle every day, exposed to sun and salt water in turn, the timber needs room to expand and contract; overlapping planks flex with that movement in a way that a smooth hull cannot.</p>
+
+    <p>The registration letters — RX — trace back to the nearest official port. Hastings itself had no separate registry, so boats were registered to Rye. <span class="highlight">R for Rye's first letter; X rather than the expected E, Jan explains, because E had already been allocated to Ramsgate</span>, and two ports could not share a code.</p>
+
+    <div class="story-box" data-label="Elliptical vs Lute Stern">
+      <p>Older boats have a "lute" stern — an open transom that lets the deck run straight through to the back, useful for handling nets, but liable to ship water in a following sea. Newer designs use an elliptical, closed stern that deflects waves rather than letting them break over the deck, at the cost of that open working space.</p>
+    </div>
+
+    <p>Before synthetic fibres, everything organic on a boat needed preserving against rot: hulls were coated in coal tar, sails and nets steeped in a reddish-brown dye called cutch, boiled from the resin of an acacia tree, which is why old photographs show Hastings luggers with tan-coloured sails rather than white — and why the fishermen themselves were nicknamed "tan-frocks", after the colour their canvas smocks turned in the same dye.</p>
+
+    <div class="jan-says">"Everything had to be preserved, and it always came out this red-brown colour. Everything."</div>
+  </section>
+
+  <section class="section" id="netshops">
+    <div class="section-tag">Stop 3 · The Stade</div>
+    <h2>The Net Shops</h2>
+
+    <p>The tall, black, weatherboarded huts behind the museum are net shops, and Jan is firm about what they were for: storing and mending nets, not drying them (nets were dried on the shingle or on the slopes of the East Hill) and never for sleeping in, whatever visitors assume.</p>
+
+    <p>Their odd proportions — narrow footprints stacked three storeys high — come from an 1830s council restriction limiting each hut to no more than eight feet square on the ground. As Hastings began marketing itself as a health resort, the corporation wanted the fishing industry's mess and smell contained and out of the way of paying visitors; the fishermen's answer to a tiny footprint was to build upward instead, with a pulley jutting from the top floor to haul nets up for storage and repair.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1800s</div>
+      <div class="key-fact-text">Approximate origin of Hastings beach fishing in something like its current form, though the guide places continuous fishing activity here at over 900 years. Many of the net shops standing today are not original: tar-coated timber burns fast, and repeated fires mean most are 19th- or 20th-century rebuilds, though several now hold listed status regardless.</div>
+    </div>
+
+    <p>Jan also connects the quarter to Beatrix Potter, who stayed near the Old Town seafront in the autumn of 1903 and is commemorated with a local blue plaque. <span class="highlight-green">Locally, the net shops and the fictional port of "Stymouth" in her story <em>The Tale of Little Pig Robinson</em> are said to be one and the same.</span></p>
+
+    <div class="story-box" data-label="A Contested Setting">
+      <p>The Hastings connection is genuine as far as it goes — Potter did visit, and did compose material during her stay. But Potter's own later correspondence, and most published scholarship on the book, identifies "Stymouth" specifically with Sidmouth in Devon, blended with Teignmouth and Lyme Regis, based on watercolours she made on holidays there.</p>
+      <p>The truth is probably that Hastings contributed something to the atmosphere of the book without being its literal model — worth knowing as a piece of well-loved local lore rather than a settled fact.</p>
+    </div>
+  </section>
+
+  <section class="section" id="dunkirk">
+    <div class="section-tag">Stop 4 · The Working Fleet</div>
+    <h2>Dunkirk<br>&amp; <em>a Fleet in Decline</em></h2>
+
+    <p>In late May 1940, the Hastings lifeboat <strong>Cyril and Lilian Bishop</strong> was called to Dover as part of the evacuation of Allied troops from Dunkirk. Her Hastings crew — coxswain George Moon among them — brought her across, after which the Admiralty took over and sent the local men home by train while a naval crew completed the operation, ferrying soldiers from the beaches out to larger ships under fire. She returned with bullet holes in her hull and became known afterwards as "the Ghost of Dunkirk."</p>
+
+    <p><span class="highlight">Ten Hastings fishing boats also answered the call to muster at Folkestone, though in the end none were used</span> — each crew was still given a commemorative plaque for having volunteered. Wartime restrictions then closed the beach to fishing at night, since German aircraft used boat lights to orient themselves; one fishing boat that struck a mine was destroyed, and a fisherman working on deck was killed by machine-gun fire from a passing plane.</p>
+
+    <div class="jan-says">"The fishermen have had a really rough time of it. The fact that we've got any boats at all going out amazes me."</div>
+
+    <p>Jan is candid that the industry's more recent decline has less to do with the sea than with regulation and competition. Strict EU-derived catch quotas, medical fitness and colour-blindness testing, and estimation requirements for undersized fish sit alongside a structural disadvantage: large trawlers dragging the seabed can out-fish small beach-launched boats many times over, while Hastings boats — restricted to roughly 10 metres — fish more sustainably but cannot compete on volume.</p>
+
+    <div class="jan-says">"It's a very, very hard life, and it's a life that modern gentlemen don't want to follow."</div>
+  </section>
+
+  <section class="section" id="capstan">
+    <div class="section-tag">Stop 5 · The Beach</div>
+    <h2>Horses, Capstans<br>&amp; <em>the Ice House</em></h2>
+
+    <p>Before engines, boats were hauled up the shingle by capstan — a horse harnessed to a wooden post, walking in a circle to wind in a rope attached to the boat. A boy stationed ashore watched for a flag raised on the returning boat's mast, signalling that it was time to fetch a horse from the council stables (which stood where the Shipwreck Museum is today) and set the capstan turning. Two flags meant two horses were needed.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">16</div>
+      <div class="key-fact-text">Horses kept in the council's stables at the height of the capstan system, out of 66 horses the council owned in total — the rest pulled refuse carts. When not hauling boats, the same animals doubled as the town's dustcart team.</div>
+    </div>
+
+    <p>Motorised winches and, later, tractors replaced the horses in the 20th century. As a small nod to that history, the paved surface near the modern gallery building on the Stade has been laid with circular patterns echoing the paths the capstan horses once wore into the beach.</p>
+
+    <p>Nearby, the building now used as a doctor's surgery and flats was once the Ice House, where ice was made and stored to pack fish for the Victorian rail network — once the railway reached Hastings, ice-packed catches could be sent up to London markets quickly for the first time. Its modern replacement was deliberately designed to echo the silhouette of a net shop.</p>
+  </section>
+
+  <section class="section" id="rockanore">
+    <div class="section-tag">Stop 6 · Rock-a-Nore</div>
+    <h2>Rock-a-Nore, the Cliffs<br>&amp; <em>the Hermit's Cave</em></h2>
+
+    <div class="location">Rock-a-Nore · Sandstone cliffs</div>
+
+    <p>Rock-a-Nore takes its name straightforwardly from "black rock" or a similarly descriptive Old English phrase for the dark sandstone underfoot — a stone quite different from the chalk cliffs at nearby Beachy Head or Dover, being part of the Wealden sandstone belt that runs inland as far as Tunbridge Wells. Soft and easily eroded, it has produced the string of glens along this coast — Ecclesbourne among them — and made the cliffs a magnet for rockfalls, and historically, for smugglers exploiting the coves.</p>
+
+    <p>The coastline here is designated a Site of Special Scientific Interest, valued for rare cliff-nesting birds, as a stopover for migrating species, and — improbably — for dinosaur and other fossil remains found in the exposed strata.</p>
+
+    <div class="story-box" data-label="The Hermit of the Caves">
+      <p>Jan points out caves cut into the sandstone that were, in the mid-19th century, home to an Irish itinerant, remembered locally by a name close to "Mervyn" or "Mourner's" Butler, who lived there with his wife and a collection of animals. The 1851 census apparently recorded him with an unusual occupation description and noted his address as a "hermitage cave."</p>
+      <p>It fits a wider pattern of makeshift housing in a period of acute overcrowding in the Old Town: families living in half-boats, railway navvies in trackside sheds, and — as Jan notes — even boats accounted for as a household's address in that year's census if a fisherman happened to be at sea when the enumerator called.</p>
+    </div>
+  </section>
+
+  <section class="section" id="easthill">
+    <div class="section-tag">Stop 7 · East Hill</div>
+    <h2>The East Hill Lift</h2>
+
+    <div class="location">East Hill Cliff Railway · Opened 1902</div>
+
+    <p>Excavation for the East Hill Lift began in 1901, cut directly into the cliff face, and the funicular opened the following year. <span class="highlight">At a gradient of around 1 in 1.3 — close to 38 degrees — it remains one of the steepest funicular railways in Britain.</span> It was originally powered by a water-balance system: twin tanks at the top station were filled with water, and the extra weight in the descending car's tank pulled the ascending car up as the two were connected by cable, a method common to both of Hastings's cliff lifts before electrification in the 1970s.</p>
+
+    <p>The line gives access to Hastings Country Park above, and on the way up, uninterrupted views back down over the Stade and the net shops — from a height nothing else on the walk quite matches.</p>
+
+    <div class="practical">
+      <strong>East Hill Lift:</strong> Runs from Rock-a-Nore Road up to Hastings Country Park. A short ride, but the steepest way to gain the view without climbing the cliff steps on foot.
+    </div>
+  </section>
+
+  <section class="section" id="rnli">
+    <div class="section-tag">Stop 8 · The Lifeboat Station</div>
+    <h2>The RNLI Lifeboat House<br>&amp; <em>Two Ferraris</em></h2>
+
+    <p>Hastings's current lifeboat station is purpose-built with an attached visitor centre, and its story begins with an unlikely bequest. <strong>Richard Colton</strong>, a businessman and classic-car collector, left two rare Ferraris — a 1960 250 GT SWB and a 1967 275 GTB/4 — to the RNLI in his will when he died in 2015.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">£9m+</div>
+      <div class="key-fact-text">Raised at auction from the two cars in 2015 — the single largest legacy ever left to the RNLI. Part of the sum funded a new Shannon-class all-weather lifeboat for Hastings, named Richard and Caroline Colton after Colton and his late wife, with the launch-and-recovery vehicle named for Colton and his son Mark, who died young.</div>
+    </div>
+
+    <p>Jan explains that Hastings's demands on a lifeboat are unusual: much of the work here is close inshore, rescuing people cut off by tides beneath the cliffs, rather than the longer, rougher rescues a fast all-weather boat is built for — one reason the station has periodically reviewed which class of vessel best suits local conditions.</p>
+  </section>
+
+  <section class="section" id="winkle">
+    <div class="section-tag">Stop 9 · Winkle Island</div>
+    <h2>Winkle Island<br>&amp; <em>the Winkle Club</em></h2>
+
+    <div class="location">Winkle Island · Club founded 1900</div>
+
+    <p>The Winkle Club was founded by a group of Hastings fishermen meeting at the Prince Albert pub — now the Mermaid Fish and Chips restaurant on Rock-a-Nore Road — with a single aim: raising money to give poor children of the borough a proper Christmas. There was no welfare state at the time, and winters were lean for fishing families most of all.</p>
+
+    <p>Every member — a "Winkler" — must carry a winkle shell (traditionally emptied and refilled with wax) at all times. Any member can challenge another to "winkle up"; failing to produce the shell means a fine, all of it going to charity. <span class="highlight">The system proved so effective that the club funded children's Christmas parties for several hundred children annually for decades.</span></p>
+
+    <div class="story-box" data-label="The Gold Winkle">
+      <p>A small number of honorary members have been presented with a solid-gold winkle rather than the usual wax-filled shell, among them the future Duke of Windsor in 1927 and Sir Winston Churchill, who accepted membership in 1955 and reportedly said it was one honour, among the many offered to him that year, that he genuinely wanted.</p>
+      <p>The giant winkle-shell sculpture on Winkle Island still serves as a public collecting box for the club's causes today.</p>
+    </div>
+  </section>
+
+  <section class="section" id="swain">
+    <div class="section-tag">Stop 10 · Winkle Island Fish Shop</div>
+    <h2>A Fisherman Shot<br>on <em>His Own Boat</em></h2>
+
+    <p>Jan tells the story of Joseph Swain, a Hastings fisherman confronted on his own boat by a customs officer searching for contraband during the smuggling era. According to the account she gives, the officer used a bayonet to probe the catch for concealed goods, damaging the fish in the process; a struggle followed, and Swain was shot and killed.</p>
+
+    <div class="jan-says">"He was innocent. Now, [the officer] was actually sentenced, but he got off — he said he was only doing his duty."</div>
+
+    <p>A small plaque commemorating the incident survives nearby, in a window above what is now the Mermaid Fish and Chips restaurant — easy to miss, and, as Jan notes, largely unread by passers-by who don't already know it's there.</p>
+  </section>
+
+  <section class="section" id="capell">
+    <div class="section-tag">Stop 11 · All Saints Street</div>
+    <h2>East Cliff House,<br>the Twittens &amp; <em>the Lookout</em></h2>
+
+    <div class="location">East Cliff House · Built 1762</div>
+
+    <p><strong>East Cliff House</strong>, at the seafront end of All Saints Street, was built in 1762 by <strong>Edward Capell</strong> — a genuine Shakespearean scholar and the government's deputy-inspector of plays, a post that functioned as an official censor of the London stage. Capell was a friend of the actor David Garrick, whose own campaign to elevate Shakespeare's reputation, including the 1769 Stratford Jubilee, made mementoes carved from a mulberry tree associated with the playwright into prized objects among his circle.</p>
+
+    <div class="story-box" data-label="A Sea-Facing Villa">
+      <p>The house was unusual for its time in facing the sea rather than the street — an early example of what would later become the standard orientation for Hastings's seaside villas, built decades before the town's Victorian resort boom made sea views the whole point.</p>
+      <p>Locally, the garden is said to hold a mulberry tree grown from a cutting taken from Shakespeare's own tree at New Place in Stratford-upon-Avon, brought to Hastings by Garrick himself. The Capell–Garrick friendship is documented; the specific cutting is a charming story that could not be independently confirmed here, and is best taken as attractive local tradition.</p>
+    </div>
+
+    <p>From here the walk climbs through a <strong>twitten</strong> — a narrow passage peculiar to Sussex dialect, cut through what were once long cottage gardens. As overcrowding worsened in the Old Town valley, landowners built new houses directly into these gardens, slicing narrow footpaths between them for access; several houses along the route show where a corner was literally cut away to create a passage.</p>
+
+    <p>The walk ends at <strong>the Lookout</strong>, a viewpoint above the Old Town where, before telephones, fishermen's wives and mothers would climb to watch for a flag on a returning boat — the only way of knowing a husband or son was safely on his way home, and, less happily, whether he'd stop first at a pub to spend his wages before coming home at all.</p>
+
+    <div class="practical">
+      <strong>The Stade Historic Fishing Quarter Walk:</strong> Runs from the Fishermen's Museum, Rock-a-Nore, led by Old Hastings Preservation Society volunteer guides. Level, mostly step-free ground; suitable footwear advised. Booking recommended via OHPS — see ohps.org.uk for current dates.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>OLD HASTINGS PRESERVATION SOCIETY</span> · ohps.org.uk · Fishermen's Museum, Rock-a-Nore<br><br>
+  Transcript lightly edited for clarity. All errors in attribution are transcription errors.<br>
+  Guide: Jan · The Stade & Old Town, Hastings
+</footer>
+
+</body>
+</html>

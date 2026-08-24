@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komodo National Park — A Boat & Trekking Day Tour</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .heri-says, .sofian-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Boat & Trekking Day Tour Transcript — Komodo National Park, Flores</div>
+  <h1>The Largest Lizard on Earth<br>and <em>the Myth in Its Bite</em></h1>
+  <div class="header-sub">Padar, Pink Beach, Komodo Island & Manta Point Day Trip · Guide: Heri, with Park Rangers & Sofian</div>
+  <div class="header-meta">
+    <span>ROUTE: Labuan Bajo → Padar → Pink Beach → Komodo Island → Taka Makassar → Manta Point → Siaba</span>
+    <span>DURATION: ~10 hours</span>
+    <span>GUIDE: Heri (boat &amp; hikes) · Rangers (Komodo Island) · Sofian (final snorkel)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Before six: the boat, the crew, the plan</a></li>
+    <li><a href="#padar">Padar Island: 815 steps to three beaches</a></li>
+    <li><a href="#pink-beach">Pink Beach & the colour that isn't coral</a></li>
+    <li><a href="#komodo-trek">Komodo Island: into dragon country</a></li>
+    <li><a href="#dragon">The dragon itself: size, speed, the bite</a></li>
+    <li><a href="#attacks">What the attack records actually say</a></li>
+    <li><a href="#village">Village life inside the park</a></li>
+    <li><a href="#taka-makassar">Taka Makassar: the sandbank that moves</a></li>
+    <li><a href="#manta-point">Manta Point & the reef</a></li>
+    <li><a href="#return">The return to Labuan Bajo</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Before Six A.M.,<br><em>Four People on a Boat</em></h2>
+
+    <p>The day starts before sunrise with a hotel pickup and a short transfer to Labuan Bajo harbour, the gateway town on the western tip of Flores from which almost every Komodo National Park trip departs. By six the boat is moving. It is a small operation: a captain, two crew, and two English-speaking guides — Heri, who leads the day almost start to finish, and Sofian, who takes over specifically for the final snorkelling stop — all committed for the day to a single loop through the park's best-known stops: two islands, two beaches, a sandbank, and a stretch of open water where, with some luck, manta rays gather to feed.</p>
+
+    <p>Heri opens with introductions for the captain and crew, and a safety briefing covering life jackets, the location of the boat's two rubbish bins, and a firm instruction about the toilet: nothing but the intended contents goes in it, on a boat with a holding tank this small. It's the kind of practical, slightly comic briefing that every Komodo boat guide has clearly given a thousand times, delivered with the patience of someone who knows exactly how far the equator sun will have cooked everyone by mid-morning.</p>
+
+    <div class="heri-says">"I know everybody's sleeping a little bit right now — that's fine. By the time we reach Padar, you'll be awake."</div>
+
+    <p>The plan for the day, roughly: a hike up Padar Island for the view, a stop at Pink Beach, a ranger-led trek on Komodo Island itself in search of the dragons, lunch at a village warung, a swim stop at the sandbank of Taka Makassar, and — conditions allowing — snorkelling at Manta Point and Siaba Island before the roughly forty-five-minute run back to harbour by mid-afternoon.</p>
+  </section>
+
+  <section class="section" id="padar">
+    <div class="section-tag">Stop 1 · Padar Island</div>
+    <h2>815 Steps<br>to <em>Three Beaches</em></h2>
+
+    <div class="location">Padar Island · Padar Island Nature Reserve, est. 1980</div>
+
+    <p>Padar is the first stop, roughly ninety minutes by speedboat from Labuan Bajo, and the itinerary's most photographed moment: a concrete-and-boardwalk stairway climbing about 250 metres in elevation over a little under a kilometre, to a saddle-shaped viewpoint looking down on three separate bays, each with a differently coloured beach — white, black and a faint pink.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">815</div>
+      <div class="key-fact-text">Steps from the jetty to Padar's main viewpoint — a figure both the guide and the tour operator's own written itinerary agree on almost exactly. Budget 30–60 minutes at an easy pace; there is no shade, so an early start matters more than fitness.</div>
+    </div>
+
+    <p>The climb is broken into a series of shorter flights rather than one continuous stair, which makes it more manageable than the step count suggests. What you're rewarded with at the top is genuinely rare: three bays of different sand colour visible from a single ridge, a formation that owes as much to Padar's jagged, volcanic coastline as to the sand itself. Heri leads the hike itself, hanging back with anyone taking it slowly and offering to take photos and video at the viewpoint for guests who'd rather not manage a phone on the stairs.</p>
+
+    <div class="story-box" data-label="The Steps That Lost Their Dragons">
+      <p>Padar appears on the park's dragon range maps, and older guidebooks still describe it as a place to spot them. It isn't, any more. The island's Komodo dragon population is understood to have been largely wiped out sometime in the second half of the 20th century, most likely because unchecked deer poaching removed the prey base the dragons depended on — no deer, no dragons.</p>
+      <p><span class="highlight">Individual dragons occasionally reach Padar by swimming from neighbouring islands</span> — they are capable swimmers and have been recorded crossing open channels between islands — but it is not considered a reliable place to see one, and the trek here is a hike for the view, not a wildlife encounter. For dragons, the boat continues on to Komodo Island itself.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pink-beach">
+    <div class="section-tag">Stop 2 · Pink Beach</div>
+    <h2>The Colour<br>That <em>Isn't Coral</em></h2>
+
+    <div class="location">Pantai Merah · Komodo Island, eastern coast</div>
+
+    <p>A short hop from Padar, Pink Beach is one of only a handful of pink-sand beaches on Earth, and the calm water makes it as much a swimming and light-snorkelling stop as a photo opportunity. The pink is subtle rather than lurid, strongest at the waterline where wet sand deepens the colour, and most visible in the low light of early morning or late afternoon rather than under a flat midday sun.</p>
+
+    <div class="story-box" data-label="Not Actually Coral">
+      <p>The colour is almost always explained on the beach — and in most tour write-ups — as "crushed red coral." That's close enough to be a reasonable shorthand, but not quite what's happening. The pigment comes from <em>Homotrema rubrum</em>, a microscopic single-celled organism called a foraminifera that lives encrusted on the underside of coral rubble and reef debris, building itself a small crimson-red shell.</p>
+      <p>When these organisms die, wave action grinds their shells into fine, sand-sized red fragments, which wash ashore and mix with ordinary white carbonate sand. <span class="highlight-blue">The healthier and busier the reef offshore, the more foraminifera it supports, and the pinker the beach.</span> Crushed coral itself plays only a supporting role in the mixture — the real engine of the colour is a creature most visitors have never heard of and will never see.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting Pink Beach:</strong> Reef shoes or sandals are worth having for the walk in — the sand near the waterline can be uneven. Reef-safe sunscreen only; this is a swimming and snorkelling beach as well as a photo stop.
+    </div>
+  </section>
+
+  <section class="section" id="komodo-trek">
+    <div class="section-tag">Stop 3 · Komodo Island</div>
+    <h2>Into<br><em>Dragon Country</em></h2>
+
+    <div class="location">Loh Liang Ranger Post · Komodo Island</div>
+
+    <p>Komodo Island itself — 291 square kilometres of savanna, monsoon forest and steep volcanic ridgeline — is where the trip's central purpose is met. Trekking here is only permitted with a licensed park ranger, and on this visit the group was accompanied by three: two walking with the main party and a third, further back, keeping watch. Before setting off, the ranger runs through the ground rules: no smoking, no litter, no wandering off the marked trail, and absolute quiet around any dragon encountered.</p>
+
+    <blockquote>
+      <p>"They look calm. They look lazy. But they are always watching you — they're just deciding whether you're worth the effort."</p>
+      <cite>— Park Ranger, Komodo Island</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="Three Rules If a Dragon Comes for You">
+      <p>The ranger's safety briefing, cleaned up from a fairly garbled recording but consistent in substance with standard park guidance: Komodo dragons can sprint briefly at up to 18–20 km/h but cannot sustain it or turn sharply at speed, so the first response to a charging dragon is to run at an angle — a zigzag rather than a straight line — which the ranger demonstrated by jogging in a tight diagonal.</p>
+      <p>The second option is to climb a tree. This sounds more useful than it is likely to be needed, but it is genuinely sound advice: <span class="highlight-green">adult Komodo dragons are too heavy to climb, even though the juveniles are excellent climbers</span> and spend much of their early years doing exactly that, to stay out of reach of cannibalistic adults.</p>
+      <p>The third, offered half as a joke and half seriously: if cornered in a group, drop a bag or another object for the dragon to investigate, and use the distraction to get away. None of this was needed on this particular trek — the dragons encountered were resting, unbothered, and the rangers kept a distance of several metres at all times as a matter of routine.</p>
+    </div>
+
+    <p>The trek itself covers a modest loop — around an hour of walking plus rest stops — through savanna where the dragons are most often found lying still near shade or water in the middle of the day, having done their hunting, such as it is, in the cooler hours around dawn. Several dragons were seen at rest, including one ranger estimated as an older, scarred individual missing part of a forelimb, likely from fighting rather than predation.</p>
+  </section>
+
+  <section class="section" id="dragon">
+    <div class="section-tag">Natural History</div>
+    <h2>The Dragon Itself:<br><em>Size, Speed & the Bite</em></h2>
+
+    <p>Komodo dragons (<em>Varanus komodoensis</em>) are the largest living lizard species, confined in the wild to a small cluster of islands inside and around Komodo National Park — nowhere else on Earth. Recent park census figures put the total wild population at roughly 3,300–3,400 individuals, a number that has held broadly stable through the 2020s after decades of concern about decline.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">3,396</div>
+      <div class="key-fact-text">Estimated wild Komodo dragons across the park's islands in the most recent published census (2023) — up slightly from 2,897 in 2018. Komodo and Rinca islands hold the two largest populations, each in the low thousands; Gili Motang and Nusa Kode support only a few dozen to under a hundred each.</div>
+    </div>
+
+    <p>The ranger's estimate of "up to 1,600" dragons specifically on Komodo Island runs a little ahead of the peer-reviewed figures, which put Komodo's population closer to 1,300–1,400 — still, alongside Rinca, one of the two strongholds of the species. His claim of a 3.1-metre individual as the largest he'd personally seen, however, lines up closely with the actual scientific record: the largest verified wild Komodo dragon on record measured 3.13 metres and weighed 166 kg, though that specific animal had just fed and typical large males run closer to 2.5–2.8 metres and 60–90 kg.</p>
+
+    <div class="story-box" data-label="The Bacterial Bite That Wasn't">
+      <p>The most persistent story told about Komodo dragons — repeated, almost word for word, by the ranger on this trek — is that their bite kills slowly through infection: that their mouths are so thick with bacteria from decomposing meat that a bitten animal simply gets septic and dies, days later, while the dragon tracks it at a patient distance.</p>
+      <p><span class="highlight">This turns out not to be true, and hasn't been the accepted explanation among researchers since 2009.</span> A study led by biologist Bryan Fry, using MRI scans on a terminally ill zoo animal, identified genuine venom glands in the Komodo dragon's lower jaw — structures distinct from ordinary saliva glands, with ducts opening between the teeth. Venom extracted from them contained compounds that prevent blood clotting and rapidly lower blood pressure, inducing shock.</p>
+      <p>A follow-up study in 2013 examined the bacteria question directly and found nothing unusual: a Komodo dragon's mouth carries roughly the same bacterial load as other wild carnivores, no more. The prey animal's death after a bite — often days later, exactly as the ranger described — is real, but the mechanism is chemical, not microbial: teeth that inflict a deep, ragged wound, combined with venom that keeps that wound bleeding and drives the animal toward collapse.</p>
+    </div>
+
+    <p>Other details from the ranger's account hold up well: adult dragons hunt largely alone and prefer to wait rather than chase, sprinting only over short distances; they can detect carrion from several kilometres away using their forked tongue and the Jacobson's organ in the roof of the mouth; and they are capable of eating up to roughly 80% of their own body weight in a single meal, which explains the long gaps — sometimes a month or more — between hunts.</p>
+
+    <div class="story-box" data-label="Housework Shortens a Dragon's Life">
+      <p>The ranger's figures for lifespan — females living 30–40 years, males 42–50 — run higher than the commonly cited figure of around 30 years for the species as a whole, but a long-term mark–recapture study tracking around 400 individual dragons over eight years found something in the same spirit and considerably more striking: female Komodo dragons live, on average, roughly half as long as males.</p>
+      <p>The likely explanation isn't predation or disease but reproduction itself — the physical toll of digging nest chambers, guarding eggs for months at a time, and repeating the cycle appears to shorten females' lives significantly relative to males, who take no part in nest-building or guarding at all.</p>
+    </div>
+
+    <p>On breeding: females dig several decoy nest chambers alongside the real one, specifically to confuse other dragons — including other females and rival males — who might otherwise dig up and eat the eggs. A clutch runs to 20–30 eggs, incubating for around seven to nine months underground. The female typically guards the nest for its first few months, then leaves as the rainy season begins in December — roughly matching the ranger's own account of "three months" of guarding, even if the full incubation runs considerably longer than that.</p>
+  </section>
+
+  <section class="section" id="attacks">
+    <div class="section-tag">Safety Record</div>
+    <h2>What the Attack Records<br><em>Actually Say</em></h2>
+
+    <p>Guided treks understandably lean into the danger of the animal, and the ranger's account included a claim that a tourist was "eaten" in 1974 and that a Singaporean tourist was attacked in 2018.</p>
+
+    <div class="story-box" data-label="What the Numbers Actually Say">
+      <p>The 1974 date is broadly right but the framing is off: park authorities record roughly five confirmed fatal attacks between 1974 and 2009 (the others in 2000, 2007 and 2009), and all of the documented victims were local residents, fishermen or people who had gone into the park unguided or off the permitted trails — not tourists on a supervised visit.</p>
+      <p>The Singaporean incident did happen, but not quite as described: in May 2017, a 50-year-old tourist from Singapore was bitten on the leg after leaving his official group, staying with local villagers to save money, and approaching dragons that were feeding on livestock against locals' warnings. He survived. Park officials at the time called it the first bite in five years, and <span class="highlight-blue">no fatal attack on a tourist during a properly guided, on-trail visit has been documented</span> in the park's history.</p>
+      <p>A separate claim from the ranger — that a local person was killed by a dragon "around two years ago" — could not be independently confirmed against available records and is included here only as the ranger's own account, not as an established fact.</p>
+    </div>
+  </section>
+
+  <section class="section" id="village">
+    <div class="section-tag">Stop 4 · Komodo Village</div>
+    <h2>Village Life<br><em>Inside the Park</em></h2>
+
+    <p>Lunch is taken back near the ranger post, at a simple warung run by the local community rather than on the rocking boat — a practical choice as much as a cultural one, and one that puts money directly into the village economy rather than a boat operator's supply chain.</p>
+
+    <p>The ranger described roughly 5,000 people living inside the national park across several villages. The real figure, drawn from park demographic records, is close but somewhat lower: around 4,000 residents spread across four settlements — Komodo, Rinca, Kerora and Papagaran — all of which predate the park itself, which was established in 1980. Komodo Village, the largest, has grown enormously in a century: from around 30 residents in 1928 to roughly 1,500 by the 2010 census, driven largely by migration from Sumbawa, Manggarai, Madura and South Sulawesi rather than natural growth alone.</p>
+
+    <p>These communities are Muslim, largely dependent on fishing, and predate the conservation restrictions that now shape daily life around them — a tension Heri alluded to only briefly, but one that runs through most serious writing about the park: the villages were here first, and the rules that now protect the dragons also constrain what residents can fish, farm or gather.</p>
+
+    <div class="story-box" data-label="A Ranger's Crocodile">
+      <p>One ranger, a lifelong resident of the islands, mentioned that a crocodile had reportedly been sighted and photographed in the national park's waters about a month before this visit — something he said he had never personally witnessed in his entire life on the islands before that. This is included as a striking piece of local testimony rather than a confirmed fact: no official park record of the sighting could be verified for this piece, and it should be read as the kind of story that circulates quickly among people who live somewhere unusual, true or not.</p>
+    </div>
+  </section>
+
+  <section class="section" id="taka-makassar">
+    <div class="section-tag">Stop 5 · Taka Makassar</div>
+    <h2>The Sandbank<br>That <em>Moves</em></h2>
+
+    <div class="location">Taka Makassar · Open water, central park</div>
+
+    <p>Taka Makassar is not an island so much as a crescent of pale sand sitting in open water between Komodo and the park's outer snorkelling sites, with no vegetation and no permanent structure — its size and shape shift with the tide, sometimes larger, sometimes barely breaking the surface. It functions as a short swimming and photo stop between the morning's trekking and the afternoon's snorkelling, rather than a destination in its own right.</p>
+
+    <div class="practical">
+      <strong>At Taka Makassar:</strong> Sun protection matters here more than almost anywhere else on the route — there is no shade of any kind. Move slowly and follow Heri into the water; strong currents can run close to the sandbank depending on tide.
+    </div>
+  </section>
+
+  <section class="section" id="manta-point">
+    <div class="section-tag">Stop 6 · Manta Point & Siaba</div>
+    <h2>Manta Point<br>& <em>the Reef</em></h2>
+
+    <p>The afternoon is built around snorkelling, with the exact stops depending on sea conditions on the day: Manta Point, where nutrient-rich currents draw manta rays to feed and where sightings are common but genuinely not guaranteed, and — as a fallback if the swell makes Manta Point impractical — Siaba Island, known instead for sea turtles and a gentler reef. For this last dive of the day, Heri hands over to Sofian, who leads in the water while Heri stays with the boat. On this trip, three manta rays had reportedly been seen at nearby Mawan the previous day, and Sofian judged conditions workable for Manta Point itself.</p>
+
+    <p class="sofian-says">"Even if we see just one, that's better than none. We've got maybe a fifty percent chance today — the water's been a little cold this week, and that changes where they feed."</p>
+
+    <p>Before entering the water at each stop, Sofian runs through reef etiquette: no standing on coral, no touching marine life, and staying grouped rather than spreading out. On the question of coral colour — a topic that came up unprompted, as guides on this route often anticipate the "why is some of the reef grey and some bright" question — the explanation given was broadly accurate: living coral gets its colour from the soft tissue of the polyps covering the hard calcium skeleton beneath; once that tissue dies, the bleached white or grey skeleton is what's left exposed.</p>
+
+    <div class="practical">
+      <strong>Snorkelling gear:</strong> Masks, snorkels and fins are provided and issued at the start of the day; a wetsuit or rash guard is worth bringing if you feel the cold, since the water in this stretch of the park runs cooler than the Bali or Lombok coasts most visitors are used to.
+    </div>
+  </section>
+
+  <section class="section" id="return">
+    <div class="section-tag">Closing</div>
+    <h2>The Return<br>to <em>Labuan Bajo</em></h2>
+
+    <p>The boat turns back toward Labuan Bajo in the mid-afternoon, arriving at harbour roughly ten hours after departure. On the way in, Heri points out souvenir sellers working the harbour and the approach to Komodo Village — carved wooden dragons, mostly — with a gentle warning that first-quoted prices are opening offers, not fixed ones, and that polite bargaining is expected and welcomed rather than awkward.</p>
+
+    <div class="practical">
+      <strong>Planning the trip:</strong> Park entry, ranger and conservation fees are bundled differently by different operators and have changed more than once in recent years — budget conversations are best had directly with a licensed operator rather than from any fixed figure, since online quotes for Komodo National Park fees vary widely and go stale quickly. A day trip covering Padar, Komodo Island, Pink Beach, Taka Makassar and the snorkelling sites in a single day, as here, is a long but entirely manageable itinerary; multi-day liveaboards cover the same ground at a slower pace.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>KOMODO NATIONAL PARK</span> · UNESCO World Heritage Site, est. 1980 · Flores, Indonesia<br><br>
+  Transcript heavily edited for clarity from a recording with substantial background noise and several speakers. Boat guide: Heri, who leads the day throughout except on Komodo Island, where trekking is led by licensed park rangers, and the final snorkelling stop, led by assistant guide Sofian. Park ranger names could not be reliably made out and are not given. Several claims in the original recording — the mechanism behind a Komodo dragon's bite, historical attack figures, and one ranger's account of a crocodile sighting — have been corrected or flagged against published research and park records; the crocodile sighting could not be independently verified and is presented as testimony only.
+</footer>
+
+</body>
+</html>

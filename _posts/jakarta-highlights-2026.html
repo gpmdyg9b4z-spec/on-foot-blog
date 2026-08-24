@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Jakarta Highlights — A Walking Tour with Fifi</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    color-scheme: light;
+    background: var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  p, li, .post-excerpt { color: #241c14; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .fifi-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Old Batavia, Istiqlal & Monas, Jakarta</div>
+  <h1>From Cathedral Bells<br>to a <em>Sinking City</em></h1>
+  <div class="header-sub">Highlights of Jakarta Walking Tour with Guide Fifi · GuruWalk</div>
+  <div class="header-meta">
+    <span>ROUTE: Cathedral → Istiqlal → Kota Tua → Glodok → National Library → Monas</span>
+    <span>DURATION: ~4 hours</span>
+    <span>GUIDE: Fifi (Jakarta, Java &amp; Bali)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">A city built three times over</a></li>
+    <li><a href="#cathedral">Jakarta Cathedral</a></li>
+    <li><a href="#istiqlal">Istiqlal Mosque</a></li>
+    <li><a href="#kota-tua">Fatahillah Square &amp; the old Stadhuis</a></li>
+    <li><a href="#kali-besar">Kali Besar &amp; the Chicken Market Bridge</a></li>
+    <li><a href="#wayang">Buffalo hide &amp; sacred puppets</a></li>
+    <li><a href="#glodok">Glodok &amp; the Temple of Golden Virtue</a></li>
+    <li><a href="#library">Twenty-four floors above the square</a></li>
+    <li><a href="#monas">Monas: the flame that took fourteen years</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A City Built<br><em>Three Times Over</em></h2>
+
+    <p>Fifi meets her groups at the cathedral gate, sunglasses pushed up on her head, and warns everyone straight away that four hours is not really enough for Jakarta. The city has been rebuilt, renamed and relocated so many times that even a short walk through its oldest quarter means picking through several histories layered on top of one another.</p>
+
+    <p>The site began as Sunda Kelapa, a Sundanese trading port at the mouth of the Ciliwung River. In 1619 the Dutch East India Company (VOC), under Jan Pieterszoon Coen, destroyed the town that had stood there — by then renamed Jayakarta — and built its own walled trading capital on the ruins, calling it Batavia. For roughly two centuries Batavia was the administrative heart of the Dutch East Indies, a company town before it was a colonial one.</p>
+
+    <p>Japan occupied the Dutch East Indies from 1942 to 1945. Two days after Japan's surrender, on 17 August 1945, nationalist leader Sukarno proclaimed Indonesian independence in Jakarta — the date the country still marks as its birth. The Netherlands did not formally recognise that independence until the Dutch–Indonesian Round Table Conference in The Hague in December 1949, which is why some Dutch institutions still date Indonesian sovereignty four years later than Indonesians themselves do.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">17,000+</div>
+      <div class="key-fact-text">Islands in the Indonesian archipelago, home to well over 280 million people and hundreds of ethnic groups. The national motto, <em>Bhinneka Tunggal Ika</em> — "Unity in Diversity" — and the five principles of Pancasila (belief in one God, humanitarianism, national unity, democracy, and social justice) were designed to hold that diversity together as a single republic.</div>
+    </div>
+
+    <p>Today's Jakarta carries a newer anxiety than its colonial one: it is sinking. Parts of the city are settling by anywhere from a few centimetres to over 20cm a year, driven mainly by decades of groundwater extraction into soft, swampy soil — among the fastest subsidence rates of any major city on Earth. It's the backdrop to the tour's final stretch, and to Indonesia's slow, still-unfinished plan to shift its seat of government to a new capital, Nusantara, under construction in the forests of East Kalimantan since 2022. As of 2026, Jakarta legally remains the capital while ministries relocate in stages — a process Fifi, like many Jakartans, has mixed feelings about.</p>
+  </section>
+
+  <section class="section" id="cathedral">
+    <div class="section-tag">Stop 1 · Jakarta Cathedral</div>
+    <h2>The Cathedral That<br><em>Fell Down First</em></h2>
+
+    <div class="location">Gereja Katedral Jakarta · Neo-Gothic, 1891–1901</div>
+
+    <p>Catholic worship was restricted for most of the VOC era — the Dutch, as Protestants, limited it to Flores and Timor — and only opened up in Batavia after Napoleon's brother Louis, then king of Holland, permitted Catholic missionary activity in the early 19th century. Land for the first church here was granted in the late 1820s.</p>
+
+    <div class="story-box" data-label="Two Churches, Not One">
+      <p>The building on this site today is not the original. A first church, completed in 1829, collapsed on 9 April 1890 after years of poor maintenance and structural neglect — not, as guides sometimes say on the day, an earthquake.</p>
+      <p>Its replacement was designed by Antonius Dijkmans, a Dutch Jesuit priest trained in Europe, in the neo-Gothic style then fashionable for churches back home — a deliberate contrast with the neo-Classical buildings the Dutch preferred for their own colonial institutions. <span class="highlight">Rather than European stone, Dijkmans built in brick, teak and iron</span> — materials better suited to Java's tropical climate and seismic risk. Funding ran out partway through; construction resumed under architect Marius Hulswit, and the church was consecrated on 21 April 1901, roughly a decade after the first stone was laid, not the single decade some tours condense it to.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">60m</div>
+      <div class="key-fact-text">Height of the cathedral's twin front spires, named Turris Davidica and the Ivory Tower. A third spire, the Angelus Dei, rises 45m above the main altar. A tunnel connecting the cathedral to the mosque across the square was built between 2020 and 2021, formalising decades of informal interfaith cooperation between the two congregations.</div>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting the cathedral:</strong> Free entry, self-guided during opening hours. Group tours and access to the small museum on the upper triforium can be arranged through the cathedral office.
+    </div>
+  </section>
+
+  <section class="section" id="istiqlal">
+    <div class="section-tag">Stop 2 · Istiqlal Mosque</div>
+    <h2>Designed by<br><em>a Christian</em></h2>
+
+    <div class="location">Masjid Istiqlal · Built 1961–1978</div>
+
+    <p><em>Istiqlal</em> means "independence" in Arabic. The mosque was conceived as a national monument, commissioned to give thanks for Indonesia's independence and to honour Muslims who died in the struggle for it. A design competition was held in 1955, judged by a panel that included Sukarno himself.</p>
+
+    <p>The winner was Frederich Silaban, a Toba Batak architect from North Sumatra — and a Protestant Christian. <span class="highlight">Given Istiqlal's site, directly facing the Catholic cathedral, the choice was widely read as a deliberate statement of the religious pluralism written into Pancasila.</span> Silaban's design won a gold medal and a modest cash prize; construction began in 1961 and the mosque opened in February 1978, 17 years later.</p>
+
+    <div class="story-box" data-label="Numbers with Meaning">
+      <p>Istiqlal's architecture is dense with symbolism. Twelve main columns mark 12 Rabiul Awal, the Prophet Muhammad's traditional birth date. Five floors echo both the Five Pillars of Islam and the five principles of Pancasila. The central dome is 45 metres across — for 1945, the year of independence.</p>
+      <p>The single minaret (a deliberate choice, symbolising the oneness of God) reaches 96.66 metres: a 66.66-metre marble-clad shaft, said to represent the 6,666 verses of the Qur'an, topped by a 30-metre steel crown for its 30 <em>juz</em>, or chapters. <span class="highlight-blue">This is more intricate than the "17 metres" some walking tours quote</span> — the number 17, for Indonesia's 17 August independence date, appears elsewhere in the complex rather than in the minaret's height.</p>
+    </div>
+
+    <p class="fifi-says">"This is the pride of Indonesian believers — the largest mosque in Southeast Asia, and one of the largest anywhere. But what I always tell people is: look at the church next door first. That's the point of standing here."</p>
+
+    <div class="practical">
+      <strong>Visiting Istiqlal:</strong> Free entry. Closed to public tours on Fridays for congregational prayer, though the exterior and design can still be admired. Modest dress is required inside; robes are available to borrow at the entrance.
+    </div>
+  </section>
+
+  <section class="section" id="kota-tua">
+    <div class="section-tag">Stop 3 · Fatahillah Square</div>
+    <h2>Batavia's<br><em>City Hall</em></h2>
+
+    <div class="location">Kota Tua · Stadhuis, 1707–1710</div>
+
+    <p>The group takes the commuter train from Juanda station to Jakarta Kota — Fifi lends out transit cards rather than have everyone queue to buy their own — and surfaces in the old walled centre of Batavia. Almost none of the wall survives; Governor-General Herman Willem Daendels, appointed in 1808 by King Louis Napoleon of Holland, ordered much of it demolished after 1809, when the colonial government relocated south to healthier ground at Weltevreden. <span class="highlight">Old Batavia's canals and moat had become breeding grounds for malaria and cholera</span>, and the city had earned a grim nickname among the Dutch: the graveyard of the East.</p>
+
+    <p>What remains centres on Fatahillah Square, the old Stadhuis — Batavia's city hall, built 1707–1710 under Governor-General Abraham van Riebeeck in a style modelled loosely on Amsterdam's town hall. It served as the seat of colonial administration and colonial justice for two centuries before the government moved south, and has operated as the Jakarta History Museum since 1974.</p>
+
+    <div class="story-box" data-label="A Public Stage">
+      <p>The square outside the Stadhuis was Batavia's stage for public executions and punishments — hangings, and worse, for offences ranging from theft to rebellion, carried out in front of crowds the authorities compelled to watch, as a deterrent.</p>
+      <p>Beneath the building, cramped holding cells kept men and women separately while they awaited trial or execution — conditions guides describe as brutally cramped, though the exact measurements passed down in guide folklore aren't independently documented and are best treated as local tradition rather than verified fact.</p>
+    </div>
+  </section>
+
+  <section class="section" id="kali-besar">
+    <div class="section-tag">Stop 4 · Kali Besar</div>
+    <h2>The Night the River<br><em>Ran Red</em></h2>
+
+    <p>A short walk from the square runs Kali Besar — the "Great Canal" — Batavia's central waterway, laid out by the Dutch in an explicitly Amsterdam-style grid of canals lined with warehouses and merchant houses. Ships once sailed straight up it to unload; malaria eventually forced most of the canal network to be filled in.</p>
+
+    <p>Two buildings anchor the walk. <strong>Toko Merah</strong>, the "Red Shop," was built around 1730 as the residence of a Dutch Governor-General and is among the oldest surviving structures in the old city. And spanning the canal itself is the <strong>Kota Intan Bridge</strong> — a small wooden drawbridge first built in 1628, the oldest bridge in Indonesia. It has carried several names over four centuries: English Bridge, for the nearby British trading post; Hoenderpasarbrug, or Chicken Market Bridge, for the poultry market beside it; and briefly Queen Juliana Bridge, after a 1930s restoration. Its red paint and double-leaf lifting design deliberately echo the drawbridges of Amsterdam.</p>
+
+    <div class="story-box" data-label="October 1740">
+      <p>In October 1740, rising tension between Batavia's Dutch authorities and the city's Chinese population — many of them sugar-mill workers facing deportation and falling wages — erupted into violence. After Chinese labourers killed around fifty Dutch soldiers, Governor-General Adriaan Valckenier's forces and armed civilian mobs turned on the city's Chinese residents indiscriminately.</p>
+      <p>The killing lasted roughly two weeks. Historians estimate at least 10,000 ethnic Chinese Batavians were massacred; only a few hundred to a few thousand are thought to have survived. Around 200 prisoners were killed inside the Stadhuis itself. <span class="highlight">Contemporary accounts describe canals in the north of the city so choked with bodies that people could cross without touching water.</span> Valckenier was later recalled to the Netherlands to face charges over the massacre and died in custody before any trial concluded.</p>
+      <p>Local tradition connects the names of several nearby waterways and districts to the bloodshed — though, as with much place-name folklore, professional etymologists treat these connections as plausible rather than proven. What's well documented is the aftermath: Batavia's surviving Chinese population was resettled into a designated quarter outside the old walls, the origin of today's Glodok.</p>
+    </div>
+  </section>
+
+  <section class="section" id="wayang">
+    <div class="section-tag">Stop 5 · Puppet Workshop</div>
+    <h2>Buffalo Hide &amp;<br><em>Sacred Puppets</em></h2>
+
+    <p>West of the old town, a small family workshop demonstrates the making of <em>wayang kulit</em> — Javanese leather shadow puppets. Buffalo or cowhide is dried for weeks to months, then scraped smooth and chiselled by hand with dozens of specialised tools before being painted — traditionally with natural pigments bound in rubber latex, though acrylic is common today — and mounted on handles carved from buffalo horn, chosen because heat makes it flexible enough to bend into shape.</p>
+
+    <p>Characters are drawn mainly from the Hindu epics <em>Ramayana</em> and <em>Mahabharata</em> — Rama and Sinta, the monkey-general Hanuman, the noble and the villainous side by side. Traditionally a performance runs from dusk until dawn, the puppets projected as shadows onto a screen by oil lamp or bulb, narrated by a single puppeteer (a <em>dalang</em>) accompanied by a gamelan orchestra.</p>
+
+    <div class="story-box" data-label="The Tree of Life">
+      <p>Every performance opens and closes with the <em>gunungan</em> — a mountain- or tree-shaped puppet used to mark scene changes and, at the start and end of the night, to represent the whole of the universe: the tiger for ambition, the buffalo for hard work, the snake for base instinct, birds nesting in branches for humanity sheltered inside a wider order.</p>
+      <p>In 2003, UNESCO proclaimed wayang puppet theatre a Masterpiece of the Oral and Intangible Heritage of Humanity, formally inscribing it on the Representative List in 2008.</p>
+    </div>
+  </section>
+
+  <section class="section" id="glodok">
+    <div class="section-tag">Stop 6 · Glodok</div>
+    <h2>The Temple of<br><em>Golden Virtue</em></h2>
+
+    <div class="location">Vihara Dharma Bhakti (Jin De Yuan) · Founded 1650</div>
+
+    <p>Glodok has been Jakarta's Chinatown since the resettlement that followed the 1740 massacre, and its spiritual centre is Vihara Dharma Bhakti — also known as Jin De Yuan, or by its older Hokkien name, Kim Tek Ie. It was founded in 1650 by a Chinese lieutenant, Kwee Hoen, as a shrine to the bodhisattva Guan Yin (Kwan Im), destroyed in the 1740 violence described at Kali Besar, and rebuilt in 1755 by Chinese captain Oei Tjhie. In 1965, amid a government push to Indonesianise Chinese-sounding names, it took its current Indonesian name.</p>
+
+    <p><span class="highlight-green">Most heritage sources regard Vihara Dharma Bhakti as Jakarta's oldest Chinese temple</span>, rather than the "second oldest" the tour sometimes claims — though the building standing today dates mainly from its 1755 rebuild rather than 1650. Inside, altars to Buddhist, Taoist and Confucian figures share the same halls, a common arrangement in Indonesian <em>klenteng</em> that reflects the blending of the three traditions in Chinese-Indonesian religious life.</p>
+
+    <div class="story-box" data-label="Asking the Gods">
+      <p>Visitors can try <em>jiaobei</em> — throwing a pair of crescent-shaped wooden divination blocks to seek a deity's answer to a question. The blocks' resting positions are read as yes, no, or laughing refusal to answer at all; a favourable throw is often followed by drawing a numbered fortune slip for interpretation. It's a living, everyday practice here rather than a display for visitors.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting the temple:</strong> Open daily. An accidental fire in March 2015, started by candles near hanging fabric, badly damaged the main hall; restoration has continued gradually since. Dress modestly and keep voices low — this remains an active place of worship.
+    </div>
+  </section>
+
+  <section class="section" id="library">
+    <div class="section-tag">Stop 7 · Panoramic View</div>
+    <h2>Twenty-Four Floors<br><em>Above the Square</em></h2>
+
+    <div class="location">Perpustakaan Nasional RI · Opened 2017</div>
+
+    <p>A TransJakarta bus ride east brings the group to Merdeka Square and the National Library, where a lift ride to an upper floor gives a panoramic view back over Monas and the old colonial quarter. The current building — around 126 metres tall with 24 storeys above ground, plus basement levels — was inaugurated by President Joko Widodo on 14 September 2017 and is credited by Guinness World Records as the tallest national library building in the world.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1778</div>
+      <div class="key-fact-text">Founding year of the Royal Batavian Society of Arts and Sciences, the first learned society in Asia, whose library collection forms the historical core of today's National Library — nearly two and a half centuries before the present tower opened.</div>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="monas">
+    <div class="section-tag">Stop 8 · Merdeka Square</div>
+    <h2>The Flame That Took<br><em>Fourteen Years</em></h2>
+
+    <div class="location">Monumen Nasional · Built 1961–1975</div>
+
+    <p>Monas was one of three prestige projects Sukarno commissioned in the early 1960s to announce the new republic to the world, alongside Istiqlal Mosque and the Gelora Bung Karno sports stadium — the last built in barely two years so it would be ready in time for Indonesia to host the 1962 Asian Games. Monas and Istiqlal, needing far larger quantities of imported Italian marble and stainless steel at a time when the young country had little spare capital, took much longer.</p>
+
+    <p>Construction on the 132-metre obelisk began on 17 August 1961 — the sixteenth anniversary of independence — under architects Frederich Silaban (also responsible for Istiqlal) and R.M. Soedarsono. <span class="highlight">It opened to the public on 12 July 1975: fourteen years, not the seventeen some tours quote.</span></p>
+
+    <div class="story-box" data-label="Lingga and Yoni">
+      <p>Monas's shape is deliberately symbolic. The tall marble obelisk represents <em>lingga</em>, a rice-pounding pestle and a masculine form; the broad platform at its base represents <em>yoni</em>, the mortar, feminine and receptive. Together, in Sukarno's own framing, they stood for balance, fertility and national unity.</p>
+      <p>The monument is crowned by a flame sculpture coated in gold leaf — originally about 35 kilograms when the monument opened, topped up to 50 kilograms in 1995 for the fiftieth anniversary of independence, using gold partly donated by Acehnese businessman Teuku Markam.</p>
+    </div>
+
+    <p class="fifi-says">"We are one of the fastest-sinking cities on Earth — in the north, we lose centimetres of ground every single year. So: welcome to Jakarta. Welcome to the sinking city."</p>
+
+    <p>It's a line Fifi uses partly as a joke and partly not. Indonesia has spent since 2019 planning to shift its seat of government to Nusantara, a new capital under construction in the forests of East Kalimantan — reasoning that a fast-growing, flood-prone, sinking Jakarta can no longer easily carry the weight of national government. As of 2026 the move remains gradual and incomplete, with Indonesia's Constitutional Court affirming that Jakarta legally remains the capital until a formal presidential decree says otherwise. Fifi, like many Jakartans whose lives and livelihoods are tied to the old capital, has complicated feelings about a project that means building an entirely new city out of rainforest.</p>
+
+    <div class="practical">
+      <strong>Visiting Monas:</strong> Closed on Mondays, along with most surrounding museums — though the square itself stays open for photographs and a walk around the grounds. Entry to the monument and observation deck is via an underground tunnel beneath the terrace.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>GURUWALK</span> · Free walking tour, contribution-based · Guide: Fifi<br><br>
+  Transcript heavily edited for clarity from a garbled, multi-voice recording; passages that could not be independently verified have been omitted rather than guessed at. Several figures repeated on the tour — the cathedral's collapse by earthquake, its 1899–1911 construction dates, Istiqlal's minaret height, Vihara Dharma Bhakti's "second oldest" status, Monas's seventeen-year build, and wayang's 2004 UNESCO date — have been corrected here against documentary sources; corrections are marked in the text above.
+</footer>
+
+</body>
+</html>

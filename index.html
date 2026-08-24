@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>On Foot — Walking Tour Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { color-scheme: light; background: var(--paper); }
   body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
 
@@ -215,8 +217,19 @@
 
   <!-- ── Posts ── -->
   <div class="posts-area">
-    <div class="results-count" id="results-count">34 posts</div>
+    <div class="results-count" id="results-count">35 posts</div>
     <div class="posts-list" id="posts-list">
+
+      <a class="post-card" href="_posts/jakarta-highlights-2026.html" data-location="indonesia" data-themes="history heritage architecture" data-search="jakarta highlights fifi guruwalk jakarta cathedral antonius dijkmans istiqlal mosque frederich silaban kota tua fatahillah square stadhuis jakarta history museum kali besar kota intan bridge chicken market bridge toko merah 1740 batavia massacre chinese glodok vihara dharma bhakti jin de yuan wayang kulit shadow puppets unesco national library monas monumen nasional sukarno merdeka square sinking city nusantara batavia weltevreden daendels">
+        <div class="post-date"><span class="date-day">23</span><span class="date-monthyear">Aug 2026</span></div>
+        <div class="post-body">
+          <div class="post-location-label">Jakarta · Indonesia</div>
+          <div class="post-title">From Cathedral Bells to a <em>Sinking City</em></div>
+          <div class="post-subtitle">Highlights of Jakarta Walking Tour · Guide: Fifi · GuruWalk</div>
+          <div class="post-excerpt">A neo-Gothic cathedral built twice, a mosque designed by a Christian architect, the old Stadhuis where two hundred people were killed in a single night in 1740, the last Dutch drawbridge in Batavia, and a national monument whose flame took fourteen years to light — ending, fittingly, on a stop about the fastest-sinking city on Earth.</div>
+          <div class="post-meta"><span class="tag">History</span><span class="tag">Heritage</span><span class="tag">Architecture</span><span class="read-link">Read →</span></div>
+        </div>
+      </a>
 
       <a class="post-card" href="_posts/hastings-secret-old-town-2026.html" data-location="sussex" data-themes="history heritage" data-search="hastings old town secrets tina di secret hastings george street pump house st clement's church cannonball foyle's war shipwreck houses twittens sweeney todd butcher's alley smuggler's cottage old hastings house window tax stag inn mummified cats all saints street piece of cheese cottage star brothers coffin maker net shops spanish sailors lookout bulgaria charity">
         <div class="post-date"><span class="date-day">1</span><span class="date-monthyear">Aug 2026</span></div>

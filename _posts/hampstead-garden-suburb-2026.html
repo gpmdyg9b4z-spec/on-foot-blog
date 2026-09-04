@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>The Suburb That Refused the Pub — A Walking Tour with Callum</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .home-nav {
+    background: var(--ink);
+    padding: 0.7rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .home-nav a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .home-nav a:hover { text-decoration: underline; }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '⚜';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .callum-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a href="../index.html">← On Foot</a></nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — North End & Hampstead Garden Suburb, NW11</div>
+  <h1>The Suburb<br>That <em>Refused the Pub</em></h1>
+  <div class="header-sub">North End &amp; Hampstead Garden Suburb Walk with Guide Callum · Hampstead Garden Suburb Trust</div>
+  <div class="header-meta">
+    <span>ROUTE: Whitestone Pond → Jack Straw's Castle → North End → Heath Extension → Central Square</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDE: Callum, Architectural Advisor, HGS Trust</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Setting off: the highest point in London</a></li>
+    <li><a href="#jack-straw">Jack Straw's Castle & the pub that isn't</a></li>
+    <li><a href="#heath-house">Heath House & the abolitionists next door</a></li>
+    <li><a href="#north-end">North End: the pumps, the pubs & Wyldes</a></li>
+    <li><a href="#old-wyldes">Old Wyldes & the trust's own drawing office</a></li>
+    <li><a href="#heath-extension">Saving the Heath Extension</a></li>
+    <li><a href="#great-wall">The Great Wall & Sunshine Corner</a></li>
+    <li><a href="#suburb">Building the Suburb</a></li>
+    <li><a href="#central-square">Central Square & what became of it</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Setting Off:<br>The <em>Highest Point</em> in London</h2>
+
+    <p>Callum starts at Whitestone Pond, near the top of Hampstead, with an orientation that also doubles as a small correction to a popular claim: this spot, not Parliament Hill or Highgate, is <span class="highlight">the highest point within what most people would consider proper London</span>. London's genuinely highest ground sits further out, on the city's northern and southern edges, where real hills take over — this is simply the high point of the built-up centre.</p>
+
+    <p>The pond itself began life as a set of horse ponds, filled to water animals hauling loads up the final stretch of hill from Hampstead. A flagpole nearby marks the site of a beacon, once part of a chain that ran, in Callum's words, "all the way to Great Yarmouth" — an early-warning relay for a seaborne invasion that never came, but that towns across the east and south of England once genuinely prepared for.</p>
+
+    <div class="story-box" data-label="A Spa on a Hill">
+      <p>Before it was a suburb, Hampstead was a health resort. From the 17th century, Londoners came up for the clean air and the local mineral spring water, believed to "rebalance the humours" — a fashionable cure for the wealthy escaping the city's smoke.</p>
+      <p>North End, further along the ridge, developed the same way but later: first a scatter of farms, then a minor extension of Hampstead's spa trade, offering — as Callum puts it — even better air and better water than Hampstead itself.</p>
+    </div>
+
+    <p>Both places stayed largely rural until the 20th century, when speculative building finally arrived in earnest and turned the spa town into a residential suburb of London proper. It's a shift that matters for what follows: almost everything on this walk exists because a small number of people spent two decades trying to stop that same process happening to the fields just north of here.</p>
+
+    <p class="callum-says">"I spend a lot of time thinking about how to get someone to learn something, and almost nothing else — so I might assume things you don't know. Please stop me if that's the case."</p>
+  </section>
+
+  <section class="section" id="jack-straw">
+    <div class="section-tag">Stop 1 · North End Way</div>
+    <h2>Jack Straw's Castle<br>&amp; <em>the Pub That Isn't</em></h2>
+
+    <div class="location">Jack Straw's Castle · Rebuilt 1964, on a site recorded since at least 1713</div>
+
+    <p>The building at the top of North End Way looks, at first glance, like an oddity: a Georgian-fronted structure trying very hard to also be a Gothic manor, with a tiled roof detailing that mimics a much older timber-framed building. Callum's read on it in the moment was close to the mark — it is, in fact, a 1964 building, designed by the architect <strong>Raymond Erith</strong> after the previous pub on the site was gutted in the Blitz.</p>
+
+    <div class="story-box" data-label="A Name Nobody Can Confirm">
+      <p>A pub has stood here under this name since at least 1713, taking its title from Jack Straw, one of the leaders of the 1381 Peasants' Revolt, who was said to have used the heath as a mustering point — or a hiding place, depending which version survives — before his capture and execution.</p>
+      <p>Callum is candid about the story's shakiness: <span class="highlight">"whether that's true or not, it's probably not true. It's such a good name."</span> Historical accounts of the pub agree there's no solid documentary link between Straw and this particular hilltop — the connection appears to be exactly the kind of good story a landlord would keep rather than correct.</p>
+    </div>
+
+    <p>The pub itself closed in 2002 and the building — now flats and a gym, though Grade II listed and largely preserved — was badly damaged by a landmine on 19 March 1941, the same raid that damaged its neighbour, Heath House. It stood as a ruin, its walls progressively demolished for safety, until Erith's rebuild finally replaced it in 1964. Speaking at Erith's memorial service a decade later, the poet laureate John Betjeman called the result "true Middlesex" — a phrase historians of the building still reach for. Past visitors, by tradition rather than firm record, are said to have included Charles Dickens and Karl Marx.</p>
+  </section>
+
+  <section class="section" id="heath-house">
+    <div class="section-tag">Stop 2 · North End Way</div>
+    <h2>Heath House &<br><em>the Abolitionists Next Door</em></h2>
+
+    <div class="location">Heath House · Early 18th century, extended early 19th</div>
+
+    <p>Behind Jack Straw's Castle sits Heath House — the same building damaged in the 1941 raid, and, at the time, home to a member of the House of Lords. Its more lasting claim rests earlier, with the Quaker banker <strong>Samuel Hoare</strong>, who moved his family here in 1790.</p>
+
+    <div class="story-box" data-label="Hospitality with a Cause">
+      <p>Hoare was a well-connected figure in London's Quaker banking circles and, more significantly, a committed campaigner against the slave trade — one of the founding members of the Society for the Abolition of the Slave Trade, and part of the network of Quaker and evangelical reformers, including William Wilberforce, who pushed the cause through Parliament.</p>
+      <p>Heath House became a byword for open-handed entertaining; the poet George Crabbe was a regular guest, and Samuel Hoare's circle overlapped with the wider Gurney family of Norfolk Quakers — the same family that produced the prison reformer <strong>Elizabeth Fry</strong>. The precise nature of any personal connection between Fry and this particular house is guide tradition rather than a documented visit, and worth treating as such rather than a confirmed fact.</p>
+    </div>
+
+    <p>What's well established is the type of household this was: wealthy, Quaker, reform-minded, and — as the walk will keep returning to — the direct social ancestor of the philanthropic energy that later built the suburb further along the ridge.</p>
+  </section>
+
+  <section class="section" id="north-end">
+    <div class="section-tag">Stop 3 · North End</div>
+    <h2>North End: The Pumps,<br>the Pubs <em>& Wyldes</em></h2>
+
+    <div class="location">North End · Village since the 17th century, resort from the mid-18th</div>
+
+    <p>North End in the 1600s was little more than a few cottages. It opened up as a fashionable minor resort after the mid-18th century, drawing its own wave of Londoners after clean air and spring water. One of its earliest recorded residents was William Pitt the Elder, who lived from around 1767 in a house — now demolished — known as North End House.</p>
+
+    <p>The village pump, the <strong>Bull and Bush</strong> — later immortalised in the music-hall song "Down at the Old Bull and Bush" — has stood on this spot since at least 1721, though the current building dates to a 1924 rebuild; the central section of older brickwork on either side is what survives of the earlier structure. Its neighbouring stables once served travellers breaking their journey out of London.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1721</div>
+      <div class="key-fact-text">Earliest recorded date for a pump or inn on the Bull and Bush site. The current building is a 1924 rebuild, incorporating older brickwork visible in its central section — a pattern repeated up and down North End, where 20th-century reconstruction sits on much older footings.</div>
+    </div>
+
+    <p>The row of three-storey houses on the left as the walk continues are early 18th century, though bomb-damaged and rebuilt, along with the terrace beside them, in the 1950s. Further along stands Wildwood Lodge, a mid-Victorian house associated by guide tradition with a dentist to Queen Victoria — a detail worth flagging as tour lore rather than a documented royal appointment pending a closer source check.</p>
+
+    <div class="story-box" data-label="Houses That Didn't Survive">
+      <p>Several buildings Callum points to along North End no longer exist. Pitt's own house was demolished after his death. Pennyfathers, later used as a wartime hospital, fell into ruin and was eventually demolished and rebuilt under the same name. Hollybush, a weatherboarded cottage once lived in by the artist and engraver John Linnell, was pulled down before the First World War.</p>
+      <p>The pattern across North End is consistent: a resort-era building, damaged or simply left to decay, quietly replaced — sometimes on the same footprint, sometimes not, and not always with the historical fidelity the current buildings' appearance might suggest.</p>
+    </div>
+  </section>
+
+  <section class="section" id="old-wyldes">
+    <div class="section-tag">Stop 4 · Old Wyldes Farm</div>
+    <h2>Old Wyldes &<br><em>the Trust's Own Drawing Office</em></h2>
+
+    <div class="location">Old Wyldes (Wyldes Farm) · Farmhouse since at least the mid-16th century</div>
+
+    <p>Old Wyldes, a timber-framed farmhouse extended in the 18th century, is the historical hinge of this whole walk. It has been a farmhouse since at least the mid-1500s; by the early 19th century its tenant farmer had moved out and converted the barn, letting the house to a string of artists — John Linnell among them, with William Blake recorded as a visitor. Charles Dickens is said to have stayed here while writing <em>Oliver Twist</em>, and the novel's escape scene, in which Bill Sikes flees London after murdering Nancy and hides beneath a hedge, is set on ground close to this spot.</p>
+
+    <div class="story-box" data-label="Unwin Moves In">
+      <p>In 1906, the architect <strong>Raymond Unwin</strong> — appointed that year as the Hampstead Garden Suburb Trust's architect and surveyor — took up residence at Old Wyldes and converted its barn into the trust's own drawing office. Unwin stayed on living there even after 1914, when he handed day-to-day design work at the suburb to his successor, a man named Sutcliffe, who ran the drawing office from the same barn.</p>
+      <p>The route this walk follows — from the top of North End, down through the fields, to the entrance of the suburb below — is, by Callum's account, close to the route an architect or a prospective house-buyer would have walked from the nearest station to reach that same drawing office in the early 1900s.</p>
+    </div>
+
+    <p class="callum-says">"This is what you would have seen when you were coming in — this is probably what you would have been thinking about when you were walking towards the drawing office."</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="heath-extension">
+    <div class="section-tag">Stop 5 · Hampstead Heath Extension</div>
+    <h2>Saving the<br><em>Heath Extension</em></h2>
+
+    <div class="location">Hampstead Heath Extension · 80 acres, purchased 1907</div>
+
+    <p>The fields north of Old Wyldes belonged, at the turn of the 20th century, to Eton College — landlords, by this point, to a scatter of tenant farms across the area, including Wyldes itself. In 1900, plans resurfaced to extend the Underground from Charing Cross up through Hampstead to Golders Green, work that finally opened in 1907. Easy rail access to open fields meant one thing to speculative builders: an obvious site for exactly the kind of dense Victorian terracing that had already swallowed suburbs like Willesden.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">80</div>
+      <div class="key-fact-text">Acres of Eton College land bought in 1907 to form the Hampstead Heath Extension — £17,500 raised by the Hampstead Heath Extension Council, £18,500 contributed by the London County Council, and the land handed over to the LCC to be kept as public open space in perpetuity.</div>
+    </div>
+
+    <p>The campaign to buy that land was led by <strong>Henrietta Barnett</strong>, a wealthy philanthropist who, with her husband Canon Samuel Barnett, had already spent years founding charitable and educational institutions in the East End, including Toynbee Hall and the Whitechapel Art Gallery. She and her husband kept a country retreat overlooking the heath, and the threat to its view — and to the fields beyond — was what first drew her into local campaigning.</p>
+
+    <div class="story-box" data-label="'If Only You Would Get a Few Men Behind You'">
+      <p>Eton College's agent initially refused to negotiate the sale with Barnett at all, on the grounds — reported in her own later account of the campaign, and repeated by Callum on the walk — that the trustees would be unlikely to sign over such a valuable estate to a woman: <span class="highlight">"if only you would get a few men behind you it would be all right."</span></p>
+      <p>Barnett's response was to assemble a steering group of eight supporters — two earls, two lawyers, two free churchmen, a bishop, and herself — to carry the negotiation forward. It worked: by 1906 a deal had been brokered between Eton College, the Heath Extension Council, the London County Council and the newly formed Hampstead Garden Suburb Trust, and the 80-acre purchase completed the following year.</p>
+    </div>
+
+    <p>The wider ambition grew directly out of that campaign. Once it became clear that protecting the view alone wouldn't be enough, Barnett and her trust set about buying the remainder of the surrounding Wyldes estate — several hundred further acres — to build, on her own terms, the suburb that would otherwise have been built by someone else.</p>
+  </section>
+
+  <section class="section" id="great-wall">
+    <div class="section-tag">Stop 6 · The Heath Extension</div>
+    <h2>The Great Wall &<br><em>Sunshine Corner</em></h2>
+
+    <p>Walking down through the Heath Extension today gives a reasonably faithful impression of what this stretch of Middlesex looked like before London reached it: rolling grassland, old hedgerows still tracing the boundaries of what were once seven or eight separate fields, and a scatter of ponds — several dug between 1907 and 1915, once the land had passed into public ownership. What's missing, as Callum notes, is simply the livestock and the working farm buildings that would once have filled it.</p>
+
+    <p class="callum-says">"It's kind of another fish or fowl. The Heath is a lot more consciously wild — this has got football pitches on it. But you can still see the grain of the old fields, even if it's grown quite wild since."</p>
+
+    <p>The Extension's northern edge is marked by the <strong>Great Wall</strong> — a boundary built by Unwin to divide the rural fields from the suburb's built centre on the hill above, punctuated partway along by a raised terrace known as Sunshine Corner. The wall's design was drawn, by Callum's account, from Unwin's admiration for walled German hill towns, in particular Rothenburg ob der Tauber — places with a hard edge between inside and outside, and no sprawl in between.</p>
+
+    <div class="story-box" data-label="An Unfinished Wall">
+      <p>The Great Wall was meant to run further than it does. Construction had reached only part of its planned length by 1914, and work never resumed after the First World War — the wall today simply stops, rather than completing the circuit Unwin originally intended.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Walter Field Memorial Drinking Fountain:</strong> Passed en route, near the junction of Hampstead Way and Wildwood Road. Named for a minor Victorian artist associated with the Hampstead Preservation Society, and not in the best repair.
+    </div>
+  </section>
+
+  <section class="section" id="suburb">
+    <div class="section-tag">Stop 7 · Entering the Suburb</div>
+    <h2>Building the<br><em>Suburb</em></h2>
+
+    <p>Hampstead Garden Suburb was, from its outset, planned as something more consciously ideological than an ordinary housing estate. Barnett wanted a mixed community — grand houses and modest cottages within sight of each other — built on the belief, common to the period, that proximity to social betters would improve the lives of the less well-off. Whether that particular theory ever held up is, as Callum concedes on the walk, a fair question; it's not one many planners would defend outright today, even if mixed-tenure development remains a live idea for different reasons.</p>
+
+    <div class="story-box" data-label="Materials Chosen on Purpose">
+      <p>Unwin and his partner Barry Parker deliberately avoided the yellow London stock brick that dominated most contemporary suburban building, choosing instead reddish, purplish local brick and clay tile roofing to match the older vernacular buildings already scattered across the area — Old Wyldes among them — rather than the cheaper Welsh slate then standard on Victorian terraces.</p>
+      <p>Existing hedgerows and field boundaries were kept wherever possible and used to define new street lines, and mature trees were retained within the new layout rather than cleared — an approach meant to give the suburb, from its first year, a sense of having always been there.</p>
+    </div>
+
+    <p>Larger houses cluster around the heath-facing side of the suburb; several, on the walk's telling, were built with sleeping balconies — a projecting, open-air platform off the front room, reflecting the same early-20th-century enthusiasm for fresh air that had drawn people to Hampstead as a spa town two centuries earlier, now recast as a public-health principle for suburban living.</p>
+  </section>
+
+  <section class="section" id="central-square">
+    <div class="section-tag">Stop 8 · Central Square</div>
+    <h2>Central Square<br>&amp; <em>What Became of It</em></h2>
+
+    <div class="location">Central Square · Laid out from 1908, churches by Edwin Lutyens</div>
+
+    <p>The walk ends at Central Square, the suburb's highest and most formal point — deliberately sited, as churches so often are, to be visible from a distance. Two churches stand here: St Jude's, Anglican, with its tall lead spire, and the Free Church opposite. Both, along with the Institute building between them, were designed by <strong>Edwin Lutyens</strong>, who served as consulting architect to the suburb from its earliest planning stages, working alongside Unwin and Parker's overall layout.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1907</div>
+      <div class="key-fact-text">Year the suburb's development began, and the year the extended Underground line to Golders Green opened — the same infrastructure that had first threatened the fields, and then made the suburb itself commercially viable.</div>
+    </div>
+
+    <p>Barnett's original stipulations for the suburb were strict, and several still shape it: no pubs, no shops on residential streets, no cinemas — restrictions maintained today partly by the Hampstead Garden Suburb Trust and partly by conservation-area protections administered by the London Borough of Barnet. Ownership of individual houses shifted from the trust to leaseholders following the Leasehold Reform Act of 1967, with a residents' management scheme set up to continue the trust's role as architectural gatekeeper — the same design-control function Callum's own job with the trust still performs.</p>
+
+    <blockquote>
+      <p>"House prices here are much higher than they'd be outside the suburb, because it's so well maintained, and so nice. Even the small cottages cost more than a similar-sized house somewhere else."</p>
+      <cite>— Callum</cite>
+    </blockquote>
+
+    <p>It's a fairly direct throughline from the argument Henrietta Barnett made in 1900 to the market the suburb commands today: the fields she fought to keep out of speculative builders' hands became, instead, one of London's most tightly controlled and most expensive pieces of suburban real estate — arguably proving her original instinct about quality and permanence right, even as the classless community she envisaged became something considerably more exclusive than she likely intended.</p>
+
+    <div class="practical">
+      <strong>Getting back:</strong> No station within the suburb itself — the walk ends roughly equidistant between East Finchley and Golders Green tube stations, both a level walk away. Temple Fortune, on the suburb's southern edge, has the nearest bus routes.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>HAMPSTEAD GARDEN SUBURB TRUST</span> · Architectural advisory walk · hgstrust.org<br><br>
+  Transcript lightly edited for clarity from an informal recorded walk; some crosstalk and asides omitted. Claims regarding named historical figures (Erith, Hoare, Barnett, Unwin, Lutyens) checked against documentary and heritage-body sources; guide-tradition details not independently confirmed — the Wildwood Lodge "royal dentist" association and any personal link between Elizabeth Fry and Heath House — are flagged in the text above rather than stated as fact.<br><br>
+  Guide: Callum · Hampstead Garden Suburb Trust
+</footer>
+
+</body>
+</html>

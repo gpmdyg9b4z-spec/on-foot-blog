@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Limekiln Wharf & City Island — Safety, Sight Lines & a Ballet Company · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; color-scheme: light; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .jennifer-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">London Festival of Architecture 2026 · Limekiln Wharf &amp; City Island, E14</div>
+  <h1>An Island Made<br>of <em>Infrastructure</em></h1>
+  <div class="header-sub">Limekiln Wharf &amp; City Island Walk · Ballymore + Places for London · LFA 2026</div>
+  <div class="header-meta">
+    <span>ROUTE: Canning Town DLR → Limekiln Wharf → City Island Bridge → City Island → Trinity Buoy Wharf</span>
+    <span>DURATION: ~2 hours</span>
+    <span>GUIDES: Jennifer (Ballymore) · Karen (Places for London)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">The site: the last piece of the jigsaw</a></li>
+    <li><a href="#history">Thames Ironworks &amp; the origins of West Ham United</a></li>
+    <li><a href="#safety">The theme: perceptions of safety</a></li>
+    <li><a href="#approach">The approach from Canning Town: wayfinding &amp; the DLR underpass</a></li>
+    <li><a href="#bridge">The City Island bridge: sight lines &amp; the English National Ballet</a></li>
+    <li><a href="#squares">Two squares: civic hard space vs. the softer neighbourhood</a></li>
+    <li><a href="#limekiln">The Limekiln site: constraints, cables &amp; a soft river edge</a></li>
+    <li><a href="#trinity">Trinity Buoy Wharf: kinetic sculptures &amp; the artists' trust</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>The Last Piece<br>of <em>the Jigsaw</em></h2>
+
+    <p>Jennifer works for Ballymore, the Irish property developer responsible for City Island and, in a joint venture with Places for London (Transport for London's property arm), for the forthcoming Limekiln Wharf development. Karen works for Places for London, whose remit is to develop TfL-owned land — primarily for housing. Together they lead a walk organised for the London Festival of Architecture 2026, themed explicitly around perceptions of safety: how design shapes whether a space feels welcoming, surveilled, threatening or inviting, and what the gap between intention and experience looks like in practice.</p>
+
+    <p>The walk covers two completed phases of City Island and the as-yet undeveloped Limekiln Wharf site to its north — acres of former industrial peninsula between the River Lea and the Thames at Canning Town, which Jennifer describes as the last piece of the jigsaw in an area that has seen enormous change over the past decade.</p>
+
+    <div class="story-box" data-label="Why It Has Taken So Long">
+      <p>Limekiln has been allocated for development for years. The reason it kept not happening is a familiar confluence of industrial legacy complications: high-voltage electricity cables and pylons running along the western and southern boundaries, a DLR line on the eastern edge, various tunnels and easements under the site from earlier infrastructure projects, and significant ground contamination from its former uses. <span class="highlight">The site served as the construction compound for the DLR, two Jubilee line extensions, and Crossrail</span> — three of the largest transport projects in recent London history, each of which needed somewhere to stage equipment and materials.</p>
+      <p>The river is tidal — the muddy exposed embankment visible at low tide will be a design consideration for any public waterfront. None of this is insurmountable. All of it explains why a site this close to central London has remained undeveloped while the area around it transformed.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">2,500</div>
+      <div class="key-fact-text">Homes delivered across City Island and the adjacent Good Luck Hope development over 10 to 12 years — alongside the English National Ballet headquarters, a nursery, a supermarket, commercial studios and the artist spaces at Trinity Buoy Wharf.</div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="section-tag">Context · History</div>
+    <h2>Thames Ironworks &amp; the Origins<br>of <em>West Ham United</em></h2>
+
+    <div class="location">Limekiln Wharf · formerly Thames Ironworks &amp; Shipbuilding Company · E14</div>
+
+    <p>Before its decades as a construction compound, Limekiln Wharf was the site of the Thames Ironworks and Shipbuilding Company — one of the great Victorian industrial enterprises on the Thames, building ships including naval vessels and employing a large local workforce.</p>
+
+    <div class="story-box" data-label="Where West Ham United Came From">
+      <p>The workers at the Thames Ironworks needed leisure. A football team was formed for the workforce — Thames Ironworks FC. When the ironworks closed in 1900, <span class="highlight">the workers' football club reformed as West Ham United</span>, the team that still carries the nickname "the Irons" in direct reference to its industrial origins. The connection between this particular patch of ground and one of London's major football clubs is not widely known, which is part of what makes the site worth paying attention to.</p>
+    </div>
+  </section>
+
+  <section class="section" id="safety">
+    <div class="section-tag">Theme · LFA 2026</div>
+    <h2>The Walk's Theme:<br><em>Perceptions of Safety</em></h2>
+
+    <p>Jennifer and Karen are explicit from the start that this is not a conventional tour. The Limekiln designs are still being worked on, and this evening is as much a research exercise as a public event. Participants are asked to notice and articulate how the spaces they move through make them feel, so that those responses can feed into design decisions still being made.</p>
+
+    <blockquote>
+      <p>"We want as much input as possible — feel free to share, throw your hands up, your responses as we go through this evening."</p>
+      <cite>— Jennifer, Ballymore</cite>
+    </blockquote>
+
+    <p>The specific question is safety — not crime statistics, but the felt sense of security or unease that different spatial conditions produce. Sight lines, lighting levels, legible wayfinding, the presence or absence of other people, the degree to which a route feels overlooked by inhabited windows, the ambiguity of ownership between different developers' land: all of these emerge as genuine design variables with real safety implications.</p>
+
+    <p>The walk is also honest about where things have not gone well. Jennifer acknowledges that some retail units in City Island's main square have seen higher-than-ideal tenant turnover, that some spaces feel sterile after dark when they work well on a warm Friday evening, and that the shift away from large commercial units to smaller flexible spaces has been a lesson learned partly through experience on this project.</p>
+  </section>
+
+  <section class="section" id="approach">
+    <div class="section-tag">Stop 1 · Canning Town</div>
+    <h2>The Approach from Canning Town:<br><em>Wayfinding &amp; the Underpass</em></h2>
+
+    <div class="location">Canning Town DLR / Underground Station · E16</div>
+
+    <p>The first stop is deliberately one of the least-loved spaces on the route — the approach from Canning Town station through the underpass and along the riverside path that will become a main entrance to Limekiln. Jennifer describes it as a "slightly less loved spot" for warming up conversations about spatial comfort.</p>
+
+    <p>The group's responses are immediate and consistent. The underpass feels uncommitted — not clearly pedestrian, not clearly anything. The DLR above creates noise but also visual enclosure that people find ambiguous: coverage that might feel protective or trapping depending on who you are and when. <span class="highlight">Nobody knows where they're going.</span> Committing to the route requires already knowing what's at the end of it.</p>
+
+    <div class="story-box" data-label="The Tree Problem">
+      <p>A discussion that recurs throughout the walk: the trade-off between greenery and natural surveillance. The trees along this approach are almost exactly the right height to block sightlines without providing genuine shelter — tall enough to obscure whether there are people further along the path, not tall enough to create a defined canopy that would feel intentional. <span class="highlight-blue">More green means less visibility; more visibility means less green.</span> There is no clean answer, and Jennifer does not pretend there is one.</p>
+      <p>Lighting is the other major variable. The walk takes place in the evening while it is still light — which makes several spaces feel more acceptable than they would be in winter darkness. The team is working with a specialist lighting consultant on the Limekiln design. Ownership is also visible: the surface treatment changes at the boundary between Newham Council land and the joint venture land, and so does the maintenance level. The group can see the seam.</p>
+    </div>
+  </section>
+
+  <section class="section" id="bridge">
+    <div class="section-tag">Stop 2 · City Island Bridge</div>
+    <h2>The City Island Bridge:<br><em>Sight Lines &amp; the English National Ballet</em></h2>
+
+    <div class="location">City Island Bridge · River Lea · E14</div>
+
+    <p>The pedestrian bridge connecting Canning Town to City Island was built ahead of the residential buildings on either side — before there was anything to connect to, there was a bridge. The only previous connection to the peninsula was by road. <span class="highlight">Building the bridge first meant the island had a life before it was finished.</span></p>
+
+    <p>The bridge has seating built into it, which several participants liken to the Pont Neuf — the comparison is more affectionate than precise, but the point holds. The seats make people stop, which means the bridge feels occupied rather than purely transactional. At the railing there is a clear sight line in both directions: you can see who is coming before you commit to crossing.</p>
+
+    <div class="story-box" data-label="The English National Ballet">
+      <p>City Island's single most significant cultural anchor is the headquarters of the English National Ballet, which relocated here from South Kensington. The building's ground floor is public during the day — there is a café, and through the glazing you can see into the rehearsal spaces. Dancers can sometimes be glimpsed working at lunchtime.</p>
+      <p>The ENB also hires out seven or eight separate rehearsal studios to touring music acts and performing companies as a revenue stream — which means the building generates traffic and activity independent of ENB productions. <span class="highlight-green">Jennifer is clear that without the ENB, City Island would be a very different place.</span> The visibility of dancers through ground-floor glass at street level — even glimpsed briefly — produces exactly the sense of inhabited, purposeful space that makes a place feel safe to be in.</p>
+    </div>
+  </section>
+
+  <section class="section" id="squares">
+    <div class="section-tag">Stop 3 · City Island Squares</div>
+    <h2>Two Squares:<br><em>Hard Civic Space vs. Neighbourhood</em></h2>
+
+    <p>City Island has two public squares of markedly different characters. The first — larger, harder, more formally civic — sits adjacent to the ENB building. The second is softer, lower-scaled, more residential in feeling, with warmer lighting. Participants consistently prefer the second.</p>
+
+    <p>The first square prompts honest self-criticism from Jennifer. The retail units were designed for a pre-pandemic commercial landscape, with large floorplates and corresponding rents. That model has shifted — smaller units, lower rents, more flexible uses. There has been higher occupier turnover than they would have liked, which makes the square feel less alive than it should. On a warm Friday evening it reads better; on a dark January night it would not.</p>
+
+    <p class="jennifer-says">"I think, if we were to be very self-critical as a developer, the nature of demand for retail spaces like this has changed quite dramatically since COVID."</p>
+
+    <p>The second square works better. The buildings are still tall, but the proportions feel less overwhelming. Residents are visibly using the space. Participants rate it higher without being able to entirely articulate why — it is warmer, the scale feels more human, there is more sense of ordinary daily life happening.</p>
+
+    <div class="story-box" data-label="An Unintended Cycling Incident">
+      <p>Near the second square, a cyclist cuts through the pedestrian space at speed, nearly colliding with a participant. The question of whether cycling is permitted — or merely not clearly prohibited — becomes a live discussion. <span class="highlight">The rules are not wholly clear, and the rise of e-bikes has changed shared space dynamics</span> since the development was designed. Nobody's fault, exactly, but an unintended consequence of an environment that assumed a certain kind of pedestrian experience.</p>
+    </div>
+  </section>
+
+  <section class="section" id="limekiln">
+    <div class="section-tag">Stop 4 · Limekiln Wharf</div>
+    <h2>The Limekiln Site:<br><em>Constraints, Cables &amp; a Soft River Edge</em></h2>
+
+    <div class="location">Limekiln Wharf · E14 · Development site, planning stage 2026</div>
+
+    <p>The walk ends at the northern edge of the Limekiln site — currently closed behind blue hoarding. From here the full constraint landscape is visible: the DLR viaduct to the east, the pylons to the south, the tidal river to the west and north, and the bridge connection across to Good Luck Hope and the Foster + Partners development beyond.</p>
+
+    <p>One feature that both Jennifer and Karen are genuinely enthusiastic about: a section of the river edge here is one of very few soft, natural edges on the tidal Thames in inner London — muddy, vegetated, unhardened. This is unusual enough to be worth designing around rather than concreting over. <span class="highlight">The intention is to retain and enhance it.</span></p>
+
+    <div class="story-box" data-label="The Two New Bridges">
+      <p>Limekiln will be accessed by two new bridges. One connects to Canning Town, linking the site to the DLR station and town centre. A second, at the northern end, connects under the Lower Lea Crossing — opening a pedestrian route that currently does not exist, avoiding the heavily trafficked roads that sever movement in the area.</p>
+      <p>Together the bridges mean the site will not be a cul-de-sac. People will have reason to move through it, because <span class="highlight-blue">it will form part of a continuous riverside path connecting Canning Town to Trinity Buoy Wharf and beyond</span>. The connectivity of the site is, Jennifer argues, as important as anything that happens within it.</p>
+    </div>
+
+    <p>The undercroft beneath the DLR viaduct — a long covered space running along the eastern boundary — is one of the more intriguing unresolved design questions. It is sheltered, gets reasonable light from the north, and has good clearance height. Possible uses discussed include skate park, sports space, and play. The acoustics of the railway above will need to be managed, as will the crackle of the overhead power lines on the southern boundary.</p>
+  </section>
+
+  <section class="section" id="trinity">
+    <div class="section-tag">Coda · Trinity Buoy Wharf</div>
+    <h2>Trinity Buoy Wharf:<br><em>Kinetic Sculptures &amp; the Artists' Trust</em></h2>
+
+    <div class="location">Trinity Buoy Wharf · E14 · Tower Hamlets land trust</div>
+
+    <p>At the far end of the peninsula beyond Limekiln and Good Luck Hope sits Trinity Buoy Wharf — a historic industrial site turned over to an artists' trust by Tower Hamlets Council. The council owns the land; the trust manages it; rents from the studios fund the artists' programme and the maintenance of the site. There is a lighthouse — London's only lighthouse, built by Trinity House for training purposes — and a café open during the day.</p>
+
+    <p>The studios are modest: container-based, one or two artists to a unit. But the work inside is remarkable. <span class="highlight">During Open House weekend, kinetic sculptures are switched on across the site</span> — machines that move and sound and fill the wharf with unexpected life. Jennifer recommends it with the enthusiasm of someone who has been genuinely surprised by it.</p>
+
+    <p class="jennifer-says">"They have an amazing collection — kinetic sculptures. When it's Open House weekend, they turn them all on, and they all move. It's very good. I never knew about it."</p>
+
+    <p>The juxtaposition of the Limekiln development — ambitious, politically pressured to deliver thousands of homes — with Trinity Buoy Wharf's deliberately low-key artist trust next door is one of those London contrasts that resists easy resolution. The trust is not going anywhere. The development will need to find its relationship with it, and Jennifer is candid that this will be one of the more interesting design conversations ahead.</p>
+
+    <div class="practical">
+      <strong>City Island</strong> is publicly accessible — the bridge is free to cross, the ENB ground floor café is open during the day, and the squares are open at all times. <strong>Trinity Buoy Wharf</strong> is open during the day; the café and some studios are accessible, with the kinetic sculptures running during <strong>Open House London</strong> (September). <strong>Limekiln Wharf</strong> was at consultation and planning stage at the time of this walk (June 2026); the project website has current plans and events.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · London Festival of Architecture 2026 · architecture.com/lfa<br><br>
+  Notes from walk transcript, lightly edited · Guides: Jennifer (Ballymore) &amp; Karen (Places for London) · June 2026
+</footer>
+
+</body>
+</html>

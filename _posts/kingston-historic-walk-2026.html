@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Kingston upon Thames — A Walking Tour with Kingston Tour Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  .footer-note {
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    text-align: left;
+    font-family: 'EB Garamond', serif;
+    font-style: normal;
+    letter-spacing: normal;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #4a3f30;
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.6rem;
+  }
+
+  .footer-note-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sepia);
+    margin-bottom: 0.6rem;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Historic Kingston upon Thames</div>
+  <h1>Seven Kings, One Stone<br>& <em>the Tide That Turns</em></h1>
+  <div class="header-sub">Kingston Historic Walk with Kingston Tour Guides · Open House Festival 2026</div>
+  <div class="header-meta">
+    <span>ROUTE: Market House → All Saints Church → Clattern Bridge → Kingston Bridge → Eden Street → Lovekyn Chapel</span>
+    <span>DURATION: ~1.5 hours</span>
+    <span>GUIDE: Kingston Tour Guides (Volunteer)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Five thousand years by the ford</a></li>
+    <li><a href="#church">All Saints Church & the lost Saxon chapel</a></li>
+    <li><a href="#coronation-stone">The Coronation Stone & the seven kings</a></li>
+    <li><a href="#market">The ancient market & King John's charter</a></li>
+    <li><a href="#market-house">The Market House & Queen Anne</a></li>
+    <li><a href="#clattern">Clattern Bridge</a></li>
+    <li><a href="#bishops-hall">The bishop's palace & the tannery</a></li>
+    <li><a href="#kingston-bridge">Kingston Bridge & the rebel who rebuilt it</a></li>
+    <li><a href="#bentalls">Bentalls: draper's shop to Hampton Court façade</a></li>
+    <li><a href="#nipper">His Master's Voice</a></li>
+    <li><a href="#lovekyn">The Lovekyn Chapel: an unpaid wedding bill</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Five Thousand Years<br><em>by the Ford</em></h2>
+
+    <p>The guides put Kingston's first settlement at some five thousand years old, and whatever the precise figure, the reason people stopped here is not in doubt: the river. Kingston sits at the point where the tidal Thames meets the point at which the tide turns — the furthest place upstream where, at low water, you could once wade or ford across. There was no bridge here for centuries; travellers simply waited for the tide.</p>
+
+    <p>The ground underfoot has changed more than the buildings suggest. The Thames here was once far wider and shallower than today, splitting into a scatter of low, marshy islands. The largest of these islands is where the town's parish church now stands — which is also, according to tradition, where Saxon kings once knelt to be crowned.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1100s</div>
+      <div class="key-fact-text">Approximate date of the first documented bridge at Kingston, replacing centuries of fording at low tide. A stone bridge over the adjoining Hogsmill River — the Clattern Bridge, covered later on this walk — survives from around 1175 and remains one of the oldest intact bridges in England.</div>
+    </div>
+  </section>
+
+  <section class="section" id="church">
+    <div class="section-tag">Stop 1 · All Saints Church</div>
+    <h2>The Church &<br><em>the Lost Saxon Chapel</em></h2>
+
+    <div class="location">All Saints Church · Norman core, 14th–19th century restoration</div>
+
+    <p>The present church stands on the site of a Saxon chapel, built on the largest of the old river islands. In the 1130s, work began on the Norman church that forms the core of the building seen today — heavily restored by the Victorians, and weathered in places because much of the stone was quarried locally rather than imported.</p>
+
+    <p>The church originally had a spire, carried on a brick tower. It came down in a great storm during the reign of Queen Anne — almost certainly the Great Storm of 1703, one of the most destructive storms in recorded English history, which brought down church spires and roofs across the country. Kingston's was never rebuilt.</p>
+
+    <div class="story-box" data-label="The Sexton's Daughter">
+      <p>According to a story the guides tell on this stretch of the walk, the Saxon chapel survived for centuries as an annexe to the main church — until 1730, when it had become so dilapidated that it collapsed while a grave was being dug in its south-west corner. The sexton, his assistant and his daughter were buried in the fall. Only the daughter survived.</p>
+      <p>The tale goes that she went on to take over her father's position — an unusual outcome for a role that normally passed down the male line, and one the guides offer as local tradition rather than documented fact. A portrait said to be of her is reputed to survive in a local collection.</p>
+      <p>The chapel's collapse in 1730 is independently documented; what is also well attested is that a large stone block was recovered from the ruins soon afterwards — and it is this block, not the church itself, that the next stop on the walk is about.</p>
+    </div>
+
+    <p class="guide-says">"You'll be wondering what happened to the Saxon chapel — because I told you that's where the Saxon kings were crowned."</p>
+  </section>
+
+  <section class="section" id="coronation-stone">
+    <div class="section-tag">Stop 2 · The Coronation Stone</div>
+    <h2>The Stone &<br><em>the Seven Kings</em></h2>
+
+    <div class="location">Coronation Stone · Sarsen block, 10th century tradition</div>
+
+    <p>The Coronation Stone is an ancient sarsen block — the same type of stone used at Stonehenge — traditionally said to be the seat on which seven Anglo-Saxon kings were crowned. Two of those coronations are documented with reasonable confidence: Æthelstan in 925, the first king to rule a genuinely unified England, and Æthelred the Unready in 979. A third, Eadred in 946, is thought likely. The remaining four — Edward the Elder, Edmund, Eadwig and Edward the Martyr — rest on weaker or later tradition.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">7</div>
+      <div class="key-fact-text">Saxon kings whose names are inscribed around the stone's plinth — though independent evidence firmly supports only two or three of the coronations, a distinction the guides are careful to flag rather than gloss over.</div>
+    </div>
+
+    <p>The stone was recovered from the ruins of the collapsed Saxon chapel in 1730 and later used, rather less reverently, as a mounting block for horses at the market. In 1850 it was given a formal setting — a heptagonal plinth with the kings' names and coronation dates picked out in lead — and displayed in the marketplace. It was moved to its current position beside the Guildhall in 1935.</p>
+
+    <p class="guide-says">"We've got to be sceptical, haven't we? The Victorians probably got quite a lot out of it by making it a visitor attraction."</p>
+
+    <p>That scepticism is well founded: the stone's use as a coronation seat isn't mentioned in any source before 1793, and its promotion as a heritage attraction coincides neatly with the Victorian tourism drive the guides describe for Kingston more broadly.</p>
+  </section>
+
+  <section class="section" id="market">
+    <div class="section-tag">Stop 3 · The Ancient Market</div>
+    <h2>King John's Charter<br>& <em>the Three Fishes</em></h2>
+
+    <div class="location">Kingston Ancient Market · Laid out c.1170</div>
+
+    <p>The street pattern of Kingston's market — the narrow lanes still visible around the Apple Market and Clattern Bridge today — was laid out around 1170, and the market itself is older than most of the buildings standing on it. King John granted the town its first charter in 1208, one of a series of medieval charters that steadily expanded Kingston's trading privileges and self-governance.</p>
+
+    <p>The guides connect the three fish that still appear on Kingston's civic badge — visible today on council literature and lampposts across the town — to the Domesday Book of 1086, in which Kingston was recorded as holding three fisheries on the river, alongside five corn mills. It's a well-worn piece of local lore rather than a documented act of heraldic design, but the underlying fact — Domesday's three fisheries — is genuinely in the record.</p>
+
+    <div class="story-box" data-label="A Fourth Fish, Refused">
+      <p>The guides tell a story linking Kingston's fisheries to Thomas Wyatt's failed rebellion of 1554 (covered in full at the Kingston Bridge stop): that after the town's authorities blocked Wyatt from crossing, Queen Mary rewarded Kingston with an extra fair and, so the story goes, permission for a fourth fishery.</p>
+      <p>Whatever the truth of the reward, the town's badge has only ever shown three fish — a detail the guides offer with a shrug rather than an explanation.</p>
+    </div>
+  </section>
+
+  <section class="section" id="market-house">
+    <div class="section-tag">Stop 4 · The Market Place</div>
+    <h2>The Market House<br>& <em>Queen Anne</em></h2>
+
+    <div class="location">Market House · Built 1840, on the site of a Tudor courthouse</div>
+
+    <p>The building presiding over Kingston's marketplace today dates to 1840, replacing a Tudor courthouse that had itself stood on an administrative site since at least the early 16th century. It later served as council chamber, tourist information centre and — until recently — an art school venue; at the time of the walk it stands largely empty, a state of affairs the guides regret openly.</p>
+
+    <p>The statue mounted on the building is of Queen Anne, cast by the sculptor Francis Bird and paid for by public subscription in the early 18th century. Anne reigned as the extension to the old Tudor courthouse was being built, which is how she came to be commemorated here rather than a more locally significant monarch.</p>
+
+    <p class="guide-says">"She had eighteen pregnancies and no heir survived her. Everybody felt rather sorry for her."</p>
+
+    <p>Anne's reproductive history is well documented and genuinely tragic: none of her many pregnancies produced a child who outlived her, ending the Stuart line on her death in 1714.</p>
+
+    <div class="practical">
+      <strong>Visiting the Market House:</strong> Exterior only — the building is currently unoccupied and not open to the public. The Ancient Market and Apple Market around it are active daily.
+    </div>
+  </section>
+
+  <section class="section" id="clattern">
+    <div class="section-tag">Stop 5 · Clattern Bridge</div>
+    <h2>London's<br><em>Oldest Bridge</em></h2>
+
+    <div class="location">Clattern Bridge · c.1175, over the Hogsmill River</div>
+
+    <p>The Clattern Bridge crosses the Hogsmill River just before it joins the Thames, and at around 850 years old it is reputed to be the oldest intact bridge in Greater London — older by some six and a half centuries than the much larger Kingston Bridge over the Thames itself. Its name is thought to come from the clatter of horses' hooves on the stone as they crossed; it replaced an earlier Saxon structure known as the Clatrung Bridge.</p>
+
+    <p>The bridge was widened twice, in 1758 and 1852 — the brickwork from those campaigns sits visibly on top of the original stone arches — and it still carries a full load of daily traffic on Kingston's High Street.</p>
+
+    <div class="story-box" data-label="Punishment by Water">
+      <p>Up until the 18th century, the Clattern Bridge was used as a site for ducking scolds — women accused of talking out of turn, gossiping, or (in the case of publicans) watering down their beer — using a cucking stool lowered repeatedly into the Hogsmill below.</p>
+      <p>The guides describe crowds of hundreds turning out to watch. It is a grim footnote to an otherwise picturesque stretch of the walk, and one the guides don't shy away from.</p>
+    </div>
+  </section>
+
+  <section class="section" id="bishops-hall">
+    <div class="section-tag">Stop 6 · Bishop's Hall</div>
+    <h2>The Bishop's Palace<br>& <em>the Tannery</em></h2>
+
+    <div class="location">Bishop's Hall · Palace from the 13th century, tannery from 1636</div>
+
+    <p>The riverside quarter just along from Clattern Bridge takes its name from Bishop's Hall, a residence of the Bishops of Winchester recorded here from at least the early 13th century. Its best-documented occupant is William of Wykeham — Bishop of Winchester and Lord Chancellor of England in the late 14th century — though by his own account he preferred his palace at Esher and rarely stayed in what he considered a noisy, industrial town.</p>
+
+    <p>The palace fell out of use by the bishops well before the Reformation and was leased out as ordinary housing from the 1390s. By 1636 the site had become a tannery, processing hides from the horse fair once held nearby using vats of lime and — as the guides note without much delicacy — collected human urine. It operated as a tannery for roughly three centuries, closing after a fire in the mid-1960s.</p>
+
+    <div class="story-box" data-label="The Bishop Out of Residence">
+      <p>When this stretch of riverside was redeveloped in the 1980s, a new pub opened nearby under the mischievous name The Bishop Out of Residence — a nod to William of Wykeham's long absenteeism. It has since been shortened simply to The Bishop, and is one of only a handful of pubs still trading in central Kingston out of a total that once ran into the dozens.</p>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="kingston-bridge">
+    <div class="section-tag">Stop 7 · Kingston Bridge</div>
+    <h2>The Bridge &<br><em>the Rebel Who Rebuilt It</em></h2>
+
+    <div class="location">Kingston Bridge · Opened 1828, designed by Edward Lapidge</div>
+
+    <p>Kingston owed its wealth largely to being, for centuries, the first crossing point above London Bridge — nobody could cross the Thames between the two towns until Putney Bridge opened in 1729. The medieval timber bridge that held this position was destroyed more than once in periods of unrest, including during the Wars of the Roses and, most famously, Thomas Wyatt's rebellion of 1554.</p>
+
+    <div class="story-box" data-label="Wyatt's Rebellion, 1554">
+      <p>Thomas Wyatt led a rising against Queen Mary I's planned marriage to Philip of Spain. Blocked from crossing the heavily fortified London Bridge with his roughly 3,000 men, he marched them the twelve miles to Kingston instead — only to find the bridge here had been deliberately broken up by the town's authorities to keep him out.</p>
+      <p>Wyatt's men spent around three days repairing the bridge well enough to cross. Those three days gave the Crown time to muster its own forces, and Wyatt was intercepted and captured at Brentford shortly afterwards. He was executed for treason; Kingston, for its trouble, was granted an extra summer fair.</p>
+    </div>
+
+    <p>The bridge Wyatt crossed was replaced several times before the current structure opened in 1828, designed by the county surveyor Edward Lapidge at a cost of £40,000. It was opened by the Duchess of Clarence — later Queen Adelaide — and Kingston's main shopping street, Clarence Street, is named for her.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1870</div>
+      <div class="key-fact-text">The year Kingston Bridge finally became toll-free, following a long local campaign. Tolls had funded its 1828 construction and, before that, had been intermittently reimposed since a 16th-century benefactor first tried to make the crossing free "forever."</div>
+    </div>
+
+    <p>The bridge has since been widened twice more — once in 1914 to carry trams, and again in around 2001 for a cycle and bus lane — and each phase is visible today as a distinct band of brickwork under the arches.</p>
+  </section>
+
+  <section class="section" id="bentalls">
+    <div class="section-tag">Stop 8 · Clarence Street</div>
+    <h2>Bentalls: Draper's Shop<br>to <em>Hampton Court Façade</em></h2>
+
+    <div class="location">Bentalls · Founded 1867, current building 1935</div>
+
+    <p>Frank Bentall opened a modest draper's shop on Clarence Street in 1867 after — according to the guides — being refused permission to marry his sweetheart until he had a business of his own. Whatever the truth of the courtship story, the business itself grew rapidly under Bentall and, later, his son, eventually consolidating a patchwork of small shopfronts into a single department store.</p>
+
+    <p>The building's celebrated façade — an unmistakable echo of Christopher Wren's Hampton Court, complete with carved reliefs by the sculptor Eric Gill — was commissioned in the 1930s by Leonard Bentall and designed by the architect Maurice Webb, son of Sir Aston Webb. Between 1935 and 1976 it was said to be the largest department store outside central London.</p>
+
+    <div class="story-box" data-label="A Façade with Nothing Behind It">
+      <p>When the store was redeveloped into the modern Bentall Centre in the early 1990s, the historic façade was retained even though the building behind it was entirely rebuilt — meaning the Wren-inspired frontage now fronts a structure it was never actually part of, held up independently of the shopping centre behind it.</p>
+    </div>
+
+    <p>Bentalls traded under its own name in Kingston until 2023, when — following its earlier sale to the Fenwick group — the store was rebranded as Fenwick.</p>
+  </section>
+
+  <section class="section" id="nipper">
+    <div class="section-tag">Stop 9 · Clarence Street</div>
+    <h2><em>His Master's Voice</em></h2>
+
+    <div class="location">Site of Nipper's grave · Clarence Street, now a Lloyds Bank</div>
+
+    <p>Buried somewhere beneath what is now a Lloyds Bank car park on Clarence Street is Nipper — a mongrel terrier who became, after his death, one of the most reproduced images in commercial history. Nipper belonged to Mark Barraud, a Bristol-born scenery painter; when Mark died in 1887, the dog passed to his brother Francis, an artist living in Liverpool, and was later brought to live with the family in Kingston.</p>
+
+    <p>Nipper died in 1895. Three years later, Francis Barraud — recalling how the dog used to cock its head, puzzled, at the sound of a phonograph — painted him listening into the horn of the machine. The painting was registered under the flat title "Dog Looking at and Listening to a Phonograph"; renamed His Master's Voice, it became the trademark of the Gramophone Company and, eventually, HMV.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1984</div>
+      <div class="key-fact-text">The year HMV's then chairman unveiled a commemorative plaque near Nipper's resting place, to mark what would have been the dog's hundredth birthday. A second plaque was later placed inside the bank itself.</div>
+    </div>
+
+    <p class="guide-says">"He wasn't as passive as he looks — he used to terrorise other dogs in Richmond Park."</p>
+  </section>
+
+  <section class="section" id="lovekyn">
+    <div class="section-tag">Stop 10 · The Lovekyn Chapel</div>
+    <h2>An Unpaid<br><em>Wedding Bill</em></h2>
+
+    <div class="location">Lovekyn Chapel · Founded 1309, oldest complete building in Kingston</div>
+
+    <p>The walk ends at the Lovekyn Chapel — a freestanding chantry chapel and, at over seven hundred years old, the oldest complete building in Kingston. It owes its existence to an unpaid catering bill.</p>
+
+    <div class="story-box" data-label="The King Who Never Paid">
+      <p>In 1299, Edward Lovekyn — a Kingston butcher and baker — was engaged to cater the wedding feast of King Edward I to Margaret of France. The celebrations ran for days and cost Lovekyn a fortune. The king enjoyed himself enormously and never paid the bill.</p>
+      <p>Edward I died a few years later without settling the debt, leaving Lovekyn to approach his son, Edward II, instead. Rather than write off the loss, Lovekyn proposed cancelling the Crown's debt in exchange for a royal licence to found a chantry chapel — a place where paid clergy would pray for his soul after death. The deal was struck, and the Chapel of St Mary Magdalene was built in 1309.</p>
+    </div>
+
+    <p>The chapel passed through the hands of Lovekyn's son John and, later, the London fishmonger and four-times Lord Mayor William Walworth, before the dissolution of the chantries under Henry VIII stripped it of its religious function and its land. In 1561, Elizabeth I granted the chapel and its remaining endowments to found Kingston Grammar School — which still owns and uses the building today, nearly five centuries later.</p>
+
+    <p class="guide-says">"It's not as exciting as I'd like, actually — it's been gutted inside. But it's a fabulous survival from the outside, and it's good they didn't knock it down when everything else changed."</p>
+
+    <div class="practical">
+      <strong>Visiting the Lovekyn Chapel:</strong> Part of Kingston Grammar School and not normally open to the public; it appears occasionally on Kingston's Heritage Open Day and is available to hire for weddings and concerts via the school. The tour ends outside on London Road.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · walk led by Kingston Tour Guides · kingstontourguides.org.uk<br><br>
+  <div class="footer-note">
+    <div class="footer-note-title">A note on this transcript</div>
+    The recording behind this post was heavily degraded, and no individual guide's name could be confidently identified from the audio, so this post credits the walk to Kingston Tour Guides as an organisation rather than to a named individual. A handful of details told on the walk have been corrected or flagged against documentary sources: the bridge's designer was Edward Lapidge, not "Captain LePage" as heard on the recording; the toll on Kingston Bridge was abolished in 1870, not 1878; and Nipper's breed is documented as a mixed terrier rather than confirmed as a Yorkshire terrier specifically. The story of the sexton's surviving daughter and the precise cost of the Queen Anne statue are presented as guide's account and local tradition, not independently verified fact.
+  </div>
+  Transcript lightly edited for clarity. All errors in attribution are transcription errors.
+</footer>
+
+</body>
+</html>

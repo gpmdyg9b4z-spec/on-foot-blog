@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>South Acton & Mill Hill Park — A Ruskinian Walk with Lucia Otto</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  .footer-note {
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    text-align: left;
+    font-family: 'EB Garamond', serif;
+    font-style: normal;
+    letter-spacing: normal;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #4a3f30;
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.6rem;
+  }
+
+  .footer-note-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sepia);
+    margin-bottom: 0.6rem;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — South Acton & Mill Hill Park, W3</div>
+  <h1>Soapsuds, a Stolen Park<br>& <em>the Return of Council Housing</em></h1>
+  <div class="header-sub">A Ruskinian Walk through Shared Heritage · Guide: Lucia Otto, South Acton Community Builders Co-operative · Open House London 2026</div>
+  <div class="header-meta">
+    <span>ROUTE: Chiswick Park Business Estate → Gunnersbury Triangle → South Acton Estate → Mill Hill Park → Acton Town</span>
+    <span>DURATION: ~2.5 hours</span>
+    <span>GUIDE: Lucia Otto (SCBC), with South Acton Residents Action Group</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">A walk built on Ruskin's terms</a></li>
+    <li><a href="#chiswick-park">The bus garage beneath the business park</a></li>
+    <li><a href="#gunnersbury-triangle">The triangle they wouldn't build on</a></li>
+    <li><a href="#pillar-boxes">A pillar box with no king on it</a></li>
+    <li><a href="#soapsud-island">Soapsud Island</a></li>
+    <li><a href="#all-saints">All Saints & the General Strike</a></li>
+    <li><a href="#the-mound">Three castles on the Mound</a></li>
+    <li><a href="#tenant-management">Stave off decay by daily care</a></li>
+    <li><a href="#woodlands-park">An ice house & the first Waitrose</a></li>
+    <li><a href="#mill-hill-park">The garden suburb built to keep its distance</a></li>
+    <li><a href="#william-willett">The man who gave everyone an extra hour</a></li>
+    <li><a href="#acton-town">Homes for people who kept being moved</a></li>
+    <li><a href="#bookbinder-point">Housing goes back into the industrial estate</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Walk Built on<br><em>Ruskin's Terms</em></h2>
+
+    <p>This walk is run jointly by the South Acton Community Builders Co-operative (SCBC) and the South Acton Residents Action Group (SARAG), and its premise goes back to a period of anxiety rather than celebration. In the early 2000s, with redevelopment of the postwar estate under discussion again, SARAG invited English Heritage in to carry out a characterisation study of South Acton — documented work, since verified, from around 2004–5, though Lucia dated it slightly earlier on the walk. The point, she was careful to stress, was never to get individual buildings listed. South Acton is a mid-century council estate; nobody expected Historic England to come calling for a single tower block. The point was to understand the dynamic of the whole place, and to encourage people, wherever they live, to actually look at what's around them.</p>
+
+    <p>The walk takes its title from John Ruskin, whose ideas about permanence in building gave SCBC something to measure the area's history against.</p>
+
+    <blockquote>
+      <p>"When we build, let us think that we build forever."</p>
+      <cite>— John Ruskin, quoted by Lucia Otto</cite>
+    </blockquote>
+
+    <p class="guide-says">"We might think Ruskin overdid it — but in this country, where people think a 300-year-old house is a really good thing to be living in, the extent to which there's constant change in some areas is quite contradictory to the things we say we value."</p>
+
+    <p>This year's theme, layered onto the usual route, is work — those who labour, who construct — chosen because 2026 marks the centenary of the 1926 General Strike. It surfaces at several points along the way. It also happened, by coincidence, to be a day when the District line into Gunnersbury wasn't running, which meant a smaller turnout than the previous day's walk and at least one attendee arriving on foot from Acton Town — a fittingly practical reminder, on a walk about transport and labour, of how easily either can be disrupted.</p>
+  </section>
+
+  <section class="section" id="chiswick-park">
+    <div class="section-tag">Stop 1 · Chiswick Park Business Estate</div>
+    <h2>The Bus Garage Beneath<br><em>the Business Park</em></h2>
+
+    <div class="location">Chiswick Business Park · Rothschild orchards, 1921–2015</div>
+
+    <p>Before it was a business park, this land was Rothschild orchards. In 1921 the London General Omnibus Company opened a 33-acre bus overhaul works on the site — engineering and maintenance sheds employing, at their peak, some 3,500 people and servicing thousands of vehicles. Lucia's account adds a sports ground, a medical centre and a canteen able to feed workers by the hundreds at a sitting; it was, in effect, a small self-contained town built around buses. London Transport scaled the works back through the 1980s and closed it in 1990.</p>
+
+    <p>The redevelopment that followed took until 2015 to finish. A masterplan by Rogers Stirk Harbour + Partners — Lucia's "Lord Rogers" — for the developer Stanhope produced the twelve buildings now branded EnjoyWork.com, the first completed at the end of 2000. A footbridge to Chiswick Park station, opened in 2019, shaves a few minutes off the commute for the people who work here now.</p>
+
+    <div class="story-box" data-label="Three Thousand Troops">
+      <p>During the General Strike of May 1926, transport workers and heavy industry walked out across Acton and Chiswick in solidarity with the miners. Lucia read out a line from the diary of a schoolboy, Henry St John, who lived in Chiswick and went to school in Acton at the time: revolution seemed imminent, he wrote, with <span class="highlight">3,000 troops, fixed bayonets and machine guns reported at the London General Omnibus Company works</span>.</p>
+      <p>Hyde Park was turned into a food depot under armed guard during the same strike. Whether the boy's estimate of troop numbers was accurate is impossible to check from a diary quote read aloud on a walk — but the fear itself, at a site this large and this central to keeping London moving, is easy to believe.</p>
+    </div>
+  </section>
+
+  <section class="section" id="gunnersbury-triangle">
+    <div class="section-tag">Stop 2 · Gunnersbury Triangle</div>
+    <h2>The Triangle They<br><em>Wouldn't Build On</em></h2>
+
+    <div class="location">Gunnersbury Triangle · Local Nature Reserve since 1985</div>
+
+    <p>A wedge of land boxed in by three railway lines — two District line tracks and a since-abandoned freight line — was orchard and gravel pit in the 19th century, then allotments for railway workers, then simply left alone from the late 1940s. Nature did the rest.</p>
+
+    <p>In 1981 a scheme to build light industrial units here provoked a campaign by the newly formed Chiswick Wildlife Group, backed by the Greater London Council and the London Wildlife Trust. <span class="highlight-green">In July 1983, a public inquiry ruled in the site's favour — the first time in Britain that a public inquiry had preferred nature conservation over development.</span> The land passed to the local council, and the reserve opened to the public in 1985, run since by London Wildlife Trust volunteers.</p>
+
+    <p class="guide-says">"There are forty such reserves in London. So there'll be one near you. If you don't know where yours is, take that away from this walk — go and find it."</p>
+
+    <p>Chiswick Park station, a few yards from the reserve's gate on Bollo Lane, was rebuilt in 1932 in the clean, lettered style of that era of Underground design, and is Grade II listed.</p>
+  </section>
+
+  <section class="section" id="pillar-boxes">
+    <div class="section-tag">Stop 3–4 · Antrobus Road</div>
+    <h2>A Pillar Box With<br><em>No King on It</em></h2>
+
+    <p>Lucia describes the walk as interactive by design, and the pillar boxes are the running proof of it: a Victorian box on Antrobus Road, dated to around 1880, carries no royal cipher at all — no "VR," no monogram of any kind. One year a visitor pointed it out; a later group, unimpressed, sent Lucia looking for something better and turned up a second uncyphered box nearby, on the corner of Antrobus Road, which has since picked up the nickname the "Republican" pillar box.</p>
+
+    <p>Nobody on the walk claims the missing cipher was a political statement, and Lucia is careful to say so — there's no evidence it was deliberate, and every likelihood it was simply a manufacturing or contracting quirk from a brief period around 1880. It survives here as local folklore rather than settled history, kept alive mostly because "anonymous" boxes like it are genuinely uncommon.</p>
+
+    <p>Close by, a signal box from 1878 at Acton Works is separately Grade II listed, part of the infrastructure that grew up around the London Underground's 1922 electrification works nearby.</p>
+  </section>
+
+  <section class="section" id="soapsud-island">
+    <div class="section-tag">Stop 5–8 · South Acton Estate</div>
+    <h2>Soapsud Island</h2>
+
+    <div class="location">South Acton · Developed from 1859</div>
+
+    <p>South Acton's mixed development dates to the 1859 Enclosure Act, after which the British Land Company bought the land and laid it out in small plots — part of a wider Liberal-backed scheme to spread property ownership widely enough to spread the vote with it. The plots here were narrower than elsewhere in Acton, and unrestricted leases meant homes, workshops, laundries and livestock all shared the same streets. By the late 1880s, Lucia's account puts as many as <span class="highlight">30,000 pigs</span> kept within the estate — a figure that, whatever its precision, makes the point about density and mixed use better than any planning document could.</p>
+
+    <p>Laundry work came to dominate after 1880, following the trade out from an already-established "Soapsud Island" in North Kensington. The 1901 census recorded around 2,500 women here as laundry workers, across a range of skilled roles — some running a self-employed "bag wash" from home, others employed in larger operations with staff of their own. Houses built for the trade often had a double frontage wide enough for a cart, work carried on downstairs and ironing upstairs. On the trading estate today, ACAVA's artists' studios and a business called Elis — still doing laundry — sit on ground that has done broadly the same kind of work, on and off, for over a century.</p>
+
+    <div class="story-box" data-label="Painting Ordinary Things">
+      <p>Patrick Caulfield, later a Royal Academician, was born on 29 January 1936 at 17 All Saints Road, South Acton. His family returned to his parents' native Bolton during the war; his mother had taken in washing as a bag wash before they left, a memory he carried into adulthood. He left school at fifteen, went on to Chelsea School of Art and the Royal College of Art alongside David Hockney, and became associated with — while personally resisting the label of — the Pop Art movement.</p>
+      <p>He died in 2005. The road where he was born was renamed Caulfield Road shortly afterwards, as the area was redeveloped around it.</p>
+    </div>
+
+    <p>Public art on the modern development near South Acton station — opened in 1880, and the point where the walk crosses back toward Bedford Park and Acton Green — includes a mural called <em>Tree of Life</em> by the artist Carrie Reichardt, made from conversations with local residents.</p>
+  </section>
+
+  <section class="section" id="all-saints">
+    <div class="section-tag">Stop 9 · South Acton Recreation Ground</div>
+    <h2>All Saints &<br><em>the General Strike</em></h2>
+
+    <p>The Reverend Andrew Hunter Dunn was priest at All Saints from 1873, and used his own land, pooled with land from the local authority, to lay out South Acton Recreation Ground — "the Rec" — developed in 1889–90. All Saints Church itself stood from 1872 until its demolition in 1980; the South Acton Working Men's Club, founded the year Hunter Dunn arrived, lasted until 2021.</p>
+
+    <blockquote>
+      <p>On the fifth day of the General Strike, some 400 striking workers gathered at All Saints for an evening of music, while other churches nearby, by Lucia's account, preached against them for upsetting the natural order of things.</p>
+      <cite>— as recounted on the walk</cite>
+    </blockquote>
+
+    <p class="guide-says">"Every day during the strike there was a meeting on Ealing Common — led one day by a band from the National Union of Railwaymen, with builders' union men and a large contingent of women from the Acton Labour Party. That's significant, because so little is recorded about women's part in the strike at all — certainly not the laundry workers, who weren't unionised and had no reason to be out."</p>
+  </section>
+
+  <section class="section" id="the-mound">
+    <div class="section-tag">Stop 10–12 · Strafford Road</div>
+    <h2>Three Castles on<br><em>the Mound</em></h2>
+
+    <p>Strafford Road still carries the laundry trade in its street names — Washboard Close and Mangle Close back onto Brouncker Road — close to a former laundry site at 61–63 Southfield and to South Acton's earliest council housing, built in 1930–31. The postwar rebuilding that followed raised three tower blocks named, rather grandly, after Welsh castles: Beaumaris, Corfe and Harlech, built 1968–71. The names were meant sincerely — postwar social housing here was built to the same ideal of "nothing too good for ordinary people" that shaped the welfare state more broadly, not as a last resort.</p>
+
+    <div class="story-box" data-label="A Park That Wasn't For Sale">
+      <p>In the early 2000s, a plan emerged to demolish Barry House — the tallest of the three blocks — and build on the recreation ground instead, with residents due to move into the new housing before a replacement park was eventually laid out where Barry House had stood.</p>
+      <p>Residents objected. The Rec, they pointed out, had existed since the 1870s — and its long-standing legal status as dedicated parkland turned out to protect it from exactly this kind of substitution. The scheme was dropped. Land at the back of the Rec, however — former railway sidings only informally folded into the park once the trains stopped running in the 1950s — carried no such protection, and was built on regardless when the wider site was redeveloped.</p>
+    </div>
+
+    <p>Corfe Tower today hosts an SCBC garden restoration project, and a Victorian pillar box outside neighbouring Pembroke House rounds out the walk's small collection of postal curiosities.</p>
+  </section>
+
+  <section class="section" id="tenant-management">
+    <div class="section-tag">Stop 13 · William Morris House</div>
+    <h2>Stave Off Decay<br><em>by Daily Care</em></h2>
+
+    <p>William Morris House, opened in 2016, is SCBC's own office — named, Lucia explained, for Ruskin's fellow Victorian and self-described "mentor," the Arts and Crafts designer and writer. Close by, a 19th-century garden wall marks the physical boundary between South Acton and the Mill Hill Park garden suburb next door, part of the estate's original 19th-century engineering.</p>
+
+    <p>SCBC operates as a Tenant Management Organisation (TMO): residents vote to take services — repairs, grounds maintenance, a local housing office — directly from the council, with re-ballots required every five years to continue. At its postwar height, South Acton held around 2,000 properties and 5,000 people, served by a single visiting housing officer once a fortnight. Since SCBC went live in 2015, the estate has had one and a half housing officers of its own plus daily on-site repairs staff — a surveyor and a resident technician, on hand five days a week.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1,300 → &lt;500</div>
+      <div class="key-fact-text">Council properties managed by SCBC in South Acton, from the 2015 handover to the present day — the difference sold off under Right to Buy or transferred to housing associations. Ealing Council has recently begun buying some units back from the original developer to restore as council housing.</div>
+    </div>
+
+    <p class="guide-says">"Stave off decay by daily care." — Ruskin's line, adopted as something close to SCBC's own motto for the repairs work it does.</p>
+  </section>
+
+  <section class="section" id="woodlands-park">
+    <div class="section-tag">Stop 14–16 · Woodlands Park</div>
+    <h2>An Ice House &<br><em>the First Waitrose</em></h2>
+
+    <p>The walk crosses the underground course of Stamford Brook — a genuine lost tributary of the Thames, still running beneath the surface here — past old-style 19th-century South Acton terraces and into Woodlands Park, once the grounds of Woodlands House and given over to the local authority at the start of the 20th century for parkland and education.</p>
+
+    <p>An 18th-century ice house sits near the park's centre — a below-ground store for ice, cut and imported before mechanical refrigeration existed, refurbished during millennium-era works to the park. It stands close to what the walk's own printed notes describe as the site adjoining the first Waitrose shop: Wallace Waite, Arthur Rose and David Taylor opened their first grocery at 263 Acton High Street in 1904, becoming Waitrose Ltd in 1908 and joining the John Lewis Partnership in 1937.</p>
+
+    <div class="story-box" data-label="An Ever-Changing Education Site">
+      <p>The land around the park has hosted an unusual relay of institutions. Acton County Grammar School stood here when Pete Townshend and John Entwistle — later of the Who — finished their schooling in 1961. It was followed by the first campus of Brunel University, then Thomas Huxley Teacher Training College, then an outreach of what became Ealing, then Thames Valley College.</p>
+      <p>More recently the site has held the Caspian Cultural Centre — home to a large collection of Persian-language books and manuscripts, with planning permission granted some years ago for student accommodation, a proper library and a café, though as of this walk construction had still not started — the National Autistic Society, and now Ark Soane Academy.</p>
+    </div>
+  </section>
+
+  <section class="section" id="mill-hill-park">
+    <div class="section-tag">Stop 17–18 · Mill Hill Park</div>
+    <h2>The Garden Suburb<br><em>Built to Keep Its Distance</em></h2>
+
+    <p>Richard White bought land here in 1809 and built a house of which only one wing now survives. On his death in 1849 the estate passed to his widow, and the 1859 Enclosure Act eventually led her to sell it on to the British Land Company. From 1877, the builder William Willett laid out three roads — Avenue Crescent, Avenue Gardens and Heathfield Road — as a self-contained garden suburb called Mill Hill Park, deliberately walled off from working-class South Acton next door. The division was the point from the outset, not something planning drifted into later.</p>
+
+    <div class="story-box" data-label="Two Hundred Rules for One House">
+      <p>Willett imposed roughly 200 building rules across the estate, including a requirement that basement, ground- and first-floor windows be kept high enough to maximise daylight into every room. According to the local conservation area's own character study, that insistence on daylight fed directly into his son's later, much more famous campaign. Houses were never to be subdivided — a rule long since broken across the suburb, whatever today's conservation-area status might suggest.</p>
+    </div>
+
+    <p>Mill Hill Park is now a locally — though not statutorily — designated conservation area, with an active residents' association archive that includes a published history, <em>Celebrating the Light</em>.</p>
+  </section>
+
+  <section class="section" id="william-willett">
+    <div class="section-tag">Stop 19–21 · Avenue Crescent</div>
+    <h2>The Man Who Gave Everyone<br><em>an Extra Hour</em></h2>
+
+    <div class="location">11 & 16 Avenue Crescent · c.1800 and 1882–1894</div>
+
+    <p>Number 11 Avenue Crescent, built around 1800, was home to Richard White — a solicitor and a founder of the Law Society — and his wife Mary, who bought land nearby on Oldham Terrace to endow one of the area's earliest schools, decades before state education existed. The school building survives, retained as a planning condition when a mosque was later built on the neighbouring site.</p>
+
+    <p>Next door, at what is now 16 Avenue Crescent, lived William Willett (1856–1915) — son of the suburb's developer — from 1882 to 1894, a residence confirmed today by an Ealing Civic Society plaque. Willett later moved to Chislehurst, where, according to the story he told, the idea of adjusting clocks to make better use of summer daylight came to him on an early-morning ride. His 1907 pamphlet, <em>The Waste of Daylight</em>, eventually became law as British Summer Time in 1916 — a year after he died.</p>
+
+    <p class="guide-says">"He was adamant about it for years and never lived to see it. People still argue today about whether it was worth doing."</p>
+
+    <p>A few doors along on Avenue Gardens lived Margaret Dovaston (1884–1954), an official war artist during the First World War — a 1915 watercolour of troops crossing Hill 60 under shellfire, bought by a regimental association, survives in a regimental museum today. She returned afterwards to meticulously researched historical costume scenes, and had already founded the Ealing Art Guild, later the Ealing Arts Club, in 1910. Her house and studio, designed by her architect brother John, dates from 1925.</p>
+  </section>
+
+  <section class="section" id="acton-town">
+    <div class="section-tag">Stop 22–24 · Osborne Road & Acton Town</div>
+    <h2>Homes for People Who<br><em>Kept Being Moved</em></h2>
+
+    <p>St Margaret's Lodge, built in 1948–9, filled a gap left by wartime bomb damage on the site of the former St Margaret's Terrace. The South Acton Children's Centre nearby, designed by Llowarch Llowarch and opened in 2006, merged two earlier nursery services into one, built around outdoor play space that photographs badly and, by all accounts, works rather well.</p>
+
+    <p>The 19th-century school on Osborne Road — architect Edward Monson, foundation stone laid on 8 May 1880, the year compulsory education for five- to ten-year-olds was introduced — passed through several names, from South Acton Schools to Berrymede Junior School, before merging in 2022 with the neighbouring infants' school to form Acton Gardens Primary School. Pete Townshend started there in September 1952. New council homes are now being built along the same road.</p>
+
+    <p>The view opens out to Acton Town station — opened in 1879 as Mill Hill Park, rebuilt in 1932–33 and Grade II listed — and, opposite, a high-rise built by Women's Pioneer Housing, a housing association founded in 1920 to provide independent homes for single working women at a time when they were routinely refused mortgages. Contemporary press, by Lucia's account, made much of the block as Britain's first high-rise built exclusively for that purpose — a claim worth treating as the guide's own gloss rather than independently verified fact.</p>
+  </section>
+
+  <section class="section" id="bookbinder-point">
+    <div class="section-tag">Stop 25 · Bookbinder Point</div>
+    <h2>Housing Goes Back<br><em>Into the Industrial Estate</em></h2>
+
+    <p>Until the 1950s, homes and workshops sat on the same South Acton streets; postwar planning drew a hard line between the residential estate and a dedicated industrial estate, a separation now quietly being undone. Bookbinder Point, the first new housing to return to the industrial side, takes its name from Blissett Bookbinders, a specialist family firm that began on Palmerston Road and later bound Douglas Bader's wartime logbooks among its more notable commissions, before relocating to Brentford.</p>
+
+    <p>The new high-rise on the site has stood finished but unoccupied for several years, held up — by Lucia's account — by failures to meet fire and building-safety sign-off, at a time of heightened scrutiny following the Grenfell Tower fire.</p>
+
+    <blockquote>
+      <p>"If people are putting their lives in your hands, you don't want anyone cutting corners and hoping it goes ahead anyway."</p>
+      <cite>— Lucia Otto</cite>
+    </blockquote>
+
+    <p>Nearby, Ealing Council has bought back Wallis Yard — 95 flats — from the original developer: a small but pointed reversal of the sell-off that shaped South Acton for the previous half-century, and, fittingly for a walk that began with Ruskin, one more attempt to build here as if it might last.</p>
+
+    <div class="practical">
+      <strong>Doing the walk yourself:</strong> Run by SCBC and SARAG for Open House London, meeting at Chiswick Business Park, Building 3. The route is roughly 2.5 hours on foot, mostly flat, with a break partway through at William Morris House. Check the Open House London programme for future dates.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · walk led by Lucia Otto, South Acton Community Builders Co-operative, with the South Acton Residents Action Group · Open House London 2026<br><br>
+  <div class="footer-note">
+    <div class="footer-note-title">A note on this transcript</div>
+    The recording behind this post was heavily degraded in places, with frequent crosstalk between the guide and attendees, so a handful of details are presented here as the guide's own account rather than independently verified fact — among them the exact pig and strike-attendance figures, the "first high-rise for single women" claim, and the framing of the two uncyphered pillar boxes as anything more than an unexplained local curiosity. A second walk leader, introduced only as "Kang" from the South Acton Residents Action Group, could not be confidently identified by surname from the audio and so is credited here by first name only. Two names were corrected against documentary sources: the mural artist, garbled on the recording, is Carrie Reichardt; and the wartime pilot whose logbooks Blissett Bookbinders bound was Douglas Bader, not "Douglas Barter" as transcribed. The English Heritage characterisation study was dated on the walk to 2003; published sources place the two related studies in 2004–5.
+  </div>
+  Transcript lightly edited for clarity. All errors in attribution are transcription errors.
+</footer>
+
+</body>
+</html>

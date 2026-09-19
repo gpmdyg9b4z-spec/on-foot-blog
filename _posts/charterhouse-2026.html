@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>The Charterhouse: Plague Pit to Almshouse — A Walking Tour with Joe</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .joe-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  .footnote {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: #4a4038;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: left;
+  }
+
+  .footnote strong {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .footnote ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+  .footnote li { margin-bottom: 0.5rem; }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — The Charterhouse, Charterhouse Square, London EC1M</div>
+  <h1>A Plague Pit, a Duke's Arrest<br>& the Invention of <em>Offside</em></h1>
+  <div class="header-sub">The Charterhouse Historic Buildings &amp; Rooms Tour · Guide: Joe · with Volunteer Maria</div>
+  <div class="header-meta">
+    <span>ROUTE: Great Hall → Norfolk Cloister → Master's Court → Wash House Court → Great Chamber → Chapel</span>
+    <span>DURATION: ~1 hour</span>
+    <span>DATE: 5 September 2026</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#plague-pit">A plague pit, nine charterhouses, six hundred years</a></li>
+    <li><a href="#great-hall">The Great Hall & Sutton's fireplace</a></li>
+    <li><a href="#cloister">The Norfolk Cloister & the invention of offside</a></li>
+    <li><a href="#masters-court">Master's Court & the royal governors</a></li>
+    <li><a href="#wash-house-court">Wash House Court & the death of the Prior</a></li>
+    <li><a href="#great-chamber">The Great Chamber & the Duke under arrest</a></li>
+    <li><a href="#becoming-a-brother">Becoming a Brother, then and now</a></li>
+    <li><a href="#chapel">The Chapel & Walter Manny's grave</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="plague-pit">
+    <div class="section-tag">Introduction</div>
+    <h2>A Plague Pit, Nine Charterhouses<br>& <em>Six Hundred Years</em></h2>
+
+    <p>Joe begins in the learning centre, seated, before a single step has been taken outside — because, as he puts it, the Charterhouse's seven acres have been built on, pulled down and rebuilt so many times over six centuries that there is no way to walk it in chronological order. Better to lay out the shape of the story first.</p>
+
+    <blockquote>
+      <p>"If we were reading this as a book, the preface would be the Black Death — the great plague that arrived in this country in 1348 and 1349 and laid waste to the population."</p>
+      <cite>— Joe</cite>
+    </blockquote>
+
+    <p>Between a third and a half of London's population is thought to have died. The city's churchyards couldn't cope, and two emergency burial grounds were opened outside the walls — one near the Tower, the other on what is now Charterhouse Square. <span class="highlight">The land was leased from the Priory and Hospital of St Bartholomew</span>, whose hospital still stands less than ten minutes' walk away, on the same site it has occupied since 1123. The lease was arranged by Walter Manny (sometimes spelled Mauny), a Hainault-born soldier and courtier who had risen high in the service of Edward III.</p>
+
+    <p>Manny built a small chapel on the burial ground for prayers for the dead. A later, sixteenth-century estimate put the number buried there at 50,000 — a figure Joe is right to be sceptical of, since London's entire population at the time was only around 90,000. What survives is more precise and considerably stranger: when archaeologists excavated the site ahead of the Elizabeth line in 2013, they uncovered 25 skeletons from the burial ground, several of which carried DNA traces of <em>Yersinia pestis</em>, the plague bacterium. One is now respectfully displayed in the Charterhouse's own museum.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">25</div>
+      <div class="key-fact-text">Skeletons uncovered in Charterhouse Square during Crossrail excavations in 2013 — the first physical confirmation of a burial ground known until then only from historical records.</div>
+    </div>
+
+    <p>In 1371, Manny founded a Carthusian priory on an adjoining part of the land — one of only nine Charterhouses ever built in medieval England, following an order established by St Bruno in the Chartreuse valley of France two centuries earlier. That chapter of the story runs until the 1530s and the arrival of Henry VIII, whose break with Rome brought the priory down and turned the property into a Tudor mansion. It changed hands repeatedly — three of its Tudor owners were executed for treason — until 1611, when it was bought by Thomas Sutton, who turned it into the school and almshouse that both, in different ways, still exist today.</p>
+
+    <div class="story-box" data-label="Still Called Brothers">
+      <p>Sutton's original criteria for admission to the almshouse, in his own unflattering terms, were that a man be over 50, unmarried, and an "aged or decrepit" captain by sea or land, a maimed soldier, a merchant ruined by piracy or shipwreck, or a former prisoner of the Turks. Today the criteria are gentler — 60 or over, unmarried, and in housing, social or financial need — and, since 2016–17, open to women.</p>
+      <p><span class="highlight">Every resident, regardless of sex, is still called a brother</span> — either as a nod to the site's monastic origins, or simply because the community has always thought of itself that way. Around 40 brothers live here today, out of the 80 the charity supported when it was founded.</p>
+    </div>
+  </section>
+
+  <section class="section" id="great-hall">
+    <div class="section-tag">Stop 1 · The Great Hall</div>
+    <h2>The Dining Room &<br><em>Sutton's Fireplace</em></h2>
+
+    <div class="location">Great Hall · Built by Sir Edward North, 1545</div>
+
+    <p>The monastery was dissolved in 1537, and in 1545 the site was bought by Sir Edward North — a lawyer with no law degree who had made himself indispensable to Thomas Cromwell as Chancellor of the Court of Augmentations, the body set up to sell off confiscated monastic property. North demolished the priory church and much of the cloister, and built the Great Hall as the centrepiece of his new Tudor mansion, its original entrance where the kitchens now stand.</p>
+
+    <p>The room's finest surviving feature is an elaborately carved oak screen, erected not by North but by the mansion's second owner, Thomas Howard, 4th Duke of Norfolk, whose initials — T N, for Thomas Norfolk — sit in a shield beside the date: <span class="highlight">1571</span>. Norfolk had good reason to spend money on home improvements that year: he was under house arrest here, having fallen out badly with his cousin, Elizabeth I.</p>
+
+    <p class="joe-says">"I think, like many of us in lockdown in 2020, a lot of people did home improvements then, because they had nowhere else to go. Perhaps the Duke was in the same position."</p>
+
+    <p>Look closely at the screen's columns and you can see scorch marks — evidence of the incendiary bomb that hit the Charterhouse during the Second World War, badly damaging this end of the hall. The restoration afterwards left a visible seam in the floor, marked with narrow brass strips where the earlier building's foundations were found beneath the later one — a small, honest admission that nobody fully knows where the monastic footprint ends and the Tudor one begins.</p>
+
+    <div class="story-box" data-label="A Fireplace Built on Coal and Cannon">
+      <p>The Hall's other centrepiece, a vast stone fireplace, was installed decades later by the governors of Thomas Sutton's charity in tribute to their founder. Carved into its corners are a cannon, a gunpowder barrel and cannonballs — a fair summary of how Sutton made his fortune. He held the post of Master of the Ordnance in the North, responsible for arming the crown's forces there, and held leases on coal-rich land in County Durham that made him extraordinarily wealthy.</p>
+      <p>His timing helped, too. Interest-bearing lending had been effectively illegal in England for centuries; an Act of 1571 permitted loans at up to ten per cent, and Sutton lent accordingly. <span class="highlight">By his death he was, by most accounts, the richest commoner in England</span> — wealthy enough that in 1611 he could buy the Charterhouse from the Earl of Suffolk for £13,000, and still leave money to found and endow the charity that bears his name.</p>
+    </div>
+
+    <p>Sutton died at the end of 1611, only months after completing the purchase, without ever seeing his hospital and school open. His nephew challenged the will and lost. The first brother moved in in 1614 — a former naval captain named George Fenner, who is recorded as having fought against the Spanish Armada in 1588, and who died at the Charterhouse a few years into his residence.</p>
+
+    <div class="practical">
+      <strong>The Great Hall today:</strong> Still used as the brothers' dining room, and — as it was on the day of this tour — regularly hired out for weddings.
+    </div>
+  </section>
+
+  <section class="section" id="cloister">
+    <div class="section-tag">Stop 2 · The Norfolk Cloister</div>
+    <h2>The Monks' Cells &<br>the Invention of <em>Offside</em></h2>
+
+    <div class="location">Norfolk Cloister · Cells 1417, roofed over 1571</div>
+
+    <p>What is now a long, roofed walkway — glazed by the Duke of Norfolk for his own comfort, and named after him ever since — was originally the site of the monks' individual cells. The Carthusians were, and remain, a hermit order: unlike Benedictines or Franciscans, they didn't go out to teach or heal, and even within the monastery they mostly kept to themselves, praying and working alone in cells that were, by the standards of monastic life, rather comfortable — two storeys, a small private garden each, and running water piped in from springs at Barnsbury in Islington from as early as 1430. Four illustrated water maps recording that plumbing system survive today, and are on display in the Charterhouse's own museum.</p>
+
+    <p>All the practical work of the monastery — cooking, brewing, gardening — was done not by the monks but by lay brothers, who left meals for the monks through small hatches in the cell walls. One surviving cell doorway, uncovered during post-war restoration, still has its serving hatch intact.</p>
+
+    <div class="story-box" data-label="The Rules of Football, Almost">
+      <p>By the time Charterhouse School occupied the site, the cloister's narrow, confined shape had become a football pitch of sorts — a game the boys called "the cloister game," played in a tight stone corridor with doors at either end, quite distinct from the looser outdoor "runabout." When the school's captain, B. F. Hartshorne, attended the founding meeting of the Football Association in 1863, two of the original thirteen rules agreed there are traditionally credited to Charterhouse's influence: the throw-in, and the offside rule.</p>
+      <p><span class="highlight-blue">The tradition holds that the offside rule exists because the cloister's doorways gave boys somewhere to lurk unseen</span> until the ball came near the goal. It's a charming story, repeated by the Charterhouse itself, though — like much football folklore from this period — it rests on institutional memory rather than a paper trail. The school declined to actually join the new Football Association, but has claimed a stake in the game's early rules ever since.</p>
+    </div>
+
+    <p>The Duke of Norfolk used the same cloister as his private route to a real tennis court he had built here, and to a long garden terrace — additional renovations dated, like the tennis court, to his first spell of house arrest in 1570. The cloister is still in occasional use for weddings, and Joe admits to one memorable fright walking through it at dusk while filming was underway nearby — a "medieval peasant" driving a cart past him in the half-light before he remembered the bollards had been dressed for a shoot.</p>
+  </section>
+
+  <section class="section" id="masters-court">
+    <div class="section-tag">Stop 3 · Master's Court</div>
+    <h2>Royal Governors &<br><em>a Very Quick Coat of Arms</em></h2>
+
+    <div class="location">Master's Court · Rebuilt from monastic stone, mid-16th century</div>
+
+    <p>Master's Court takes its name from the Master of the Charterhouse — its chief executive, historically lodged here. Look up at the windows beneath the Great Hall and you can see finely carved stone salvaged from the demolished priory church, reused by North's masons as ordinary building material; a contemporary description of his work says, not entirely approvingly, that he "made his call up to the chapel and overturned the whole building."</p>
+
+    <p>Above one doorway sits a royal coat of arms, evidence that this building has had a royal governor since James I first held the role. Every subsequent monarch has served as governor, including, during the Interregnum, Oliver Cromwell and later his son Richard.</p>
+
+    <div class="story-box" data-label="A Very Quick Change of Allegiance">
+      <p>Oliver Cromwell's widow, Elizabeth, was given accommodation at the Charterhouse after his death — and had to find somewhere else to live rather abruptly in 1660, when Charles II's restoration prompted the governors to put the returning king's coat of arms up, by reputation, some ten days before he had even set foot back in the country.</p>
+      <p><span class="highlight-green">The Charterhouse is now a frequent filming location</span>, having doubled for Jacobean London in the 2024 Sky series <em>Mary &amp; George</em>, in which King James I and the Duke of Buckingham are shown walking through Master's Court beneath the coat of arms of a monarch — James's own grandson — who hadn't been born yet.</p>
+    </div>
+
+    <p>The room now used as the Great Chamber, reached from here, holds the last surviving Tudor great chamber in London — and the site's next stop.</p>
+  </section>
+
+  <section class="section" id="wash-house-court">
+    <div class="section-tag">Stop 4 · Wash House Court</div>
+    <h2>The Last Fragment &<br><em>the Death of the Prior</em></h2>
+
+    <div class="location">Wash House Court · Surviving monastic range, 14th–15th century</div>
+
+    <p>Wash House Court takes its unglamorous name honestly: this was where the monastery's services were based, where the lay brothers lived, and where the brewhouse stood — since piped water, however cleverly engineered, was for drinking beer rather than water itself. It is the last substantial fragment of monastic building left on the site, its rough medieval stonework on one side and Tudor red brick with a diaper diamond pattern on the other.</p>
+
+    <p>Above a doorway, faint carved letters — possibly a Greek sigma once accompanied them — are usually read as the monogram of Jesus's name, though a rival reading holds they could be the initials of John Houghton, prior of the Charterhouse from 1531. Both readings lead, one way or another, to the same story.</p>
+
+    <div class="story-box" data-label="The Reformation Comes to the Cloister">
+      <p>By 1534, Henry VIII had broken from Rome to annul his marriage to Catherine of Aragon, marry Anne Boleyn, and make himself supreme head of the Church of England. The Charterhouse's monks had an unusually good reputation for genuine piety, which if anything made their resistance more inconvenient to the crown; Thomas Cromwell is said to have visited in person to try to talk Houghton round.</p>
+      <p>Houghton refused the Oath of Succession and, fatally, the Oath of Supremacy. He was executed at Tyburn on 4 May 1535, along with the priors of two other English Charterhouses. <span class="highlight">His head was displayed on a spike on London Bridge; one arm was nailed above the gate of his own Charterhouse</span> as a warning to the monks who remained.</p>
+      <p>It didn't fully work, but it didn't need to. Over the following five years, sixteen monks and lay brothers of the London Charterhouse died for refusing the oath — most executed at Tyburn, the rest chained standing in Newgate Prison and left to starve. The monastery limped on for a couple of years under an installed, more compliant prior, before it was finally dissolved. Henry used the empty buildings to store tents and hunting equipment; for a while, they were even rented out for parties.</p>
+    </div>
+
+    <p>Edward North's purchase in 1545 — not, as sometimes garbled in the retelling, a decade later — turned this scene of martyrdom into a Tudor gentleman's residence within a single generation, using the very stone of the buildings the monks had died to defend.</p>
+  </section>
+
+  <section class="section" id="great-chamber">
+    <div class="section-tag">Stop 5 · The Great Chamber</div>
+    <h2>Thistles on the Ceiling &<br><em>the Duke Under Arrest</em></h2>
+
+    <div class="location">Great Chamber · North's building, redecorated by Norfolk, 1570s</div>
+
+    <p>Before entering, Joe introduces a portrait of Edward North himself — a man he clearly admires for his sheer survival instinct. North served as an executor of Henry VIII's will, switched allegiance from the doomed Lady Jane Grey to the Catholic Mary I when it became clear which way the succession was going, then served Elizabeth I as well, hosting her at the Charterhouse on two occasions and dying, unusually for a man so close to Tudor power, quietly in his own bed.</p>
+
+    <p>The Great Chamber's ceiling, like much of the building, was heavily damaged by wartime fire and has been restored more than once — only a small, deliberately more richly gilded section near a private retiring area survives from the original decorative scheme. At its centre sits the coat of arms of the Duke of Norfolk, and in its four corners, a set of carved thistles.</p>
+
+    <div class="story-box" data-label="A Ceiling That Gave Him Away">
+      <p>Thistles point to Scotland, and to Scotland's exiled queen, Mary — the connection Joe wants his group to make. Norfolk, England's only duke at the time, was under suspicion of plotting to marry the imprisoned Mary, Queen of Scots and put her on the throne in Elizabeth's place: the Ridolfi Plot of 1571, named for the Florentine banker who carried messages between the conspirators.</p>
+      <p>Norfolk's servants were intercepted carrying coded letters; the key to the cipher, once his house was searched, was found hidden under a doormat at the Charterhouse — not, as sometimes told, beneath a roof tile. <span class="highlight">The evidence was enough. Norfolk was sent to the Tower and executed on 2 June 1572</span>, the only duke in the country at the time.</p>
+    </div>
+
+    <p>The property passed briefly back to the crown, then to Norfolk's son, the Earl of Suffolk, who spent lavishly on the Charterhouse before selling it on to Thomas Sutton in 1611 to fund his real passion project, Audley End in Essex. A portrait of Sutton, on loan from the City of Lincoln, hangs here, along with portraits of later governors of the charity — including Charles II, whose own coat of arms, carved beneath, carries the same story of a fireplace redecorated to flatter whoever was paying for it at the time.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="becoming-a-brother">
+    <div class="section-tag">Community · The Charterhouse Today</div>
+    <h2>Becoming a Brother,<br><em>Then and Now</em></h2>
+
+    <p>The Great Chamber is still used for the brothers' Christmas party each year, and Joe — whose own father spent his last two years living here as a brother — speaks about it with more warmth than almost anything else on the tour.</p>
+
+    <p class="joe-says">"To become a brother, you have to be unmarried, over 60, and in housing, social or financial need. You apply, then you're interviewed — and I think there's quite a waiting list. People often say the same thing at the end of a tour: that they'd walked past this place for years without knowing it was even here."</p>
+
+    <p>Visitors, he points out, aren't incidental to the charity's survival: entry fees and tour bookings genuinely help keep the almshouse going, four centuries after Thomas Sutton's endowment began funding it. <span class="highlight-green">Even Sutton, Joe suspects, might not have expected it to still be doing exactly this job in the twenty-first century.</span></p>
+  </section>
+
+  <section class="section" id="chapel">
+    <div class="section-tag">Stop 6 · The Chapel</div>
+    <h2>The Half-Door &<br><em>Walter Manny's Grave</em></h2>
+
+    <div class="location">Chapel · Formerly the priory's Chapter House</div>
+
+    <p>The Chapel's door is famously only half a door — the other half was removed after wartime bomb damage and never replaced, a small, deliberate scar left visible rather than restored away. Inside is Sutton's memorial, an enormous, deliberately unSutton-like monument to a man Joe describes as modest almost to a fault; the governors, he suggests, took no notice at all of his wishes on that score.</p>
+
+    <p>The Chapel itself was probably not the monastery's original church but its Chapter House — another Norfolk-era rearrangement. Post-war restoration established the real location of the priory's high altar in what is now an open garden court beside the Chapel, marked today by a plain white slab.</p>
+
+    <div class="story-box" data-label="The Confessor's Seal">
+      <p>Walter Manny had asked in his will to be buried in front of the high altar of the church he founded. In 1947, restoration architects Seely and Paget uncovered a lead coffin on exactly that spot. Inside, resting on the skeleton's chest, was a lead papal seal — a bulla — identified as belonging to a 1351 document from Pope Clement VI granting Manny the right to choose his own confessor.</p>
+      <p><span class="highlight">It was proof enough of identity that Manny had wanted to be buried with the document itself.</span> His remains were reburied nearby with due ceremony, and a memorial now marks the spot by the museum entrance — a small window in the Chapel wall facing that garden is a squint, cut so that Carthusian officials could observe Mass at the high altar without leaving the cloister.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting the Charterhouse:</strong> The museum display, Chapel and shop are free to visit, Tuesday–Saturday, 10.30am–4.30pm. Guided tours (around 60 minutes, roughly £15–£25 with concessions) run Tuesday–Saturday, generally at 11am and 2.15pm, and are best booked in advance.
+    </div>
+  </section>
+
+</main>
+
+<div class="footnote">
+  <strong>A Note on This Transcript</strong>
+  <p>Joe's tour was checked where possible against documentary sources before this post was written. A few points are worth flagging transparently:</p>
+  <ul>
+    <li>Edward North's purchase of the Charterhouse is well documented as 1545, not the later date that appears in parts of the original recording.</li>
+    <li>John Houghton's head was displayed on London Bridge, not, as one passage of the transcript has it, "Roman Bridge" — almost certainly a transcription slip.</li>
+    <li>The cipher key that implicated the Duke of Norfolk in the Ridolfi Plot is recorded in contemporary and historical accounts as having been found under a doormat at the Charterhouse, rather than under a roof tile.</li>
+    <li>Sources confirm royal visits to the Charterhouse by Elizabeth I in 1558 and 1561, and by James I in 1603; we could not verify a specific 1603 visit by Elizabeth I to the Earl of Suffolk, and it may be a conflation with James I's stay that year.</li>
+    <li>DNA testing on the 2013 Crossrail skeletons found traces of <em>Yersinia pestis</em> in a number of the 25 individuals, not conclusively all of them.</li>
+    <li>The origin of football's throw-in and offside rules in the Charterhouse cloister is long-standing institutional tradition, repeated by the school and the Charterhouse itself, rather than a documented certainty.</li>
+  </ul>
+</div>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Notes from the street, the square and the river's edge · Est. 2026<br><br>
+  Transcript lightly edited for clarity. Guide: Joe, with Volunteer Maria · The Charterhouse, Charterhouse Square, London
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Peckham in the Balance: Heritage & Activism — A Walking Tour with Eileen, Benedict & Andrea</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .eileen-says, .benny-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  .footnote {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: #4a4038;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: left;
+  }
+
+  .footnote strong {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .footnote ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+  .footnote li { margin-bottom: 0.5rem; }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Peckham High Street & Rye Lane, London SE15</div>
+  <h1>The Arch, the Aylesham<br>& <em>What It Takes to Save a Street</em></h1>
+  <div class="header-sub">Peckham in the Balance: Heritage &amp; Activism · Guides: Eileen Conn, Benedict O'Looney &amp; Andrea · Peckham Heritage, Peckham Vision &amp; the Peckham Society · Open House Festival 2026</div>
+  <div class="header-meta">
+    <span>ROUTE: Peckham Arch → Peckham Square &amp; Library → Holly Grove → Rye Lane → Jones &amp; Higgins → Peckham Rye Station → Aylesham Centre → Copeland Park</span>
+    <span>DURATION: 2.5 hours</span>
+    <span>DATE: 19 September 2026</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#introduction">Peckham in the balance</a></li>
+    <li><a href="#peckham-arch">The Peckham Arch & the Library</a></li>
+    <li><a href="#bridges-and-rails">How a village became a through-road</a></li>
+    <li><a href="#motorway-that-wasnt">The motorway that wasn't</a></li>
+    <li><a href="#jones-and-higgins">Jones & Higgins & the bombing of Peckham</a></li>
+    <li><a href="#rye-station">Restoring Peckham Rye Station</a></li>
+    <li><a href="#aylesham">The Aylesham Centre & the planning inspector</a></li>
+    <li><a href="#copeland-park">Copeland Park & the Bussey Building</a></li>
+    <li><a href="#pioneering-peckham">Pioneering Peckham, 100 years on</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="introduction">
+    <div class="section-tag">Introduction</div>
+    <h2>Peckham<br>in <em>the Balance</em></h2>
+
+    <p>The tour gathers, fittingly, under the Peckham Arch — a covered public square at the top of Rye Lane that has itself been fighting for survival for a decade. Andrea, from Peckham Heritage, introduces the walk on a megaphone for the first time in three years of running this Open House tour, alongside Eileen Conn and the architect Benedict O'Looney — known throughout, and in this post, simply as Benny.</p>
+
+    <p>Between them, the three guides represent three different local groups — Peckham Heritage, Peckham Vision and the Peckham Society — who between them have spent decades documenting, and defending, the area's tangible and intangible heritage. The walk is framed around a live, unresolved question, sharpened by a planning battle still working its way through judicial review: what does it take to build, or to destroy, a community?</p>
+
+    <blockquote>
+      <p>"We are a volunteer group. This isn't a paid tour, and we're not paid members. We represent three organisations — Peckham Vision, the Peckham Society and Peckham Heritage — in no particular order."</p>
+      <cite>— Andrea</cite>
+    </blockquote>
+
+    <p>The walk's backdrop is the Aylesham Centre — the 1988 shopping centre behind the Arch, now the subject of one of South London's most contested redevelopment proposals — but its real subject, as the guides keep returning to, is the accumulated, unglamorous work of decades: campaigns won, campaigns lost, and buildings saved one small grant at a time.</p>
+  </section>
+
+  <section class="section" id="peckham-arch">
+    <div class="section-tag">Stop 1 · Peckham Square</div>
+    <h2>The Peckham Arch<br>& <em>the Library on Stilts</em></h2>
+
+    <div class="location">Peckham Arch · John McAslan + Partners, 1993–94</div>
+
+    <p>The 35-metre steel and timber canopy overhead is the Peckham Arch, built in 1993–94 to a design by the architects then known as Troughton McAslan (now John McAslan + Partners), with a light installation by the artist Ron Haselden that responds to changes in barometric pressure. It was the first of three capital projects intended to regenerate a square that had suffered years of decline — followed by Peckham Library in 2000, and the leisure centre beside it.</p>
+
+    <p class="benny-says">"I'm genuinely grieving that the council wants to cut the Arch down. Every cell in my body is grieving it."</p>
+
+    <div class="story-box" data-label="A Decade-Long Fight Over a Roof">
+      <p>Plans to demolish the Arch to make way for new housing first surfaced in 2015–16; a 2016 scheme by Carl Turner Architects secured planning permission to replace it with two blocks containing 19 flats, six of them social housing. That permission later lapsed, and Southwark Council has since worked with Spheron Architects on fresh designs for the square, most of which still remove the Arch.</p>
+      <p><span class="highlight">Community campaigners, Benny among them on the public record, have argued the Arch is a rare piece of sheltered public space</span> — and, alongside its mature trees, part of a green link between Rye Lane and Burgess Park — that would be lost for a relatively small number of new homes.</p>
+    </div>
+
+    <p>Just beyond the Arch stands Peckham Library, Will Alsop's inverted-L-shaped building on slender angled steel columns, which won the Stirling Prize in 2000. Benny worked in Alsop's circle during this period, and describes the raised reading room — designed to lift the library above street noise while creating covered public space beneath it — as part of a broader interest in organic, hovering forms that Alsop carried through several buildings of the era, including Peckham's own leisure centre and, later, Blizard Building in Whitechapel and North Greenwich's now-demolished Ecology Park pavilion.</p>
+
+    <p>The library's environmental design was ahead of its time for a public building of the 1990s: small, deliberately placed windows on the west and south sides limit solar gain, larger glazing faces north, and a night-time purge-ventilation system draws in cool air to bring the building's temperature down before the next day's opening.</p>
+  </section>
+
+  <section class="section" id="bridges-and-rails">
+    <div class="section-tag">Context · Bridges, Canals & Rails</div>
+    <h2>How a Village<br>Became <em>a Through-Road</em></h2>
+
+    <p>Benny widens the lens to explain why Peckham developed the way it did. In Roman London, the major route south from the city — the road that became the Old Kent Road, on its way to Canterbury and Dover — passed to the west of Peckham entirely; a minor track towards Lewes, roughly on the line of today's Asylum Road, came closer, but Peckham itself remained a scatter of houses with no strategic importance.</p>
+
+    <p>For centuries London Bridge was the only crossing point, which kept development concentrated on the north bank. That changed with a wave of Georgian and early-Victorian bridge-building: <span class="highlight">Westminster Bridge opened in 1750, Blackfriars Bridge in 1769, Vauxhall Bridge in 1816, Waterloo Bridge in 1817 and Southwark Bridge in 1819</span>. Vauxhall Bridge was the transformative one for Peckham — it put the area on a direct route out of the West End towards the Channel ports, ending its life as a sleepy outlying village for good.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1816</div>
+      <div class="key-fact-text">The year Vauxhall Bridge opened — the single infrastructure change Benny credits with turning Peckham from an isolated village into a place people actually travelled through.</div>
+    </div>
+
+    <p>The Surrey Canal followed, bringing timber, iron and building materials into the area; then, in the 1860s, the railways arrived in force. Peckham Rye station opened in 1865, built at the junction of two competing companies — the London, Brighton and South Coast Railway from the south, and the London, Chatham and Dover Railway from the north — largely to funnel Victorian day-trippers on to the Crystal Palace a few miles away.</p>
+  </section>
+
+  <section class="section" id="motorway-that-wasnt">
+    <div class="section-tag">Stop 2 · Holly Grove</div>
+    <h2>The Motorway<br>That <em>Wasn't Built</em></h2>
+
+    <div class="location">Holly Grove Conservation Area · Designated 1970s</div>
+
+    <p>In the 1970s, Southwark Council planned to demolish the entire north side of Peckham High Street to build a new town hall and a four-lane road — part of a much larger, now largely forgotten scheme by the old London County Council and Greater London Council for an "inner London motorway box" that would have driven six-lane urban motorways through several inner boroughs, in the same spirit as the Westway that was actually built in Hammersmith.</p>
+
+    <div class="story-box" data-label="The Campaign That Started It All">
+      <p>Eileen Conn, then secretary of the newly formed Peckham Society, set up the Peckham Action Group in 1977 specifically to fight the High Street scheme. The campaign ran until 1982, when the plan was dropped — a victory that also killed off the wider motorway box proposal locally, and left Southwark's postwar planners looking for softer ways to remake the town centre.</p>
+      <p><span class="highlight-green">Once the motorway threat lifted, the council designated the Holly Grove Conservation Area</span> across much of this part of Peckham — a mix of Georgian and early-Victorian terraces that might otherwise have gone the way of the High Street's north side.</p>
+    </div>
+
+    <p>Eileen and Benny returned to the same instinct decades later: in the 2000s they campaigned to extend conservation protection along the whole length of Rye Lane, against a council that was, by their account, reluctant to accept any constraint on its own redevelopment ambitions. The resulting Rye Lane Conservation Area, and a subsequent Townscape Heritage Initiative grant of just over £2 million (with roughly £500,000 added by the council), funded the restoration of nine buildings along Peckham High Street and Rye Lane — refronted shopfronts, repaired granite plinths, reinstated cast-iron balcony cresting, and cleaned Victorian tilework that had been buried under decades of paint and cheap signage.</p>
+  </section>
+
+  <section class="section" id="jones-and-higgins">
+    <div class="section-tag">Stop 3 · Rye Lane</div>
+    <h2>Jones &amp; Higgins<br>& <em>the Bombing of Peckham</em></h2>
+
+    <div class="location">Rye Lane · Free Renaissance-style department stores, 1890s–1900s</div>
+
+    <p>By the late nineteenth century, cheap transport and a captive local population had turned Rye Lane into a serious shopping destination — at one point home to six department stores, including Jones &amp; Higgins, a branch of the Co-operative, and Marks &amp; Spencer, most built in the ornate, mix-and-match "free Renaissance" style associated with the architects Jarvis &amp; Son. Jones &amp; Higgins closed in 1980; the building was demolished in 1985, apart from its landmark clock tower, and the site became the Aylesham Centre, opened by Princess Margaret in 1988.</p>
+
+    <div class="story-box" data-label="Thirty Bombs in Two Months">
+      <p>Much of the mid-twentieth-century architecture around Rye Lane exists because of what happened here in the summer of 1944. Records compiled from wartime Air Raid Precautions logs count 29 V-1 flying bombs and 3 V-2 rockets falling on the Peckham and Nunhead area between June and October that year, killing 161 people.</p>
+      <p><span class="highlight">The single worst incident came on 22 June 1944</span>, when a V-1 struck a corset factory near the corner of Nunhead Lane and Peckham Rye, killing around two dozen people — most of them young women working the factory floor. The area to the north of Peckham High Street was among the most heavily hit anywhere in London.</p>
+    </div>
+
+    <p>The postwar rebuilding is visible everywhere on this stretch: a 1950s block channelling the optimism of the Festival of Britain stands more or less where a Victorian terrace was flattened, and an entire "yellow brick estate" further along dates from the borough's next wave of public housing in the 1970s and 80s, replacing streets that had themselves replaced Victorian factories.</p>
+  </section>
+
+  <section class="section" id="rye-station">
+    <div class="section-tag">Stop 4 · Peckham Rye Station</div>
+    <h2>Restoring Peckham Rye,<br>One <em>Small Grant</em> at a Time</h2>
+
+    <div class="location">Peckham Rye Station · Charles Henry Driver, 1865</div>
+
+    <p>The station is the work of Charles Henry Driver, a prolific Victorian railway architect also responsible for Denmark Hill and Battersea Park stations, and — in a rather different register — Joseph Bazalgette's flamboyant Abbey Mills and Crossness pumping stations for London's Victorian sewer network. Its design mixes Gothic details (the crocketed capitals) with a strongly classical, symmetrical skyline, under a voluminous Second Empire mansard roof built from riveted wrought iron, a decade or so before steel construction became standard in London.</p>
+
+    <p>Benny's practice has worked on the station in stages for around twenty years, starting with a £15,000 grant from a council regeneration programme. The list of small, incremental projects is long: reglazing lost Victorian windows, restoring the original iron-and-stone staircase, reopening the grand first-floor Old Waiting Room — bricked up since 1961 and rediscovered complete with a mosaic floor and traces of its original violet-blue paint scheme under later Southern Railway cream and green — and, most recently, cleaning the Suffolk brick and Bath stone facade and regilding the cast-iron roof cresting that had been stripped from the building at some point in the twentieth century.</p>
+
+    <blockquote>
+      <p>"We rediscovered the old station's mosaic floor completely by accident, crawling in with torches. And getting the key to the old waiting room from the station manager — going in there in the dark, seeing where the floor had collapsed into the space below — that was one of the most exciting moments of the whole project."</p>
+      <cite>— Benny</cite>
+    </blockquote>
+
+    <p>Peckham Vision and the Peckham Society campaigned successfully for the station's Grade II listing in the mid-2000s, alongside one of the surviving eighteenth-century timber-framed houses nearby — a listing that, as Eileen points out, is often the only thing that stops a building being quietly cleared for redevelopment rather than repaired.</p>
+
+    <div class="practical">
+      <strong>Visiting the Old Waiting Room:</strong> The restored room occasionally opens to the public for exhibitions and events — on the day of this tour, a local history display was running inside. Check Peckham Vision's channels for current opening dates.
+    </div>
+  </section>
+
+  <section class="section" id="aylesham">
+    <div class="section-tag">Stop 5 · The Aylesham Centre</div>
+    <h2>The Planning Inspector<br>& <em>the Judicial Review</em></h2>
+
+    <div class="location">Aylesham Centre · Proposed redevelopment by Berkeley Homes, architect dRMM</div>
+
+    <p>The tour's central grievance is the Aylesham Centre — the 1980s shopping precinct behind the Arch, allocated for housing redevelopment by the council since 2014. Berkeley Homes' scheme, designed by dRMM, was submitted in July 2024 for 877 homes with 35% affordable housing; in December 2024, Berkeley revised it down to 867 homes with just 12% affordable — around 77 homes, split between social rent and intermediate tenures — across sixteen buildings rising as high as 20 storeys.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">12%</div>
+      <div class="key-fact-text">The revised affordable housing share in Berkeley's Aylesham Centre proposal, down from an original 35% — the cut that hardened local opposition to the scheme.</div>
+    </div>
+
+    <p>Southwark Council refused to determine the application in the time allowed; Berkeley appealed on those grounds in May 2025, and a public inquiry followed that October. In May 2026, the government's planning inspector, Matthew Shrigley, dismissed the appeal, ruling that the scheme's height, scale and massing would cause harm to the Rye Lane Peckham Conservation Area and the surrounding townscape that outweighed its benefits — even, he noted, if the affordable housing share had stayed at 35%.</p>
+
+    <div class="story-box" data-label="A Community Raised £60,000 to Be Heard">
+      <p>Local campaigners — organised as Aylesham Community Action, alongside the wider Southwark Housing and Planning Emergency group — raised roughly £60,000 in a matter of months to fund legal representation at the public inquiry, taking part as an independent party rather than simply submitting objections.</p>
+      <p><span class="highlight">Berkeley has since applied for a judicial review</span> of the inspector's decision, arguing it undermines national housebuilding policy; as of this tour, that legal challenge is still working its way through the courts, and the guides are careful to say no more about it than that.</p>
+    </div>
+
+    <p>Eileen and Andrea are emphatic that none of this amounts to reflexive opposition to development. Their objection, as they put it repeatedly on the walk, is to a scheme that would have delivered housing without the infrastructure, ground-floor uses or genuinely affordable homes the area actually needs — a "dormitory" development, in Andrea's words, rather than a neighbourhood.</p>
+  </section>
+
+  <section class="section" id="copeland-park">
+    <div class="section-tag">Stop 6 · Copeland Park</div>
+    <h2>The Cricket Bat Factory<br>& <em>Frank's Café</em></h2>
+
+    <div class="location">Copeland Park & the Bussey Building · Industrial buildings, 1880s onward</div>
+
+    <p>Just south of the railway line sits Copeland Park and the Bussey Building — a long, narrow Victorian industrial complex, built in phases from the 1880s, that manufactured cricket bats and, during the First World War, military equipment. Around 2005, the council's plans to demolish the site for a tram depot became the founding campaign of Peckham Vision; the buildings survive today under family ownership, home to a dense mix of small creative businesses, studios and the CLF Art Café.</p>
+
+    <p class="eileen-says">"This is a place where people come together — not just for events, but as somewhere to sit around and simply be with the rest of the community."</p>
+
+    <p>Above the site's multi-storey car park, Frank's Café and the Bold Tendencies art programme have run a summer rooftop bar and exhibition space for around fifteen years, giving Peckham one of its more unlikely views back across the city — a use the guides hold up as proof that adapting an existing industrial building can outperform demolishing it, in cultural terms as much as in the carbon cost avoided.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="pioneering-peckham">
+    <div class="section-tag">Coming Up · 17 October 2026</div>
+    <h2>Pioneering Peckham,<br><em>100 Years On</em></h2>
+
+    <p>Andrea closes the walk by flagging a follow-on event at St Mary's Church, Nunhead, marking a double centenary a quarter-mile from Peckham Rye station. In 1926, doctors George Scott Williamson and Innes Pearse opened the Pioneer Health Centre at 142 Queen's Road — the "Peckham Experiment," a pioneering study of preventive community health that ran, on and off, until 1950. A few doors away at number 164, from 1922 until his death in 1947, the Jamaican-born GP Dr Harold Moody ran his practice and, in 1931, founded the League of Coloured Peoples, one of Britain's first organised civil rights movements.</p>
+
+    <p class="eileen-says">"Heritage, in the end, is what it means to us individually and personally — and that's exactly what's missing from the way most modern development gets decided."</p>
+
+    <p>The event — a short walking pilgrimage between the two sites followed by an exhibition and open conversation in the church — is billed around the same question that runs through this whole tour: whose heritage gets remembered, and whose gets built over.</p>
+
+    <div class="practical">
+      <strong>Pioneering Peckham, 100 Years On:</strong> Saturday 17 October 2026, St Mary's Church, Nunhead. Search "Pioneering Peckham" on Eventbrite for booking. Peckham Heritage's book, <em>Peckham's Heritage: Past, Present and Future</em>, sold out its first print run and can be reordered via the Peckham Heritage website.
+    </div>
+  </section>
+
+</main>
+
+<div class="footnote">
+  <strong>A Note on This Transcript</strong>
+  <p>This recording was made outdoors, with a megaphone, background traffic, crosstalk between three guides and around forty walkers, and long stretches of genuinely inaudible speech. A significant amount of material — shop-by-shop asides, overlapping conversations, and passages too garbled to responsibly reconstruct — has been left out of this post rather than guessed at. A few points are worth flagging specifically:</p>
+  <ul>
+    <li>Figures on the Aylesham Centre scheme (homes proposed, affordable housing percentage, storey heights, the planning inspector's name and ruling date) come from published planning and news sources rather than the tour audio, which gave only rounded or partial numbers.</li>
+    <li>The number of wartime bombs to hit Peckham is given in the transcript as "30 missiles" in two months; published Air Raid Precautions records for the wider Peckham and Nunhead area count 29 V-1 flying bombs and 3 V-2 rockets between June and October 1944, which we've used here as the more precise figure.</li>
+    <li>Several names in the audio were unclear or inconsistently rendered; the architect referred to at different points as "Benny" and "Betty" is, on the balance of evidence, Benedict O'Looney, whose long-running restoration work at Peckham Rye Station and advocacy for the Peckham Arch are both independently documented.</li>
+    <li>A handful of claims — an exact figure for the proportion of local people unable to afford new-build homes, and some detail about specific shops and businesses passed on the walk — could not be verified and have been left out rather than repeated as fact.</li>
+  </ul>
+</div>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Notes from the street, the square and the river's edge · Est. 2026<br><br>
+  Transcript lightly edited for clarity. Guides: Eileen Conn, Benedict O'Looney &amp; Andrea · Peckham Heritage, Peckham Vision &amp; the Peckham Society, Open House Festival 2026
+</footer>
+
+</body>
+</html>

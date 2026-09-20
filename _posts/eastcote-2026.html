@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>A Wartime Hospital, a Dovecote & Britain's Secret Codebreakers — A Walking Tour of Eastcote with Madalina</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { color-scheme: light; background: var(--paper); }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .madalina-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  .footnote {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: #4a4038;
+    letter-spacing: normal;
+    text-transform: none;
+    text-align: left;
+  }
+
+  .footnote strong {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .footnote ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+  .footnote li { margin-bottom: 0.5rem; }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Eastcote, London HA5</div>
+  <h1>A Wartime Hospital, a Dovecote<br>& <em>Britain's Secret Codebreakers</em></h1>
+  <div class="header-sub">Eastcote Walking Tour · Guide: Madalina · Open House Festival 2026</div>
+  <div class="header-meta">
+    <span>ROUTE: Eastcote Station → Field End Road High Street → Highgrove Wood → Eastcote House Gardens → Pembroke Park → Tudor Lodge Hotel</span>
+    <span>DURATION: 2.5 hours</span>
+    <span>DATE: 20 September 2026</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#introduction">From farms to a modern suburb</a></li>
+    <li><a href="#high-street">The halt, the parade & a wobbly first road</a></li>
+    <li><a href="#tudor-lodge">The Tudor Lodge & a wartime hospital</a></li>
+    <li><a href="#highgrove">Highgrove House & Edward Prior's rebuilding</a></li>
+    <li><a href="#griffinhurst">Griffinhurst & the house that vanished</a></li>
+    <li><a href="#eastcote-house-gardens">Eastcote House Gardens & the dovecote</a></li>
+    <li><a href="#pembroke-park">Pembroke Park: Eastcote's secret war</a></li>
+    <li><a href="#the-estate">The 1930s estate & journey's end</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="introduction">
+    <div class="section-tag">Introduction</div>
+    <h2>From Farms to<br>a <em>Modern Suburb</em></h2>
+
+    <p>Madalina has led this walk for four years running, and this is the first time she's asked her group for feedback on it — part of a master's in museums and public engagement, alongside her day job. She's lived in Eastcote for ten years, long enough, she says, to have fallen in love with an area most Londoners have never had reason to visit.</p>
+
+    <blockquote>
+      <p>"We need to keep in mind that this has been very much a lost, overlooked area. You'll hear me say the name of the Deane family many times, because almost all the land around here was once owned by them."</p>
+      <cite>— Madalina</cite>
+    </blockquote>
+
+    <p>Eastcote sits within the historic parish of Ruislip, itself recorded in the Domesday Book of 1086, though Eastcote's own name first appears in documents in the mid-thirteenth century — it turns up later, in 1754, spelled "Ascott." For most of its history this was purely agricultural land: rich fields, ponds and woodland, worked by farmers and labourers. The 1841 census counted 525 people living here, roughly evenly split between men and women, alongside a scatter of carpenters, bricklayers and sawyers. Some of the old farm buildings and cottages survive today, quietly converted into family homes.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">525</div>
+      <div class="key-fact-text">Residents recorded in Eastcote in the 1841 census — a farming hamlet that, within a century, would become one of the fastest-growing suburbs in west London.</div>
+    </div>
+  </section>
+
+  <section class="section" id="high-street">
+    <div class="section-tag">Stop 1 · Field End Road</div>
+    <h2>The Halt, the Parade<br>& <em>a Wobbly First Road</em></h2>
+
+    <div class="location">Field End Road · Shops parade, 1920s</div>
+
+    <p>The old heart of Eastcote Village sat between four roads that still exist today — Eastcote High Road, Wiltshire Lane, Fore Street and Field End Road — some distance from where the High Street stands now. Everything changed with the railway: a modest halt opened here in May 1906, and the village centre gradually shifted south to meet it. By the 1920s a full parade of shops had gone up along Field End Road, which is what most people now simply call Eastcote's High Street.</p>
+
+    <p>Morford Way, just off the High Street, was the very first proper road laid out near the new station, and Madalina points out that it still isn't quite straight — a slightly wobbly line that gives away its age against the more rigidly planned streets around it. The upper floors of the earliest shops here still read as houses, with shopkeepers' old living quarters intact above the altered shopfronts; a pair of buildings on Morford Way keep their original green timber balconies, unrepainted, by Madalina's account, for at least the ten years she's lived locally.</p>
+
+    <p class="madalina-says">"Whatever you see on these two shops, it's been there since at least 2016, when I first moved to the area. Nobody's touched the paintwork since."</p>
+
+    <p>Trade directories from the interwar years give a sense of how self-sufficient the new parade quickly became: by 1939 there were around 105 shops along Field End Road, including ten grocers, six butchers, five bakers, fishmongers, a music shop that also tuned pianos, and two private lending libraries — a striking density for a settlement that, within living memory, had needed no permanent shops at all.</p>
+
+    <div class="story-box" data-label="A Pub That Kept Changing Trade">
+      <p>Further along, the walk pauses at Black Horse Parade — a row of shops on the High Road named for The Black Horse, an early nineteenth-century building, Grade II listed, that has spent its life cycling through trades. Madalina describes it starting out as a pub run by a father and son, open six days a week from six in the morning; it later became the local post office, then a restaurant with a well-liked terrace behind, before closing a few years before this tour and standing empty, its signage repainted but its doors, as far as she or anyone on the walk could tell, never open since.</p>
+      <p>One returning participant on a previous year's tour remembered his sister taking music lessons there when it was still a working building — a small, secondhand memory of a building that has quietly changed use every generation or so without ever losing its name.</p>
+    </div>
+  </section>
+
+  <section class="section" id="tudor-lodge">
+    <div class="section-tag">Stop 2 · Journey's End</div>
+    <h2>The Tudor Lodge<br>& <em>a Wartime Hospital</em></h2>
+
+    <div class="location">Tudor Lodge Hotel, 50 Field End Road · Site occupied since the 16th century</div>
+
+    <p>The walk's finishing point is also one of its oldest buildings. A house has stood on this site since the sixteenth century, originally a farmhouse with two linked enclosures; the building has changed hands and names repeatedly over the past two centuries and now operates as the recently refurbished Tudor Lodge Hotel.</p>
+
+    <div class="story-box" data-label="A Hospital for 400 Patients">
+      <p>In 1913–14, the house's owners, Benjamin J. Hall and his wife, offered to convert it into a hospital under the Voluntary Aid Detachment scheme — the volunteer nursing organisation that ran auxiliary hospitals across Britain during the First World War. Despite early difficulties getting the building fit for purpose, it was ready to receive patients by November 1914.</p>
+      <p>By April 1915 the hospital had become an independent medical unit, with <span class="highlight">Mrs Hall serving as its Commandant</span>. By September 1916 it had grown to 40 beds; over the course of its operation, more than 400 patients were treated here and 88 surgical operations carried out — a remarkable throughput for a converted farmhouse in what was still, at the time, a small village.</p>
+    </div>
+
+    <p>Wounded soldiers arriving from the fighting in Belgium and France were, according to contemporary accounts, warmly looked after here, with local people visiting, bringing gifts, and helping mark occasions like Christmas — 60 patients spent Christmas Day at the hospital in 1917 alone. The building later returned to civilian use and today gives no obvious sign, beyond its name, of the years it spent bandaging soldiers from the Western Front.</p>
+  </section>
+
+  <section class="section" id="highgrove">
+    <div class="section-tag">Stop 3 · Highgrove Wood</div>
+    <h2>Highgrove House &<br><em>Edward Prior's Rebuilding</em></h2>
+
+    <div class="location">Highgrove House · Rebuilt 1880–81, architect Edward Schroeder Prior</div>
+
+    <p>Highgrove House was first built around 1750, on land Madalina says was originally acquired by a "deliverer of the vote" — a little-known eighteenth and nineteenth-century Parliamentary role responsible for estimating how many copies of bills, acts and papers the Commons would need, ordering the printing, and arranging their distribution to the members who had to sign off on them. One such owner, James Mitchell, is recorded with an income of over £3,500 in 1832, out of which he had to pay a staff of ten porters and cover his own office costs.</p>
+
+    <p>The house standing today, though, dates from a rebuilding after a devastating fire on the night of 16 November 1879. The owners at the time, Sir Hugh Hume-Campbell and Lady Juliana Rebecca Hume-Campbell, commissioned a young architect named Edward Schroeder Prior to design its replacement, completed in 1881.</p>
+
+    <div class="story-box" data-label="A House Ahead of Its Architect's Fame">
+      <p>Prior — educated at Harrow School and then Cambridge, and at the time newly out of his training under the great Richard Norman Shaw — went on to become one of the most influential theorists of the Arts and Crafts movement, later Slade Professor of Fine Art at Cambridge. Highgrove was an early commission, built in red brick with a Queen Anne and early-Georgian character, tall chimney stacks, a steeply pitched roof and arched windows on the top floor; <span class="highlight">Prior's drawings for the house were exhibited at the Royal Academy in 1882.</span></p>
+      <p>Lady Campbell, who outlived her husband by many years, was known locally for hosting cricket parties in the grounds and donating flowers to local celebrations; she is buried at the end of the road, at St Martin's Church. The house passed, on her daughter's marriage, into the Warrender family.</p>
+    </div>
+
+    <p>The house suffered a second fire in October 1978 — less destructive than the first, but serious enough that its future was in doubt. The decision was made to rebuild once again to Prior's original 1881 plans; restoration finished in 1980. In the decades between the wars, and again after the Second World War, the grounds saw harder use: for a time the house held a children's clinic, and by the 1950s to 1970s the surrounding area had become, in Madalina's words, "a rough patch" — one which the estate's swimming pool, filled in and built over, still quietly commemorates beneath what is now a sports pitch.</p>
+  </section>
+
+  <section class="section" id="griffinhurst">
+    <div class="section-tag">Stop 3a · Winslow Close</div>
+    <h2>Griffinhurst &<br><em>the House That Vanished</em></h2>
+
+    <div class="location">Winslow Close · Griffinhurst, completed 1920, demolished 1968</div>
+
+    <p>Just beyond Highgrove Wood, on the site now occupied by the houses of Winslow Close, stood Griffinhurst — a large Edwardian house built for its owner, George Mertens, and completed in 1920. Madalina's description, drawn from old estate notes, is of a house with genuine character: an oak-panelled dining room opening into a circular tower room, a tennis lawn to the rear, an arched garden gate leading through to a walled garden, and grounds with a birdbath, a sundial and dry-stone walling.</p>
+
+    <div class="story-box" data-label="Offered for Sale, Never Sold">
+      <p>Griffinhurst was put up for sale in 1944 for £15,000 and found no buyer. It stood empty and increasingly neglected for years afterwards, and was finally demolished in 1968 once the local authority judged it unsafe to save.</p>
+      <p><span class="highlight">The estate that replaced it — still known locally as The Foresters — was designed to echo what had gone before</span>: the new houses on Winslow Close follow the footprint of Griffinhurst's original ground floor, and reuse brick salvaged from the demolished building in their construction.</p>
+    </div>
+  </section>
+
+  <section class="section" id="eastcote-house-gardens">
+    <div class="section-tag">Stop 4 · Eastcote House Gardens</div>
+    <h2>The Dovecote &<br>the <em>Walled Garden</em></h2>
+
+    <div class="location">Eastcote House Gardens · Dovecote c.1600, walled garden 17th century</div>
+
+    <p>Eastcote House itself is long gone — demolished, by Madalina's account, in the 1960s after a fire left it beyond reasonable repair — but its stable block, dovecote and walled garden survive as the centrepiece of Eastcote House Gardens, all originally part of the estate of the Deane family, who owned much of the land covered by this walk.</p>
+
+    <div class="story-box" data-label="Still Working, Four Hundred Years On">
+      <p>The dovecote's brickwork dates to around 1600, and remarkably its central mechanism — a rotating pole, or potence, that let a single person climb a fixed ladder and reach every nesting box by turning the pole rather than moving the ladder — still works today. Doves were kept for several practical reasons: birds under four weeks old for eating, older birds for breeding, and their droppings, valued at the time as a key ingredient in making gunpowder.</p>
+      <p><span class="highlight-green">The dovecote's tower was deliberately built taller than the surrounding walls</span> so the birds could fly in and out freely without being an easy target for predators. The walled garden beside it doubled as a place to grow culinary herbs and as a sheltered spot for quiet recreation — a combination Madalina describes as typical of estates of this period.</p>
+    </div>
+
+    <p>The wider area became a formal conservation area in 1989, after the Eastcote Residents' Association successfully proposed the designation to Hillingdon Council. Sheila Liberty, the conservation area's first chairman, is recorded as saying that Eastcote Village's character was "largely determined by its beautiful open spaces, and the scattering of listed cottages" — with the House Gardens and walled garden singled out as, in her words, "the jewel in our crown."</p>
+
+    <div class="practical">
+      <strong>Visiting Eastcote House Gardens:</strong> Free to enter, with benches, a walled garden, and a café serving cakes and coffee. The dovecote and stable block have been refurbished with National Lottery support and occasionally open to the public during local heritage events.
+    </div>
+  </section>
+
+  <section class="section" id="pembroke-park">
+    <div class="section-tag">Stop 5 · Pembroke Park</div>
+    <h2>Pembroke Park:<br>Eastcote's <em>Secret War</em></h2>
+
+    <div class="location">Pembroke Park Estate · Formerly RAF Eastcote / HMS Pembroke V, 1943–2008</div>
+
+    <p>The quiet housing estate here, built from 2008 and completed around 2017, sits on a site with a genuinely extraordinary hidden history. It was first developed in 1943 as a military hospital, built in anticipation of D-Day casualties — but the casualties never needed treating here, and the buildings were repurposed almost immediately as an outstation of the Bletchley Park codebreaking operation.</p>
+
+    <blockquote>
+      <p>"For years, families here knew only that a mother or grandmother had 'worked at Lime Grove' during the war. Nobody knew what that actually meant — because everyone who worked there had signed the Official Secrets Act, and simply never talked about it."</p>
+      <cite>— Madalina</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="HMS Pembroke V">
+      <p>Known to the servicewomen stationed here as HMS Pembroke V — hence the name later given to the housing estate — Eastcote housed dozens of electromechanical Bombe machines, developed from Alan Turing's original design, used to crack the settings of German Enigma ciphers. Each machine took around two hours to work through the possible combinations for a single message; they were operated in shifts, around the clock, chiefly by members of the Women's Royal Naval Service — universally known as Wrens — with Royal Air Force technicians on hand to fix any machine that broke down.</p>
+      <p><span class="highlight">Workers were forbidden from wearing uniform off-site and discouraged from socialising with local people</span>, for reasons of secrecy; most of their social life happened among themselves, or on quick trips into central London by train. On 18 February 1944, an incendiary bomb fell on the site — causing no casualties and only minor damage, in a war whose greatest risk to Eastcote's codebreakers turned out to be boredom and secrecy rather than enemy action.</p>
+    </div>
+
+    <p>At the end of the war the outstation closed only briefly: in 1946 the Bletchley Park operation was formally reconstituted here under a new name — Government Communications Headquarters, or GCHQ — which remained at Eastcote until it relocated to purpose-built premises in Cheltenham in the early 1950s. Even after GCHQ's departure, the site stayed in government use for decades, including as an American-run base during the Cold War, before finally closing around 2007–08 and being redeveloped as housing. According to Madalina, when the new estate was designed, local residents specifically asked for its architecture and street names to gesture towards the site's hidden history — the result is a scheme whose housing style nods to wartime barracks, on an estate that took its own name, Pembroke Park, directly from the site's naval codename.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="the-estate">
+    <div class="section-tag">Closing · The Interwar Estate</div>
+    <h2>The 1930s Estate<br>& <em>Journey's End</em></h2>
+
+    <p>The final stretch of the walk passes through an estate built around the 1930s, mixing mock-Tudor detailing with more Mediterranean-influenced styling — a fairly typical combination for London's interwar suburban expansion, but one locally protected under the same conservation rules that cover Eastcote House Gardens. The tour ends, fittingly, back at the Tudor Lodge Hotel — the walk's oldest building and, for a few years in the middle of the First World War, one of its most important.</p>
+
+    <p class="madalina-says">"Whatever I know, I know from my own research and from ten years of actually living here. If you know something about the area yourselves, please, always tell me — I've learned some of the best details from people who grew up here and came back."</p>
+  </section>
+
+</main>
+
+<div class="footnote">
+  <strong>A Note on This Transcript</strong>
+  <p>This recording includes long stretches of casual conversation, greetings to passers-by and residents along the route, and administrative asides about festival feedback forms — all left out of this post as not part of the tour's actual content. A few further points are worth flagging:</p>
+  <ul>
+    <li>Several names in the audio were unclear; the hospital's wartime Commandant is named in published sources as Mrs Hall, wife of owner Benjamin J. Hall, which we've used here in place of a name that did not match any documented record.</li>
+    <li>Griffinhurst, the demolished house on the site of Winslow Close, is described here largely on Madalina's own account rather than an independently published source; the general shape of the story (the house, its 1944 sale attempt, its 1968 demolition, and the estate that replaced it) was confirmed after the fact but individual details within it are not independently verifiable.</li>
+    <li>The Black Horse is Grade II listed, not Grade I as stated once in the recording — a slip we've corrected rather than repeated.</li>
+    <li>The wartime hospital built on the future Pembroke Park site was constructed in anticipation of D-Day (1944) casualties, not, as one might assume from a casual hearing of the recording, during the First World War; this is corroborated by published histories of the site.</li>
+  </ul>
+</div>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Notes from the street, the square and the river's edge · Est. 2026<br><br>
+  Transcript lightly edited for clarity. Guide: Madalina · Eastcote, Open House Festival 2026
+</footer>
+
+</body>
+</html>

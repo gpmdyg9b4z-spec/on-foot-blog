@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Suomenlinna — An Audio Walking Tour of the Sea Fortress</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    color-scheme: light;
+    background: var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  p, li, .post-excerpt { color: #241c14; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .narrator-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Audio Tour Transcript — Suomenlinna Sea Fortress, Helsinki</div>
+  <h1>The Wolf Islets<br>and the <em>Fortress That Changed Flags</em></h1>
+  <div class="header-sub">Suomenlinna Audio Walking Tour · Official numbered route (narrator unnamed)</div>
+  <div class="header-meta">
+    <span>ROUTE: Jetty Barracks → Merchants' Quarter → Church → Artillery Bay → Susisaari → Great Courtyard → Dry Dock → Piper's Park → Cannons</span>
+    <span>FORMAT: Self-guided audio, GPS map</span>
+    <span>NOTE: Transcript ends at Stop 12</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Three flags over one rock</a></li>
+    <li><a href="#living">Living on Suomenlinna</a></li>
+    <li><a href="#merchants">The merchants' quarter</a></li>
+    <li><a href="#church">The church that became a lighthouse</a></li>
+    <li><a href="#ark">Noah's Ark &amp; the painted windows</a></li>
+    <li><a href="#bay">Artillery Bay</a></li>
+    <li><a href="#monument">The Ruotsinsalmi monument</a></li>
+    <li><a href="#bastion">Bastion Höpken &amp; the casemate</a></li>
+    <li><a href="#courtyard">The Great Courtyard</a></li>
+    <li><a href="#dock">The dockyard</a></li>
+    <li><a href="#park">Piper's Park &amp; the cannons</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>Three Flags<br><em>over One Rock</em></h2>
+
+    <p>This is not a guided walk but an audio tour: a numbered route across the fortress islands, with each stop triggered from a map on your phone. The narrator is unnamed and the script is polite, level and well organised. It makes a good companion to the <a href="helsinki-city-centre-2026.html" style="color:var(--sepia)">Helsinki city-centre walk</a>, which pointed at this island from the harbour and left it there.</p>
+
+    <p>The route begins on the northern end of Iso-Mustasaari, Big Black Island, the largest of the fortress islands. The group of islets was once called Susiluodot, the Wolf Islets, and the tour's first act is to turn the visitor around and look back at Helsinki, a small town of unpainted grey wooden houses when work began in the spring of 1748.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1748</div>
+      <div class="key-fact-text">The year work began on Sveaborg, the fortress and naval base that Sweden built to defend its eastern border. The audio guide calls it the largest construction project in the Swedish realm up to then.</div>
+    </div>
+
+    <div class="story-box" data-label="One Fortress, Three Names">
+      <p>Sveaborg, "Swedish fortress", was the Swedish name. After the fortress surrendered to Russian troops in May 1808 and Finland became an autonomous Grand Duchy the following year, the name was Finnicised as Viapori and the place became a Russian garrison town. In 1918, after independence, it became Suomenlinna, "Castle of Finland", and a Finnish garrison.</p>
+      <p>Each change of name left its mark on the buildings, and most of the tour is about reading those marks.</p>
+    </div>
+
+    <p>Two practical points from the introduction. The fortress roads have no names: each island has a letter from A to H and each building has a number. And the tour is meant to be taken in order but can be dipped into at will.</p>
+  </section>
+
+  <section class="section" id="living">
+    <div class="section-tag">Stop 1–2 · Jetty Barracks to the crossroads</div>
+    <h2>Living on<br><em>Suomenlinna</em></h2>
+
+    <div class="location">Iso-Mustasaari · Island C</div>
+
+    <p>From the pink Jetty Barracks the route climbs through an arched passage to a junction. A large yellow stone house stands at the end of a sharply turning road; it was built in the 1760s for officers and officials, has been carefully restored and is still lived in. Its address, the narrator notes, would be Suomenlinna C52 — island letter, building number.</p>
+
+    <p>From here the route follows the island's main street, which also has no name. It runs between brightly painted wooden houses and the church, and carries most of the island's museums and services.</p>
+  </section>
+
+  <section class="section" id="merchants">
+    <div class="section-tag">Stop 3 · Merchants' Quarter</div>
+    <h2>The Merchants' Quarter<br>&amp; <em>the Two-Week Rule</em></h2>
+
+    <div class="location">Kauppiaskortteli · Late 19th century</div>
+
+    <p>The wooden houses along the right of the road belong to the Russian period that began in 1808. Soldiers and civilians came to Viapori from across the empire, and merchants followed. The houses seen today date from the late 1800s and form part of a quarter that, the guide says, contains some of the oldest commercial buildings in Finland. Their tall gable ends face the street, and each has a wide columned porch, a fashionable place to chat with other customers.</p>
+
+    <div class="story-box" data-label="Trading Under Siege Rules">
+      <p>Merchants in the fortress often held exclusive rights to the goods they sold, but with a condition attached. They had to keep a two-week stock of food in case of siege.</p>
+      <p>It is a neat reminder that the town and the fortress were one organism: the shops were part of the defence.</p>
+    </div>
+  </section>
+
+  <section class="section" id="church">
+    <div class="section-tag">Stop 4 · Suomenlinna Church</div>
+    <h2>The Church that<br><em>Became a Lighthouse</em></h2>
+
+    <div class="location">Suomenlinnan kirkko · Completed 1854, remodelled 1920s</div>
+
+    <p>A fortress church had been planned in Swedish times and again under the Russians, and was finally completed in 1854 as the Orthodox Church of Alexander Nevsky. After independence the Finnish garrison was Lutheran, and the church was remodelled to suit. The onion domes came off, the tower was rebuilt as a square, and the work was done on top of the older structure so that the round shape of the original tower survives inside.</p>
+
+    <p>The audio guide dates the renaming of the fortress to "the year after" independence, in May 1918. Independence itself was declared in December 1917. The conversion work belongs to the 1920s, with the main renovation in 1927–29.</p>
+
+    <div class="story-box" data-label="The Letter H">
+      <p>Look up at dusk and a glass dome under the cross flashes four times, then pauses. That is H in Morse code, for Helsinki. The tower has served as a beacon for ships and aircraft for almost a century.</p>
+      <p>The church fence is the other detail to find: its posts are obsolete 18th-century Swedish cannon barrels, joined by heavy chains. <span class="highlight">The first cannons of the route are doing duty as a fence.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="ark">
+    <div class="section-tag">Stop 5 · Noah's Ark &amp; the telegraph exchange</div>
+    <h2>Noah's Ark &amp;<br><em>the Painted Windows</em></h2>
+
+    <div class="location">Iso-Mustasaari · 18th-century housing</div>
+
+    <p>The four-storey dwelling known as Noah's Ark stands on the left of the road, looking a little lost. Nobody knows where the name comes from. It is the only part ever built of a Swedish plan for a courtyard for the army fleet, and it is still a residence.</p>
+
+    <p>The tour uses it to make a point about fortress housing: it was arranged around squares and in successive courtyards, designed with defence in mind rather than the street plan of a normal town.</p>
+
+    <div class="story-box" data-label="Windows Without Glass">
+      <p>Look at the end of the building facing the road. The upper windows around the corner are not real but painted. Glass was expensive and the wind was cold, so the builders gave the façade a respectable look more cheaply.</p>
+    </div>
+
+    <p>Further downhill stands a red-brick building with a square tower, once a state-of-the-art telegraph and telephone exchange from 1905. The cable brackets on its roof were left in place, a small piece of communications history that the route treats as an exhibit in its own right.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="bay">
+    <div class="section-tag">Stop 6 · Artillery Bay</div>
+    <h2>Artillery Bay,<br><em>the Heart of the Naval Base</em></h2>
+
+    <div class="location">Tykistölahti · Between Iso-Mustasaari and Susisaari</div>
+
+    <p>The transcript's "Tyggistalati" is Tykistölahti, Artillery Bay, a strait rather than a bay in the usual sense. The eastern part was called Artillery Bay in Sveaborg's time and the western part, to the right of the bridge, the Dock Bay. Together with the shipyard it formed the core of the naval base, sheltered by walls and rocky islets and home to the Swedish army's archipelago fleet.</p>
+
+    <p>The shipyard is still working. The big red-brick building beside the bridge was the inventory chamber, where the fleet stored its equipment and weapons over the winter. Its roadside section was destroyed in Soviet air raids in 1944, and rebuilt for the fortress's 250th anniversary. The museum was opened in the building in 1998. (The audio transcript garbles the museum's name as "Swammerlinna"; it means Suomenlinna.)</p>
+  </section>
+
+  <section class="section" id="monument">
+    <div class="section-tag">Stop 7 · Susisaari</div>
+    <h2>The Ruotsinsalmi<br><em>Monument</em></h2>
+
+    <div class="location">Susisaari · Wolf Island</div>
+
+    <p>Across the bridge, a grey stone monument with gold lettering carries the date 1790, the last year of Gustav III's Russian War. The Swedes call the battle fought that summer Svensksund; the Finnish name is Ruotsinsalmi, which gives the monument its name. (The identification of the battle is ours; the audio only says the year and the war.)</p>
+
+    <p>The narrator turns the visitor around to look at the walls and imagine the bare, rocky skerries that were here in 1748. The Swedish parliament, after years of debate, had decided to base the defence of the eastern border on fortifications and the navy: troops would hold the frontier until help arrived from the mainland. The main base was to be here, at Helsinki.</p>
+
+    <div class="story-box" data-label="Everything from the Rock">
+      <p>All the stone in the fortress walls was blasted and quarried from the islands themselves. Helsinki, a small town, could supply neither building materials nor lodging for the soldiers who were ordered here from all over Finland, so nearly everything had to be improvised on site.</p>
+    </div>
+  </section>
+
+  <section class="section" id="bastion">
+    <div class="section-tag">Stop 8 · Bastion Höpken</div>
+    <h2>Bastion Höpken<br>&amp; <em>the Cost of Building a Fortress</em></h2>
+
+    <div class="location">Bastion Höpken · 1750s</div>
+
+    <p>At the archway, look at the foot of the wall on the left. The builders did not clear every rock; they incorporated outcrops as the lower courses of the defences, which saved money. A small nameplate to the right identifies the bastion as Höpken, named after Count Andreas Johan von Höpken, a councillor of state: the fortifications were named after the realm's most prominent politicians.</p>
+
+    <p>The work was led by Lieutenant Colonel Augustin Ehrensvärd, who arrived from Stockholm in January 1748 and chose a bastion fortress, a type previously built on the flat plains of central and southern Europe. Here the walls had to follow high cliffs and the shapes of the islands. The guide claims that Suomenlinna is the only bastion fortress built on islands on high cliffs in varied terrain; that is the narrator's claim and we have not tested it. Where space was short, a "curtain house" with people living in it replaced the usual straight curtain wall, so that homes were part of the defence.</p>
+
+    <div class="story-box" data-label="Inside the Casemate">
+      <p>Step inside, mind the brick stairs, and you are in a vaulted casemate. The fortress's guns stood on two levels, on top of the walls and in vaulted rooms like this one. The nearest gun port looks out on Artillery Bay, the fortress's main passage. Guns had a short range in those days, so they had to be set close to the shore.</p>
+      <p>The soldiers who built it worked ten hours a day, stretching to fourteen under additional contracts. They ate dried meat and fish, and in the early years the work and the epidemics took a terrible toll. <span class="highlight">In some regiments, up to twenty men in every hundred died in the first years.</span> Conditions improved afterwards, and Ehrensvärd did what he could for lodgings and food.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">20 in 100</div>
+      <div class="key-fact-text">The mortality the guide gives for some regiments in the early years of construction. By 1800, Viapori was the second-largest town in Finland after Turku.</div>
+    </div>
+  </section>
+
+  <section class="section" id="courtyard">
+    <div class="section-tag">Stop 9 · The Great Courtyard</div>
+    <h2>The Great Courtyard<br>&amp; <em>a Founder in the Square</em></h2>
+
+    <div class="location">Great Courtyard · Bombarded August 1855</div>
+
+    <p>This was the fortress's main square, and the original monumental layout was destroyed by an Anglo-French naval bombardment in August 1855, during the Crimean War. Before that, the square had already changed once. Ehrensvärd died in October 1772, and Gustav III ordered him buried in the fortress, in the middle of the Great Courtyard. His remains were placed in the vault in July 1783, with the headstone laid by the king himself.</p>
+
+    <p>The inscription, as the narrator reads it, describes him as a field marshal and knight, lying among his works: the fortress and the army fleet. The fleet is remembered in bronze Roman naval staves on the monument. A museum in the commandant's house tells his story.</p>
+
+    <div class="story-box" data-label="Half a House">
+      <p>The yellow house beside Bastion Höpken was the commandant's residence, and it linked two bastions, so it was part of the defensive wall. A door on its upper floor opens directly onto the top of the bastion, where the guns stood; the commandant's bedroom was behind it. "Always on the alert", the narrator says.</p>
+      <p>The bombing destroyed half the house, and it had to be demolished after 1855. Bastion Ekeplan, at the other end, was lost as well, so the square lost its symmetry. Two Russian-era mortars now stand about where the missing end used to be.</p>
+    </div>
+
+    <p>One building from the original layout survives untouched: the curved house of the garrison's local major, on the right of the tomb. The audio guide calls it the oldest independent residential building in Helsinki. We have not verified the superlative, and it sits oddly with the Sederholm House, built in 1757, which the Helsinki post describes as the oldest in the city centre; Suomenlinna being offshore, the two claims may both hold, but they are the guides' words, not ours.</p>
+  </section>
+
+  <section class="section" id="dock">
+    <div class="section-tag">Stop 10 · Dry Dock</div>
+    <h2>The Dockyard<br><em>That Never Closed</em></h2>
+
+    <div class="location">Suomenlinna Shipyard · Begun 1750</div>
+
+    <p>A red-brick building with large wooden gates marks the shipyard, which the guide calls the oldest in Finland and one of the oldest still working anywhere. Work began in 1750, and until 1808 it was the base of the Swedish archipelago fleet's Sveaborg squadron. In the 1760s the famous naval architect Fredrik Henrik af Chapman directed the building of ships for that fleet here.</p>
+
+    <p>After independence it housed the State Aircraft Factory, which produced Finland's first aircraft. In the 1930s the inner basin served as a submarine base. After the Second World War shipbuilding passed to Valmet, which began by building war-reparation ships for the Soviet Union.</p>
+  </section>
+
+  <section class="section" id="park">
+    <div class="section-tag">Stops 11–12 · Piper's Park &amp; the Cannons</div>
+    <h2>Piper's Park &amp;<br><em>the Cannons</em></h2>
+
+    <div class="location">Piperin puisto · Kustaanmiekka</div>
+
+    <p>Piper's Park is called the most historically important park on the island: formal gardens, a water canal and a gazebo were laid out in the 1700s, a pond and walkways followed in the early 19th century, and the present form dates from the 1870s. A café was built for visitors after independence, and the park was last restored, on a small scale, in 2009.</p>
+
+    <p>The next stop concerns the bombardment itself. On 9 August 1855 the defenders could do little against an Anglo-French fleet with modern guns, since the old Swedish cannon did not reach nearly as far. After the war the Russians re-equipped the fortress, throwing up large earthworks on Kustaanmiekka (the transcript's "Kustaanmieki") and topping the new ramparts with heavy naval guns cast in Perm and St Petersburg.</p>
+
+    <div class="practical">
+      <strong>Where this transcript stops:</strong> The text supplied ends mid-sentence in Stop 12, as it starts to describe the Swedish and Russian guns on the ramparts. Later stops on the audio route are not covered here.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>SUOMENLINNA AUDIO WALKING TOUR</span> · Self-guided, map-based audio · Narrator unnamed<br><br>
+  This is the text of a self-guided audio script, rewritten in our own words rather than quoted; the order of stops follows the official route. Garbled names have been corrected (Tykistölahti, Suomenlinna Museum, Kustaanmiekka, Susisaari). Several details were checked against documentary sources: the church's 1854 completion, its Lutheran conversion in the 1920s (the audio dates the renaming of the fortress, not the conversion, to 1918) and the Morse H beacon. The battle of Svensksund identification is ours. The "only bastion fortress on islands" and "oldest independent residential building in Helsinki" claims are the narrator's and have not been verified. The transcript ends partway through Stop 12.
+</footer>
+
+</body>
+</html>

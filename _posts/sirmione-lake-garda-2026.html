@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Sirmione — A Walking Tour with Rossana Braga · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    color-scheme: light;
+    background: var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  p, li, .post-excerpt { color: #241c14; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .rossana-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Sirmione, Lake Garda</div>
+  <h1>The Fortress<br>Nobody <em>Bothered to Modernise</em></h1>
+  <div class="header-sub">Sirmione Guided Visit · Guide Rossana Braga · Coach party, 11 October 2026</div>
+  <div class="header-meta">
+    <span>ROUTE: Peninsula entrance → Rocca Scaligera → Santa Maria Maggiore → Callas villa → Grotte di Catullo viewpoint → thermal shore → boat</span>
+    <span>FORMAT: Guided walk, then a Garda Tours boat trip</span>
+    <span>GUIDES: Rossana Braga on foot · unnamed commentator afloat</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">A peninsula four kilometres long</a></li>
+    <li><a href="#rocca">The Rocca Scaligera: an onion of walls</a></li>
+    <li><a href="#scaligeri">The lords of Verona and their overreach</a></li>
+    <li><a href="#merlons">Swallowtails, straight tops and drawbridges</a></li>
+    <li><a href="#cathars">The Cathars of Sirmione</a></li>
+    <li><a href="#heraldry">Doorbells and the damnation of memory</a></li>
+    <li><a href="#church">Santa Maria Maggiore and St Christopher</a></li>
+    <li><a href="#callas">The house of Callas</a></li>
+    <li><a href="#catullus">The villa named for the wrong man</a></li>
+    <li><a href="#thermal">The smell of eggs</a></li>
+    <li><a href="#ice">The ice that made the peninsula</a></li>
+    <li><a href="#boat">Afloat</a></li>
+    <li><a href="#notes">Editorial notes</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Peninsula<br>Four Kilometres <em>Long</em></h2>
+
+    <p>Rossana Braga begins before the walk does, with a map. Lake Garda is the largest of the great pre-Alpine lakes and the largest in Italy, some 52 kilometres from Peschiera at the southern end to Riva at the northern, with a shoreline of around 158 kilometres. It is fed chiefly by one big river and a scatter of mountain streams, and it empties through a single outlet, the Mincio, which leaves at Peschiera, runs past Mantua and joins the Po.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">4 km × 200 m</div>
+      <div class="key-fact-text">Length and maximum width of the Sirmione peninsula, as Rossana gives it. Three of those kilometres were covered by coach, with the lake visible on both sides; the group walked the last one, where the monuments are.</div>
+    </div>
+
+    <p>That last kilometre is nearly an island. The group crossed a drawbridge over a canal that is not natural: the rock was cut through, she says, in the Gothic period, before the Lombards, to protect the tip. Two monuments stand at either end of it, the medieval Rocca at the entrance and the vast Roman villa known as the Grotte di Catullo at the point. Beyond these, the peninsula holds a long list of things the group did not have time for, among them a Lombard monastery church, San Pietro in Mavino, and, in the lake some 200 metres off the coast, the remains of a Bronze Age pile-dwelling village. Divers found it, and she calls Sirmione the world capital of lake archaeology for that period.</p>
+
+    <p class="rossana-says">"We have very little time, so I'll give you the essentials, and I'll tell you about the formation of the peninsula at the end, before we reach the boat." — Rossana</p>
+
+    <div class="practical">
+      <strong>Arriving:</strong> Coaches use the Montebaldo car park, a short walk from the castle gate. The programme allowed time for a coffee before the guided visit, with the boat trip following.
+    </div>
+  </section>
+
+  <section class="section" id="rocca">
+    <div class="section-tag">Stop 1 · Rocca Scaligera</div>
+    <h2>An Onion<br>of <em>Walls</em></h2>
+
+    <div class="location">Rocca Scaligera · 13th century</div>
+
+    <p>From the water's edge the Rocca shows its structure best: wall inside wall inside wall, a layering Rossana calls "onion-shaped". The logic is medieval siege warfare. Wars were won less by storming a fortress than by waiting for its occupants to run out of food, water and arms. If an attacker did decide to assault, he had to take the <em>mastio</em>, the central keep, to claim the fortress and the territory it controlled. Here the keep stands 47 metres high and doubles as a watchtower, with a 360° view of the lake from the top.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">47 m</div>
+      <div class="key-fact-text">Height of the keep, the captain's house and lookout. From the top, Rossana says, you control the whole lake, which is exactly why it was built here, in the middle of it.</div>
+    </div>
+
+    <p>The layers were meant to buy time. An enemy who broke the first wall would fight in the space between the first and second walls, under fire from above. If he passed the second, he met a further enclosed space, a killing ground in which to hold him until a friendly army arrived from outside and caught him between two fronts.</p>
+
+    <div class="story-box" data-label="A Network of Smoke">
+      <p>The Rocca was one link in a chain of Scaliger fortresses along the eastern shore of the lake, strung out at less than a day's march from each other, from the Mincio to the north. In case of attack, one fortress would send up smoke, the neighbours would see it, and armies would march to its relief.</p>
+      <p>Sirmione mattered more than the rest because it sits in the centre of the lake. <span class="highlight-blue">It gave a complete view of the whole hinterland around Garda, and the entire network depended on what it could see.</span></p>
+    </div>
+
+    <p>Then came gunpowder. The first bombards appear in the 14th century and improved in the 15th, when the lake had passed to Venice. A tall medieval wall was now a large target. Medieval walls were high because a defender's only weapon against the foot of the wall was gravity, so the higher the drop, the harder the impact. Renaissance fortresses spread low and thick, backed with earth, with the guns ranged on terraces behind. Rossana sends the group to Peschiera to see the Venetian version, low, squat and sunk into the ground where the lake enters the Mincio.</p>
+
+    <blockquote>
+      <p>"The great medieval fortresses of Italy were rebuilt for firearms. We have no intact medieval ones left, except this one. It had been demoted, and nobody cared about it any more."</p>
+      <cite>— Rossana</cite>
+    </blockquote>
+
+    <p>Sirmione's demotion explains its survival. With a Venetian garrison of perhaps ten or fifteen men, there was no money to rebuild it for cannon, and it was left alone. She calls it one of the very few perfectly intact medieval fortresses in Italy, which shows how medieval people fought, and defended a town, before firearms.</p>
+
+    <div class="story-box" data-label="The Captain's Lavatory">
+      <p>Inside the keep, look for the latrine: a seat with a narrow chute that drops straight down towards the water. It belonged to the captain of the garrison, whose house the keep was. There is a fireplace too, "what was necessary to exist in a dreadful place". No noble family ever lived here, and it was never a comfortable residence.</p>
+    </div>
+
+    <div class="practical">
+      <strong>The keep:</strong> Rossana says you can go inside and climb it. The view over the whole southern lake is the point.
+    </div>
+  </section>
+
+  <section class="section" id="scaligeri">
+    <div class="section-tag">Stop 1 · The Scaligeri</div>
+    <h2>The Lords of Verona<br>&amp; <em>Their Overreach</em></h2>
+
+    <p>You are standing in the province of Brescia, in Lombardy, but for much of its history Sirmione was Veronese, and the two territories kept stealing it back from each other. The builders of the Rocca were the della Scala, or Scaligeri, the family who turned Verona from a free commune into a lordship under one dynasty, and did so at a moment of deep crisis for the city.</p>
+
+    <p>Rossana's account of their rise is brisk and unflattering. They were powerful, she says, for a decade or two, conquering territory as far west as Liguria, and then discovered the arithmetic of empire: the more you hold, the more force you need to hold it, militarily and administratively. The Visconti, rising in Milan, had done that sum properly. They ate into Scaliger land, and the fortress was begun as the Scaliger frontier pulled back eastwards.</p>
+
+    <p>The fortified chain along the lake was therefore a defensive scheme: Verona had to be protected, and the lake was strategically vital to doing it.</p>
+
+    <div class="practical">
+      <strong>Dating the Rocca:</strong> The transcript of her dates is garbled. Published sources say building began from 1277 under Mastino I della Scala, though some studies put the start in the mid-14th century. See the editorial notes.
+    </div>
+  </section>
+
+  <section class="section" id="merlons">
+    <div class="section-tag">Stop 2 · The Battlements</div>
+    <h2>Swallowtails, Straight Tops<br>&amp; <em>Drawbridges</em></h2>
+
+    <div class="location">Merli · Rivellino · Ponte levatoio</div>
+
+    <p>The battlements, <em>merli</em>, are the other medieval signature. Behind them ran the wall-walks, aerial corridors reached by stairs inside the towers, where archers patrolled and, in an attack, loosed arrows through the gaps while the solid blocks sheltered them. In the Renaissance, with cannon, they simply disappear.</p>
+
+    <p>Look at their shape. Swallowtail merlons, notched like a swallow's tail, traditionally mean the builder is Ghibelline, on the emperor's side in the great struggle between emperor and pope. Straight-topped merlons mean Guelph, the pope's party. The Scaligeri were Ghibelline. Yet here both shapes are mixed.</p>
+
+    <div class="story-box" data-label="Merlons as a Message">
+      <p>For a long time, Rossana says, scholars read the mixture as a record of ownership: the inner, swallowtail parts Scaliger, the outer, straight-topped parts Visconti, then Venetian. The newest studies reject that. Mixing the two was ordinary in the Middle Ages, because merlons carried a political message.</p>
+      <p>The Scaligeri needed the pope's backing, and they needed the support of the Guelph nobles of Verona, who outnumbered the Ghibellines. <span class="highlight">So the battlements say: we are Ghibellines, but we are allied with the pope.</span> Part of the parapet was dedicated to that diplomacy.</p>
+    </div>
+
+    <p>The approach is through the <em>rivellino</em>, the forward protective tower, with its reconstructed drawbridge. Wood does not survive centuries of weather, so the bridge is a modern rebuild, in cement, stone and setts, but built with some precision. The slots in the tower are where the beams, the bolsons, rested when the bridge was raised. Two openings: a large one, for knights on horseback in armour and for carts, and a small one, for foot soldiers, quicker to open and close.</p>
+
+    <p>Inside the village the moat continues round the castle, because the Scaligeri also fortified the <em>borgo</em>, which before had been open. Of the walls on the lake side, nothing survives: from the late 19th century nearly every town tore its walls down, and navigation, now tourist navigation, mattered more.</p>
+  </section>
+
+  <section class="section" id="cathars">
+    <div class="section-tag">Stop 3 · The Moat</div>
+    <h2>A Heresy, a Papal Bargain<br>&amp; <em>166 Prisoners</em></h2>
+
+    <div class="location">Sirmione · 1276</div>
+
+    <p>Rossana's explanation for the moat inside the town is the dark episode on which the Scaliger power was built: they were hated in Sirmione. By the early decades of the 13th century the Cathars had been uprooted across Europe, most notoriously in the massacre of the Albigensians in the south of France. Theirs was a heresy that held matter to be the work of evil, so that Christ could not have been both divine spirit and human body.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">166</div>
+      <div class="key-fact-text">Cathars of Sirmione captured by the Scaligeri, according to Rossana and to published accounts. They were taken to Verona, held for the best part of a year, and burned in the Roman Arena.</div>
+    </div>
+
+    <div class="story-box" data-label="The Last Refuge of the Cathars">
+      <p>With nowhere left to run, the Cathars gathered on the lower Garda. They had a bishop at Desenzano, but the bulk of the community took shelter at Sirmione, which was then almost an island because the lake had swallowed the neck of the peninsula. Rossana puts them at close to two hundred men, women and children, living and working in harmony with their Catholic neighbours, and protected by local lords who resented the larger dominions then forming.</p>
+      <p>Verona was still a free commune, and the pope had been asking it to dislodge them. Mastino della Scala, with his brother Alberto, saw the offer in it. <span class="highlight">If they cleared Sirmione, would the pope back them as lords of a mostly Guelph city? He said yes.</span> They besieged the borgo, took 166 prisoners in November 1276, and marched them to Verona.</p>
+      <p>There was no massacre at Sirmione. In Verona the prisoners endured more than a year of inquisition while the Church tried to make them recant. Nobody did. Almost all were burned together in the Arena, early in 1278 by Rossana's dating, and the Scaligeri took the lordship of Verona.</p>
+    </div>
+
+    <p class="rossana-says">The Scaligeri never won Sirmione's affection, she says, and that is why the army needed a wide moat inside the village as well as outside it. — Rossana (paraphrased)</p>
+
+    <div class="practical">
+      <strong>A date to check:</strong> Mastino I died in October 1277, so a burning in early 1278 would have happened under his brother Alberto. See the editorial notes.
+    </div>
+  </section>
+
+  <section class="section" id="heraldry">
+    <div class="section-tag">Stop 4 · The Gate Tower</div>
+    <h2>Doorbells and<br><em>the Damnation of Memory</em></h2>
+
+    <p>If the merlons say who you are politically, the coats of arms on the entrance tower say who you are by name. Rossana points to one with a ladder, the <em>scala</em> of the della Scala, and to others elsewhere on the fortress. She makes a warning to be remembered in any border territory like this one, constantly conquered: many of the emblems you see are not what they seem.</p>
+
+    <p>Each new ruler erased the symbols of the last. The Scaliger ladders were chiselled off for the Visconti's serpent; the serpents for Venice's lion; the lions for Napoleon's trees of liberty; the trees for Austrian eagles; the eagles for the tricolour. The Latin name for it is <em>damnatio memoriae</em>.</p>
+
+    <blockquote>
+      <p>"It is as if you moved into a new flat and left the previous tenant's surname on the doorbell. Obviously you put your own up."</p>
+      <cite>— Rossana</cite>
+    </blockquote>
+
+    <p>After Italian unification, she adds, the monuments were refilled with symbols again, to rebuild a national history at Austria's expense, and some of what looks authentic is a Risorgimento restoration, a "historical fake that looks real". That is why this lake carries the Venetian lion: Brescia and Bergamo and their territories were Venetian from 1426 until Napoleon in 1797, almost four hundred years, so most of the pre-Austrian past is Venetian.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="church">
+    <div class="section-tag">Stop 5 · Santa Maria Maggiore</div>
+    <h2>A Church Decorated<br>by <em>Rental</em></h2>
+
+    <div class="location">Santa Maria Maggiore · 15th century, on older foundations</div>
+
+    <p>The parish church of Santa Maria Maggiore took its present shape in the 15th century, though parts are far older and some elements seem to have been salvaged from an earlier Lombard church; a Lombard cemetery was found alongside when the ground was dug. The Baroque added a run of altars that Rossana plainly dislikes: the Baroque, she says, treated anything not to its taste as old junk and happily tore it down.</p>
+
+    <p>What matters is that it is typical of the pre-Alpine arc. Churches of this date that are not cathedrals have a single rectangular hall, divided across by transverse arches into bays rather than along its length into aisles. And, because the 15th century here is still the late Middle Ages, fifty years behind Tuscany, the arches are Gothic and pointed rather than round, and the apse is ribbed. The Renaissance was in full bloom in Florence and Venice, and not here.</p>
+
+    <div class="story-box" data-label="Walls for Hire">
+      <p>In a richer church, the walls carried a planned cycle. The preacher walked to the centre of a bay and chose the image, and a congregation that could not read could hold the sermon's theology in its head. A church called Santa Maria Maggiore would have had the stories of Mary.</p>
+      <p>This was a poor church, tied to a Benedictine convent of Lombard foundation, in a village of fishermen and vine-growers who worked, Rossana says, day and night. There was no money for an artist. <span class="highlight">So the walls were rented.</span> Any villager who wanted a saint against the plague, or against drowning, could have a family member who could draw a few lines paint one for a fee.</p>
+      <p>The result is a church of votive frescoes, several layers deep: three cycles in the corner that is still medieval, the oldest innermost. A red <em>sinopia</em>, the underdrawing, of the lion of St Mark shows where Venice's emblem was begun.</p>
+    </div>
+
+    <h2 style="font-size:1.5rem;">The Giant <em>St Christopher</em></h2>
+
+    <p>The oddest votive is the giant, who takes up more of the wall than anyone else. Rossana uses him to teach the idea of <em>attributes</em>: the objects that tell you who a figure is. The Greeks needed them because their gods looked like men and women: a chariot with the sun for Apollo, a trident for Poseidon, a thunderbolt for Zeus. Christians inherited the habit. Christopher has three: gigantic size, legs in water, and a very small child on his left shoulder.</p>
+
+    <div class="story-box" data-label="The Man Who Carried the World">
+      <p>Christopher was huge and strong and lived by a river far from any bridge, carrying travellers and their goods across for nothing. One day a very small boy asked to be taken over. Christopher lifted him easily. But as he waded in, the child grew heavier and heavier. In one variant, recounted in the <em>Golden Legend</em> of Jacobus de Voragine, the river began to rage. With superhuman effort, Christopher made it across.</p>
+      <p>On the far bank the child was light again. "Why do you marvel?" the boy asked. "You have carried on your shoulder the weight of the whole world." He was Christ, and Christopher, from the Greek, means the Christ-bearer.</p>
+    </div>
+
+    <p>Hence the patron of boatmen, and of anyone who carries people over water, which on Garda, where someone drowns every year, is a serious matter. The giant's size had a second use. To see Christopher in the morning was to be spared sudden death that day: death without confession and last rites meant damnation, so a villager leaving for work would put his head in at the door and say a prayer for his soul.</p>
+  </section>
+
+  <section class="section" id="callas">
+    <div class="section-tag">Stop 6 · Callas House</div>
+    <h2>The House<br>of <em>a Tragedy</em></h2>
+
+    <div class="location">The Callas house · Early 20th century</div>
+
+    <p>Rossana's route runs past the grand hotels, Austrian and German in name for a reason: in the 19th century and the Liberty period, until the early 20th, the lake was an elite resort for the aristocracy and the upper bourgeoisie of Europe, who built villas facing the water. This one is famous for its tenant. Maria Callas lived here for around nine years, much of the 1950s, between tours, and practised her voice in the little tower, the <em>altana</em>.</p>
+
+    <p>She was married to Giovanni Battista Meneghini, a very rich industrialist and opera lover who first saw her when she was a young unknown, became her impresario and then her husband. In Rossana's telling, Callas was heavy then, with a huge voice, and unhappy about it; she wanted to look like Audrey Hepburn and lost weight with astonishing speed. She treats the story that she swallowed a tapeworm as one of the legends the myth has accumulated.</p>
+
+    <div class="story-box" data-label="A Pool in the Shape of a Heart">
+      <p>Visitors recalled a house always perfect, with pink roses on every table. In the garden Callas had a heart-shaped pool built, shallow, because she could not swim and was afraid of water. It faces the lake.</p>
+    </div>
+
+    <p>Then came Aristotle Onassis. On the 1959 cruise on his yacht <em>Christina</em>, with Winston Churchill and a few others among the guests, the two decided not to go home to their spouses. When Callas came to tell her husband, she and Onassis drove through the castle gate in a very long convertible. Onassis, who by Rossana's account had drunk a bottle on the journey from Milan, did not leave the car; she climbed the steps alone and told Meneghini, in tears, that she was devastated but could do nothing else.</p>
+
+    <blockquote>
+      <p>"As she had wanted to get thin to look like Audrey Hepburn, and did it in the blink of an eye, she had these impulses. 'I cannot do otherwise,' she said, and left."</p>
+      <cite>— Rossana, on Callas's farewell to Meneghini</cite>
+    </blockquote>
+
+    <p>Onassis had promised to marry her and did not: he married the widow of John Kennedy. For Callas it was the end of her stage career in all but name; she retreated to a small flat in Paris, taught singing, and kept only her governess, the one person she trusted. She died there in 1977. Her wish, almost secret, was for no tomb; her ashes were scattered in the Aegean, though for years Sirmione insisted that she had asked to be returned to the lake where she had been happiest.</p>
+
+    <p>The villa's last chapter, in Rossana's account, is a coda of her own. Meneghini, who kept a diary of the affair, left the house to his own governess; she did not know what to do with it, but her only son did. He cut it into holiday flats. Before COVID, she says, every doorbell had a for-sale sign, and one by one they vanished, so that "the house of tragedy" made the fortune of the governess's son.</p>
+
+    <div class="practical">
+      <strong>Treat as local lore:</strong> The convertible, the bottle and the governess's inheritance are Rossana's account and I have not been able to confirm them. See the editorial notes.
+    </div>
+  </section>
+
+  <section class="section" id="catullus">
+    <div class="section-tag">Stop 7 · Grotte di Catullo</div>
+    <h2>A Villa Named<br>for <em>the Wrong Man</em></h2>
+
+    <div class="location">Grotte di Catullo · Late 1st century BC – 1st century AD</div>
+
+    <p>The group would not enter the archaeological area. Rossana's plan is to tell the story here and let the boat reveal the rest, since the best view of the villa is from the water. It is, she says, the ruin of an immense Roman villa that once covered the whole rocky spur at the tip, about 140 metres long (167 with certain parts) and 120 wide. Much of what stood on the summit has gone, because the medieval village was built out of it.</p>
+
+    <p>This is the heart of her talk, and it begins with a lesson about how things were lost. After Rome fell, the knowledge of the great Roman engineers vanished with it. The incomers built huts of wood and straw. For the thousand years of the Middle Ages, high and low, people dismantled Roman buildings and recombined the pieces, "playing Lego" with them. Go into a cellar in the old town, she says, and you will find Roman columns holding up the vaults.</p>
+
+    <div class="story-box" data-label="Substructures: Swap the C for an S">
+      <p>What remains are the <em>sostruzioni</em>: she tells schoolchildren to swap the C of <em>costruzioni</em> for an S. They are the great vaulted substructures that levelled the sloping hill so the villa could rise on a flat platform, and the Greeks could never have built them.</p>
+      <p>Her comparison is a good one. The Greeks, she says, built with column and architrave, light, elegant and one storey high, because their art expressed the refinement of their thought. The Romans copied the Greek temple when they honoured the gods, but their buildings expressed their history and power, and for that they needed another system. They took the Etruscan arch, extended it into the vault, and rested it on walls of concrete rather than columns. The vault halves the load and thrusts back, so it will bear huge weight for thousands of years. Enter a gallery, and you are inside a Roman invention.</p>
+    </div>
+
+    <p>The patron she imagines was megalomaniac. He inherited a small villa on the hilltop, looked at the fine villas along the coast with their water views, and decided to out-build them all, with a villa as big as the whole spur, visible from anywhere on the lake. A visitor who was not an intimate came by boat, slowly, and faced three storeys of villa above the rock before climbing to the audience hall, where the owner waited. Someone this ambitious, she suggests, was close to the emperor, because the villa looks imperial.</p>
+
+    <p>And Catullus? The name is, as she says, "obviously false". The poet, a Veronese of a rich family, did love Sirmione and wrote of it, calling it the jewel of all peninsulas and islands, and he probably owned a smaller villa nearby. The grotto name begins in the 15th century, when humanism turned Roman remains from quarries into things to be catalogued. Venice, proud of its Roman inheritance, sent a cultured official round the republic to record it. Arriving by boat from the north, he saw vaults overgrown with ivy and sheep grazing above, and wrote in his journal that he was approaching the caves where Catullus lived.</p>
+
+    <p><span class="highlight">The name began with one line in a Renaissance travel diary, and it stuck.</span> It was only in the 20th century that archaeologists, studying Roman architecture and the poet's biography, concluded the villa could not be his. It is too late in date and far too grand.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">c. 20,000 m²</div>
+      <div class="key-fact-text">Approximate footprint of the villa, as given by the boat commentator. Published sources date it to the Augustan age, after Catullus died, and call it the largest and best preserved private Roman villa in northern Italy.</div>
+    </div>
+
+    <p class="rossana-says">"Locals still call them the caves. The old people coming down say: it's damp in the caves, it hurts my bones, and then the sun splits my head." — Rossana</p>
+  </section>
+
+  <section class="section" id="thermal">
+    <div class="section-tag">Stop 8 · The Shore</div>
+    <h2>The Smell<br>of <em>Eggs</em></h2>
+
+    <p>Someone in the group asks about the smell of rotten eggs by the shore. It is the thermal water: sulphurous springs rising under the lake from the rock at about 69°C, rich in minerals and, above all, sulphur, which the baths use for treatment and, now, for beauty. The smell is strongest where the pumping plant is.</p>
+
+    <p>Rossana tells how it was tapped. A diver, in the late 19th century, went down in a heavy suit with an air hose held by men above, put his own pipe to the spring and declared it Sirmione's. The work was finished only after the Second World War. A pipe is visible in the lake, and, because the lake is low this autumn, you can see it now.</p>
+
+    <div class="story-box" data-label="Twenty Years Underground">
+      <p>Rossana's story of the water's journey: it begins as rain on Monte Baldo, at around 800 metres, drops through karstic cracks to great depth, where it heats, and comes back up under the lake twenty years later. The mountain is Veronese, so by right the water would be Veronese too, but the spring surfaces in Brescia's waters, and so do the Sirmione baths.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Taking the waters:</strong> The thermal spa operates year-round. The boat commentator adds that the water reaches the baths at about 40°C.
+    </div>
+  </section>
+
+  <section class="section" id="ice">
+    <div class="section-tag">Stop 9 · The Point</div>
+    <h2>The Ice That<br><em>Made the Peninsula</em></h2>
+
+    <p>Facing the water before boarding, Rossana gives the geology she promised. From here you can see three coasts and three regions: Lombardy on one side, Veneto on the other and, far up the lake, a sliver of Trentino-Alto Adige near Riva, with the mountains behind it.</p>
+
+    <div class="story-box" data-label="A Heel in the Sand">
+      <p>The four great lakes, Maggiore, Como, Iseo and Garda, all run north–south, with the northern end thrust into the Alps and the southern end closed by low hills. The explanation is the last ice age. For about a hundred thousand years it snowed on the Alps, and the glaciers, hundreds of metres thick, ground down the valleys, scouring the rock like a grater.</p>
+      <p>She describes it like a heel dragged through beach sand: it digs a groove and pushes the gravel ahead, and when you lift the heel the gravel remains as curved ridges. Those ridges are the moraines, the low hills closing the southern ends of the lakes. When the ice melted, about ten thousand years ago, the water had nowhere to go, and ponded behind them.</p>
+    </div>
+
+    <p>Sirmione is the exception. The peninsula is a spur of much harder rock. The glacier stripped away the soft rock around it but could not shift it, and divided, flowing past on either side. That is the horizontally scored rock the group saw by the water, ice-worked, and the reason a four-kilometre finger of land still stands in the lake.</p>
+
+    <p>The moraine soil is ideal for vines. Franciacorta grows near Lake Iseo, and around Garda, Lugana on the Lombard side, Bardolino across the water in the Veronese, and the Garda Classico and its rosé, Chiaretto. Rossana's advice, to stay in Brescia territory: drink the Garda Classico, the Chiaretto, or the Lugana, which is white.</p>
+
+    <div class="practical">
+      <strong>What to drink:</strong> Lugana is white, Chiaretto rosé, Garda Classico red. Bardolino, also red, is from the Veronese shore.
+    </div>
+  </section>
+
+  <section class="section" id="boat">
+    <div class="section-tag">Stop 10 · The Boat</div>
+    <h2><em>Afloat</em></h2>
+
+    <p>Rossana's commentary ends on the quay. The boat trip is run by Garda Tours, with its own commentator, who is not named in the recording and is a different person from Rossana. The transcript of this segment is fragmentary, but several points survive.</p>
+
+    <p>The operator's route map at the pier marks six stops round the peninsula: the Castello Scaligero, the Fonte Boiola (the thermal spring), the Grotte di Catullo, Spiaggia Jamaica, the Spa &amp; Thermal Garden and Villa Callas. The commentator's remarks follow that order of sights. From the water the Grotte di Catullo show what the walkers could not see: the great vaulted substructures, once overgrown and cave-like, now an archaeological site that he calls one of the most important in northern Italy.</p>
+
+    <p>Below the headland lies a pale beach of rock slabs, which the commentator says was named <em>Jamaica</em> for its colour, its position and water so clean, he says, that it can be drunk. He also points out the thermal pumping station at the Boiola spring, where the sulphurous water is drawn and piped to the baths and, he says, to only five hotels that pay for it. That last detail is unconfirmed.</p>
+
+    <div class="practical">
+      <strong>The boat trip:</strong> Garda Tours' board on the day (11 October 2026) listed a 25-minute tour of the peninsula at €12 for adults and €6 for children aged 5–10, with a private boat for up to five at €100, and longer private tours from €180. Prices are as posted that day and may change.
+    </div>
+
+    <div class="practical">
+      <strong>The afternoon:</strong> The day's programme continues with lunch at an agriturismo at San Martino della Battaglia and a walk at Valeggio sul Mincio. Neither is covered in the transcript.
+    </div>
+  </section>
+
+  <section class="section" id="notes">
+    <div class="section-tag">Editorial notes</div>
+    <h2>What the Sources <em>Say</em></h2>
+
+    <div class="story-box" data-label="Corrections and Flags">
+      <p><strong>Depth.</strong> Rossana gives the lake's maximum depth as 365 metres, and the boat commentator as 370. Published figures give 346 metres, between Tignale and Castelletto. Her related claim that the lake is deeper than the Adriatic as far as Ancona, and her figure of a twenty-year water renewal, are hers and I haven't checked them.</p>
+      <p><strong>Building of the Rocca.</strong> Her dates are lost in transcription noise. Sources vary: one tradition has Mastino I della Scala starting the castle from 1277, another puts the beginning in the mid-14th century. The Scaligeri ruled Verona until 1387, so her "decade or two" of power describes their peak and not their lifespan.</p>
+      <p><strong>The Cathars.</strong> The figure of 166 and the burning in the Arena are consistent with published accounts. Her dating of the burning to early 1278 sits oddly with Mastino I's death in October 1277, which would make Alberto the lord at the time. The detail that Sirmione's people built the inner moat out of hatred is her interpretation.</p>
+      <p><strong>Callas.</strong> Callas died in Paris in 1977 and her ashes were scattered in the Aegean. The convertible arrival, the bottle and the governess's inheritance are Rossana's anecdotes, unverified. The Grotte di Catullo are dated by archaeologists to the Augustan age, later than Catullus's death, and the name dates to the 15th century. Her list of famous visitors to Sirmione in this period is also hers.</p>
+      <p><strong>The Risorgimento symbols.</strong> Her claim that some coats of arms on the walls are post-unification restorations is a guide's assertion and not checked here. The name of the Venetian official who coined "Grotte di Catullo" is not given in the transcript, so I have not supplied one.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT</span> · Walking tour operator not named in the source material · Boat trip: Garda Tours<br><br>
+  Transcript machine-generated from Italian audio, then translated and condensed; side conversations in the group omitted. Names and figures corrected against published sources where noted. All errors in attribution are transcription errors.<br>
+  Guide: Rossana Braga (walk); boat commentator unnamed · Sirmione, Lake Garda
+</footer>
+
+</body>
+</html>

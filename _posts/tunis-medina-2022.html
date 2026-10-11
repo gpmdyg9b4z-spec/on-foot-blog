@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>The Medina of Tunis — A Walking Tour · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    color-scheme: light;
+    background: var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  p, li, .post-excerpt { color: #241c14; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Medina of Tunis, Tunisia</div>
+  <h1>The City That Hides<br>Its <em>Beauty Indoors</em></h1>
+  <div class="header-sub">A Walking Tour of the Medina · Guide and operator not named in the recording</div>
+  <div class="header-meta">
+    <span>ROUTE: from the east side, the long side then the short side of the Medina, round the south: houses, souks, mosques, the old Jewish quarter</span>
+    <span>DATE: 26 August 2022 · about 34°C</span>
+    <span>LANGUAGE: Italian and English, two audio recordings</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#doors">Doors, colours and the evil eye</a></li>
+    <li><a href="#ottomans">Deys, beys and janissaries</a></li>
+    <li><a href="#lepanto">A Mediterranean digression: Tabarka, Lepanto and Cervantes</a></li>
+    <li><a href="#bachhamba">Dar Bach Hamba</a></li>
+    <li><a href="#houses">A city of blind walls</a></li>
+    <li><a href="#andalusia">Andalusian hands: tiles and chechias</a></li>
+    <li><a href="#mosques">Mosques, borrowed columns and a street that prays</a></li>
+    <li><a href="#slavery">The slave market and the abolition of 1846</a></li>
+    <li><a href="#darjeld">Dar el Jeld, Sadiki and the fish stores</a></li>
+    <li><a href="#minorities">The Jewish quarter, the churches and "Home, Sweet Home"</a></li>
+    <li><a href="#henna">Henna, weddings and sweets</a></li>
+    <li><a href="#numbers">Five and seven</a></li>
+    <li><a href="#notes">Editorial notes</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="doors">
+    <div class="section-tag">Introduction · Stop 1</div>
+    <h2>Doors, Colours<br>&amp; <em>the Evil Eye</em></h2>
+
+    <div class="location">Medina of Tunis · Streets near the southern wall</div>
+
+    <p>The guide, a Tunisian speaking Italian to the group and English to a few listeners, never gives his name on the recording, and the transcript is rough, with Italian and English running into each other. What comes through is a walk organised by doors. Every house on the lane shows its owners' rank, its religion and its fears on the street side, and almost nothing else.</p>
+
+    <p>Start with the hand. A hand-shaped knocker, touched on the way in, wards off the evil eye, a protection he says is found in very many places. Inside, houses follow a plan: two porticoes facing each other across the courtyard, and the most important room, often the bedroom, directly opposite the entrance. Guests did not step straight into the family's space. A waiting room sat just inside the door, where they waited to be received.</p>
+
+    <div class="story-box" data-label="What the Colours Say">
+      <p><strong>Blue</strong> is the commonest, he says, perhaps because Tunisia is a Mediterranean country and the doors echo the sea and sky, and white the permanent sun. It is the popular colour.</p>
+      <p><strong>Yellow</strong> marks the aristocratic families, or the middle class imitating them. <span class="highlight">Green is the colour of hope and paradise,</span> so shops and religious buildings, shrines above all, use it.</p>
+      <p>On the first day of the Muslim new year, he adds, families prepare a green soup to wish each other a "green year": not green with money, but green like paradise. Some people take offence at the wording, hearing only the lack of money.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1444</div>
+      <div class="key-fact-text">The Islamic year that had just begun when the group walked, celebrated in late July 2022. The calendar counts from 622 and the Hijra, the migration from Mecca to Medina, which the guide would rather call a flight, since those who left were forced out.</div>
+    </div>
+
+    <div class="practical">
+      <strong>On the day:</strong> about 34°C. In the afternoon much of the Medina shuts and the guide advised leaving the walls in the evening, near which there are more places open. The central market lies just outside the Medina.
+    </div>
+  </section>
+
+  <section class="section" id="ottomans">
+    <div class="section-tag">Stop 2 · Ottoman Tunis</div>
+    <h2>Deys, Beys<br>&amp; <em>the Slave Soldiers</em></h2>
+
+    <p>To explain the houses he explains who ruled. The Turks, he says, won the war against the Spaniards in a conflict lasting forty years, from 1534 to 1574, after which the new rulers appointed a <em>dey</em>, a military governor, and a <em>bey</em>, a civilian who collected taxes and dealt with the tribes. The bey was kind to the tribes and became so popular that he was able to push the dey aside. After some eighty years of deys, the beys took power.</p>
+
+    <p>The Ottoman army behind them was the janissary corps, and the guide tells the story with some relish. Janissaries were Christian boys taken at six to ten years old, he says, sent to rural families to be hardened and taught the language and customs, and later turned into soldiers. They were slave-soldiers, but paid, "the only slaves in the ancient world who were paid", and not allowed to marry or take another trade until they were forty, when they were free.</p>
+
+    <blockquote>
+      <p>"They took the empire as their mother and the sultan as their father. Having grown up away from their own parents, they defended that family, and so they fought ferociously."</p>
+      <cite>— Guide, on the janissaries</cite>
+    </blockquote>
+
+    <p>Many came from the Balkans: Albanians, Greeks, Serbs, Croats and Moldavians, taken as adults or as children, or handed over by families who wanted a son to rise. Some became politicians. He gives examples from Tunis itself: a keeper of the seals of Moldavian origin, a first bey from Corsica. Foreign-born men ran the state.</p>
+  </section>
+
+  <section class="section" id="lepanto">
+    <div class="section-tag">Stop 2 · A Digression</div>
+    <h2>Tabarka, Lepanto<br>&amp; <em>the Man Who Lost a Hand</em></h2>
+
+    <p>The palace he is standing beside leads him sideways. Its owner's daughter Elena became Aisha on converting and marrying the governor's brother, whose own mother, a slave, was a <em>Tabarchina</em>. Tabarka, on Tunisia's northern coast, was settled by Genoese from the Ligurian village of Pegli, coral fishermen working a coast still famous for coral. From 1541 and for two centuries they lived there; troubles with the Turks pushed them out and they were resettled on an island off Sardinia, named for the Savoyard king Charles Emmanuel, where their descendants still speak Tabarchino.</p>
+
+    <div class="story-box" data-label="The Two Defeats">
+      <p>The janissaries, he says, suffered two defeats. The first was the siege of Malta, which failed. The second, and more important, was <strong>Lepanto</strong> in Greece: the Holy League, led by the Pope, with Venetians, Genoese, Spaniards, Savoy and the Knights of Malta on one side and the Turks on the other. <span class="highlight">It decided the future of the southern Mediterranean.</span> A Turkish win would have made Italy and Spain Muslim.</p>
+      <p>On the Christian side was a Spaniard who lost the use of his left hand: Miguel de Cervantes. Returning home he was captured by Algerian pirates, held as a slave in Algiers for five years, ransomed, and then wrote <em>Don Quixote</em>.</p>
+    </div>
+
+    <p class="guide-says">He sets the novel beside Dante: Spanish culture abroad is the Cervantes Institute as Italy's is the Dante Alighieri Society, and the language of Cervantes stands where the language of Dante, chosen as Italy's, or of Shakespeare, stands for English. — Guide</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="bachhamba">
+    <div class="section-tag">Stop 3 · Dar Bach Hamba</div>
+    <h2>The House with<br><em>Two Porticoes at an Angle</em></h2>
+
+    <div class="location">Dar Bach Hamba · 17th century, southern Medina</div>
+
+    <p>Here the rule he laid down at the start has an exception. In almost every house the porticoes face each other, the plan of the great Medina palaces. At this one, which the guide describes as a seventeenth-century house, the porticoes sit side by side, one on the north and one on the east.</p>
+
+    <p>Its name is military: <em>bash</em> is "head" in Turkish, and the family were Turkish-origin military dignitaries. In the twentieth century the Franciscan sisters bought the house and ran it as a small hospital with a chapel, and it is now a Mediterranean cultural centre linked to a Sicilian foundation, which hosts exhibitions and concerts. The guide dates the change to 2003 or 2004; published accounts say 2000.</p>
+
+    <div class="story-box" data-label="Why Houses Look Away From the Street">
+      <p>Guests did not enter through the family's door. Wealthy houses had a separate guest floor, with its own entrance, so that outsiders never crossed the private space.</p>
+      <p>And from outside you see nothing. The house is blind. Windows, when there are any, sit high up.</p>
+    </div>
+
+    <blockquote>
+      <p>"The only relationship with the outside is the sky. The beauty is inside, made for themselves. Now, in modern life, to see the beauty of your house you have to put a chair in your neighbour's garden, because the beauty is made for the others."</p>
+      <cite>— Guide, in English</cite>
+    </blockquote>
+
+    <div class="practical">
+      <strong>Visiting:</strong> Published sources give two entrances, one on rue Bach Hamba to the south of the great mosque and one on rue Kouttab el Ouzir. The house was listed as a historic monument in 2020.
+    </div>
+  </section>
+
+  <section class="section" id="houses">
+    <div class="section-tag">Stop 4 · The Lanes</div>
+    <h2>A City<br>of <em>Blind Walls</em></h2>
+
+    <p>Walking on, the guide points out the rhythm of the Medina. Away from the merchants' streets the grandest houses cluster, because that is where there was room to build large. Near the souks, space was for caravanserais, a kind of hotel for animals and people. Roofs are flat so that rainwater can be collected: aristocratic houses had a fountain, ordinary ones a cistern or a well. Dead-end lanes give security, and a stranger is noticed at once.</p>
+
+    <div class="story-box" data-label="The Sabbat: A Room Over the Street">
+      <p>When a family outgrew its house a son did not leave. He needed a new space within the family compound, and the answer was the <em>sabbat</em>, a covered passage built across the lane to join houses. Building one needed the agreement of the neighbours and the consent of an official, a figure the guide calls the administrative representative of the quarter.</p>
+      <p>The result is a house reaching over the street. It is also practical: open one window and the opposite one, and a cool draught passes through in summer.</p>
+    </div>
+  </section>
+
+  <section class="section" id="andalusia">
+    <div class="section-tag">Stop 5 · Tiles &amp; Hats</div>
+    <h2>Andalusian Hands:<br><em>Tiles and Chechias</em></h2>
+
+    <p>The black-and-white tilework seen on doors, the guide says, is Andalusian in influence, but older than that. The technique began with the first Arab dynasty, with its capital at Damascus in Syria, and travelled with the conquerors to Spain. When Andalusians were later expelled from Spain, many arrived in Tunis and brought the technique back along the same road. Doors and windows are Italian in style, he adds, and tiles show Portuguese influence. A door with a pointed Andalusian arch, a stylised cypress and a half-moon is all symmetrical: whatever is on the right is on the left.</p>
+
+    <p>His best example is the chechia, the red felt cap. The Andalusians who came brought the craft, he says, and the rulers, wise enough, built two markets for them to carry on making it. The caps are made of lamb's wool, soaked in hot water with soap and felted, then dyed. Wherever in the world you see one, he claims, it was made in Tunis, even the black ones worn in Libya. Newer styles have appeared recently, including a women's version and one for children, which did not exist five years ago, to attract buyers.</p>
+
+    <div class="practical">
+      <strong>The chechia souk:</strong> Published sources date the Souk Ech-Chaouachine to 1691–92, built by the Muradid bey Mohamed El Mouradi after Moorish refugee craftsmen had built up the trade from the early 17th century.
+    </div>
+  </section>
+
+  <section class="section" id="mosques">
+    <div class="section-tag">Stop 6 · Mosques</div>
+    <h2>Borrowed Columns<br>&amp; <em>a Street that Prays</em></h2>
+
+    <div class="location">Youssef Dey Mosque · Zitouna Mosque · Medina</div>
+
+    <p>He is careful with the word. <em>Masjid</em> is the small place where you bow in prayer; the great <em>jami'</em> comes from the verb to gather people, and has the same root as <em>jami'a</em>, university. Mosque and university share a root, one masculine and one feminine in Arabic. A Quranic school stands beside one of the mosques.</p>
+
+    <p>On a mosque with an unusual shape he says the builder's tomb is attached: it is the tomb of Youssef Dey, whose own mosque, with a distinctive minaret, is the Turkish layer in the city. In the old days, he says, important men often had private tombs for their families.</p>
+
+    <div class="story-box" data-label="Columns from Everywhere">
+      <p>The columns of the older mosques were recovered, he explains, above all from Roman and Byzantine buildings. Nobody worried about harmony; what mattered was having building material. In the great mosque's prayer hall there are 184 columns, none like another. Someone has even found, he says, a foot of Apollo.</p>
+      <p>One of the minarets is among the oldest in the city and much copied elsewhere, though he suspects few copied the system.</p>
+    </div>
+
+    <p>The mosque's crowds spilled out. Students from the countryside came to study in the Medina and slept in the mosque. When it was full at prayer time the lane outside became a prayer hall: no need to find the direction of Mecca, since they faced the same way as everyone else. For centuries the same mosque was the only one where Friday prayer was allowed, the guide says. Prayer beads, he adds, run to 99 beads for the names of God, or 33, which you go round three times.</p>
+
+    <div class="practical">
+      <strong>Visiting:</strong> In 2022 the guide said the mosque was open until 10 pm and visitors needed suitable clothing, and that the group could return later in the day. Non-Muslim access to Tunisian mosques is limited, so check on the day.
+    </div>
+  </section>
+
+  <section class="section" id="slavery">
+    <div class="section-tag">Stop 7 · Souk El Berka</div>
+    <h2>The Slave Market<br>&amp; <em>the Abolition of 1846</em></h2>
+
+    <div class="location">Souk El Berka · 17th century</div>
+
+    <p>The guide says the market took its name from the word for kneeling: the people on sale were made to kneel. It was the city's slave market, and in 1846 the Bey who abolished slavery was Ahmad Bey, who then made a state visit to France, the first sovereign of Tunis to travel abroad, which caused a great stir.</p>
+
+    <p>Beside him, in the guide's telling, stood a Genoese-origin minister named Raffo, who helped to arrange the journey and improved relations between the Kingdom of Sardinia and Tunisia. Raffo, a very rich man, also eased the condition of Christian slaves by having chapels built wherever they were held.</p>
+
+    <p>A digression on terminology for Black people, which the transcript only half preserves, is omitted here.</p>
+  </section>
+
+  <section class="section" id="darjeld">
+    <div class="section-tag">Stop 8 · The Elegant Street</div>
+    <h2>Dar el Jeld, Sadiki<br>&amp; <em>Fish Behind Doors</em></h2>
+
+    <p>The most elegant street in the Medina, in the guide's words, is where a house called Dar el Jeld, "the house of leather", is now both a hotel and, he says, one of the most expensive restaurants in the Medina. Its fountain, he notes, includes a capital that was carved for the purpose and not, as usual, taken from another building. Not far off is a school founded in 1875, the lycée where Tunisia's first president, Habib Bourguiba, studied.</p>
+
+    <div class="story-box" data-label="Warehouses and the Evil Eye">
+      <p>Lower down are warehouses where fish is stored behind closed doors. The reason is the evil eye: fish is wealth, and wealth attracts envy. The word for the stores, <em>makhazin</em>, is also the origin of the Italian <em>magazzino</em> and the English <em>magazine</em>.</p>
+      <p>He enjoys the pattern. <span class="highlight">Alcohol, he says, is Arabic too: the "al" is the Arabic article, as in Spanish words from Arabic.</span> Words travel.</p>
+    </div>
+
+    <p>A house nearby once belonged to an institute for the preservation of Tunisian Andalusian music, called <em>malouf</em>, and had been sold to a farmer who built its distinctive covered passage. He passes an <em>oud</em>, which he compares to a mandolin, played in the area.</p>
+  </section>
+
+  <section class="section" id="minorities">
+    <div class="section-tag">Stop 9 · The Old Jewish Quarter</div>
+    <h2>Synagogues, Churches<br>&amp; <em>"Home, Sweet Home"</em></h2>
+
+    <div class="location">Hara · Anglican church · Southern Medina</div>
+
+    <p>Past a library that was once a Turkish bath, and before that a synagogue, the guide describes this as the Jewish quarter of the Medina, where Jews lived inside the walls because there was more protection there. He credits a Muslim saint, Sidi Mahrez, who defended the Jewish cause, loved Tunis, helped found the Medina and walls, and brought Jews inside. The transcript's "born 1951" is almost certainly 951.</p>
+
+    <div class="story-box" data-label="The Song the Army Banned">
+      <p>Near here an Anglican church stands among trees, where British and American merchants who died of disease were buried. Among them, he says, was <strong>John Howard Payne</strong>, the American consul, who wrote the song <em>Home, Sweet Home</em>. He tells the story that it was banned during the American Civil War: it spoke so well of home that soldiers who heard it felt homesick and deserted.</p>
+      <p>Payne died in Tunis in April 1852 and was buried here, and in 1883 his remains were taken back to Washington. The ban is the guide's account; see the notes.</p>
+    </div>
+
+    <p>He then shows a former church, now a gym. In 1964, he says, a <em>modus vivendi</em> between the Vatican and Tunisia let the Catholic Church keep around ten churches, while 107 others became public buildings: sports halls, police stations, institutions. Published accounts agree on the substance: only seven churches were kept, and more than a hundred handed over without compensation.</p>
+  </section>
+
+  <section class="section" id="henna">
+    <div class="section-tag">Stop 10 · The Henna Shop</div>
+    <h2>Henna, Weddings<br>&amp; <em>a Jar of Sweets</em></h2>
+
+    <p>It is the wedding season, and the guide shows what a bride needs. Henna dyes hands and feet red. Brides, he explains, return for three successive nights to have it applied, with gloves on afterwards, so the paste stays on. She must sleep without moving: she eats, uses the toilet and prepares, and lies propped on cushions until morning, when the process repeats. Men use a darker henna for their beards, and a green clay, <em>ghassoul</em>, is for hair and body.</p>
+
+    <div class="story-box" data-label="The Amphora of Sweets">
+      <p>Tall jars are filled with sweets. One tradition, he says, is to break such a jar when a boy was circumcised without anaesthetic: his friends scramble for the sweets and make a racket, which covers the child's cries.</p>
+    </div>
+
+    <p>The neighbourhood, he adds, was long unfashionable. Rural arrivals in the 1970s and 80s pushed middle-class residents to the periphery, and only since the 1990s has there been a return, with young people living in the Medina again, for its traditional cafés.</p>
+  </section>
+
+  <section class="section" id="numbers">
+    <div class="section-tag">Stop 11 · Numbers</div>
+    <h2>Five<br>and <em>Seven</em></h2>
+
+    <p>He closes on numbers. Seven is the international one: seven days of the week, seven lands and seven seas crossed in folk tales, seven heavens and seven levels of paradise and of hell, a Tunis saint's tomb visited seven times as the equivalent of a pilgrimage, and a wise person turns his tongue seven times before speaking. Five is local: the five fingers of the hand of Fatima, the protection against the evil eye with which the tour began.</p>
+
+    <div class="story-box" data-label="Apollo, Marsyas and the Seven-String Lyre">
+      <p>The Greeks had seven too. In the contest between Apollo and the satyr Marsyas, who played two flutes, the lyre beat the flute: a stringed instrument over a wind instrument, seven over two. The lyre has seven strings.</p>
+      <p>He has a preference. A guest says five is "our thing", and seven too international. <span class="highlight">He believes more in seven.</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="notes">
+    <div class="section-tag">Editorial notes</div>
+    <h2>What the Sources <em>Say</em></h2>
+
+    <div class="story-box" data-label="Corrections and Flags">
+      <p><strong>Transcript quality.</strong> The two recordings are Italian and English, auto-transcribed with heavy errors. The guide's name and operator are not given, and I have not invented either. Passages I could not reconstruct are left out, including most of the street-art, herbalist and politics asides.</p>
+      <p><strong>Dates.</strong> The siege of Malta was in 1565 (the transcript says 1561) and the battle of Lepanto in 1571. Cervantes was wounded at Lepanto, captured in 1575, held in Algiers until ransomed in 1580, and published <em>Don Quixote</em> from 1605. The Muslim new year 1444 is usually given as 30 July 2022; the guide says 29 July.</p>
+      <p><strong>Deys and beys.</strong> His summary is simplified. The Ottomans took Tunis for good in 1574; deys held power through much of the 17th century while the Muradid beys rose, and the Husainid dynasty of beys ruled from 1705.</p>
+      <p><strong>Dar Bach Hamba.</strong> Published accounts give the Bach Hamba as a Turkish-origin military family and say the house passed to the Franciscan sisters in 1923; the Orestiadi Foundation's cultural centre dates from 2000, not 2003–04, and the guide's Algerian first owners are unconfirmed.</p>
+      <p><strong>Chechias.</strong> The souk was built in 1691–92 by the Muradid bey, and Andalusian refugees from the early 17th century developed the trade. His claim that every chechia in the world is Tunisian is an overstatement.</p>
+      <p><strong>Youssef Dey Mosque.</strong> Built c. 1615–16 by Youssef Dey, it was the first Ottoman-style mosque in Tunis, with his tomb attached. The slave market and the Turkish tailors' souk belong to the same complex.</p>
+      <p><strong>Payne.</strong> He died in Tunis in April 1852 as American consul and was reburied in Washington in 1883. Sources stress the song's popularity with both armies in the Civil War, and I could not confirm the ban.</p>
+      <p><strong>1964.</strong> The modus vivendi was signed on 10 July 1964; the Church kept seven churches, and more than a hundred were handed to the state.</p>
+      <p><strong>Unchecked.</strong> The Medina's population of 110,000, the foot of Apollo, the janissary rules on age and marriage, the 184 columns (a commonly quoted figure), the dating of Sidi Mahrez, the details of Raffo and the sweets-jar custom are the guide's and I have not verified them. The 184 columns and the names Dar el Jeld and the Sadiki school are my identifications of places the transcript only half names.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT</span> · Tour operator not named in the source material<br><br>
+  Transcript machine-generated from Italian and English audio, then translated and condensed; side conversations in the group omitted. Names and figures corrected against published sources where noted. All errors in attribution are transcription errors.<br>
+  Guide not named · Medina of Tunis, 26 August 2022
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Sirmione — Una passeggiata guidata con Rossana Braga · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    color-scheme: light;
+    background: var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  p, li, .post-excerpt { color: #241c14; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .rossana-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Appunti di camminate guidate</span></nav>
+
+<header>
+  <div class="header-label">Trascrizione di una visita guidata — Sirmione, Lago di Garda</div>
+  <h1>La fortezza che<br>nessuno <em>si prese la briga di aggiornare</em></h1>
+  <div class="header-sub">Visita guidata di Sirmione · Guida Rossana Braga · Gita in pullman, 11 ottobre 2026</div>
+  <div class="header-meta">
+    <span>PERCORSO: ingresso della penisola → Rocca Scaligera → Santa Maria Maggiore → casa della Callas → belvedere delle Grotte di Catullo → riva termale → barca</span>
+    <span>FORMATO: visita a piedi, poi giro in barca con Garda Tours</span>
+    <span>GUIDE: Rossana Braga a piedi · voce narrante sulla barca non nominata</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Indice</div>
+  <ol>
+    <li><a href="#context">Una penisola lunga quattro chilometri</a></li>
+    <li><a href="#rocca">La Rocca Scaligera: una fortezza a cipolla</a></li>
+    <li><a href="#scaligeri">I signori di Verona e il passo più lungo della gamba</a></li>
+    <li><a href="#merlons">Code di rondine, merli dritti e ponti levatoi</a></li>
+    <li><a href="#cathars">I catari di Sirmione</a></li>
+    <li><a href="#heraldry">Campanelli e damnatio memoriae</a></li>
+    <li><a href="#church">Santa Maria Maggiore e san Cristoforo</a></li>
+    <li><a href="#callas">La casa della Callas</a></li>
+    <li><a href="#catullus">La villa che porta il nome sbagliato</a></li>
+    <li><a href="#thermal">L'odore di uova</a></li>
+    <li><a href="#ice">Il ghiaccio che ha fatto la penisola</a></li>
+    <li><a href="#boat">In barca</a></li>
+    <li><a href="#notes">Note editoriali</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduzione</div>
+    <h2>Una penisola<br>lunga <em>quattro chilometri</em></h2>
+
+    <p>Rossana Braga comincia prima ancora di camminare, con una mappa. Il Garda è il più grande dei grandi laghi prealpini e il più grande d'Italia: circa 52 chilometri in linea d'aria da Peschiera, la parte più bassa, a Riva, la più alta, con un giro di costa di 158 chilometri. Ha un solo grande affluente, oltre a una serie di torrenti che scendono dalle montagne prealpine, e un solo emissario, il Mincio, che esce a Peschiera, arriva a Mantova e finisce nel Po.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">4 km × 200 m</div>
+      <div class="key-fact-text">Lunghezza e larghezza massima della penisola di Sirmione, secondo Rossana. Tre chilometri sono stati fatti in pullman, con il lago visibile a destra e a sinistra; l'ultimo, dove stanno i monumenti più importanti, si fa a piedi.</div>
+    </div>
+
+    <p>Quell'ultimo chilometro è quasi un'isola. Il gruppo ha attraversato un ponte levatoio sopra un canale che non è naturale: la roccia è stata letteralmente segata, dice, ancora in età gota, quindi prima dei Longobardi, per proteggere meglio la punta. I due monumenti principali stanno proprio all'inizio e alla fine, la rocca medievale e le Grotte di Catullo, i resti di un'immensa villa romana. In più la penisola custodisce un lungo elenco di cose che non c'è stato il tempo di vedere: la chiesa del monastero longobardo di San Pietro in Mavino e, a circa 200 metri dalla costa, un intero villaggio palafitticolo dell'età del Bronzo, trovato dai sub, che fa di Sirmione la capitale mondiale dell'archeologia lacustre di quel periodo, come la definisce lei.</p>
+
+    <p class="rossana-says">«Noi abbiamo poco tempo, quindi diamo un'occhiata giusta a questa parte, perché è importante. Come si è formata la penisola ve lo racconto alla fine del giro, prima di arrivare alla barca.» — Rossana</p>
+
+    <div class="practical">
+      <strong>Arrivare:</strong> i pullman usano il parcheggio Montebaldo, a pochi passi dalla porta del castello. Il programma prevedeva il tempo per un caffè prima della visita guidata, seguita dal giro in barca.
+    </div>
+  </section>
+
+  <section class="section" id="rocca">
+    <div class="section-tag">Tappa 1 · Rocca Scaligera</div>
+    <h2>Una fortezza<br><em>a cipolla</em></h2>
+
+    <div class="location">Rocca Scaligera · XIII secolo</div>
+
+    <p>Dalla riva la Rocca mostra al meglio la sua struttura: mura dentro mura dentro mura, quella che Rossana chiama la forma «a cipolla». La logica è quella dell'assedio medievale. Le guerre si vincevano meno con l'assalto che con l'attesa paziente, finché chi stava dentro non aveva più da mangiare, da bere né armi e apriva le porte. Se invece si decideva di attaccare, per dire di aver conquistato la fortezza, e con essa il territorio di pertinenza, bisognava entrare nel <em>mastio</em>, la torre centrale. Qui il mastio è alto 47 metri, serve da torre di avvistamento ed è la casa del capitano della guarnigione: dalla cima si domina a 360° tutto il lago, perché Sirmione sta proprio al centro.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">47 m</div>
+      <div class="key-fact-text">Altezza del mastio, casa del capitano e torre di avvistamento. Dalla cima, dice Rossana, si ha il controllo completo del lago di Garda: ed è esattamente il motivo per cui è stata costruita qui.</div>
+    </div>
+
+    <p>Le cortine servivano a guadagnare tempo. Il nemico che superava la prima cinta combatteva tra la prima e la seconda sotto il tiro dall'alto. Se passava anche la seconda trovava ancora uno spazio stagno in cui combattere, per rallentare la presa, in attesa dell'esercito amico che, arrivando dall'esterno, lo avrebbe preso tra due fuochi.</p>
+
+    <div class="story-box" data-label="Una rete di segnali di fumo">
+      <p>La Rocca era un anello di una catena di fortezze scaligere lungo la costa orientale del lago, distanziate l'una dall'altra di meno di una giornata di viaggio, dal Mincio, quasi da Mantova, verso nord. In caso di pericolo una fortezza lanciava segnali di fumo, le vicine li vedevano e gli eserciti accorrevano in sua difesa.</p>
+      <p>Sirmione contava più delle altre perché sta in mezzo al lago. <span class="highlight-blue">Permetteva un'osservazione completa dell'entroterra tutto intorno al Garda, e da lei dipendeva tutta la rete delle fortificazioni.</span></p>
+    </div>
+
+    <p>Poi arrivò la polvere da sparo. Le prime bombarde compaiono nel Trecento e vengono migliorate nel Quattrocento, quando il lago era ormai passato a Venezia. Un'alta muraglia medievale era diventata un grosso bersaglio. Le mura medievali erano alte perché l'unico strumento di cui il difensore disponeva per dare forza al proprio proiettile era la forza di gravità; nel Rinascimento si spara verso l'esterno, le mura si abbassano, si fanno tozze e piene di terra, con i cannoni sopra. Rossana manda il gruppo a Peschiera a vedere la versione veneziana, bassa e incassata nel punto in cui il lago entra nel Mincio.</p>
+
+    <blockquote>
+      <p>«Noi di fortezze medievali integre in Italia non ne abbiamo più, eccetto lei: perché era stata demansionata e non fregava più niente a nessuno.»</p>
+      <cite>— Rossana</cite>
+    </blockquote>
+
+    <p>Il declassamento spiega la sopravvivenza. Con una piccola guarnigione, una decina o una quindicina di uomini, non si spesero i soldi per riadattarla alle armi da fuoco, e la si lasciò com'era. Rossana la definisce una delle pochissime fortezze medievali perfettamente integre, che racconta il modo di fare la guerra e di difendere un borgo prima delle armi da fuoco.</p>
+
+    <div class="story-box" data-label="Il gabinetto del capitano">
+      <p>Dentro il mastio, cercate il gabinetto: una feritoia con una canna che scende direttamente verso il basso, verso l'acqua. Era del capitano della guarnigione, la cui casa era il mastio. C'è anche un camino per scaldarsi, «quello che era necessario per esistere in un posto orrendo». Qui non c'è mai stata una famiglia nobile, e non è mai stata una residenza comoda.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Il mastio:</strong> secondo Rossana si può entrare e salire. Il panorama su tutto il lago meridionale è il motivo per farlo.
+    </div>
+  </section>
+
+  <section class="section" id="scaligeri">
+    <div class="section-tag">Tappa 1 · Gli Scaligeri</div>
+    <h2>I signori di Verona<br>e <em>il passo più lungo della gamba</em></h2>
+
+    <p>Oggi siete in provincia di Brescia, in Lombardia, ma per molto tempo Sirmione è stata veronese: i due territori se la sono rubata costantemente. A costruire la Rocca furono i della Scala, la famiglia che trasformò Verona da libero comune in signoria dipendente da una sola dinastia, e lo fece in un momento di crisi profonda della città.</p>
+
+    <p>Il racconto che Rossana fa della loro ascesa è rapido e poco lusinghiero. Furono potentissimi, dice, per un decennio, due al massimo, e conquistarono un territorio enorme verso ovest, fino alla Liguria; ma non avevano fatto bene i conti: più territorio conquisti, più forza serve per mantenerlo, sul piano militare e amministrativo. Quei conti li avevano fatti i Visconti, che crescevano nel milanese. Cominciarono a mangiarsi il territorio scaligero, e la fortezza nasce proprio mentre i confini scaligeri si ritirano verso est.</p>
+
+    <p>La catena di fortezze lungo il lago era dunque uno schema difensivo: bisognava proteggere Verona, e il Garda era strategicamente fondamentale per farlo.</p>
+
+    <div class="practical">
+      <strong>La datazione della Rocca:</strong> nella trascrizione le sue date sono illeggibili. Le fonti pubblicate indicano l'inizio dei lavori dal 1277 sotto Mastino I della Scala; alcuni studi li collocano a metà Trecento. Vedi le note editoriali.
+    </div>
+  </section>
+
+  <section class="section" id="merlons">
+    <div class="section-tag">Tappa 2 · I merli</div>
+    <h2>Code di rondine, merli dritti<br>e <em>ponti levatoi</em></h2>
+
+    <div class="location">Merli · Rivellino · Ponte levatoio</div>
+
+    <p>I merli sono l'altro tratto tipico del Medioevo. Dietro stavano i camminamenti di ronda, corridoi aerei raggiunti dalle scale dentro le torri, dove gli arcieri facevano la ronda e, in caso di attacco, scagliavano frecce dagli intervalli mentre il merlo li proteggeva. Nel Rinascimento, con i cannoni, spariscono.</p>
+
+    <p>Guardatene la forma. I merli a coda di rondine indicano tradizionalmente chi costruisce è ghibellino, cioè dalla parte dell'imperatore nella grande lotta tra papato e impero; i merli dritti indicano un guelfo, dalla parte del papa. Gli Scaligeri erano ghibellini. Eppure qui le due forme si mescolano.</p>
+
+    <div class="story-box" data-label="I merli come messaggio">
+      <p>Per molto tempo, dice Rossana, gli studiosi hanno letto la mescolanza come una registrazione dei proprietari: la parte più interna scaligera, quella più esterna viscontea, poi veneziana. Gli studi più recenti dicono di no. Usare merli diversi era normale nel Medioevo, perché dipendeva dal messaggio politico che si voleva mandare.</p>
+      <p>Gli Scaligeri avevano bisogno dell'appoggio del Papa e dei nobili guelfi di Verona, che erano più numerosi dei ghibellini. <span class="highlight">I merli dicono dunque: noi siamo ghibellini, ma siamo alleati con il Papa.</span> Una parte della merlatura era dedicata a questa diplomazia.</p>
+    </div>
+
+    <p>L'ingresso è protetto dal <em>rivellino</em>, la torre di protezione avanzata, con il ponte levatoio ricostruito. Il legno non resiste all'aria per così tanti secoli, quindi il ponte è una ricostruzione moderna in cemento, pietra e sanpietrini, ma fatta con una certa precisione. Le feritoie nella torre servivano per posare i bolzoni, le travi, quando il ponte veniva alzato. Due aperture: una grande, per i cavalieri a cavallo con l'armatura e per i carri, e una piccola, per i fanti, più agile da aprire e chiudere.</p>
+
+    <p>Dentro il borgo il fossato gira tutto intorno alla fortezza, perché gli Scaligeri fortificarono anche il borgo, che prima era aperto. Delle mura sul lato del lago non resta nulla: dalla fine dell'Ottocento quasi tutte le città e i borghi abbattono le mura, e la navigazione, oggi turistica, conta di più.</p>
+  </section>
+
+  <section class="section" id="cathars">
+    <div class="section-tag">Tappa 3 · Il fossato</div>
+    <h2>Un'eresia, un patto con il Papa<br>e <em>166 prigionieri</em></h2>
+
+    <div class="location">Sirmione · 1276</div>
+
+    <p>La spiegazione che Rossana dà del fossato dentro il borgo è l'episodio oscuro su cui si fonda il potere scaligero: gli Scaligeri a Sirmione non erano amati. Nei primi decenni del Duecento i catari erano stati sradicati da tutta l'Europa, soprattutto con la grande strage degli Albigesi nel sud della Francia. La loro era un'eresia secondo cui tutto ciò che è materia è frutto del male, e che quindi non ammetteva che Cristo fosse insieme spirito divino e corpo umano.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">166</div>
+      <div class="key-fact-text">I catari di Sirmione catturati dagli Scaligeri, secondo Rossana e secondo le fonti pubblicate. Furono portati a Verona, tenuti prigionieri per più di un anno e bruciati nell'Arena romana.</div>
+    </div>
+
+    <div class="story-box" data-label="L'ultimo rifugio dei catari">
+      <p>Non avendo più dove ripararsi, i catari si raccolsero nel basso Garda. Avevano un vescovo a Desenzano, ma il grosso della comunità trovò rifugio a Sirmione, che era allora quasi un'isola perché il lago si era mangiato il collo della penisola. Rossana li stima in quasi duecento persone, uomini, donne e bambini, che vivevano in perfetta armonia con gli abitanti cattolici, protetti dai signori locali, in contrasto con i grossi domini che andavano formandosi.</p>
+      <p>Verona era ancora libero comune, e il Papa le aveva già chiesto di sradicarli. Mastino della Scala, con il fratello Alberto, ci vide un'occasione. <span class="highlight">Se avessero sradicato quella comunità, il Papa li avrebbe appoggiati per diventare signori di una città in gran parte guelfa? Il Papa disse di sì.</span> Assediarono il borgo, catturarono tutti e 166 nel novembre del 1276 e li portarono a Verona.</p>
+      <p>A Sirmione non ci fu nessuna strage. A Verona i prigionieri subirono più di un anno di inquisizione, con la Chiesa che tentava di farli abiurare. Non abiurò nessuno. Quasi tutti furono bruciati insieme in un grande falò di massa nell'Arena, agli inizi del 1278 secondo la datazione di Rossana, e gli Scaligeri ottennero la signoria di Verona.</p>
+    </div>
+
+    <p class="rossana-says">Gli Scaligeri, dice, a Sirmione non furono mai amati, ed è per questo che l'esercito sentì il bisogno di un larghissimo fossato anche all'interno del borgo. — Rossana (parafrasi)</p>
+
+    <div class="practical">
+      <strong>Una data da verificare:</strong> Mastino I morì nell'ottobre del 1277, quindi un rogo all'inizio del 1278 sarebbe avvenuto sotto il fratello Alberto. Vedi le note editoriali.
+    </div>
+  </section>
+
+  <section class="section" id="heraldry">
+    <div class="section-tag">Tappa 4 · La torre d'ingresso</div>
+    <h2>Campanelli<br>e <em>damnatio memoriae</em></h2>
+
+    <p>Se i merli dicono da che parte stai, gli stemmi sulla torre d'ingresso dicono chi sei: sono il cognome sul campanello di casa. Rossana mostra quello con la scala a pioli, simbolo dei della Scala, e altri sulla fortezza. E dà un avvertimento da ricordare sempre, nei territori di confine come questo, costantemente conquistati: molti dei simboli che vedete non sono quello che sembrano.</p>
+
+    <p>Ogni nuovo dominatore cancella i simboli del precedente. Le scale scaligere sono state scalpellate per i bisci dei Visconti; i bisci per i leoni dei veneziani; i leoni per gli alberi della libertà di Napoleone; gli alberi per le aquile austriache; le aquile per il tricolore. Si chiama <em>damnatio memoriae</em>, dannazione della memoria.</p>
+
+    <blockquote>
+      <p>«Sarebbe come se, andando a prendere possesso di un nuovo appartamento, lasciassimo sul campanello il cognome di quello prima: è chiaro che subito mettiamo il nostro.»</p>
+      <cite>— Rossana</cite>
+    </blockquote>
+
+    <p>Con l'unità d'Italia, aggiunge, i monumenti si riempiono di nuovo di simboli, per ricostruire la storia della patria ai danni dell'Austria, e parte di ciò che sembra autentico è un restauro risorgimentale, un «falso storico che sembra vero». Ecco anche perché qui c'è il leone di Venezia: Brescia e Bergamo e i loro territori furono veneziani dal 1426 a Napoleone, nel 1797, quasi quattrocento anni, per cui il grosso della storia precedente l'Austria è stato veneziano.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="church">
+    <div class="section-tag">Tappa 5 · Santa Maria Maggiore</div>
+    <h2>Una chiesa decorata<br>con <em>l'affitto delle pareti</em></h2>
+
+    <div class="location">Santa Maria Maggiore · XV secolo, su fondamenta più antiche</div>
+
+    <p>La chiesa parrocchiale di Santa Maria Maggiore ha preso la forma attuale nel Quattrocento, ma alcune parti sono molto più antiche e alcuni elementi sembrano recuperati da una precedente chiesa longobarda; accanto è stato trovato un cimitero longobardo, con le tombe, durante gli scavi. Il Barocco vi ha aggiunto una serie di altari che a Rossana piacciono poco: l'uomo barocco, dice, considerava vecchiume ciò che non era di suo gusto e non si faceva problemi ad abbatterlo.</p>
+
+    <p>Quello che conta è che è tipica dell'arco prealpino. Le chiese quattrocentesche che non sono cattedrali hanno una sola aula rettangolare, divisa trasversalmente in campate da arconi e non per il lungo in navate. E poiché il Quattrocento qui è ancora tardo Medioevo, con cinquant'anni di ritardo sulla Toscana, gli archi sono gotici a sesto acuto e non a tutto sesto, e l'abside è a spicchi con costoloni in rilievo. Il Rinascimento fioriva nei grandi centri; qui no.</p>
+
+    <div class="story-box" data-label="Pareti in affitto">
+      <p>In una chiesa più ricca le pareti portavano un ciclo programmato. Il predicatore si fermava al centro di una campata e sceglieva l'immagine, e chi non sapeva leggere poteva fissare il contenuto teologico della predica. In una Santa Maria Maggiore ci sarebbero state le storie di Maria.</p>
+      <p>Questa era una chiesa povera, dipendente da un monastero di monache benedettine di fondazione longobarda, in un borgo di pescatori e coltivatori di vite che, dice Rossana, lavoravano giorno e notte. Non c'erano i soldi per chiamare un artista. <span class="highlight">Così hanno affittato le pareti.</span> Chiunque avesse un santo che lo proteggesse dalla peste o dall'annegamento poteva far dipingere un parente che sapesse fare quattro linee.</p>
+      <p>Il risultato è una chiesa di ex voto, in più strati: tre cicli di affreschi sovrapposti nell'angolo che è ancora quello medievale, i più antichi i più interni. Una <em>sinopia</em> rossa, il disegno preparatorio, con il leone di San Marco mostra dove era stato avviato l'emblema di Venezia.</p>
+    </div>
+
+    <h2 style="font-size:1.5rem;">Il gigante <em>san Cristoforo</em></h2>
+
+    <p>L'ex voto più curioso è il gigante, che occupa da solo più spazio di tutti. Rossana lo usa per spiegare gli <em>attributi</em>: gli oggetti che permettono di capire chi è una figura. Servivano ai Greci perché le loro divinità erano uomini e donne come gli altri: il carro con il sole è Apollo, il tridente è Poseidone, il fulmine sul trono è Zeus. I cristiani proseguono la tradizione. Cristoforo ne ha tre: gigantismo, piedi nell'acqua e un bambino molto piccolo sulla spalla sinistra.</p>
+
+    <div class="story-box" data-label="L'uomo che portò il mondo">
+      <p>Cristoforo era altissimo e fortissimo e viveva sulla riva di un fiume lontano da ponti, portando gratuitamente di là persone e masserizie. Un giorno si presentò un bambino molto piccolo che voleva passare il fiume. Cristoforo lo sollevò senza fatica. Ma man mano che si inoltrava nell'acqua il bambino pesava sempre di più; in una delle varianti, narrata da Jacopo da Varazze nella <em>Leggenda aurea</em>, il fiume cominciò anche ad arrabbiarsi. Con uno sforzo sovrumano Cristoforo arrivò all'altra riva.</p>
+      <p>Sulla sponda il bambino tornò leggero. «Di che ti stupisci?», gli disse dal basso. «Sulla tua spalla hai portato l'intero peso del mondo.» Era Cristo, e Cristoforo, dal greco, vuol dire portatore di Cristo.</p>
+    </div>
+
+    <p>Di qui il patronato di chi trasporta persone sull'acqua, cosa seria sul Garda, dove ogni anno annega qualcuno. Il gigantismo serviva a un'altra cosa: essere salvati dalla morte improvvisa. Morire senza confessione e senza estrema unzione significava dannazione eterna, e chi usciva di casa per andare a lavorare ficcava la testa dentro la chiesa e pregava san Cristoforo per la propria anima.</p>
+  </section>
+
+  <section class="section" id="callas">
+    <div class="section-tag">Tappa 6 · Casa della Callas</div>
+    <h2>La casa<br>della <em>tragedia</em></h2>
+
+    <div class="location">La casa della Callas · primo Novecento</div>
+
+    <p>Il percorso di Rossana passa accanto ai grandi alberghi dai nomi tedeschi e austriaci, e non a caso: nell'Ottocento e nel periodo liberty, fino ai primi decenni del Novecento, il lago fu presidio del turismo mitteleuropeo d'élite, aristocrazia e alta borghesia, che costruì ville con l'affaccio sull'acqua. Questa è famosa per la sua inquilina. Maria Callas vi visse per quasi nove anni, per gran parte degli anni Cinquanta, tra una tournée e l'altra, e si allenava con la voce nell'altana, in alto.</p>
+
+    <p>Era sposata con Giovanni Battista Meneghini, ricchissimo imprenditore e grande melomane che l'aveva conosciuta quando era ancora una giovane praticamente ignota, era diventato il suo impresario e poi suo marito. Nel racconto di Rossana la Callas era allora «cicciottella», con una voce potentissima, e ne soffriva: si era innamorata dell'opposto, Audrey Hepburn, e dimagrì alla velocità del lampo. La storia del verme solitario ingoiato per dimagrire la considera una delle tante leggende che il mito ha fatto nascere.</p>
+
+    <div class="story-box" data-label="Una piscina a forma di cuore">
+      <p>Chi entrava in casa la ricordava sempre perfetta, con rose rosa su ogni tavolo. La Callas fece costruire una piscina a forma di cuore, con l'acqua molto bassa perché non sapeva nuotare e aveva paura dell'acqua. Dà verso il lago.</p>
+    </div>
+
+    <p>Poi arrivò Aristotele Onassis. Nella crociera del 1959 sul suo panfilo <em>Christina</em>, con Churchill e la moglie e pochissimi altri invitati, i due decisero di non tornare a casa dai rispettivi coniugi. Quando la Callas venne a parlare con il marito, entrarono dal ponte del castello su una decapottabile lunghissima. Onassis, che secondo Rossana si era scolato una bottiglia tra Milano e Sirmione, non scese dall'auto; lei salì sola quei gradini e disse a Meneghini, piangendo, che era devastata ma non poteva fare niente di diverso.</p>
+
+    <blockquote>
+      <p>«Come aveva voluto dimagrire per assomigliare ad Audrey Hepburn, e l'ha fatto in un batter d'occhio, aveva questi colpi: "Non posso fare niente di diverso da questo". E piangendo l'ha lasciato.»</p>
+      <cite>— Rossana, sull'addio della Callas a Meneghini</cite>
+    </blockquote>
+
+    <p>Onassis le aveva promesso di sposarla e non lo fece: sposò la vedova di Kennedy. Per la Callas fu la fine, o quasi, della carriera: si rifugiò a Parigi in un piccolo appartamento dove dava lezioni di canto, con la sola governante di cui si fidava. Morì lì nel 1977. Il suo desiderio, quasi segreto, era non avere una tomba; le ceneri furono sparse nell'Egeo, anche se per molto tempo la gente di Sirmione ha detto che l'aveva voluta riportare nel lago dove era stata più felice.</p>
+
+    <p>L'ultimo capitolo della villa, nel racconto di Rossana, è un'appendice a sé. Meneghini, che teneva un diario su di lei, lasciò la casa in eredità alla propria governante; lei non sapeva cosa farsene, ma il suo unico figlio sì: la fece a pezzi e ne ricavò appartamenti turistici. Prima del COVID, dice, ogni campanello aveva il cartello «vendesi», e uno alla volta sparirono, tanto che «la casa della tragedia» ha fatto la fortuna del figlio della governante.</p>
+
+    <div class="practical">
+      <strong>Da leggere come racconto locale:</strong> la decapottabile, la bottiglia e l'eredità della governante sono il racconto di Rossana e non ho potuto confermarli. Vedi le note editoriali.
+    </div>
+  </section>
+
+  <section class="section" id="catullus">
+    <div class="section-tag">Tappa 7 · Grotte di Catullo</div>
+    <h2>La villa che porta<br>il <em>nome sbagliato</em></h2>
+
+    <div class="location">Grotte di Catullo · fine I secolo a.C. – I secolo d.C.</div>
+
+    <p>Il gruppo non è entrato nell'area archeologica. Il piano di Rossana è raccontare la storia da qui e lasciare il resto alla barca, perché il punto di vista migliore sulla villa è dal lago. Era, dice, un'immensa villa romana che occupava per intero lo sperone roccioso alla punta, lunga circa 140 metri (167 aggiungendo certe parti) e larga 120. Molto di ciò che stava in cima non c'è più, perché il borgo medievale è stato costruito con la villa.</p>
+
+    <p>Questo è il cuore del suo discorso, e parte da una lezione su come le cose si perdono. Con la fine dell'età romana le conoscenze dei grandi ingegneri edili romani andarono perdute: i nuovi arrivati costruivano capanne di legno e paglia. Per tutto il Medioevo si smontano le costruzioni romane e si ricombinano i pezzi, «si gioca a Lego», dice. Se entrate in una cantina del borgo, vedrete colonne romane con i capitelli che sostengono le volte.</p>
+
+    <div class="story-box" data-label="Sostruzioni: sostituite la C con la S">
+      <p>Quello che resta sono le <em>sostruzioni</em>: ai ragazzi Rossana dice di sostituire la C iniziale di <em>costruzioni</em> con la S. Sono le grandi volte che regolarizzavano la pendenza della collina, permettendo di costruire una villa su un piano, cosa che i Greci non sapevano fare.</p>
+      <p>Il suo confronto è efficace. I Greci, dice, costruivano con il sistema trilitico, colonna e architrave, leggero, elegantissimo e a un solo piano, perché la loro arte esprimeva la raffinatezza del pensiero. I Romani copiano il tempio greco per onorare gli dèi, ma con i loro edifici esprimono la propria storia e la propria potenza, e per questo ci vuole un altro sistema: prendono l'arco etrusco, lo allungano e inventano la volta, che poggia su muri di cemento e non su colonne. La volta divide il peso a metà e controspinge, e così si costruiscono cose enormi che resistono per millenni. Quando entrate in una galleria entrate in una cosa che hanno inventato i Romani.</p>
+    </div>
+
+    <p>Il committente che immagina era un megalomane. Ereditata dalla famiglia una piccola villa sulla cima del colle, guardò le belle ville lungo la costa con il loro affaccio sull'acqua e decise di superarle tutte, con una villa grande come tutta la collina, visibile da ovunque si arrivasse navigando. Chi non era un intimo arrivava per forza in barca, lentamente, e si trovava davanti tre piani di villa sopra la roccia prima di salire alla sala del potere dove il proprietario dava udienza. Uno così, suggerisce, doveva essere vicino all'imperatore, perché la villa assomiglia alle ville imperiali.</p>
+
+    <p>E Catullo? «Grotte di Catullo è un nome ovviamente falsissimo», dice. Il poeta, veronese di famiglia ricca, amava Sirmione e la cantò, definendola gemma di tutte le penisole e le isole, e probabilmente qui aveva una villa più piccola. Il nome nasce nel Quattrocento, quando l'Umanesimo trasforma i resti romani da cava a cose da censire. Venezia, orgogliosa del patrimonio romano del suo territorio, mandò un colto funzionario a registrarlo in tutta la Repubblica. Arrivato in barca da nord, vide volte coperte d'edera e pecore che pascolavano sopra, e scrisse nel diario del viaggio di essersi finalmente avvicinato alle caverne in cui abitava Catullo.</p>
+
+    <p><span class="highlight">Il nome nasce da una riga di un diario di viaggio rinascimentale, e così è rimasto.</span> Solo nel Novecento gli archeologi, studiando l'architettura romana e le biografie del poeta, hanno concluso che non può essere la sua casa: è troppo tarda e troppo grandiosa.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">c. 20.000 m²</div>
+      <div class="key-fact-text">Superficie approssimativa della villa, secondo la voce narrante sulla barca. Le fonti pubblicate la datano all'età augustea, dopo la morte di Catullo, e la definiscono la più grande e meglio conservata villa romana privata del nord Italia.</div>
+    </div>
+
+    <p class="rossana-says">«Gli anziani, quando scendono, dicono: fa umido, mi fanno male le ossa nelle grotte, e c'è un sole che mi spacca.» — Rossana</p>
+  </section>
+
+  <section class="section" id="thermal">
+    <div class="section-tag">Tappa 8 · La riva</div>
+    <h2>L'odore<br>di <em>uova</em></h2>
+
+    <p>Qualcuno nel gruppo chiede dell'odore di uova marce vicino alla riva. È l'acqua termale: sorgenti sulfuree che escono sott'acqua dalla roccia a circa 69 °C, ricchissime di minerali e soprattutto di zolfo, usate nelle terme per le cure e ormai anche per l'estetica. L'odore è forte dove c'è l'impianto di pompaggio.</p>
+
+    <p>Rossana racconta come fu captata. Un palombaro, alla fine dell'Ottocento, scese con lo scafandro e il tubo per respirare tenuto dagli uomini in superficie, intubò la sorgente e disse: è nostra. Il lavoro fu portato a termine solo dopo la seconda guerra mondiale. Un tubo si vede nel lago e, poiché quest'autunno il lago è molto basso, oggi si vede bene.</p>
+
+    <div class="story-box" data-label="Vent'anni sottoterra">
+      <p>La storia del viaggio dell'acqua, nella versione di Rossana: nasce come pioggia sul Monte Baldo, a circa 800 metri, scende a grande profondità attraverso crepe carsiche, si scalda moltissimo e riemerge sotto il lago vent'anni dopo. Il Baldo è veronese, quindi per diritto l'acqua sarebbe più veronese che bresciana, ma la sorgente affiora in acque bresciane, e bresciane sono le terme di Sirmione.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Le terme:</strong> lo stabilimento termale è aperto tutto l'anno. La voce narrante sulla barca aggiunge che l'acqua arriva alle terme a circa 40 °C.
+    </div>
+  </section>
+
+  <section class="section" id="ice">
+    <div class="section-tag">Tappa 9 · La punta</div>
+    <h2>Il ghiaccio che<br>ha fatto <em>la penisola</em></h2>
+
+    <p>Davanti all'acqua, prima di imbarcarsi, Rossana fa la lezione di geologia promessa. Da qui si vedono tre coste di tre regioni: la Lombardia da una parte, il Veneto dall'altra e, lassù in fondo al lago, vicino a Riva, un pezzetto di Trentino-Alto Adige, con le montagne dietro.</p>
+
+    <div class="story-box" data-label="Un tallone nella sabbia">
+      <p>I quattro grandi laghi, Maggiore, Como, Iseo e Garda, hanno tutti un andamento nord-sud, con la parte nord infilata nelle Alpi e la parte sud chiusa da basse colline. La spiegazione è l'ultima era glaciale. Per circa centomila anni ha nevicato ininterrottamente sulle Alpi e i ghiacciai, spessi centinaia di metri, hanno «grattugiato» le valli.</p>
+      <p>Lo spiega come un tallone che striscia nella sabbia: scava un solco e porta avanti la ghiaia, e quando lo tolgo la ghiaia resta in rilievi semicircolari. Quei rilievi sono le morene, le basse colline che chiudono a sud i laghi. Quando l'era glaciale finì, circa diecimila anni fa, il ghiaccio sciolto non aveva sfogo e formò i laghi dietro le morene.</p>
+    </div>
+
+    <p>Sirmione è l'eccezione. La penisola è uno sperone di roccia molto più dura: il ghiacciaio asportò la parte tenera attorno ma non riuscì a spostarlo, e si divise scivolando ai due lati. È la roccia lavorata orizzontalmente che il gruppo ha visto vicino all'acqua, e la ragione per cui un dito di terra di quattro chilometri sta ancora in mezzo al lago.</p>
+
+    <p>Il terreno morenico è perfetto per la vite. Il Franciacorta cresce vicino al lago d'Iseo; intorno al Garda ci sono il Lugana, sul lato lombardo, il Bardolino sull'altra sponda veronese e il Garda Classico con il suo rosato, il Chiaretto. Il consiglio di Rossana, per restare in territorio bresciano: bere il Garda Classico, il Chiaretto o il Lugana, che però è bianco.</p>
+
+    <div class="practical">
+      <strong>Cosa bere:</strong> il Lugana è bianco, il Chiaretto rosato, il Garda Classico rosso. Il Bardolino, anch'esso rosso, è della sponda veronese.
+    </div>
+  </section>
+
+  <section class="section" id="boat">
+    <div class="section-tag">Tappa 10 · La barca</div>
+    <h2><em>In barca</em></h2>
+
+    <p>Il commento di Rossana finisce al molo. Il giro in barca è gestito da Garda Tours, con una voce narrante propria, non nominata nella registrazione e diversa da Rossana. La trascrizione di questo segmento è frammentaria, ma alcuni punti si salvano.</p>
+
+    <p>La mappa del percorso esposta al molo segna sei tappe intorno alla penisola: il Castello Scaligero, la Fonte Boiola (la sorgente termale), le Grotte di Catullo, la Spiaggia Jamaica, la Spa &amp; Thermal Garden e Villa Callas. I commenti della voce seguono quell'ordine di cose da vedere. Dall'acqua le Grotte di Catullo mostrano ciò che i camminatori non potevano vedere: le grandi sostruzioni a volta, un tempo coperte di vegetazione e a forma di grotte, oggi un sito archeologico che definisce tra i più importanti dell'Italia settentrionale.</p>
+
+    <p>Sotto il promontorio c'è una spiaggia chiara di lastre di roccia che la voce narrante chiama <em>Giamaica</em> per il colore, la posizione e l'acqua così pulita, dice, che si può bere. Segnala anche l'impianto di pompaggio della sorgente Boiola, dove l'acqua sulfurea viene captata e portata alle terme e, dice, a soli cinque alberghi che pagano per averla. Quest'ultimo dettaglio non è confermato.</p>
+
+    <div class="practical">
+      <strong>Il giro in barca:</strong> il cartello di Garda Tours il giorno della visita (11 ottobre 2026) riportava un tour della penisola di 25 minuti a 12 € per gli adulti e 6 € per i bambini da 5 a 10 anni, con barca privata fino a cinque persone a 100 € e tour privati più lunghi da 180 €. I prezzi sono quelli esposti quel giorno e possono cambiare.
+    </div>
+
+    <div class="practical">
+      <strong>Il pomeriggio:</strong> il programma della giornata prosegue con il pranzo in un agriturismo a San Martino della Battaglia e una passeggiata a Valeggio sul Mincio. Nessuno dei due è coperto dalla trascrizione.
+    </div>
+  </section>
+
+  <section class="section" id="notes">
+    <div class="section-tag">Note editoriali</div>
+    <h2>Cosa dicono <em>le fonti</em></h2>
+
+    <div class="story-box" data-label="Correzioni e segnalazioni">
+      <p><strong>Profondità.</strong> Rossana indica la profondità massima del lago in 365 metri, la voce narrante sulla barca in 370. Le cifre pubblicate danno 346 metri, tra Tignale e Castelletto. Anche l'affermazione che il lago sia più profondo dell'Adriatico fino ad Ancona e la cifra di vent'anni per il ricambio dell'acqua sono sue e non le ho verificate.</p>
+      <p><strong>La costruzione della Rocca.</strong> Le sue date si perdono nel rumore della trascrizione. Le fonti divergono: una tradizione vuole Mastino I della Scala all'opera dal 1277, un'altra colloca l'inizio a metà Trecento. Gli Scaligeri governarono Verona fino al 1387, per cui il suo «decennio o due» di potere descrive il loro apice e non la loro durata.</p>
+      <p><strong>I catari.</strong> La cifra di 166 e il rogo nell'Arena sono coerenti con le fonti pubblicate. La sua datazione del rogo all'inizio del 1278 stride con la morte di Mastino I nell'ottobre 1277, che farebbe di Alberto il signore di allora. L'idea che gli abitanti di Sirmione abbiano voluto il fossato interno per odio è una sua interpretazione.</p>
+      <p><strong>La Callas.</strong> Morì a Parigi nel 1977 e le sue ceneri furono sparse nell'Egeo. La decapottabile, la bottiglia e l'eredità della governante sono aneddoti di Rossana, non verificati. Gli archeologi datano le Grotte di Catullo all'età augustea, dopo la morte del poeta, e il nome risale al Quattrocento. Anche il suo elenco di frequentatori illustri di Sirmione in quel periodo è suo.</p>
+      <p><strong>I simboli risorgimentali.</strong> L'affermazione che alcuni stemmi sulle mura siano restauri postunitari è un'asserzione della guida, non controllata qui. Il nome del funzionario veneziano che avrebbe coniato «Grotte di Catullo» non compare nella trascrizione, quindi non ne ho indicato uno.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>ON FOOT</span> · Operatore della visita a piedi non nominato nel materiale originale · Giro in barca: Garda Tours<br><br>
+  Trascrizione automatica dell'audio originale in italiano, rielaborata e condensata; conversazioni laterali del gruppo omesse. Nomi e cifre corretti sulle fonti pubblicate dove indicato. Ogni errore di attribuzione è un errore di trascrizione.<br>
+  Guida: Rossana Braga (a piedi); voce narrante sulla barca non nominata · Sirmione, Lago di Garda
+</footer>
+
+</body>
+</html>

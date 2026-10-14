@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caledonian Park & the Metropolitan Cattle Market — A Walking Tour with Jenny</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .jenny-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Caledonian Park &amp; Copenhagen Fields, Islington</div>
+  <h1>Cattle, Crowds<br>& the <em>Cally Tower</em></h1>
+  <div class="header-sub">Metropolitan Cattle Market Tour with Guide Jenny · Clerkenwell &amp; Islington Guides</div>
+  <div class="header-meta">
+    <span>ROUTE: Park entrance → Clock Tower → Market Road pitches → around the park</span>
+    <span>DURATION: ~1 hour</span>
+    <span>GUIDES: Jenny &amp; Luna, Clerkenwell &amp; Islington Guides</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">A borough short of green space</a></li>
+    <li><a href="#tower">The Clock Tower</a></li>
+    <li><a href="#market">The Metropolitan Cattle Market</a></li>
+    <li><a href="#copenhagen">Copenhagen House &amp; its fields</a></li>
+    <li><a href="#radical">Radical Copenhagen Fields</a></li>
+    <li><a href="#tolpuddle">The Tolpuddle Martyrs' march</a></li>
+    <li><a href="#running">The fastest mile in London</a></li>
+    <li><a href="#cricket">Islington's buried cricket history</a></li>
+    <li><a href="#around-tower">Around the base of the tower</a></li>
+    <li><a href="#flea-market">The end of the market &amp; the flea market</a></li>
+    <li><a href="#market-estate">The Market Estate</a></li>
+    <li><a href="#caledonian-name">Why "Caledonian"?</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Borough Short of<br><em>Green Space</em></h2>
+
+    <p>Jenny and her colleague Luna, both guides with Clerkenwell &amp; Islington Guides, open at the entrance to Caledonian Park with a piece of context every Islington walk seems to need: this is one of the tightest, most built-over boroughs in London, and the park behind them is disproportionately important because of it.</p>
+
+    <p><span class="highlight">Islington has the lowest ratio of open space to built-up land of any London borough</span> — a fact the council's own park records confirm. Its largest single green space, Highbury Fields, covers a modest 29 acres. Everything else is smaller still.</p>
+
+    <div class="story-box" data-label="The Guides' Favourite Aside">
+      <p>Jenny offers a well-worn line: that the largest patch of green in the borough, technically, is the pitch at the Emirates Stadium — which is not, of course, open to the public.</p>
+      <p>It is a nice piece of tour patter more than a strict fact — Highbury Fields, a genuine public park, is actually larger than the Emirates site. But the joke works because it captures something true: green space here is scarce enough that even a football pitch gets pressed into the argument.</p>
+    </div>
+
+    <p>Which makes it more striking that the ground under our feet was once something else entirely: for eighty years, one of the largest livestock markets in Europe, and for a century before that, the site of the biggest political demonstrations London had ever seen.</p>
+  </section>
+
+  <section class="section" id="tower">
+    <div class="section-tag">Stop 1 · The Clock Tower</div>
+    <h2>Forty-Six Metres<br>of <em>Italianate Stone</em></h2>
+
+    <div class="location">The Clock Tower, Caledonian Park · 1855</div>
+
+    <p>The tower is the only reason most people find their way here. Grade II* listed, built of Portland stone in five storeys of restrained Italianate detail, it stands 46 metres — 151 feet — above the park, with a gilded weathervane at its lantern in the shape of a dragon: dragons, not griffins, are the traditional boundary-marker of the City of London, which is why one crowns the tower of a market the City itself built.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">34m</div>
+      <div class="key-fact-text">Height of the clock tower at King's Cross station, built by Lewis Cubitt in 1852 — three years before this one, and twelve metres shorter. When this tower opened in 1855, it was briefly the tallest clock tower in London, a title it held until the Houses of Parliament's Elizabeth Tower — Big Ben — was completed in 1859.</div>
+    </div>
+
+    <p>It was designed by <strong>James Bunstone Bunning</strong>, the City of London Corporation's own architect and surveyor, fresh off designing the third Billingsgate Market. The whole cattle-market complex — of which the tower was the centrepiece — cost the Corporation in the region of £400,000, something like £40 million in today's money.</p>
+
+    <div class="story-box" data-label="Open to Climb">
+      <p>After decades of neglect and closure, the tower reopened to the public following a major restoration completed in 2019, funded partly by a Heritage Lottery Fund grant of close to £2 million. Its 178 steps, a working four-faced clock, and a set of three bells that once signalled the opening and closing of market trading are all part of the visit.</p>
+    </div>
+
+    <div class="practical">
+      <strong>Visiting the tower:</strong> Tours are run periodically by Islington Council and local guiding groups, bookable via Eventbrite. The climb requires a reasonable level of fitness and comfort with confined, steep stairs — there is no lift.
+    </div>
+  </section>
+
+  <section class="section" id="market">
+    <div class="section-tag">Stop 2 · The Cattle Market</div>
+    <h2>Thirty Acres &<br><em>Fifteen Thousand Animals a Day</em></h2>
+
+    <div class="location">Metropolitan Cattle Market · Opened June 1855</div>
+
+    <p>The market was built to solve a problem: Smithfield, in the City proper, had become impossible. Live cattle, sheep and pigs were being driven through crowded City streets to a market with nowhere left to expand, and conditions — for animals, drovers and neighbours alike — were dire. The Corporation of London's solution was to move the live trade out to open ground at Copenhagen Fields, then still on the rural fringe of Islington, and rebuild Smithfield as a meat-only market.</p>
+
+    <p>The new Metropolitan Cattle Market covered <span class="highlight">roughly 30 acres</span> — the whole of the old Copenhagen House estate — arranged around the central clock tower with pens, sale rings, slaughterhouses, banking and telegraph offices, and, on market days, <span class="highlight-blue">as many as 15,000 live animals changing hands.</span> It opened in June 1855, reportedly by Prince Albert.</p>
+
+    <div class="story-box" data-label="A Sculptor for the Livestock Pens">
+      <p>Bunning's attention to detail extended past the tower itself. He commissioned the sculptor John Bell to carve heads of sheep, oxen and pigs to mark the central rail of every livestock pen — small, decorative, faintly absurd touches of Victorian craftsmanship applied to what was, underneath it all, an industrial abattoir supply chain.</p>
+    </div>
+
+    <p>Monday and Thursday were cattle, sheep and pig days; Friday was the horse and donkey market — working animals, not meat, since horses and donkeys were still the main way goods and people moved around London before the railways and motor transport took over. Drovers had walked animals in from as far as the Cotswolds, Devon and Suffolk, losing condition on the road, which is part of why the market's outer fields included "layers" — paddocks where thin animals could be rested and fattened before sale.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1890s</div>
+      <div class="key-fact-text">The decade the market's core purpose began to collapse. The spread of railways meant animals no longer had to be walked hundreds of miles to London, and the arrival of refrigeration meant they no longer had to be slaughtered near the point of sale at all — they could be killed close to where they were reared, and the meat shipped in cold.</div>
+    </div>
+  </section>
+
+  <section class="section" id="copenhagen">
+    <div class="section-tag">Stop 3 · Before the Market</div>
+    <h2>Copenhagen House &<br><em>a Plague-Time Refuge</em></h2>
+
+    <div class="location">Site of Copenhagen House · 17th century onward</div>
+
+    <p>Before it was a cattle market, this was Copenhagen Fields, named for a house that no longer exists. Local tradition holds that it was built as a refuge by the Danish ambassador, fleeing the Great Plague of 1665 — the details are hazy and no one is entirely sure which Danish diplomat is meant, but the name stuck for three centuries.</p>
+
+    <p>By the 18th century the house had become an inn, tea room and pleasure garden, with skittles, saddle-sellers and picnicking Londoners taking advantage of a rare high, open outlook over the city. For a period in the early 19th century it acquired a rougher reputation, hosting bull-baiting and bare-knuckle fighting, before settling back into respectable tea-garden business — right up until the City of London Corporation bought the estate and cleared it for the cattle market in the 1850s.</p>
+
+    <div class="jenny-says">"All in honour of a Danish ambassador nobody can quite name any more — but the house gave its name to the fields, and the fields to everything that happened here afterwards."</div>
+  </section>
+
+  <section class="section" id="radical">
+    <div class="section-tag">Stop 4 · Radical Islington</div>
+    <h2>A Field That Frightened<br>a <em>King</em></h2>
+
+    <p>Before it was farmland for a livestock market, Copenhagen Fields was simply the largest open space within easy reach of central London — which made it, repeatedly, the site of the biggest political gatherings the city had ever seen.</p>
+
+    <p>In the autumn of 1795, with bread prices high and the war against revolutionary France deeply unpopular, the London Corresponding Society — an early, mostly working-class reform movement campaigning for the vote — held two mass open-air meetings here. The first, on 26 October, is thought to have drawn up to 200,000 people; a second followed on 12 November. Three days after the first meeting, George III's coach was jeered and pelted on its way to open Parliament, a window shattered by a stone.</p>
+
+    <blockquote>
+      <p>"Nobody bothered to say so in any official record, but a field that could swallow a hundred thousand angry Londoners at once was, for the government of the day, a genuine problem to be solved."</p>
+      <cite>— Jenny</cite>
+    </blockquote>
+
+    <p>Parliament's response was swift: the Seditious Meetings Act of 1795 banned gatherings of more than fifty people without a magistrate's prior consent, alongside a new Treason Act broadening what counted as an offence against the King. <span class="highlight">Copenhagen Fields had, in effect, legislated itself into history.</span></p>
+  </section>
+
+  <section class="section" id="tolpuddle">
+    <div class="section-tag">Stop 5 · 1834</div>
+    <h2>A Hundred Thousand<br>for <em>Six Farm Labourers</em></h2>
+
+    <p>The most famous demonstration held here came almost forty years later, on 21 April 1834. Its cause: six agricultural labourers from the Dorset village of Tolpuddle, who had formed a friendly society to protest falling wages and were convicted — not for unionising itself, which was legal, but for administering a secret oath — and sentenced to seven years' transportation to Australia.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">100,000</div>
+      <div class="key-fact-text">Approximate number who gathered at Copenhagen Fields on 21 April 1834 to march on Parliament demanding the Tolpuddle Martyrs' pardon, carrying a petition reportedly signed by some 200,000 people. The government, fearing a repeat of continental unrest, mustered cavalry, infantry and cannon in response.</div>
+    </div>
+
+    <div class="story-box" data-label="The Martyrs Come Home">
+      <p>The campaign worked, slowly. Conditional pardons came through in 1835, full and free pardons in 1836, and the men returned to England over the following two years.</p>
+      <p>When they did, London gave them a welcome of its own: in 1838 the Tolpuddle Martyrs were received at Clerkenwell Green, already established by then as one of the capital's great sites of radical assembly.</p>
+    </div>
+
+    <p>A third great Copenhagen Fields meeting followed in 1851, when tens of thousands gathered in support of Lajos Kossuth, the exiled Hungarian revolutionary leader then visiting London — enough to draw the personal attention, and irritation, of Queen Victoria, who was unimpressed that her own foreign secretary agreed to meet him.</p>
+
+    <p class="jenny-says">"You can draw a fairly straight line from all this to why the City chose to put a very large, very orderly cattle market on top of the fields not long afterwards. It solved two problems at once."</p>
+  </section>
+
+  <section class="section" id="running">
+    <div class="section-tag">Stop 6 · Sport, Part One</div>
+    <h2>The Fastest Mile<br>in <em>London</em></h2>
+
+    <p>Before the cattle market, this ground had a brief but significant sporting life. The Copenhagen Grounds athletics track — a gravel oval of roughly a third of a mile, opened in 1850 and 1851 — became, for a few short years, the centre of competitive track running in the capital, at a time when professional runners more usually raced each other along public roads.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">4:28</div>
+      <div class="key-fact-text">Time recorded by Charles Westhall over the mile at the Copenhagen Grounds on 26 July 1852 — in heavy rain, on gravel — the first officially timed sub-4½-minute mile, and one of the earliest properly recorded world records for the distance. It would stand for years before being gradually chipped down, decade by decade, toward Roger Bannister's four-minute mile a century later.</div>
+    </div>
+
+    <p>The Copenhagen Grounds closed at the end of 1853 after storm damage, just before the cattle market rose on the same ground. But the connection to running resurfaced more than a century later: when Islington Council opened the tennis centre and all-weather pitches that now sit on the market's old sheep-fold, it was Roger Bannister — the first man to break four minutes for the mile — who performed the opening in 1971. Those pitches were among the first artificial-turf surfaces laid in Europe.</p>
+  </section>
+
+  <section class="section" id="cricket">
+    <div class="section-tag">Stop 7 · Sport, Part Two</div>
+    <h2>Islington's Buried<br><em>Cricket History</em></h2>
+
+    <p>It overstates things to say cricket was "invented" in Islington, as guides here are sometimes tempted to put it — but the borough's claim on the game's early governance is real. White Conduit Fields, close to Thornhill Square in Barnsbury, was the home ground of the White Conduit Club through the 1780s.</p>
+
+    <div class="story-box" data-label="From Islington to Lord's">
+      <p>Members of the White Conduit Club grew unhappy with how public and exposed their Islington ground was. In 1787 they backed one of their own ground bowlers, Thomas Lord, to find somewhere more private — he leased a field at what is now Dorset Square in Marylebone, and the club that moved there and reconstituted itself became the <strong>Marylebone Cricket Club</strong>, the game's governing body ever since.</p>
+      <p><span class="highlight-green">Lord's, in other words, exists because of a landlord dispute at a cricket ground in Islington.</span></p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1</div>
+      <div class="key-fact-text">Public cricket pitches remaining in the entire London Borough of Islington today: Wray Crescent, off Hornsey Road. A borough with a direct historical claim on the birth of Lord's and the MCC now has room for a single team to play.</div>
+    </div>
+  </section>
+
+  <section class="section" id="around-tower">
+    <div class="section-tag">Stop 8 · Around the Tower</div>
+    <h2>Railings, Pubs<br>& <em>a Lost Rotunda</em></h2>
+
+    <p>Close to the tower's base, a change in the paving marks the outline of a vanished building — a twelve-sided rotunda that once housed the market's banking, telegraph and railway offices. Nothing remains above ground, but the footprint survives underfoot, half-obscured on busy days by market stalls and, now, park furniture.</p>
+
+    <p>Much of the original ironwork survives too. Sections of railing around the park are Grade II listed in their own right, and the tops of the old pillars still carry the grooves and cavities that once held Bunning and John Bell's carved animal heads — sheep, oxen, pigs — marking out each livestock pen. Nearby, ceramic tiles set into a corner of paving are the last visible trace of one of the market's public urinals.</p>
+
+    <div class="story-box" data-label="Four Pubs, Three Survivors">
+      <p>A pub stood at each corner of the market in its Victorian heyday: the Lion at the north-west corner, the Lamb at the south-west, and the White Horse. None still serves as a working pub, but three of the four buildings survive — the Lamb Tavern and the former White Horse (now known as Market House) are both Grade II listed.</p>
+      <p>Nearby on North Road, between 1873 and 1875, the market ran a short-lived charitable institution of its own: the Drovers' Hall and Asylum, housing up to fifty elderly or infirm cattle drovers with a reading room and club room attached — a small piece of welfare provision for the men who had walked the animals here in the first place.</p>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="flea-market">
+    <div class="section-tag">Stop 9 · Decline &amp; the Flea Market</div>
+    <h2>From Livestock<br>to <em>Bric-a-Brac</em></h2>
+
+    <p>The livestock trade never recovered from the railways and refrigeration. It limped on, diminished, until the outbreak of the Second World War closed the market outright in 1939; slaughtering on the site continued into the 1950s. But long before the cattle stopped coming, a different kind of market had already taken over the site's Friday afternoons.</p>
+
+    <p>The original horse-and-tack sales on Fridays had always attracted a fringe trade in saddlery, harness and second-hand goods. Once the Piccadilly line's Caledonian Road station opened in 1906, that fringe trade exploded into one of London's largest general markets — the <strong>Caledonian Market</strong>, known to Londoners simply as "the Cally."</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">21,000</div>
+      <div class="key-fact-text">Stalls said, by local historical accounts, to have traded at the market's peak in a single year of the 1930s — a figure repeated by guides rather than independently verified, but consistent with contemporary photographers, including Bill Brandt and Edith Tudor-Hart, who came specifically to document its scale.</div>
+    </div>
+
+    <div class="story-box" data-label="Cap on the Cobbles">
+      <p>Traders raced each other for the best pitches each week, sometimes throwing a cap onto a spot to claim it before running to fetch their goods. Local histories often connect the market to Jack Cohen, the founder of Tesco — though his first documented market stall was at Well Street in Hackney in 1919, and any Caledonian Market pitch of his belongs to the broader, harder-to-pin-down years of his early trading life.</p>
+      <p>A more secure fixture of the market's folklore is <strong>Prince Monolulu</strong>, its most famous racing tipster, instantly recognisable in ostrich-feather headdress and colourful robes, and known for the catchphrase "I gotta horse!" He was born Peter Carl Mackay in the Danish West Indies — not, as is sometimes said, in Nigeria — and built his stage persona around a claimed Abyssinian royal lineage rather than a real one.</p>
+    </div>
+
+    <p>The flea market outlasted the cattle trade by decades, but not indefinitely: once the site was earmarked for redevelopment in the late 1940s, it moved wholesale to Bermondsey Square in south London in 1950, where a much smaller antiques market trading under the "New Caledonian" name survives to this day.</p>
+  </section>
+
+  <section class="section" id="market-estate">
+    <div class="section-tag">Stop 10 · The Market Estate</div>
+    <h2>Built on the Cattle Pens,<br><em>Undone by Neglect</em></h2>
+
+    <div class="location">Market Estate · Built 1967, demolished 2005–2012</div>
+
+    <p>Once the market finally closed for good, the Greater London Council built housing on part of the old cattle ground: the Market Estate, 271 flats and maisonettes completed in 1967, its blocks named — with a certain grim wit — after the animal breeds once traded a few yards away: Tamworth for the pigs, Kerry for the cattle, Southdown for the sheep.</p>
+
+    <p>Ownership passed to Islington Council after the GLC was abolished in the 1980s, and the estate's reputation declined steadily through poor maintenance, damp, and rising anti-social behaviour — reaching a low point local newspapers later described in stark terms.</p>
+
+    <div class="story-box" data-label="A Death That Forced Change">
+      <p>In 2000, twelve-year-old Chris Pullen was killed on the estate when a vandalised, badly maintained fire door fell on him. His death, following years of complaints from residents about exactly this kind of neglect, became the turning point.</p>
+      <p>Tenants organised under the Market Estate Tenants and Residents Association, chaired by <strong>Jim Veal</strong>, campaigning for years for the estate's wholesale redevelopment rather than piecemeal repair. The estate was transferred to a housing association in 2005, demolished, and rebuilt along traditional streets rather than 1960s blocks, with the work completed in 2012.</p>
+    </div>
+
+    <p><span class="highlight">A street in the new development, Chris Pullen Way, carries his name</span> — a quiet, permanent marker of the campaign his death set in motion.</p>
+  </section>
+
+  <section class="section" id="caledonian-name">
+    <div class="section-tag">Stop 11 · A Name's Origin</div>
+    <h2>Why <em>"Caledonian"?</em></h2>
+
+    <p>The name has nothing to do with cattle, markets or Scotland's cuisine, and everything to do with an act of Napoleonic-era charity. The Royal Caledonian Asylum — later the Royal Caledonian Schools — was founded in 1815 by the Highland Society of London to house and educate Scottish children orphaned by the Napoleonic Wars, along with the children of poor Scots living in London.</p>
+
+    <div class="story-box" data-label="From Asylum to Road Name">
+      <p>The Asylum moved to purpose-built premises on this stretch of Copenhagen Fields in the mid-1820s. Newspapers of the day began referring to the approach road as "the chalk road leading to the Caledonian Asylum" — a mouthful that had been shortened, by the early 1840s, simply to Caledonian Road.</p>
+      <p>Queen Victoria became the charity's patron in 1852, by which point the road's name was already fixed. The Asylum itself relocated to Bushey, Hertfordshire in the early 1900s; an Edwardian housing estate now occupies its old Islington site, its blocks named — again — after Scottish literary and historical figures: Burns, Scott, Wallace.</p>
+    </div>
+
+    <p>Cattle market, cricket's birthplace, radical rallying-ground, refugee children's asylum, council estate, and now a park with a tower you can climb — Caledonian Park has been remarkably difficult to pin to any single identity. Which is, perhaps, exactly what a piece of ground squeezed into one of London's most crowded boroughs was always going to become.</p>
+
+    <div class="practical">
+      <strong>Getting there:</strong> Caledonian Road tube (Piccadilly line) or Caledonian Road &amp; Barnsbury Overground, both a short walk from the park. Free walking tours of the wider area, including a monthly "health and history" walk, are run by Clerkenwell &amp; Islington Guides — details are published on their website ahead of each date. A separate, shorter tour actually climbs the 178 steps of the tower itself — see our companion post, <a href="islington-caledonian-clock-tower-2026.html" style="color:var(--gold);">178 Steps to the Top</a>.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>CLERKENWELL &amp; ISLINGTON GUIDES</span> · Free local walking tours<br><br>
+  Transcript lightly edited for clarity from a recorded guided walk. Several factual points in the original recording — including a date, a nationality, and two names — have been corrected against documentary sources; any remaining errors of attribution are the editor's.<br>
+  Guides: Jenny &amp; Luna · Caledonian Park &amp; Copenhagen Fields, Islington
+</footer>
+
+</body>
+</html>

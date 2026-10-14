@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>178 Steps Up the Caledonian Clock Tower — Islington</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .winder-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Inside the Caledonian Clock Tower, Islington</div>
+  <h1>178 Steps<br>to <em>the Top</em></h1>
+  <div class="header-sub">Caledonian Clock Tower Climb · Volunteer Clock Winders, Islington Guided Walks</div>
+  <div class="header-meta">
+    <span>ROUTE: Ground floor → winding room → clock mechanism → viewing balustrade</span>
+    <span>DURATION: ~1 hour 15 minutes</span>
+    <span>GUIDES: Volunteer clock winders, Islington Guided Walks</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">A different kind of tour</a></li>
+    <li><a href="#briefing">The safety briefing</a></li>
+    <li><a href="#ground-floor">Offices, banking &amp; the toilets</a></li>
+    <li><a href="#pubs">The pubs, the drovers &amp; the tunnel</a></li>
+    <li><a href="#flea-market">From cattle to bric-a-brac</a></li>
+    <li><a href="#commissioners-office">The commissioner's office</a></li>
+    <li><a href="#mechanism">The winding room &amp; the mechanism</a></li>
+    <li><a href="#winding">Winding the clock forward — and back</a></li>
+    <li><a href="#top">The top of the tower</a></li>
+    <li><a href="#memories">A childhood on the old estate</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Different Kind<br>of <em>Tour</em></h2>
+
+    <p>This is a companion piece to <a href="islington-caledonian-park-2026.html">our earlier walk around Caledonian Park</a> with Jenny and Luna of Clerkenwell &amp; Islington Guides — but it is a different experience entirely. Islington Guided Walks run two distinct versions of the Caledonian Clock Tower visit: a longer Saturday walk covering the history of the tower and park at ground level, and a shorter weekday-evening tour that climbs the tower itself, focused on the clock mechanism and the view. This is the second kind.</p>
+
+    <p>The guides on this visit are not historians by trade. They are volunteer <strong>clock winders</strong> — the small, informal group who keep the tower's Victorian turret clock running week to week — and they say so themselves, cheerfully, at the start: <span class="highlight">"I'm not a professional guide or anything like that."</span> What they lack in rehearsed patter, they make up for with the kind of detail only someone who actually maintains the mechanism would know.</p>
+  </section>
+
+  <section class="section" id="briefing">
+    <div class="section-tag">Before the Climb</div>
+    <h2>The Safety<br><em>Briefing</em></h2>
+
+    <div class="location">178 Steps · Five Floors</div>
+
+    <p>Every visitor signs a disclaimer and hears the same briefing before setting off: 178 steps, mostly narrow ladder-stairs rather than a conventional staircase, one person moving at a time once past the first level, and a clear instruction to say something immediately if heights or confined spaces become a problem.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">178</div>
+      <div class="key-fact-text">Steps to the top of the tower, climbed in stages across five floors — you stop and regroup at each level rather than climbing in one continuous run, which keeps the ascent manageable despite the narrow, steep ladder-stairs typical of Victorian tower construction.</div>
+    </div>
+
+    <div class="winder-says">"If at any point this isn't for you, on this whole game of heights, just let us know. It's actually fun beyond that point — no shame in it at all."</div>
+
+    <p>It is, by the guides' own account, an ordinary hazard of the job rather than a rare one — a version of the safety talk they clearly give at the start of every single tour, delivered with the slightly weary good humour of people who have given it many times before.</p>
+  </section>
+
+  <section class="section" id="ground-floor">
+    <div class="section-tag">Stop 1 · Ground Floor</div>
+    <h2>Offices, Banking<br>& <em>the Toilets</em></h2>
+
+    <div class="location">The Clock Tower · Built 1852–55</div>
+
+    <p>The history recap on the way in is brisk: building work began in 1852, took three years, and the tower opened in 1855, reportedly with Prince Albert in attendance. It was never simply an ornament — the ground floor and surrounding rooms housed the paperwork end of the cattle trade: offices for buying and selling livestock, and banking facilities to handle the money changing hands on market days.</p>
+
+    <p><span class="highlight">One corner held the market's public toilets</span> — and the ceramic tiles that once lined them are still visible on the wall today, a small, unglamorous survival from the market's working life.</p>
+  </section>
+
+  <section class="section" id="pubs">
+    <div class="section-tag">Stop 2 · Around the Market</div>
+    <h2>The Pubs, the Drovers<br>& <em>the Tunnel</em></h2>
+
+    <p>Four pubs once stood at the market's four corners, built to serve the men who worked the cattle through to sale — a drink and a meal after the job was done. Three of those buildings survive today: <strong>The Lion</strong>, <strong>The Lamb</strong> and <strong>The White Horse</strong>, all now converted to other uses. The fourth is gone entirely; guides on this tour recall it by a different name, though the record on this point is thin enough that it is worth treating as local memory rather than settled fact.</p>
+
+    <p>The market also provided its own accommodation for drovers, who might arrive having walked cattle in from as far as Wales. And underneath it all ran a tunnel — used, in the market's later years, to send slaughtered carcasses on by underground rail to Smithfield for sale, once refrigeration and rail transport made that the more efficient method.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">~1900</div>
+      <div class="key-fact-text">Roughly when the live cattle trade here stopped being the market's main business. Refrigeration and the expanding rail network meant animals no longer needed to be walked to London and slaughtered on arrival — they could be killed near where they were reared and the meat shipped in cold, exactly as the guides on our earlier walk explained from the other side of the same story.</div>
+    </div>
+  </section>
+
+  <section class="section" id="flea-market">
+    <div class="section-tag">Stop 3 · The Flea Market Years</div>
+    <h2>From Cattle<br>to <em>Bric-a-Brac</em></h2>
+
+    <p>Once the live trade declined, the site's second life as a general and bric-a-brac market took over, running well into the 20th century until the ground was earmarked for redevelopment and the market relocated to Bermondsey in 1950. Traders would queue for the market's 10 o'clock opening and then dash for a pitch — not everyone had a registered spot, and old newsreel footage is said to survive showing the scramble.</p>
+
+    <div class="story-box" data-label="Market Folklore">
+      <p>The stallholders' stories that circulate on this tour have the flavour of market folklore more than documented history — including a claim, impossible to verify, that someone once bought an Egyptian mummy here for ten shillings.</p>
+      <p>More durable is the local tradition connecting the market to <strong>Jack Cohen</strong>, the future founder of Tesco, said to have had an early stall here. His first documented market pitch was in fact at Well Street in Hackney in 1919 — but markets like this one were exactly the sort of place a trader in his position would have worked in those years, so the connection, even if not literally provable, is not far-fetched.</p>
+    </div>
+  </section>
+
+  <section class="section" id="commissioners-office">
+    <div class="section-tag">Stop 4 · Mid-Climb</div>
+    <h2>The Commissioner's<br><em>Office</em></h2>
+
+    <p>Partway up, the climb passes through what was once the market's supervisory office — described interchangeably by different guides across different tours as the "commissioner's" or "superintendent's" room. <span class="highlight-blue">Its defining feature is its windows</span>: large, deliberately positioned so that whoever held the job could watch the entire market floor from above without leaving the desk.</p>
+
+    <p>It is a small design detail, but a telling one — a reminder that everything about this tower, ornamental dragon weathervane included, was built around the practical business of supervising thousands of animals and the money moving between their buyers and sellers.</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="mechanism">
+    <div class="section-tag">Stop 5 · The Winding Room</div>
+    <h2>The Mechanism<br><em>Itself</em></h2>
+
+    <div class="location">The Winding Room · Mechanism Restored 2016</div>
+
+    <p>Higher up, the tour reaches the room that gives the volunteer guides their name. The tower's turret clock is a weight-driven mechanism: a heavy weight descends slowly through the tower's full height, its fall regulated by a train of gears and a pendulum, and that descent is what powers the hands on all four faces and the strike of the bells.</p>
+
+    <div class="story-box" data-label="A Clock Older Than Big Ben">
+      <p>The clock and its three bells were fully overhauled in 2016 as part of the tower's Heritage Lottery-funded restoration — the mechanism cleaned and repaired, the bells restored in situ. Islington Guided Walks like to point out, with some justice, that this clock predates the Great Clock at the Houses of Parliament — Big Ben — by four years.</p>
+      <p>Not every part is original, but several elements are, including at least one of the historic clock faces — small survivals inside a mechanism that has otherwise been substantially refurbished.</p>
+    </div>
+  </section>
+
+  <section class="section" id="winding">
+    <div class="section-tag">Stop 6 · A Volunteer's Job</div>
+    <h2>Winding It Forward<br>— <em>and Back</em></h2>
+
+    <p>Keeping a Victorian weight-driven clock running is a small, ongoing act of maintenance rather than a one-off job. The volunteer winders visit weekly — Friday evenings, organised informally among themselves — to haul the weight back up and keep the mechanism fed.</p>
+
+    <div class="winder-says">"If the clock ever stops, it's probably because it's too hot or too cold — the mechanism's old, it doesn't like extremes. Sometimes it's just broken, and then we get two grumpy fellows in a little van to come and fix it."</div>
+
+    <p>The clock changes twice a year present a particular quirk. A mechanism this old cannot simply be wound forward an hour each spring — so rather than force it, the volunteers stop the pendulum, let the clock run down and effectively "lose" eleven hours, and then restart it once the new time has caught up. <span class="highlight-green">It is a small, elegant compromise between a nineteenth-century machine and the twentieth-century convention of daylight saving.</span></p>
+
+    <p>At the very top, a pair of plastic peregrine falcon decoys stand guard against pigeons — a low-tech deterrent for a genuinely high-tech problem, since the mechanism and stonework both suffer from birds roosting in the tower's upper levels.</p>
+  </section>
+
+  <section class="section" id="top">
+    <div class="section-tag">Stop 7 · The Balustrade</div>
+    <h2>The View<br>from <em>the Top</em></h2>
+
+    <p>The reward for 178 steps is a 360-degree view across north and central London. On a clear day the guides point out Hampstead and Highgate to the north-west, and the Emirates Stadium — Arsenal's home ground, and by some reckonings the largest single patch of "green space" in the borough, however dubiously that claim holds up — closer at hand.</p>
+
+    <div class="practical">
+      <strong>Visiting the tower:</strong> Both the historical walking tour and the shorter clock-and-mechanism climb are run by Islington Guided Walks and bookable via Eventbrite; the schedule varies through the year, with weekday evening slots typically shorter and more focused on the mechanism and the view than the Saturday walks. Children must be at least 10 years old, and suitable footwear (no heels, slip-ons or flip-flops) and clothing (nothing loose enough to catch in the steps) are required — guides are entitled to turn away visitors who arrive unsuitably dressed.
+    </div>
+  </section>
+
+  <section class="section" id="memories">
+    <div class="section-tag">Coda</div>
+    <h2>A Childhood<br>on <em>the Old Estate</em></h2>
+
+    <p>One of the volunteer guides on this particular tour grew up locally, on or around the old Market Estate before its 2000s redevelopment, and the personal recollections offered near the top of the tower are worth recording as memory rather than history — vivid, but understood as one person's account of one place at one time.</p>
+
+    <div class="story-box" data-label="Playing in a Derelict Tower">
+      <p>Before its restoration, the tower stood locked up and derelict for decades — long enough to become a fixture of local children's dares and ghost stories. One version, repeated to generations of local kids, held that a grey hand would reach out from inside the tower and push you down the stairs if you went in.</p>
+      <p>The guide's own account of the estate years nearby is blunter: doors kicked in, signs of a fire, pigeons everywhere, and children playing in and around buildings that were, by any adult standard, unsafe — the ordinary, half-remembered texture of growing up next to a site the council had not yet found the money or the will to fix.</p>
+    </div>
+
+    <p>It is a fitting closing note for a tower that has spent most of its life as something other than a tourist attraction — cattle market centrepiece, market office, derelict local landmark, and now, again, a place people climb on purpose.</p>
+  </section>
+
+</main>
+
+<footer>
+  <span>ISLINGTON GUIDED WALKS</span> · Clock tower tours booked via Eventbrite<br><br>
+  Transcript lightly edited for clarity from a recorded tower-climb tour, considerably noisier than most in this collection. Several details — a pub name, a decorative anecdote, and a market-day figure — could not be independently verified and are presented as local or guide testimony rather than settled fact.<br>
+  Guides: Volunteer clock winders, Islington Guided Walks · Caledonian Clock Tower, Islington
+</footer>
+
+</body>
+</html>

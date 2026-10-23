@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gua Batu Cermin — Mirror Stone Cave, Labuan Bajo</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141218;
+    --paper: #f4f0e6;
+    --aged: #e6dcc8;
+    --sepia: #7a6045;
+    --crimson: #8c1f28;
+    --gold: #a8832a;
+    --ash: #635c52;
+    --highlight-yellow: #eece58;
+    --highlight-blue: #a0bcd4;
+    --highlight-green: #aacca0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .home-nav {
+    background: var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 0.9rem 2rem;
+    text-align: center;
+  }
+
+  .home-nav a {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '✦';
+    position: absolute;
+    font-size: 22rem;
+    opacity: 0.035;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .header-label {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  header h1 em { font-style: italic; color: var(--gold); }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #a08870;
+    margin-bottom: 2rem;
+  }
+
+  .header-meta {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #6b6459;
+    border-top: 1px solid #2a2420;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .toc {
+    background: var(--aged);
+    border-left: 4px solid var(--gold);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .toc-title {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .toc ol { padding-left: 1.5rem; }
+  .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  .section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #cfc3ab;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-tag {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em { font-style: italic; color: var(--crimson); }
+
+  p { margin-bottom: 1.1rem; color: #241c14; }
+
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+
+  blockquote {
+    border-left: 3px solid var(--crimson);
+    margin: 2rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(140, 31, 40, 0.05);
+  }
+
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+
+  blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+    margin-top: 0.5rem;
+  }
+
+  .story-box {
+    background: var(--aged);
+    border: 1px solid #cec2a6;
+    border-top: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .story-box::before {
+    content: attr(data-label);
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: absolute;
+    top: -0.8rem;
+    left: 1.5rem;
+    background: var(--aged);
+    padding: 0 0.5rem;
+  }
+
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+
+  .key-fact {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .key-fact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+
+  .guide-says {
+    font-style: italic;
+    color: var(--sepia);
+    border-left: 2px solid var(--sepia);
+    padding-left: 1rem;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+
+  .location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 1rem;
+  }
+
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+
+  .practical {
+    background: #1e1a16;
+    color: #c4baaa;
+    padding: 1.2rem 1.6rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .practical strong { color: var(--gold); font-weight: 500; }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 0.8em;
+    margin: 2rem 0;
+  }
+
+  footer {
+    background: var(--ink);
+    color: #6b6459;
+    text-align: center;
+    padding: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    header { padding: 3rem 1.5rem 2.5rem; }
+    main { padding: 1.5rem 1.2rem 4rem; }
+    .key-fact { flex-direction: column; gap: 0.5rem; }
+    .header-meta { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="home-nav"><a href="../index.html">← On Foot</a></nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Gua Batu Cermin, Flores</div>
+  <h1>From Seabed<br>to <em>Sunlit Stone</em></h1>
+  <div class="header-sub">Mirror Stone Cave Walking Tour with a Local Guide · Labuan Bajo, Flores</div>
+  <div class="header-meta">
+    <span>ROUTE: Wae Sambi entrance → fossil chamber → mirror-light chamber → cave gallery</span>
+    <span>DURATION: ~45 minutes</span>
+    <span>GUIDE: Local guide, Labuan Bajo</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#context">Labuan Bajo: a coastline that used to be a seabed</a></li>
+    <li><a href="#discovery">The priest who found the cave</a></li>
+    <li><a href="#stones">Two kinds of stone</a></li>
+    <li><a href="#mirror">Why it's called the Mirror Stone</a></li>
+    <li><a href="#reading-rock">Reading the rock: fossils and a geological correction</a></li>
+    <li><a href="#shapes">Shapes in the dark</a></li>
+    <li><a href="#residents">Bats, growth and the rule of not touching</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="context">
+    <div class="section-tag">Introduction</div>
+    <h2>A Hillside That Used<br>to Be <em>Underwater</em></h2>
+
+    <p>Most visitors reach Labuan Bajo as a stepping stone to somewhere else — the harbour town on the western tip of Flores where boats leave for Komodo National Park and its dragons. Gua Batu Cermin, the Mirror Stone Cave, sits a short drive inland, in Wae Sambi village, and is usually squeezed in as a half-day filler before or after a boat trip. It rewards more attention than that.</p>
+
+    <p>The cave sits inside a limestone hill roughly <span class="highlight">75 metres high</span>, a few kilometres from the town centre. What makes it worth the detour is not scale — this is a modest system, walkable in well under an hour — but what is embedded in its walls: coral, shells and other marine fossils, sitting in rock that is now well above sea level. The short version of the site's story, repeated by every guide and every tourism blog, is that the cave was once on the seabed and was pushed up by earthquake activity. The fuller version is a little more interesting, and comes later in this post.</p>
+  </section>
+
+  <section class="section" id="discovery">
+    <div class="section-tag">Stop 1 · Origins</div>
+    <h2>The Priest Who<br><em>Found the Cave</em></h2>
+
+    <div class="location">Gua Batu Cermin · Documented 1951</div>
+
+    <p>Batu Cermin's discovery is credited to <strong>Theodor Verhoeven</strong>, a Dutch Catholic priest based at a seminary on Flores through the 1950s and 60s, who spent his free time locating and excavating archaeological sites across the island. He is the reason the cave has a written history at all: it was Verhoeven who first documented the marine fossils in its walls and connected them to the theory that this stretch of coastline had once been seabed.</p>
+
+    <div class="story-box" data-label="The Priest and the Hobbit Cave">
+      <p>Verhoeven's real significance to science lies elsewhere on Flores. In the 1950s he began excavating a limestone cave near Ruteng called <strong>Liang Bua</strong>, uncovering Neolithic burials and, separately, stone tools that he controversially argued were far older than anyone was prepared to believe. He was largely dismissed by paleoanthropologists in his lifetime.</p>
+      <p><span class="highlight">Decades later, in 2003, an Indonesian-Australian team excavating at Liang Bua found the remains of a tiny, unknown human species</span> — nicknamed "the hobbit" and formally named <em>Homo floresiensis</em>. Verhoeven had died in 1990 without knowing he'd been right. The site he first opened up to research is now one of the most significant in the story of human evolution.</p>
+    </div>
+
+    <p>Batu Cermin was, by comparison, a minor find — a curiosity noted on the way to the more consequential caves further east. But it is the one modern visitors can actually walk through.</p>
+  </section>
+
+  <section class="section" id="stones">
+    <div class="section-tag">Stop 2 · Geology</div>
+    <h2>Two Kinds<br>of <em>Stone</em></h2>
+
+    <p>Guides here tend to open with a basic distinction that turns out to explain most of what you're looking at: the hill is made of two different rocks, laid down in different ways. Older volcanic rock forms a base, and coral limestone — the compressed remains of an ancient reef — sits on top of it, generally in thicker, more voluminous deposits than the volcanic layer beneath.</p>
+
+    <p class="guide-says">"Because of the erosion, the air, the water — the slow — we can see everything."</p>
+
+    <p>The two rocks erode at different rates, which is why the hillside doesn't wear away evenly: the softer limestone above wears faster than the harder volcanic base, leaving the kind of stepped, undercut profile typical of tropical karst country. It's the same basic mechanism — differential erosion of stacked rock layers — that shapes mesas and hoodoos elsewhere in the world, just executed here in limestone over volcanic rock instead of sandstone over shale.</p>
+  </section>
+
+  <section class="section" id="mirror">
+    <div class="section-tag">Stop 3 · The Name</div>
+    <h2>Why It's Called<br>the <em>Mirror Stone</em></h2>
+
+    <p>The cave's name — <em>batu cermin</em>, "mirror stone" in Indonesian — refers to a specific light effect rather than a general shine. Sunlight enters through a narrow gap in the cave roof and, hitting certain wall surfaces at the right angle, appears to bounce and illuminate sections of the chamber that light shouldn't otherwise reach — as if the rock itself were reflecting rather than simply catching the light. It's most pronounced around midday, when the sun sits closest to directly overhead.</p>
+
+    <div class="story-box" data-label="A Rule About Touching">
+      <p>Guides here generally ask visitors not to touch the formations, on the grounds that the stone is still forming and that skin contact interrupts the process — oils from a hand can stop mineral deposition at that spot, and are also said to strip out the salt content that gives some surfaces their sheen. <span class="highlight-blue">Whether or not a single touch measurably halts millennia of accretion, it's a reasonable house rule</span>: cave formations everywhere are slow-growing and easily marked, and "don't touch" protects them regardless of the precise mechanism.</p>
+    </div>
+  </section>
+
+  <section class="section" id="reading-rock">
+    <div class="section-tag">Stop 4 · What the Walls Show</div>
+    <h2>Fossils, and<br>a <em>Geological Correction</em></h2>
+
+    <p>The walls carry the cave's most striking evidence: embedded coral, shell fragments and other marine fossils, visible without any digging or specialist eye. It's genuinely persuasive material — rock that clearly formed underwater, now dry and well above the waterline.</p>
+
+    <blockquote>
+      <p>"You know that Labuan Bajo actually was underwater? At some point, that was going to fall."</p>
+      <cite>— Guide</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="The Popular Story, Corrected">
+      <p>The story told on site — that the cave itself was once submerged, then thrust up whole by an earthquake — is the version every visitor hears, and it isn't quite right. The more precise account, set out by cave-documentation specialists who've surveyed the site, is this: the <em>limestone</em> was indeed formed underwater, as compressed coral reef, and was then lifted above sea level by tectonic uplift over a very long geological timescale — this part of Flores sits in an active subduction zone, and the whole coastline has been rising for millions of years.</p>
+      <p><span class="highlight">But the cave — the hollow space you actually walk through — did not exist yet at that point.</span> It formed afterwards, once the limestone was already dry land, through the ordinary karst process of rainwater slowly dissolving passages through the rock. So: the stone was underwater; the cave, as a walkable space, was not. It's a distinction worth preserving even though it complicates a good story.</p>
+    </div>
+
+    <p>None of which makes the fossils less real, or less worth the visit — it just means the more accurate framing is "rock that was once underwater, later hollowed out," rather than "an underwater cave that popped up intact."</p>
+  </section>
+
+  <section class="section" id="shapes">
+    <div class="section-tag">Stop 5 · Formations</div>
+    <h2>Shapes<br>in the <em>Dark</em></h2>
+
+    <p>Like most show caves, Batu Cermin has a set of formations that guides point out by resemblance rather than by mineral name — a game that's more about giving visitors something memorable to photograph than any scientific claim. A rounded outcrop near the entrance is nicknamed the <strong>mushroom stone</strong> (the alternative reading offered on the walk was "umbrella," and the debate was not resolved). Deeper in, a pale, elongated formation catching direct light is known locally as the <strong>Madonna</strong> or "the lady" — visitors are told it resembles a robed, standing figure, a comparison several nationalities of tourists apparently arrive at independently.</p>
+
+    <div class="story-box" data-label="A Naming Disagreement">
+      <p>Not every shape gets a tidy label. One formation midway through the cave prompted a genuine back-and-forth on this visit: a monkey's head, someone suggested, or perhaps a dragon, or — the guide's own read — a mongoose, on account of the texture of the stone reading like skin or fur. <span class="highlight-green">This kind of open disagreement is normal in show caves</span>: pattern-matching in low light is subjective, and no cave management enforces an official taxonomy of shapes. Other frequently cited resemblances nearby: a fish head, and a pair of turtles said to be sleeping side by side.</p>
+    </div>
+
+    <p class="guide-says">"When you just look with your eye, you see one thing. But zoom in, and you see the differences — different colours, even inside it."</p>
+  </section>
+
+  <section class="section" id="residents">
+    <div class="section-tag">Stop 6 · Life in the Cave</div>
+    <h2>Bats, Growth<br>&amp; <em>Slow Time</em></h2>
+
+    <p>The cave is home to a resident bat colony, along with birds that nest in the darker recesses and cave-adapted insects. None of it is dramatic wildlife-spotting — the animals keep mostly to the ceiling and the unlit side-passages — but their presence is part of why guides ask visitors to keep voices down and torches steady rather than swept around freely.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">75m</div>
+      <div class="key-fact-text">Height of the limestone hill containing the cave, first documented by Theodor Verhoeven in 1951. The walk from the settlement to the cave mouth covers roughly 300 metres of path.</div>
+    </div>
+
+    <p>Inside, stalactites and stalagmites are at various stages of a very slow process: some have met in the middle to form solid columns, others are still separate, still dripping, still years or millennia short of connecting. Guides tend to offer growth-rate figures — a few centimetres per many thousands of years was the estimate given on this walk — and while exact rates vary enormously by cave depending on water flow and mineral content, the general order of magnitude (thousands of years per centimetre, not years) holds across limestone caves worldwide.</p>
+
+    <div class="practical">
+      <strong>Visiting Batu Cermin:</strong> Located in Wae Sambi village, roughly 10–20 minutes by car from central Labuan Bajo or Komodo Airport. A local guide is effectively mandatory and generally included in the entrance fee; helmets and torches are provided. Expect to duck and crouch through several low sections — closed shoes recommended, and it can be muddy after rain. Visit around midday for the best chance of seeing the mirror-light effect the cave is named for. Allow 30–60 minutes.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>LABUAN BAJO, FLORES</span> · Gua Batu Cermin / Mirror Stone Cave<br><br>
+  Transcript lightly edited for clarity; guide's name was not caught on the recording. The popular "cave was once submerged" account has been corrected in one section against published cave-survey sources — see "Fossils, and a Geological Correction" above. All errors in attribution are transcription errors.
+</footer>
+
+</body>
+</html>

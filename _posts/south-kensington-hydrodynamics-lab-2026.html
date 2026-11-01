@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Rough Seas, Indoors — A Walking Tour of Imperial’s Hydrodynamics Lab · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says, .karmpadakis-says, .muscutt-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+  footer span { color: var(--gold); }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+
+  html { color-scheme: light; background: var(--paper); }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Hydrodynamics Laboratory, Imperial College London</div>
+  <h1>Rough Seas,<br><em>Indoors</em></h1>
+  <div class="header-sub">Hydrodynamics Lab Tour with Dr Ioannis Karmpadakis · Imperial Lates: Robots · Imperial College London</div>
+  <div class="header-meta">
+    <span>ROUTE: Teaching lab → Wave flume → Deepwater wave basin → Rough-seas finale</span>
+    <span>DURATION: not recorded (Lates ran 18.00–21.00)</span>
+    <span>GUIDE: Dr Ioannis Karmpadakis · with Dr Luke Muscutt</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#intro">Before the water: an evening of robots, and a press upstairs</a></li>
+    <li><a href="#teaching">The teaching lab, where theory gets checked</a></li>
+    <li><a href="#flume">The glass room and the machines that make waves</a></li>
+    <li><a href="#waves">Sine waves, swell and the ocean’s mix</a></li>
+    <li><a href="#buoys">Buoys, snake paddles and a crossing sea</a></li>
+    <li><a href="#uses">What the waves are for</a></li>
+    <li><a href="#energy">Tsunami, oscillating columns and tidal farms</a></li>
+    <li><a href="#basin">The deepwater basin and the robots with eyes</a></li>
+    <li><a href="#turtle">A turtle, a wooden shell and a plesiosaur</a></li>
+    <li><a href="#storm">A hundred-year storm, made to order</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="intro">
+    <div class="section-tag">Introduction</div>
+    <h2>A Walk Through a Building<br>That <em>Breaks Things on Purpose</em></h2>
+
+    <div class="location">Imperial College London · South Kensington Campus, SW7</div>
+
+    <p>This is not a walk through streets. It is a walk through the engineering end of a university, on an autumn evening, as part of <em>Imperial Lates: Robots</em> — a free, adults-only science night held on 29 October 2026. The brief for the lab tour, as Imperial billed it, was a behind-the-scenes look at the labs and a meeting with the college’s robotic sea turtle. What the group got was rather more: a wave flume, a deepwater wave basin, two sets of underwater robots and, for the finale, a storm.</p>
+
+    <p>The tour opens in the corridors, with a warning. Somewhere above the group, in a structures laboratory, hydraulic presses are crushing walls, bricks and steel beams until they fail — and the bangs and booms carry down to the level below. “Hopefully,” the guide at this point remarks, “there’s no structural engineering professor here.” The group is on its way to the opposite end of the civil-engineering spectrum: structures that are made to meet water instead of weight.</p>
+
+    <div class="practical">
+      <strong>Imperial Lates:</strong> free, adult-only (18+) evenings at the South Kensington Campus, each with a theme. This tour ran on <em>Robots</em>, 29 October 2026, 18.00–21.00. Imperial’s next two in the 2026/27 season are <em>Science Across Africa</em> (3 December 2026) and <em>Connection</em> (28 January 2027). Imperial’s own advice for a quieter visit was to arrive 18.00–18.30 or 20.15–21.00.
+    </div>
+  </section>
+
+  <section class="section" id="teaching">
+    <div class="section-tag">Stop 1 · Teaching Laboratory</div>
+    <h2>Where Students Try<br>to <em>Catch the Theory Out</em></h2>
+
+    <div class="location">Hydrodynamics Laboratory · Imperial College London</div>
+
+    <p>The group is welcomed by Dr Ioannis Karmpadakis, who leads the walk and, by his own account, directs the lab’s facilities. (The transcript gives his title as associate professor; Imperial’s own pages style him “Dr”, and that is the form used here.) The room they enter first is a teaching lab: a collection of small, simple experiments that undergraduates run themselves.</p>
+
+    <p class="karmpadakis-says">“Everything I teach them in the lecture theatre, they come down and check if it’s true or not — or they’re trying to fool me.” — Dr Karmpadakis</p>
+
+    <p>The examples are concrete. In a small flume the students generate modest waves, measure them and compare the results with wave theory. Along the walls run pipes on which they measure flow velocity and test it against the theory of pipe flow. The point of keeping the experiments simple, he explains, is that the students then see for themselves what the physical process actually looks like — before they meet the larger kit in the main research hall.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">3,000m²</div>
+      <div class="key-fact-text">The floor area of Imperial’s Hydrodynamics Laboratory, in the Department of Civil and Environmental Engineering. Imperial’s published figures list a shallow-water tank and six flumes alongside the big wave tank. (Figure from Imperial’s own account of the lab, not from the tour.)</div>
+    </div>
+  </section>
+
+  <section class="section" id="flume">
+    <div class="section-tag">Stop 2 · The Wave Flume</div>
+    <h2>The Glass Room and the<br><em>Machines That Make Waves</em></h2>
+
+    <div class="location">Main research hall · Wave flume</div>
+
+    <p>Before the demonstration, a one-sentence argument for why any of this matters. Coral reefs, the guide says, give coastlines natural protection against flooding and big waves — they blunt the energy before it reaches the shore. Understanding how, and how much, is part of what the lab is for.</p>
+
+    <p>Then the group is asked to line up along the glass. What they are looking at is a long, narrow channel with transparent side walls, so that the water can be watched from the side. (The transcript renders the name as “wave facing”; it is a wave flume.) At one end stand the red machines that the guide calls wave makers: paddles that move in a pattern programmed to reproduce realistic ocean waves. At the other end is a parabolic beach, a sloping, curved surface whose job is to swallow the wave energy rather than bounce it back.</p>
+
+    <p>Along the top of the flume runs a long beam with steel rods dipping into the water. These are wave gauges — water-level sensors. The method, in the guide’s words, is simple: generate a wave at one end, measure how high it is and how long it is, and use that to inform the design of whatever will eventually be put in the sea.</p>
+
+    <div class="story-box" data-label="From Wave to Structure">
+      <p>The sequence is always the same. First run a waves-only test and measure what the sea is doing — wave height, and the velocity of the water, which takes different instruments. Then put the structure in: a section of coastal defence, say, or the hull of a vessel.</p>
+      <p>Now the question changes. For a fixed structure, how hard are the waves pushing on it? For a floating one, <span class="highlight">how far does it move — and does it capsize?</span> The design is then adjusted until it doesn’t pay out, or tip over, or move too much.</p>
+    </div>
+  </section>
+
+  <section class="section" id="waves">
+    <div class="section-tag">Stop 2 · The Wave Flume</div>
+    <h2>Sine Waves, Swell<br>and <em>the Ocean’s Mix</em></h2>
+
+    <p>Maya, who runs the wave makers, is asked to generate a wave. The first is what the guide calls a short wave — the simplest possible representation: regular, evenly spaced, each wave the same as the last. No randomness. “If I take you back to your high-school years,” he says, this is a sine wave. (The transcript renders it as something rather more alarming.)</p>
+
+    <p>It is also, he explains, what you would see if you were very close to the storm that is generating the sea. Maya then lowers the frequency and lengthens the wave, and raises its amplitude. The result is a different animal: a long, slow wave, the kind that arrives when the wind blew far away.</p>
+
+    <blockquote>
+      <p>“In a real ocean, we have a mix of all of these.”</p>
+      <cite>— Dr Karmpadakis</cite>
+    </blockquote>
+
+    <p>That sentence is the reason for the whole facility. A tidy sine wave is a teaching tool; the sea is a superposition of short, steep local waves and long swell from storms hundreds of miles away. The more of that mix the lab can reproduce, the more useful its measurements become.</p>
+  </section>
+
+  <section class="section" id="buoys">
+    <div class="section-tag">Stop 2 · The Wave Flume</div>
+    <h2>Buoys, Snake Paddles<br>and <em>a Crossing Sea</em></h2>
+
+    <div class="location">Wave flume and instruments</div>
+
+    <p>You cannot bolt a beam of sensors across the open ocean, so at sea the measuring is done by wave buoys. The lab is developing a next-generation buoy — a weighted ball packed with electronics that record its accelerations and convert them into wave information. For the audience, a phone on the demonstration table shows the buoy’s position being transmitted in real time.</p>
+
+    <p>Real-world buoys feed forecasting. A properly measured sea state goes into weather models, and from there to agencies and councils who need to know that a big storm is coming and flooding may follow — so that they can close a promenade, or trigger an early-warning system.</p>
+
+    <p>Back at the wave makers, there is a subtler trick on show. Each paddle does a prescribed motion, but it is also doing something smart on the back side: it measures the wave that is coming back towards it, and adjusts its own signal so that reflections off the far end do not contaminate the test. The effect, the guide says, is a more realistic representation of open ocean. (This technique is generally called active absorption; that term is an editorial addition, not the guide’s.)</p>
+
+    <div class="story-box" data-label="The Paddles Learn to Slither">
+      <p>Because each paddle can be driven individually, the guide can ask Maya for something that a flat wall of water could never give. She raises the amplitude and the paddles begin to move in sequence, <span class="highlight-blue">like a snake</span> — and the waves they produce travel across the tank at an angle of fifteen degrees.</p>
+      <p>Angled, directional waves matter because real seas rarely arrive square on. A structure designed against head-on waves may behave differently when they come from the side.</p>
+    </div>
+  </section>
+
+  <section class="section" id="uses">
+    <div class="section-tag">Stop 3 · Applications</div>
+    <h2>What the Waves<br>Are <em>For</em></h2>
+
+    <p>Asked to summarise, the guide runs through the work. The measurements drive the design of coastal defences and offshore infrastructure: platforms and substations, oil-and-gas installations, floating structures and large vessels. A second strand uses the waves to move pollution: the lab can float plastic waste or an oil slick on the surface, watch where it goes, and pass that information to NGOs and agencies so that clean-up can be targeted rather than sprawling.</p>
+
+    <div class="story-box" data-label="When the GPS Goes">
+      <p>On the bench sits a twin-hulled boat — a catamaran — developed at the lab last year. It looks like a remote-control toy, but it is autonomous: it is put in the water, given a mission (go to point A, then B, then C) and carries it out.</p>
+      <p>The problem the team is working on is what happens when the satellite signal is denied. Everything in the ocean works with GPS, the guide notes, and if somebody is jamming it, <span class="highlight">the boat no longer knows where it is.</span> (The transcript’s word is “farming”; “jamming” is the evident reading.) So the researchers are building electronics that fuse several sensors to estimate position and speed without a fix.</p>
+      <p>It is harder than it sounds. A self-driving car that loses GPS can lean on a vast database of buildings and landmarks. At sea, wherever you are, you see the horizon — unless you are very near a structure or the shore, nothing tells you where you are.</p>
+    </div>
+
+    <p>The third strand turns to nature. Mangroves and other trees, and shellfish such as mussels, are being tested in the flumes as ways of protecting coasts. The method is the one the whole lab runs on: put them in the water, observe what they do, extrapolate to the field, and use the results to build analytical and numerical models that can predict the complicated phenomena for real coastlines.</p>
+  </section>
+
+  <section class="section" id="energy">
+    <div class="section-tag">Stop 3 · Questions from the Group</div>
+    <h2>Tsunami, Oscillating Columns<br>and <em>Tidal Farms</em></h2>
+
+    <p>The questions come from the group, and the guide answers them standing at the glass.</p>
+
+    <p><strong>Do you study tsunami?</strong> Yes, though not in this flume. Tsunami are generated by earthquakes or volcanic eruptions and are, in the guide’s description, extremely long waves: small in deep water, but growing in height as they approach the shore until they arrive as walls of water carrying a massive volume — displacing or destroying houses, carrying cars. Reproducing that needs different equipment: a wavemaker that works like a long, slow piston, pushing a very large mass of water, rather than the paddles seen here.</p>
+
+    <p>The lab has run experiments with arrays of blocks standing in for houses of different sizes, measuring the force a tsunami exerts on each, and has used the results to refine the design equations — with the 2004 Indian Ocean tsunami in Southeast Asia as the benchmark event. (The transcript names an experimental site in this passage, but the word is too garbled to identify; it is omitted.)</p>
+
+    <p><strong>Wave and tidal energy?</strong> A lot. One device they study is the oscillating water column: a chamber open to the sea in which the water level rises and falls with the waves, pushing air through a turbine. It is a two-way turbine, so it generates as the water rises and again as it recedes and the air is drawn back.</p>
+
+    <p>The next project to arrive in the lab is an array — a farm — of tidal turbines, and the task is to optimise their positions so that together they extract the most energy from a tidal flow. The guide also mentions another tidal technology, described as the most advanced of the renewable devices, but the name is not recoverable from the transcript and it is left out.</p>
+
+    <p class="karmpadakis-says">His own forecast: tidal turbines are, in his view, “the next big thing”, and wave-energy designers will probably converge on a single design within ten years. — Dr Karmpadakis (paraphrased; a forecast, not a fact)</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="basin">
+    <div class="section-tag">Stop 4 · Deepwater Wave Basin</div>
+    <h2>The Deepwater Basin and<br><em>the Robots with Eyes</em></h2>
+
+    <div class="location">Deepwater wave basin · Hydrodynamics Laboratory</div>
+
+    <p>The group moves on to the larger of the lab’s tanks. Imperial’s published description of the lab gives the dimensions of its big wave tank as 20 by 12 metres, with an adjustable seabed that allows depths of up to 1.5 metres, generating waves and currents to study their effects on both natural and built environments. That is the room the group now stands beside.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">20 × 12m</div>
+      <div class="key-fact-text">The size of the lab’s big wave tank, with a seabed adjustable to a depth of up to 1.5 metres. Imperial’s figures; the guide did not quote them on the tour.</div>
+    </div>
+
+    <p>Here the stars are robots, and the presenters change. Colleagues from the Department of Electrical and Electronic Engineering (so the transcript has it; their names are not recoverable) demonstrate an underwater inspection robot. First problem: the robot has to know where it is and what is around it. Their solution for the shallow tank is a stereo camera, which works like a pair of eyes — two images at the same instant, an algorithm that compares them and converts the difference into a three-dimensional point cloud of the surroundings.</p>
+
+    <p>The aim is practical. A robot that can build its own map can be sent to inspect an offshore wind turbine’s foundations, so that human divers do not have to be sent into dangerous water to do it.</p>
+
+    <div class="story-box" data-label="The Limits of Sight">
+      <p>The weakness of the stereo camera is that it cannot see far in deep or murky water, where the two images carry less usable detail. <span class="highlight-green">So the team is also integrating sonar</span>, to scan and understand the surroundings at a distance.</p>
+      <p>The presenters’ longer-term plan is to add AI control models, so that a robot can hold its position and carry out its task even in extreme conditions — a very strong current, say — rather than only in a calm tank.</p>
+    </div>
+  </section>
+
+  <section class="section" id="turtle">
+    <div class="section-tag">Stop 5 · Dr Luke Muscutt</div>
+    <h2>A Turtle, a Wooden Shell<br>and <em>a Plesiosaur</em></h2>
+
+    <div class="location">Deepwater wave basin · Robotic flippers</div>
+
+    <p>The next presenter is Dr Luke Muscutt, introducing the latest version of the college’s turtle robot, and — with considerable good humour — the thinking behind it. (The transcript turns his surname into something unrecognisable; it is corrected throughout against Imperial’s own published account of his work.)</p>
+
+    <p>His interest, he explains, is the way certain animals swim with four flippers. He studied it for his PhD, and Imperial’s published account confirms where: Southampton, completed in 2017, rather than the country the transcript gives. The animals in question are plesiosaurs, the marine reptiles of the Mesozoic, which — his research found — used a tandem flipper system in which all four flippers contribute to propulsion. Every living flippered animal uses only the front pair for thrust and the back pair for steering.</p>
+
+    <p class="muscutt-says">He moved to Imperial, he says, to work on vibrations in mechanical engineering, “because funnily enough, there’s more money in jet engines than there is in plesiosaurs.” — Dr Muscutt</p>
+
+    <p>That, plus a request from teaching staff for student projects, led to turtles. A turtle swims much as a plesiosaur does with its front flippers, and — crucially — turtles still exist. A robot turtle can therefore be tested against a real one. That is the logic of the machine hanging in the water in front of the group: held by rods because it is heavier than water, and never designed for the sea. It is a laboratory tool, wired to a force-measurement system so that thrust and efficiency can be recorded.</p>
+
+    <blockquote>
+      <p>“If we can show that we can measure the same thrust and efficiency with this robot as a real sea turtle, then I have more confidence in the robotic plesiosaur.”</p>
+      <cite>— Dr Muscutt, tidied from the transcript</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="Leonardo">
+      <p>Behind the group stands the more ambitious machine: a turtle robot with a big wooden shell, named Leonardo, built by a different cohort of third-year students as their bachelor dissertation. It is remotely controlled through an umbilical, designed to dive to ten metres, with a head and neck driven by servos, a mouth for manipulating objects and flexible flippers with a rod inside. It is, he says, around 95 per cent complete, and has not yet been in the water.</p>
+      <p>Its next chapter belongs to Imperial’s student autonomous-underwater-vehicle society: test it in the tank, then take it out to the river and the sea. The research question is blunt: <span class="highlight">can flippers actually propel an underwater vehicle?</span> Nobody, he says, has really tried.</p>
+    </div>
+
+    <blockquote>
+      <p>“Anytime you’ve got a propeller, potentially you can replace it with a flipper … instead of a blender, which is basically what a propeller is.”</p>
+      <cite>— Dr Muscutt</cite>
+    </blockquote>
+
+    <p>His case is ecological as well as mechanical: propellers injure animals, make underwater noise and stir up sediment, and a flipper might do the job more efficiently and more gently. It is, he stresses, very early stages.</p>
+
+    <div class="story-box" data-label="Hallowed Ground">
+      <p>Then comes the aside the group has been waiting for. They are standing, Dr Muscutt tells them, where Sir David Attenborough has stood. The BBC documentary <em>Attenborough and the Giant Sea Monster</em> followed the excavation of a pliosaur skull from the Dorset coast, and included a scene filmed in this very basin, in which Sir David steered a robotic plesiosaur through the water.</p>
+      <p>Imperial’s published account gives the numbers behind the story. When the BBC got in touch, Muscutt’s robot — named Flip — still existed only as line drawings in a sketchbook. He had estimated a working prototype would take two years; it took <span class="highlight-blue">four months</span> of design and manufacturing to get to filming. The programme went out on BBC One on New Year’s Day 2024.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">4 months</div>
+      <div class="key-fact-text">From sketchbook to swimming plesiosaur — against Dr Muscutt’s original estimate of two years — once the BBC Natural History Unit came calling. (From Imperial’s published account.)</div>
+    </div>
+
+    <div class="practical">
+      <strong>Watch and follow:</strong> <em>Attenborough and the Giant Sea Monster</em> was shown on BBC One on 1 January 2024; the guide says it is on BBC iPlayer. Dr Muscutt’s own website is muscutt.org. Imperial’s write-up of the robot’s story is at imperial.ac.uk/Stories/attenborough-sea-monster/.
+    </div>
+  </section>
+
+  <section class="section" id="storm">
+    <div class="section-tag">Stop 6 · The Finale</div>
+    <h2>A Hundred-Year Storm,<br><em>Made to Order</em></h2>
+
+    <div class="location">Deepwater wave basin · Robot in waves</div>
+
+    <p>Dr Karmpadakis returns for the last demonstration, and he warns the group that the lab is going to push the envelope a little: a robot is to be tested in real waves in the big basin, a thing, he admits, that they have not tried with this particular machine before.</p>
+
+    <p>The escalation is gradual. First, ordinary waves, with the robot working to hold its position. Then waves arriving at thirty degrees, travelling towards the group, at higher resolution than anything seen in the flume. Then the lab’s hardest test of all.</p>
+
+    <div class="story-box" data-label="Two Storms at Once">
+      <p>The guide calls it a bimodal sea: <span class="highlight">two storms from two different directions</span> crossing each other. The tank settles into a lattice of crossing wave patterns. From underneath — the viewing windows let you see the robot from below — it can be seen working continuously to keep its place.</p>
+      <p>The last setting is a simulation of a hundred-year storm in the North Sea. (The transcript’s wording around the wave height is garbled and no figure is given here.) In this one the sea is random: waves in all directions, a large one followed by a small one, a short one overtaken by a long one.</p>
+    </div>
+
+    <blockquote>
+      <p>“A lot of the work we do, in terms of the extremes, works both [on] simulations of seas like this, and then statistical models that give us the extremes.”</p>
+      <cite>— Dr Karmpadakis, tidied from the transcript</cite>
+    </blockquote>
+
+    <p>The point is the pairing. A tank can show what a particular storm does to a particular robot or structure. Statistical models then say how often storms of that size actually occur. Between the two, an engineer can design for the hundred-year event without waiting a hundred years.</p>
+
+    <p>The guide thanks the presenters, and the group heads back towards the main hall — to a bar, grabbing a drink and soaking in the music, as Imperial’s programme promised.</p>
+  </section>
+
+</main>
+
+<footer>
+  <span>IMPERIAL COLLEGE LONDON</span> · Imperial Lates: Robots · 29 October 2026 · South Kensington Campus, SW7 2AZ<br><br>
+  Transcript machine-generated from live audio and heavily garbled; it has been corrected and condensed. Corrections made against Imperial’s published pages: the guide’s surname is Karmpadakis (not “Skarpadakis”) and the robot-turtle presenter’s is Muscutt (not “Luke Basker”); “pesiosaurs” are plesiosaurs; the presenter’s PhD was at Southampton, not in the country the transcript gives; the “wave facing” is a wave flume; the “suicide” is a sine wave. Readings that are best guesses: “jamming” for “farming” GPS; mussels and mangroves for the nature-based defences. Omitted as unrecoverable: the name of one tidal-energy device, the name of one tsunami-experiment site, the wave-height figure for the North Sea storm, the names of the electrical-engineering presenters, and Maya’s surname and job title (she is named only as the person running the wave makers). The guide’s title (the transcript says associate professor; Imperial styles him “Dr”) is unresolved. The tour’s duration is not recorded. Figures for the lab’s floor area and tank size, and the four-month timeline for Flip, come from Imperial’s published accounts, not from the tour. All errors in attribution are transcription errors.<br>
+  Guide: Dr Ioannis Karmpadakis, with Dr Luke Muscutt · Hydrodynamics Laboratory, Imperial College London
+</footer>
+
+</body>
+</html>

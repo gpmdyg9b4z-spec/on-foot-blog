@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Reading the Wood Without Leaves — Winter Trees in Sydenham Hill Wood · On Foot</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  header { background: var(--ink); color: var(--paper); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 0.035; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold); line-height: 1; }
+  .header-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
+  .header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
+  .toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.5rem; } .toc li { margin: 0.35rem 0; }
+  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
+  .toc a:hover { color: var(--crimson); }
+  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
+  .section:last-child { border-bottom: none; }
+  .section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+  .section h2 em { font-style: italic; color: var(--crimson); }
+  p { margin-bottom: 1.1rem; color: #241c14; }
+  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
+  .highlight-blue { background: var(--highlight-blue); }
+  .highlight-green { background: var(--highlight-green); }
+  blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140,31,40,0.05); }
+  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
+  blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+  .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
+  .story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .story-box p:last-child { margin-bottom: 0; }
+  .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
+  .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
+  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
+  .guide-says, .sam-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
+  .location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
+  .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
+  .practical strong { color: var(--gold); font-weight: 500; }
+  .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
+  footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; line-height: 1.9; }
+  footer span { color: var(--gold); }
+  footer .corrections { text-align: left; max-width: 700px; margin: 1.5rem auto 0; letter-spacing: 0.05em; font-size: 0.62rem; line-height: 1.8; color: #7d7568; }
+  footer .corrections li { margin: 0.5rem 0 0.5rem 1.2rem; }
+  @media (max-width: 600px) { header { padding: 3rem 1.5rem 2.5rem; } main { padding: 1.5rem 1.2rem 4rem; } .key-fact { flex-direction: column; gap: 0.5rem; } .header-meta { gap: 1.5rem; } }
+  .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
+  .home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .home-link:hover { color: var(--paper); }
+  .home-link::before { content: '←'; font-size: 0.9rem; }
+  .home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+
+  html { color-scheme: light; background: var(--paper); }
+</style>
+</head>
+<body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span></nav>
+
+<header>
+  <div class="header-label">Walking Tour Transcript — Sydenham Hill Wood, SE26</div>
+  <h1>Reading the Wood <em>Without Leaves</em></h1>
+  <div class="header-sub">A Winter Tree Walk · Sam, Senior Nature Recovery Officer · London Wildlife Trust</div>
+  <div class="header-meta">
+    <span>ROUTE: Crescent Wood Road gate → woodland rides → old railway trackbed → gate</span>
+    <span>DURATION: c. 1 hr 20 min listed · first 45 min not recorded</span>
+    <span>GUIDE: Sam</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#intro">The wood, and the missing opening</a></li>
+    <li><a href="#blackthorn">Blackthorn: the one that flowers before it leafs</a></li>
+    <li><a href="#birch">White bark and early catkins</a></li>
+    <li><a href="#gaps">Two dead oaks and a gap in the canopy</a></li>
+    <li><a href="#deadwood">Standing deadwood, coppice and dead hedges</a></li>
+    <li><a href="#veteran">The boundary tree and the myth of girth</a></li>
+    <li><a href="#cherry">Wild cherry and its ornamental cousin</a></li>
+    <li><a href="#ash">Ash: black buds and an open canopy</a></li>
+    <li><a href="#railway">The old railway</a></li>
+    <li><a href="#tally">What we saw, what we didn’t, and how to keep learning</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section class="section" id="intro">
+    <div class="section-tag">Introduction</div>
+    <h2>The Wood, and the <em>Missing Opening</em></h2>
+
+    <div class="location">Crescent Wood Road entrance · Sydenham Hill Wood · Sunday 22 November 2026</div>
+
+    <p>Winter is the hard mode of tree identification. There are no leaves to hold up against a book, no blossom, no fruit, just bark, twig, bud and the overall habit of the tree. London Wildlife Trust’s winter tree walk in Sydenham Hill Wood is built around exactly that problem: how to name the trees when they have given you almost nothing to go on.</p>
+
+    <p>The walk was led by Sam, the Trust’s Senior Nature Recovery Officer, and set off from the Crescent Wood Road entrance on the afternoon of Sunday 22 November. <span class="highlight">The first 45 minutes of the recording were lost</span>, so this post begins mid-walk, with Sam weighing up a twig and settling on blackthorn. The event listing promises oak, ash and hazel without their leaves, and their part in London’s development; whatever Sam said about them in the opening stretch is not recorded here, and nothing has been invented to fill the gap.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">10 ha</div>
+      <div class="key-fact-text">The approximate size of Sydenham Hill Wood. With the adjoining Dulwich Wood it forms the largest surviving fragment of the ancient Great North Wood, the oak woodland that once climbed the Norwood Ridge south of London. London Wildlife Trust has managed Sydenham Hill Wood since 1982.</div>
+    </div>
+
+    <p>The recorded walk is conversational and rooted in the ground underfoot. Sam talks as much about management as about identification: why a dead oak is left standing, why brash is piled into low hedges, and why a wood on heavy clay struggles when a great many people come to enjoy it. Fittingly, the light was going as the group came back along the old railway, and the last few identifications were made, as Sam put it, more or less in the dark.</p>
+
+    <div class="practical">
+      <strong>The walk:</strong> Winter Tree Walk, London Wildlife Trust, listed 3:00–4:30 pm, meeting at the Crescent Wood Road entrance (opposite Countisbury House), SE26 6LS. The event was supported by the National Lottery Heritage Fund, The Dulwich Estate and Southwark Council, among others, as part of the project to unite management of Sydenham Hill Wood and Dulwich Wood under the Trust.
+    </div>
+  </section>
+
+  <section class="section" id="blackthorn">
+    <div class="section-tag">Stop 1 · Blackthorn</div>
+    <h2>The One That Flowers <em>Before It Leafs</em></h2>
+
+    <div class="location">Wood edge · Prunus spinosa</div>
+
+    <p>The recording opens as Sam makes a cautious call. The twig in hand is missing the thorns you would expect, but young blackthorn often needs to mature before it grows them, so blackthorn it is. It belongs with the cherries and plums, and its fruit, the sloe, is the one most people know: the berry you make sloe gin from.</p>
+
+    <p>Sam’s best tip is the comparison with hawthorn, which has similar white blossom and a similar small-tree habit, and likes the same lighter ground and wood edges. The difference is the order of events. Hawthorn blossoms in spring <em>after</em> its leaves have unfurled; blackthorn flowers first and leafs afterwards, so a blackthorn in flower is a spectacular cloud of white on bare wood.</p>
+
+    <div class="story-box" data-label="Blackthorn by Twig and Bud">
+      <p>Out of flower, Sam leaned on the twig itself. The current year’s growth shows a mottled green-and-brown skin that fades as the wood ages. The buds are small, alternate, sharply pointed and tinged slightly purple. The leaf, when it comes, is narrow and oval, nothing like hawthorn’s lobed leaf. And the thorns do the same job on both: <span class="highlight-green">protection against browsing animals.</span></p>
+      <p>Sloes, Sam added, are another good clue, and they hang on after the leaves have gone.</p>
+    </div>
+
+    <p class="sam-says">“It’s just spectacular in the spring. You’ll see it.”</p>
+  </section>
+
+  <section class="section" id="birch">
+    <div class="section-tag">Stop 2 · Birch</div>
+    <h2>White Bark and <em>Early Catkins</em></h2>
+
+    <div class="location">Woodland ride · Betula</div>
+
+    <p>With birch, Sam said, the bark does the work: white, papery, and obvious even to a beginner. There is a second clue in winter. The catkins, the small green dangling tassels, are already forming, and Sam called them another good indicator when everything else is bare.</p>
+
+    <p>A larger silver birch turns up again later on the old railway, where it becomes a talking point of its own (see the last stop).</p>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="gaps">
+    <div class="section-tag">Stop 3 · A Clearing</div>
+    <h2>Two Dead Oaks and a <em>Gap in the Canopy</em></h2>
+
+    <div class="location">Light gap · Oak regeneration area</div>
+
+    <p>Two oaks have died in this part of the wood within the last five years or so, and the gap they left is doing precisely what a gap should. Light now reaches the ground, and hazel has appeared in it, a fresh arrival since the oaks went. Told apart from the seedlings around it, the hazel’s leaves are much bigger.</p>
+
+    <p>The Trust’s policy here is to promote as much oak regeneration as possible, because of what oak is worth to wildlife. A gap like this one, with young trees pushing up into the light, is the whole point.</p>
+
+    <blockquote>
+      <p>We’re trying to promote as much oak regeneration as we can, because of the value of oaks to wildlife.</p>
+      <cite>— SAM, ON THE GAP LEFT BY THE TWO OAKS</cite>
+    </blockquote>
+  </section>
+
+  <section class="section" id="deadwood">
+    <div class="section-tag">Stop 4 · Deadwood &amp; Coppice</div>
+    <h2>Standing Deadwood, Coppice and <em>Dead Hedges</em></h2>
+
+    <div class="location">Coppice coupes · Sydenham Hill Wood</div>
+
+    <p>Dead trees, Sam stressed, are left standing wherever they can be, unless one is at risk of falling on a path. They are among the most valuable habitats in the wood. Woodpeckers and other cavity-nesting birds use them, and so, Sam said, do bats (the recording suggests pipistrelles). Beetles and other insects live in and on the dead wood, and the fungi that break it down complete the chain.</p>
+
+    <blockquote>
+      <p>It’s really, really important and valuable habitat. It’s very different from a living tree.</p>
+      <cite>— SAM, ON STANDING DEAD TREES</cite>
+    </blockquote>
+
+    <div class="story-box" data-label="Why There Are Dead Hedges">
+      <p>The Trust coppices in winter, and the cut material is built into <span class="highlight">dead hedges</span>: low, stacked barriers of brash. They exist because of the visitors, which Sam was careful to say are wanted. On heavy clay soil, the damage that comes with many feet is trampling. Ground that is walked on repeatedly compacts, and the ground-layer plants vanish with it, and with them the next generation of trees.</p>
+      <p>A dead hedge keeps people off the regrowth, and it also works as habitat in its own right. The same coppiced material gives hazel and hornbeam a chance to regrow from the stool, and Sam pointed out that individual stools show a good deal of variation.</p>
+    </div>
+  </section>
+
+  <section class="section" id="veteran">
+    <div class="section-tag">Stop 5 · A Boundary Tree</div>
+    <h2>The Boundary Tree and the <em>Myth of Girth</em></h2>
+
+    <div class="location">Open-grown tree · Possible coupe boundary</div>
+
+    <p>“Ancient woodland” does not mean the trees are ancient. Sam was clear on this: a wood can be centuries old without a single tree in it being 500 years old, because for most of that time its trees were cut down. Every so often, though, a much older tree turns up, and the likeliest reason is that someone kept it deliberately. One such tree might mark the boundary of a coppice compartment, or of ownership, when the wood was divided up.</p>
+
+    <p>This one gave itself away by its shape. Its crown spreads wide, which is the habit of a tree grown in the open. That means the ground around it was once much more open than it is now, and Sam confirmed it from old aerial photographs showing the area with far fewer trees.</p>
+
+    <div class="key-fact">
+      <div class="key-fact-number">800+</div>
+      <div class="key-fact-text">Years a long-lived tree of this kind can reach, by Sam’s account (“800, 900, maybe even more”). The species is garbled in the recording; oak is the likeliest reading. This particular tree Sam put at a few hundred years old, “relatively young”.</div>
+    </div>
+
+    <blockquote>
+      <p>A tree can sit there in the wood and pretty much not grow. Then its neighbour comes down, and it shoots up.</p>
+      <cite>— SAM, ON WHY GIRTH IS A POOR GUIDE TO AGE</cite>
+    </blockquote>
+
+    <p>That is the catch with the usual trick of measuring the girth and estimating from it. Size is not a reliable indication of age. Sam’s sound alternatives were samples of the wood or, once a tree is down, counting the rings across the cut face.</p>
+
+    <div class="story-box" data-label="Hollow, and Still Alive">
+      <p>The older a tree gets, the more it is worth to wildlife, which is why such trees are called <em>veterans</em>. Many are completely hollow, and still alive. The explanation is that the living part of a tree is on the outside. The cambium and the layers beside it carry the water and nutrients up and down the trunk. The heartwood in the middle, Sam said, is dead, does nothing, and can rot away for a very long time without harming the tree.</p>
+      <p>A hollow veteran therefore offers roosts and holes for birds and bats while it carries on growing.</p>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section" id="cherry">
+    <div class="section-tag">Stop 6 · Cherry</div>
+    <h2>Wild Cherry and Its <em>Ornamental Cousin</em></h2>
+
+    <div class="location">Woodland ride · Prunus avium and Prunus serrula</div>
+
+    <p>Cherry is a very good tree to learn in winter, because its bark gives it away. Sam pointed to the pronounced horizontal banding on the trunk, the feature that stops cherry being muddled with birch, and to the buds, which are clustered and darker, with a reddish tinge. Wild cherry also self-seeds readily in the more open areas of the wood.</p>
+
+    <p>When the leaves are on, Sam said, there is another check: look for small red spots on the leaf. The edge is serrated, and the leaf is not perfectly symmetrical, so it can be confused with elm and with hazel.</p>
+
+    <div class="story-box" data-label="The Copper-Barked Intruder">
+      <p>Nearby stood a cherry with a very different trunk: smooth, glossy and coppery. This, Sam explained, is the Tibetan cherry, an ornamental planted for exactly that bark, which the wild cherry does not have. It is one of the exotic trees dotted among the natives. The leaves are thicker too.</p>
+      <p>Cherries are a huge group in gardens. Sam had read of around 500 different ornamental kinds, so nobody can know them all. The ornamentals do bear fruit, but you would be very lucky to find a cherry on one, and it is nothing like a commercial cherry.</p>
+    </div>
+  </section>
+
+  <section class="section" id="ash">
+    <div class="section-tag">Stop 7 · Ash</div>
+    <h2>Black Buds and an <em>Open Canopy</em></h2>
+
+    <div class="location">Ash stand · Fraxinus excelsior</div>
+
+    <p>Ash was the easiest to identify of the afternoon, once you had the trick. The buds are opposite one another along the twig, with a bud at the tip, and they are very black. Sam repeated the point: black scales, opposite buds. Those buds are the quickest way to separate ash from the other trees it can be mistaken for. Ash also seeds itself prolifically, so young ones are everywhere.</p>
+
+    <div class="story-box" data-label="Why Ash Woods Are Full of Flowers">
+      <p>Ash casts light shade, and Sam drew the consequence out. Under an ash canopy more light reaches the floor, so woods with a lot of ash tend to have a rich field layer beneath. Beech is the opposite case: its canopy is very heavy shade, little grows underneath, and the soil can bake into hard clay. Where the ground is bare, rain splashes the surface, and nothing builds up to protect it.</p>
+      <p>Where a tree’s leaves do accumulate and rot, they feed the soil again, and seeds can germinate in that litter. The well-developed understorey you can find under ash, and its absence under dense shade, comes down to that.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">2012</div>
+      <div class="key-fact-text">The year ash dieback, caused by the fungus <em>Hymenoscyphus fraxineus</em>, was first confirmed in the UK, according to Forest Research and the Wildlife Trusts. Sam raised the disease on the walk as a fungal killer of ash; the transcript’s dates are unclear (see the footnote).</div>
+    </div>
+
+    <p>It is a sobering note in a stand that is otherwise vigorous. Sam mentioned the mortality across the UK and described it as another fungal disease, in the same breath as an earlier one that has already reshaped British woods.</p>
+  </section>
+
+  <section class="section" id="railway">
+    <div class="section-tag">Stop 8 · The Old Railway</div>
+    <h2>The Trackbed, a <em>Birch</em> and the Palace That Burned</h2>
+
+    <div class="location">Crystal Palace High Level line · Trackbed, Sydenham Hill Wood</div>
+
+    <p>The walk came back along the old railway, which cuts through the wood. Here Sam showed the group a large silver birch, and the tree supplied its own story. Birch is short-lived. Sam gave its lifespan as about 100 years at most, and the railway closed in 1954. A birch of this size beside the line, on that reading, is likely to have seeded after the trains stopped, so the tree is roughly as old as the wood’s modern wildness.</p>
+
+    <p class="sam-says">Sam also pointed out a clematis climbing through a tree here, its stems hard and woody now in winter.</p>
+
+    <div class="story-box" data-label="A Station in the Countryside">
+      <p>The line led to Crystal Palace, once a huge attraction that stood, as one of the group put it, in the middle of the countryside. Sam did not dwell on the details, so these are added from the sources rather than from the recording.</p>
+      <p>The Crystal Palace and South London Junction Railway, known as the High Level line, opened in 1865 and closed to passengers on 20 September 1954, after the Palace burned down in 1936. The wood grew over the trackbed. Part of the line is now a nature reserve, running from the Cox’s Walk footbridge to the northern end of the Crescent Wood tunnel, which is now a bat roost.</p>
+    </div>
+
+    <div class="key-fact">
+      <div class="key-fact-number">1954</div>
+      <div class="key-fact-text">The year the High Level line closed (20 September). The track was lifted in 1956. The group climbed back up the steps to the meeting point as the light went.</div>
+    </div>
+  </section>
+
+  <section class="section" id="tally">
+    <div class="section-tag">Conclusion</div>
+    <h2>What We Saw, What We Didn’t, and <em>How to Keep Learning</em></h2>
+
+    <div class="location">Crescent Wood Road gate · End of walk</div>
+
+    <p>Sam closed with a stock-take. Of the trees with clustered buds, the group had met only oak and cherry. There was hazel, picked out again towards the end. And there were plenty of species they had missed: field maple and any of the willows, and some of the stranger non-natives in the wood, which include a black mulberry and a monkey puzzle tree, exotic species tucked among the natives.</p>
+
+    <p>For anyone who wants to carry on, Sam’s advice was practical. Get a book, or use the free app iNaturalist, where you photograph a leaf or a bird and the app offers an AI suggestion. Other users then confirm or correct the identification, and once enough of them agree the record becomes research grade, so it can be used for science. The app, Sam added, is nicely laid out and has good pictures of British natives.</p>
+
+    <blockquote>
+      <p>Honestly, it’s just a matter of looking regularly. Keep asking yourself what that is, and eventually, with repetition, you’ll just know.</p>
+      <cite>— SAM, ON LEARNING TREES</cite>
+    </blockquote>
+
+    <div class="practical">
+      <strong>Afterwards:</strong> London Wildlife Trust emails attendees for feedback, which, Sam said, helps the Trust report to its funders. Sydenham Hill Wood is open at all times. It can be reached from Sydenham Hill station, and the 363 bus from Crystal Palace stops at Crescent Wood Road.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>LONDON WILDLIFE TRUST</span> · Sydenham Hill Wood &amp; Cox’s Walk · Winter Tree Walk, 22 November 2026<br><br>
+  Transcripts lightly edited for clarity. The recording is rough, and its first 45 minutes were lost. All errors in attribution are transcription errors.<br>
+  Guide: Sam, Senior Nature Recovery Officer, London Wildlife Trust (surname not recorded)
+  <ol class="corrections">
+    <li><strong>The lost opening.</strong> The first 45 minutes of the walk were not recorded. The post begins mid-walk; nothing about the oak, hazel or ash introductions, or the wood’s role in London’s development, has been reconstructed from the event listing.</li>
+    <li><strong>Blackthorn.</strong> The first words of the transcript are garbled (“platforms”). The identification as blackthorn rests on the sloes, spines and blossom-before-leaf points that follow. The remark about the twig lacking thorns until it matures is a best reading of a garbled sentence.</li>
+    <li><strong>Blackthorn’s leaf.</strong> Sam contrasted it with hawthorn’s lobed leaf. In the recording this comes out as “smooth edges”; blackthorn’s oval leaf is in fact finely toothed, so the contrast is with hawthorn’s lobing, not a claim that the edge is entire.</li>
+    <li><strong>The boundary tree.</strong> The species is garbled in the recording. Oak is inferred from the 800–900-year lifespan quoted.</li>
+    <li><strong>The cherry remarks.</strong> Placement of the red-spots-on-the-leaf point in the cherry section is my reading of a stretch of the recording that moves quickly between trees.</li>
+    <li><strong>Ash dieback.</strong> Sam’s date for the mortality is garbled (it sounds like “the ’80s”, which fits an earlier disease such as Dutch elm disease better than ash dieback). The 2012 date is from Forest Research and the Wildlife Trusts, not from the guide.</li>
+    <li><strong>The birch.</strong> The recording of the lifespan and the 1954 closure is broken. The inference that the birch seeded after the line closed is mine. Sam’s point may have been slightly different.</li>
+    <li><strong>The railway details.</strong> The line’s dates, the 1936 fire and the tunnel’s bat roost are added from published sources, as marked in the text.</li>
+    <li><strong>Left out as unreliable.</strong> A passage on a small-leaved opposite-budded shrub (possibly elder, given the jelly fungus mentioned alongside), a remark about hornbeam beside hazel, and several exchanges between members of the group were too garbled to reconstruct, and have been omitted rather than guessed.</li>
+  </ol>
+</footer>
+
+</body>
+</html>

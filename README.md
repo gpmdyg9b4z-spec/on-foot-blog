@@ -4,12 +4,39 @@ A static blog generated from walking tour transcripts via GitHub Actions + Claud
 
 ## How it works
 
-1. Drop a `.txt` transcript into `_transcripts/`
-2. Push to `main`
-3. GitHub Action fires, sends the transcript to Claude
-4. Claude generates a formatted HTML post in `_posts/`
-5. `index.html` is regenerated automatically
-6. Changes are committed back to the repo
+The homepage (`index.html`) and the "More walks" links at the foot of each post are **generated** from the posts by `.github/scripts/build_site.py`. Don't edit `index.html` by hand; change `.github/templates/index.html` instead.
+
+Every post carries a small data block in its `<head>` that drives its homepage card, the filters and the related-walk links:
+
+```html
+<script type="application/json" id="walk-meta">
+{
+ "date": "2026-08-01",
+ "place": "uk/sussex",
+ "location_label": "Hastings Old Town · East Sussex",
+ "title_html": "Nets, Tar &amp; the <em>Ghost of Dunkirk</em>",
+ "subtitle": "The Stade Historic Fishing Quarter Walk · Guide: Jan · Old Hastings Preservation Society",
+ "excerpt": "Two or three sentences for the homepage card and link previews.",
+ "themes": ["water", "industry", "war"],
+ "series": [],
+ "search": "lowercase keywords places people organisations"
+}
+</script>
+```
+
+- `place`: `london/central`, `london/n`, `london/nw`, `london/e`, `london/se`, `london/sw`, `london/w`, `uk/<county>` or `abroad/<country>`.
+- `themes` (1–3): `architecture`, `regeneration`, `industry`, `water`, `nature`, `faith`, `migration`, `war`, `ancient`, `medieval`, `science`, `arts`, `empire`, `activism`, `food`.
+- `series`: `open-house`, `lfa`, `open-city`, `free-tours`, or empty.
+
+Labels for these codes live in `.github/scripts/onfoot.py`; a new code works straight away and can be given a nicer label there.
+
+### Two ways to add a walk
+
+**Upload a finished post** to `_posts/` (include the data block above). On push to `main`, the Action rebuilds the homepage and walk links and commits the result. A post without a data block still appears, at the bottom, with a warning in the Action log.
+
+**Or push a transcript** to `_transcripts/<slug>.txt`. The Action sends it to Claude, which writes the post (using the newest post as its template), the data block, and a metadata sidecar in `_data/<slug>.json` for Getty captioning; then it rebuilds the site. To regenerate a post, run the workflow manually from the **Actions** tab with its slug.
+
+To build locally: `python .github/scripts/build_site.py` from the repo root.
 
 ## Setup
 
@@ -44,16 +71,37 @@ The Action infers the title, guide name, location, date, and route from the tran
 
 ```
 _transcripts/     ← drop .txt transcripts here
-_posts/           ← generated HTML posts (committed by Action)
-index.html        ← auto-regenerated blog index
-about.html        ← static about page (edit manually)
+_posts/           ← posts (hand-uploaded or written by the Action)
+_data/            ← Getty metadata sidecars written by the Action
+assets/post.css   ← shared post styles; a post's own <style> holds only overrides
+images/           ← web-sized photos for posts (see "Photographs" below)
+index.html        ← homepage (generated — edit .github/templates/index.html)
+about.html        ← about page (edit manually)
 .github/
   workflows/
     generate-post.yml   ← the Action
   scripts/
-    generate_post.py    ← calls Claude API, writes post HTML
-    update_index.py     ← rebuilds index.html from _posts/
+    generate_post.py    ← calls the Claude API, writes post HTML + sidecar
+    build_site.py       ← builds index.html and the "More walks" links from the posts
+    onfoot.py           ← shared helpers and the theme/place/series vocabularies
+  templates/
+    index.html          ← homepage template
 ```
+
+## Photographs
+
+Posts can carry photos styled by `assets/post.css`. Put a web-sized copy (about 1600px on the long edge) in `images/<slug>/` and link it to its Getty Images page:
+
+```html
+<figure class="photo">
+  <img src="../images/<slug>/<file>.jpg" alt="Describe the picture" loading="lazy" width="1600" height="1067">
+  <figcaption>Caption text.
+    <a class="photo-licence" href="https://www.gettyimages.co.uk/detail/news-photo/…">Licence on Getty Images</a>
+  </figcaption>
+</figure>
+```
+
+Use `class="photo wide"` to let an image run wider than the text column.
 
 ## Transcript tips
 

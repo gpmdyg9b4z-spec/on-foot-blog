@@ -1,232 +1,188 @@
 #!/usr/bin/env python3
 """
-Generate a formatted HTML blog post from a walking tour transcript,
-plus a JSON sidecar for use by the Getty metadata tool.
-Called by GitHub Actions after a new .txt is pushed to _transcripts/.
+Generate a blog post from a walking tour transcript.
+
+Writes:
+  _posts/<slug>.html   the post, using the shared stylesheet assets/post.css
+  _data/<slug>.json    metadata sidecar (Getty captioning/keywording context)
+
+The post gets a walk-meta block (date, place, themes, series, card text) that
+build_site.py uses for the homepage, filters and "More walks" links.
+
+Environment: ANTHROPIC_API_KEY, TRANSCRIPT_PATH, SLUG.
 """
 
-import os
-import sys
 import json
+import os
 import re
+import sys
+from datetime import date
+
 import anthropic
+
+sys.path.insert(0, os.path.dirname(__file__))
+from onfoot import MODEL, PLACES, SERIES, THEMES, finalise_post, strip_fences, walk_meta_block  # noqa: E402
 
 TRANSCRIPT_PATH = os.environ["TRANSCRIPT_PATH"]
 SLUG = os.environ["SLUG"]
-OUTPUT_PATH = f"_posts/{SLUG}.html"
+POST_PATH = f"_posts/{SLUG}.html"
 JSON_PATH = f"_data/{SLUG}.json"
 
 os.makedirs("_data", exist_ok=True)
 
-with open(TRANSCRIPT_PATH, "r", encoding="utf-8") as f:
+with open(TRANSCRIPT_PATH, encoding="utf-8") as f:
     transcript = f.read()
+with open("index.html", encoding="utf-8") as f:
+    index_html = f.read()
 
-SYSTEM_PROMPT = """You are a writer producing blog posts for "On Foot — Walking Tour Notes", a personal heritage-style blog of guided walking tours.
-
-Your task: given a raw audio transcript of a guided walk, produce a single complete, self-contained HTML page in the exact style and structure described below.
-
-─── STYLE REFERENCE ───
-
-The blog aesthetic is sepia/heritage: dark ink header, aged parchment body, crimson and gold accents. Use this CSS variable palette:
-  --ink: #141218
-  --paper: #f4f0e6
-  --aged: #e6dcc8
-  --sepia: #7a6045
-  --crimson: #8c1f28
-  --gold: #a8832a
-  --ash: #635c52
-
-Fonts (load from Google Fonts):
-  EB Garamond (body text, italic variants)
-  Cormorant Garamond (headings, light weight)
-  Overpass Mono (labels, metadata, monospace elements)
-
-─── REQUIRED PAGE STRUCTURE ───
-
-1. <header> — dark background (#141218), contains:
-   - .header-label (Overpass Mono, gold, uppercase): "Walking Tour Transcript — [Location]"
-   - <h1> in Cormorant Garamond, light weight, with <em> for a subtitle phrase in gold
-   - .header-sub: guide name and tour operator if mentioned
-   - .header-meta: route summary | duration | guide name — inferred from transcript
-
-2. <nav class="toc"> — table of contents with anchor links to each section, gold left border
-
-3. <main> — max-width 760px, centred. Contains sections, each with:
-   - .section-tag (Overpass Mono, gold, uppercase): "Stop N · Place Name" or "Introduction" etc.
-   - <h2> in Cormorant Garamond with optional <em> phrase
-   - .location span where relevant: "◉ Place Name · Date/century"
-   - Prose paragraphs
-   - story-box divs (data-label attribute for the box title) for anecdotes and set pieces
-   - key-fact divs with a large number/date and explanatory text
-   - blockquote for direct guide quotes (with <cite> attribution)
-   - .iza-says / .guide-says class for inline guide voice (italic, sepia, left border)
-   - .highlight / .highlight-blue / .highlight-green spans for emphasis within prose
-   - .practical divs (dark background) for visitor tips, opening hours, etc.
-
-4. <footer> — dark, Overpass Mono, small. Tour operator if known, disclaimer line.
-
-─── CONTENT INSTRUCTIONS ───
-
-- Infer the title, subtitle, location, date, guide name, route, and duration from the transcript. If the date is not stated, omit it.
-- Structure the post stop-by-stop, following the order of the walk.
-- Extract and present the guide's best anecdotes in story-boxes with evocative data-label titles.
-- Use key-fact callouts for significant numbers, years, or statistics mentioned.
-- Quote the guide directly (in blockquote) for their most vivid or memorable lines. Clean up transcription errors but preserve the guide's voice.
-- Use .guide-says for shorter inline guide remarks.
-- Write connecting prose between stops in a polished but unstuffy editorial voice — as if a good magazine writer attended the walk and is now writing it up.
-- Include practical info (opening times, ticket prices, tips) if mentioned.
-- The HTML must be complete and self-contained (no external dependencies except Google Fonts and the CSS defined inline in <style>).
-- Output ONLY the raw HTML. No markdown, no code fences, no preamble. Start with <!DOCTYPE html>.
-
-─── CSS ───
-
-Include full CSS in a <style> block in <head>. Model it closely on the Kraków tour blog style: noise texture overlay, header with large watermark glyph (use ✦ or a relevant symbol), toc with gold left border, story-box with gold top border and floating label, key-fact with dark background and large gold number, blockquote with crimson left border, practical box with dark background and gold left border, .guide-says with sepia left border and italic text, highlight spans with yellow/blue/green backgrounds.
-
-The page must look beautiful and complete when opened in a browser."""
-
+# Use the most recent post on the homepage as the markup template, so new posts
+# follow whatever the current hand-edited house style is.
+first_card = re.search(r'<a class="post-card" href="_posts/([^"]+)\.html"', index_html)
+exemplar_slug = first_card.group(1) if first_card else "hastings-stade-2026"
+with open(f"_posts/{exemplar_slug}.html", encoding="utf-8") as f:
+    exemplar = f.read()
 
 client = anthropic.Anthropic()
 
-print(f"Generating post for: {SLUG}")
-print(f"Transcript length: {len(transcript)} chars")
 
-message = client.messages.create(
-    model="claude-opus-4-5",
-    max_tokens=8000,
-    system=SYSTEM_PROMPT,
-    messages=[
-        {
-            "role": "user",
-            "content": f"""Please generate the blog post HTML for this walking tour transcript.
+def call(system: str, user: str, effort: str) -> str:
+    """One streamed request, with server-side refusal fallback. Fails loudly on
+    truncation or refusal rather than writing a partial file."""
+    with client.beta.messages.stream(
+        model=MODEL,
+        max_tokens=64000,
+        betas=["server-side-fallback-2026-07-01"],
+        fallbacks="default",
+        output_config={"effort": effort},
+        system=system,
+        messages=[{"role": "user", "content": user}],
+    ) as stream:
+        msg = stream.get_final_message()
+    if msg.stop_reason == "refusal":
+        sys.exit(f"Request declined ({getattr(msg.stop_details, 'category', None)}); nothing written.")
+    if msg.stop_reason == "max_tokens":
+        sys.exit("Output hit max_tokens; nothing written.")
+    return "".join(b.text for b in msg.content if b.type == "text")
 
-Slug (use for any internal references): {SLUG}
 
-Transcript:
----
-{transcript}
----
+# ─── 1. The post ────────────────────────────────────────────────────────────
 
-Output only the complete HTML. Nothing else."""
-        }
-    ]
-)
+POST_SYSTEM = f"""You write posts for "On Foot — Walking Tour Notes", a personal blog of guided walking tours, written up from audio transcripts.
 
-html = message.content[0].text
+Given a raw transcript, produce one complete HTML page that matches the house template below exactly in structure, class names and tone.
 
-# Strip any accidental markdown fences
-if html.startswith("```"):
-    lines = html.split("\n")
-    html = "\n".join(lines[1:])
-    if html.rstrip().endswith("```"):
-        html = html.rstrip()[:-3].rstrip()
+Rules:
+- Use British English spelling throughout.
+- Styling comes from the shared stylesheet: put <link rel="stylesheet" href="../assets/post.css"> in <head>. Do not write your own CSS, except an optional short <style> block that sets the header watermark glyph, e.g. `header::before {{ content: '⚓'; }}`, chosen to suit the walk.
+- Use only the classes the template uses: header-label, header-sub, header-meta, toc / toc-title, section, section-tag, location, story-box (with data-label), key-fact / key-fact-number / key-fact-text, blockquote with <cite>, guide-says, highlight / highlight-blue / highlight-green, practical, divider, footnote.
+- The header label reads "Walking Tour Notes — <place>". Header meta gives route, duration and guide, inferred from the transcript; omit anything not stated.
+- Follow the walk stop by stop. Put the guide's best anecdotes in story-boxes with evocative data-labels, significant numbers in key-facts, the guide's most vivid lines in blockquotes (clean up transcription errors, keep their voice), shorter remarks in .guide-says, and visitor information in .practical.
+- Connecting prose: polished but unstuffy, as if a good magazine writer had been on the walk. Where a claim made on the walk is disputed or a popular story doesn't hold up, say so plainly.
+- The page starts with <!DOCTYPE html>, has <html lang="en-GB"> and a <title> of the form "<Headline> — <Place>". Include the same <nav class="home-nav"> bar as the template.
+- Output only the HTML: no commentary, no code fences.
 
-with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-    f.write(html)
+House template (a real post — copy its structure, not its content):
+<template>
+{exemplar}
+</template>"""
 
-print(f"Post written to: {OUTPUT_PATH}")
+print(f"Generating post: {SLUG} (template: {exemplar_slug}, transcript {len(transcript):,} chars)")
+post_html = strip_fences(call(
+    POST_SYSTEM,
+    f"Slug: {SLUG}\n\nTranscript:\n<transcript>\n{transcript}\n</transcript>",
+    effort="high",
+))
+if not post_html.lstrip().lower().startswith("<!doctype html"):
+    sys.exit("Model output does not look like an HTML page; nothing written.")
 
-# ─── SECOND CALL: JSON SIDECAR ───────────────────────────────────────────────
+# ─── 2. Metadata sidecar + index card ───────────────────────────────────────
 
-JSON_SYSTEM = """You are a metadata extraction assistant for a photographer who shoots editorial stock images on walking tours.
+place_list = "\n".join(f"  {k} = {v}" for k, v in PLACES.items())
+theme_list = "\n".join(f"  {k} = {v}" for k, v in THEMES.items())
+series_list = "\n".join(f"  {k} = {v}" for k, v in SERIES.items())
 
-Given a walking tour transcript, extract structured metadata useful for captioning and keywording Getty Images editorial photos taken on the same walk.
+JSON_SYSTEM = f"""You extract structured metadata from walking tour transcripts for a London-based editorial photographer who shoots Getty Images editorial stock on the same walks, and who publishes the walks on a blog.
 
-Return ONLY a valid JSON object — no markdown, no fences, no explanation. Use this exact schema:
+Return ONLY a valid JSON object (no fences, no commentary) with exactly this schema. Use British English. Use null where the transcript doesn't say.
 
-{
-  "slug": "string — the walk identifier",
+{{
+  "slug": "string",
   "title": "string — full walk title",
-  "date": "string — ISO date if mentioned, else null",
-  "location": {
-    "city": "string",
-    "area": "string — neighbourhood or district",
-    "country": "string",
+  "date": "YYYY-MM-DD if stated, else null",
+  "location": {{
+    "city": "string", "area": "string — neighbourhood or district", "country": "string",
     "postal_district": "string or null — e.g. SW18",
     "coordinates_approx": "string or null — e.g. 51.4567,-0.1912"
-  },
-  "guide": {
-    "name": "string or null",
-    "affiliation": "string or null — tour company, trust, etc."
-  },
-  "walk": {
-    "distance_km": "number or null",
-    "duration_approx": "string or null",
-    "start_point": "string",
-    "end_point": "string",
-    "route_summary": "string — one sentence"
-  },
-  "stops": [
-    {
-      "name": "string — place or stop name",
-      "type": "string — e.g. building, park, street, bridge, pub, church, viewpoint",
-      "description": "string — one sentence for caption use",
-      "date_built": "string or null",
-      "historical_period": "string or null — e.g. Victorian, Georgian, Medieval",
-      "notable_associations": ["string — person or event names"]
-    }
-  ],
-  "getty_keywords": {
-    "subjects": ["string — primary subjects visible or implied, Getty-style"],
-    "concepts": ["string — themes and concepts, Getty-style"],
-    "historical_figures": ["string — full names mentioned"],
-    "architectural_styles": ["string — e.g. Georgian, Brutalist, Arts and Crafts"],
-    "time_periods": ["string — centuries or named eras relevant to the walk"],
-    "events": ["string — named historical events mentioned"]
-  },
-  "caption_context": {
-    "borough_or_region": "string",
-    "primary_theme": "string — one phrase summarising the walk's main theme",
-    "secondary_themes": ["string"],
-    "suggested_caption_prefix": "string — a reusable opening phrase for image captions from this walk, e.g. 'A view of [area], an area undergoing significant regeneration in south-west London'"
-  },
-  "vocabulary": {
-    "confirmed_spellings": ["string — proper nouns and place names with correct spelling"],
-    "local_terms": ["string — local or historical terms explained briefly, format: 'term: definition'"]
-  }
-}"""
+  }},
+  "guide": {{"name": "string or null", "affiliation": "string or null"}},
+  "walk": {{
+    "distance_km": "number or null", "duration_approx": "string or null",
+    "start_point": "string", "end_point": "string", "route_summary": "string — one sentence"
+  }},
+  "stops": [{{
+    "name": "string", "type": "string — building, park, street, bridge, pub, church, viewpoint…",
+    "description": "string — one sentence for caption use", "date_built": "string or null",
+    "historical_period": "string or null", "notable_associations": ["string"]
+  }}],
+  "getty_keywords": {{
+    "subjects": ["string"], "concepts": ["string"], "historical_figures": ["string — full names"],
+    "architectural_styles": ["string"], "time_periods": ["string"], "events": ["string"]
+  }},
+  "caption_context": {{
+    "borough_or_region": "string", "primary_theme": "string", "secondary_themes": ["string"],
+    "suggested_caption_prefix": "string — reusable opening phrase for captions from this walk"
+  }},
+  "vocabulary": {{
+    "confirmed_spellings": ["string"], "local_terms": ["string — 'term: definition'"]
+  }},
+  "walk_meta": {{
+    "date": "YYYY-MM-DD — same as above; if not stated, null",
+    "place": "a place code from the list below; if none fits, 'london/<area>', 'uk/<county>' or 'abroad/<country>' in lowercase",
+    "location_label": "string — e.g. 'SE London · Sydenham Hill Wood, SE26' or 'Sirmione · Lake Garda, Lombardy, Italy'",
+    "themes": ["1–3 theme codes from the list below — only the ones the walk is really about"],
+    "series": ["series codes from the list below if the walk was part of one, else empty"],
+    "subtitle": "string — '<Tour name> · Guide: <name> · <organiser>' as known",
+    "excerpt": "string — 2–3 sentences, the hook of the walk, in the voice of the post",
+    "search": "string — lowercase space-separated keywords: places, streets, postcodes, people, organisations, guide name"
+  }}
+}}
 
-print("Generating JSON sidecar...")
+Place codes:
+{place_list}
 
-json_message = client.messages.create(
-    model="claude-opus-4-5",
-    max_tokens=3000,
-    system=JSON_SYSTEM,
-    messages=[
-        {
-            "role": "user",
-            "content": f"""Extract metadata from this walking tour transcript.
+Theme codes:
+{theme_list}
 
-Slug: {SLUG}
+Series codes:
+{series_list}"""
 
-Transcript:
----
-{transcript}
----
-
-Return only the JSON object."""
-        }
-    ]
-)
-
-json_raw = json_message.content[0].text.strip()
-
-# Strip any accidental markdown fences
-if json_raw.startswith("```"):
-    lines = json_raw.split("\n")
-    json_raw = "\n".join(lines[1:])
-    if json_raw.rstrip().endswith("```"):
-        json_raw = json_raw.rstrip()[:-3].rstrip()
-
-# Validate and pretty-print
+print("Generating metadata sidecar…")
+raw = strip_fences(call(
+    JSON_SYSTEM,
+    f"Slug: {SLUG}\n\nTranscript:\n<transcript>\n{transcript}\n</transcript>",
+    effort="medium",
+))
 try:
-    data = json.loads(json_raw)
-    # Ensure slug is set
-    data["slug"] = SLUG
-    with open(JSON_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-    print(f"JSON sidecar written to: {JSON_PATH}")
+    data = json.loads(raw)
 except json.JSONDecodeError as e:
-    print(f"Warning: JSON parse error — {e}")
-    print("Raw output saved as-is for inspection.")
     with open(JSON_PATH + ".raw", "w", encoding="utf-8") as f:
-        f.write(json_raw)
+        f.write(raw)
+    sys.exit(f"Sidecar JSON did not parse ({e}); raw output saved to {JSON_PATH}.raw")
+data["slug"] = SLUG
+
+meta = data.pop("walk_meta", {}) or {}
+meta["date"] = meta.get("date") or data.get("date") or date.today().isoformat()
+h1 = re.search(r"<h1[^>]*>(.*?)</h1>", post_html, re.S)
+meta["title_html"] = re.sub(r"\s*<br\s*/?>\s*", " ", h1.group(1)).strip() if h1 else SLUG
+post_html = re.sub(r'<script type="application/json" id="walk-meta">.*?</script>\n?', "", post_html, flags=re.S)
+post_html = post_html.replace("</head>", walk_meta_block(meta) + "</head>", 1)
+post_html = finalise_post(SLUG, post_html, meta.get("excerpt", ""))
+
+with open(JSON_PATH, "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+    f.write("\n")
+print(f"Sidecar written: {JSON_PATH}")
+
+with open(POST_PATH, "w", encoding="utf-8") as f:
+    f.write(post_html if post_html.endswith("\n") else post_html + "\n")
+print(f"Post written: {POST_PATH}")

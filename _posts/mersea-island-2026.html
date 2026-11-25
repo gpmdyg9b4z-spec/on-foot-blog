@@ -1,325 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mersea Island — A Walking Tour with a Local Guide</title>
+<meta name="description" content="A local guide, island-born and home again after seven years, walks from the Ice Age bones and Red Hills of East Mersea across a Saxon causeway dated to 650 AD, through a…">
+<link rel="canonical" href="https://gpmdyg9b4z-spec.github.io/on-foot-blog/_posts/mersea-island-2026.html">
+<meta property="og:site_name" content="On Foot — Walking Tour Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mersea Island — A Walking Tour with a Local Guide">
+<meta property="og:description" content="A local guide, island-born and home again after seven years, walks from the Ice Age bones and Red Hills of East Mersea across a Saxon causeway dated to 650 AD, through a…">
+<meta property="og:url" content="https://gpmdyg9b4z-spec.github.io/on-foot-blog/_posts/mersea-island-2026.html">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #141218;
-    --paper: #f4f0e6;
-    --aged: #e6dcc8;
-    --sepia: #7a6045;
-    --crimson: #8c1f28;
-    --gold: #a8832a;
-    --ash: #635c52;
-    --highlight-yellow: #eece58;
-    --highlight-blue: #a0bcd4;
-    --highlight-green: #aacca0;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 100;
-  }
-
-  /* ── Sticky home nav ── */
-  .home-nav {
-    background: var(--ink);
-    padding: 0.9rem 2rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.9rem;
-    position: sticky;
-    top: 0;
-    z-index: 200;
-  }
-  .home-nav a {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--gold);
-    text-decoration: none;
-  }
-  .home-nav a:hover { text-decoration: underline; }
-  .home-nav span {
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: #8a8272;
-  }
-
-  header {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 4rem 2rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  header::before {
-    content: '✦';
-    position: absolute;
-    font-size: 22rem;
-    opacity: 0.035;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .header-label {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-
-  header h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-
-  header h1 em { font-style: italic; color: var(--gold); }
-
-  .header-sub {
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #a08870;
-    margin-bottom: 2rem;
-  }
-
-  .header-meta {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: #6b6459;
-    border-top: 1px solid #2a2420;
-    padding-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .toc {
-    background: var(--aged);
-    border-left: 4px solid var(--gold);
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 1.5rem 2rem;
-  }
-
-  .toc-title {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 1rem;
-  }
-
-  .toc ol { padding-left: 1.5rem; }
-  .toc li { margin: 0.35rem 0; }
-  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
-  .toc a:hover { color: var(--crimson); }
-
-  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
-
-  .section {
-    margin-bottom: 4rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid #cfc3ab;
-  }
-
-  .section:last-child { border-bottom: none; }
-
-  .section-tag {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.6rem;
-  }
-
-  .section h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
-
-  .section h2 em { font-style: italic; color: var(--crimson); }
-
-  p { margin-bottom: 1.1rem; color: #241c14; }
-
-  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
-  .highlight-blue { background: var(--highlight-blue); }
-  .highlight-green { background: var(--highlight-green); }
-
-  blockquote {
-    border-left: 3px solid var(--crimson);
-    margin: 2rem 0;
-    padding: 0.8rem 1.5rem;
-    background: rgba(140, 31, 40, 0.05);
-  }
-
-  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
-
-  blockquote cite {
-    display: block;
-    font-style: normal;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--ash);
-    margin-top: 0.5rem;
-  }
-
-  .story-box {
-    background: var(--aged);
-    border: 1px solid #cec2a6;
-    border-top: 3px solid var(--gold);
-    padding: 1.8rem 2rem;
-    margin: 2.5rem 0;
-    position: relative;
-  }
-
-  .story-box::before {
-    content: attr(data-label);
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    position: absolute;
-    top: -0.8rem;
-    left: 1.5rem;
-    background: var(--aged);
-    padding: 0 0.5rem;
-  }
-
-  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
-  .story-box p:last-child { margin-bottom: 0; }
-
-  .key-fact {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin: 1.5rem 0;
-    padding: 1rem 1.5rem;
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .key-fact-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--gold);
-    white-space: nowrap;
-    line-height: 1;
-  }
-
-  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
-
-  .guide-says {
-    font-style: italic;
-    color: var(--sepia);
-    border-left: 2px solid var(--sepia);
-    padding-left: 1rem;
-    margin: 1.2rem 0;
-    font-size: 1.05rem;
-  }
-
-  .location {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 1rem;
-  }
-
-  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
-
-  .practical {
-    background: #1e1a16;
-    color: #c4baaa;
-    padding: 1.2rem 1.6rem;
-    margin: 1.5rem 0;
-    border-left: 3px solid var(--gold);
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
-
-  .practical strong { color: var(--gold); font-weight: 500; }
-
-  .divider {
-    text-align: center;
-    color: var(--gold);
-    font-size: 1.2rem;
-    letter-spacing: 0.8em;
-    margin: 2rem 0;
-  }
-
-  footer {
-    background: var(--ink);
-    color: #6b6459;
-    text-align: center;
-    padding: 2.5rem;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-  }
-
-  footer span { color: var(--gold); }
-
-  @media (max-width: 600px) {
-    header { padding: 3rem 1.5rem 2.5rem; }
-    main { padding: 1.5rem 1.2rem 4rem; }
-    .key-fact { flex-direction: column; gap: 0.5rem; }
-    .header-meta { gap: 1.5rem; }
-  }
-</style>
+<link rel="stylesheet" href="../assets/post.css">
+<script type="application/json" id="walk-meta">
+{
+ "date": "2026-07-04",
+ "place": "uk/essex",
+ "location_label": "Mersea Island · Essex",
+ "title_html": "Marsh Island, <em>Sinking Slowly</em>",
+ "subtitle": "West & East Mersea Walk · Local Guide",
+ "excerpt": "A local guide, island-born and home again after seven years, walks from the Ice Age bones and Red Hills of East Mersea across a Saxon causeway dated to 650 AD, through a church built of septaria not flint, to a Roman barrow whose bones the museum has since misplaced — and explains why the only road onto the island keeps flooding.",
+ "themes": [
+  "nature",
+  "ancient",
+  "water"
+ ],
+ "series": [],
+ "search": "mersea island essex strood blackwater pant trinovantes boudica red hills roman barrow septaria monkey steps oyster bradwell othona isostasy tides blockhouse st peters well"
+}
+</script>
 </head>
 <body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span><span class="home-links"><a href="../about.html">About</a></span></nav>
 
-<div class="home-nav">
-  <a href="../index.html">← On Foot</a>
-  <span>Walking Tour Notes</span>
-</div>
 
 <header>
-  <div class="header-label">Walking Tour Transcript — Mersea Island, Essex</div>
+  <div class="header-label">Walking Tour Notes — Mersea Island, Essex</div>
   <h1>Marsh Island,<br><em>Sinking Slowly</em></h1>
   <div class="header-sub">West &amp; East Mersea Walk with a Local Guide</div>
   <div class="header-meta">
@@ -551,6 +270,14 @@
 
 </main>
 
+<!-- walk-links: generated by build_site.py, do not edit -->
+<aside class="walk-links" aria-label="More walks">
+  <h2>More walks</h2>
+  <nav class="walk-pn"><a href="thames-tideway-2026.html" class="prev"><span class="walk-kicker">&larr; Previous walk</span><span class="walk-name">The Great Stink, Bronze Sandbags &amp; <em>a 25-Metre Drop</em></span><span class="walk-where">Central London · Isle of Effra to Blackfriars</span></a><a href="barts-north-wing-2026.html" class="next"><span class="walk-kicker">Next walk &rarr;</span><span class="walk-name">Nine Hundred Years, a Pie Full of <em>Live Pigeons</em></span><span class="walk-where">Central London · Smithfield, EC1</span></a></nav>
+  <div class="walk-related"><a href="sirmione-lake-garda-2026.html"><span class="walk-kicker">Related</span><span class="walk-name">The Fortress Nobody <em>Bothered to Modernise</em></span><span class="walk-where">Sirmione · Lake Garda, Lombardy, Italy</span></a><a href="komodo-national-park-2026.html"><span class="walk-kicker">Related</span><span class="walk-name">The Largest Lizard on Earth <em>and the Myth in Its Bite</em></span><span class="walk-where">Komodo National Park · Indonesia</span></a><a href="hastings-stade-2026.html"><span class="walk-kicker">Related</span><span class="walk-name">Nets, Tar &amp; the <em>Ghost of Dunkirk</em></span><span class="walk-where">Hastings Old Town · East Sussex</span></a></div>
+  <a class="walk-index" href="../index.html">All walks &rarr;</a>
+</aside>
+<!-- /walk-links -->
 <footer>
   <span>MERSEA ISLAND</span> · Local Guide, on foot from East to West Mersea<br><br>
   Transcript lightly edited for clarity from a recorded conversation. Dates and spellings as best determined; some local names (the Monkey Steps, "follies," Coppermore Grove) reflect oral tradition rather than official record.

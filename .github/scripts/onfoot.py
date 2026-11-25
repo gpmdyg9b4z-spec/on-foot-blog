@@ -84,3 +84,57 @@ def index_vocabulary(index_html: str):
     locs = re.findall(r'data-filter="location" data-value="([^"]+)">([^<]+)</button>', index_html)
     themes = re.findall(r'data-filter="theme" data-value="([^"]+)">([^<]+)</button>', index_html)
     return locs, themes
+
+
+# ─── Vocabularies for filters ────────────────────────────────────────────────
+# Codes are stored in each post's walk-meta block; labels are what readers see.
+# Add new codes here; an unknown code still works and is shown title-cased.
+
+THEMES = {
+    "architecture": "Architecture",
+    "regeneration": "Housing & regeneration",
+    "industry": "Industry & trade",
+    "water": "Rivers & coast",
+    "nature": "Nature & gardens",
+    "faith": "Faith",
+    "migration": "Migration",
+    "war": "War & conflict",
+    "ancient": "Roman & ancient",
+    "medieval": "Medieval & Tudor",
+    "science": "Science & engineering",
+    "arts": "Arts, books & film",
+    "empire": "Empire",
+    "activism": "Protest & community",
+    "food": "Food & drink",
+}
+
+SERIES = {
+    "open-house": "Open House",
+    "lfa": "London Festival of Architecture",
+    "open-city": "Open City tours",
+    "free-tours": "Free walking tours",
+}
+
+PLACE_GROUPS = {"london": "London", "uk": "Rest of UK", "abroad": "Abroad"}
+PLACES = {
+    "london/central": "Central", "london/n": "North", "london/nw": "North-west",
+    "london/e": "East", "london/se": "South-east", "london/sw": "South-west", "london/w": "West",
+    "uk/sussex": "East Sussex", "uk/essex": "Essex",
+}
+
+
+def label(vocab: dict, code: str) -> str:
+    return vocab.get(code) or code.split("/")[-1].replace("-", " ").title()
+
+
+def read_walk_meta(page: str):
+    """Return the JSON walk-meta block embedded in a post, or None."""
+    import json
+    m = re.search(r'<script type="application/json" id="walk-meta">(.*?)</script>', page, re.S)
+    return json.loads(m.group(1)) if m else None
+
+
+def walk_meta_block(meta: dict) -> str:
+    import json
+    return ('<script type="application/json" id="walk-meta">\n'
+            + json.dumps(meta, ensure_ascii=False, indent=1) + "\n</script>\n")

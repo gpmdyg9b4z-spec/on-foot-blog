@@ -4,12 +4,14 @@ A static blog generated from walking tour transcripts via GitHub Actions + Claud
 
 ## How it works
 
-1. Drop a `.txt` transcript into `_transcripts/`
+1. Drop one or more `.txt` transcripts into `_transcripts/`
 2. Push to `main`
-3. GitHub Action fires, sends the transcript to Claude
-4. Claude generates a formatted HTML post in `_posts/`
-5. `index.html` is regenerated automatically
-6. Changes are committed back to the repo
+3. The GitHub Action sends each new or changed transcript to Claude, using the most recent post on the homepage as the template
+4. Claude writes the post to `_posts/<slug>.html` and a metadata sidecar to `_data/<slug>.json` (Getty captioning context plus the homepage card text)
+5. A card for the post is inserted into `index.html` in date order — the rest of the hand-edited index is left alone
+6. Changes are committed back to `main`
+
+To regenerate a post, run the workflow manually from the **Actions** tab and give it the slug. Hand-written posts can be uploaded straight to `_posts/` as before; add their card to `index.html` by hand.
 
 ## Setup
 
@@ -44,16 +46,35 @@ The Action infers the title, guide name, location, date, and route from the tran
 
 ```
 _transcripts/     ← drop .txt transcripts here
-_posts/           ← generated HTML posts (committed by Action)
-index.html        ← auto-regenerated blog index
-about.html        ← static about page (edit manually)
+_posts/           ← posts (hand-uploaded or written by the Action)
+_data/            ← per-post metadata sidecars written by the Action
+assets/post.css   ← shared post styles; a post's own <style> holds only overrides
+images/           ← web-sized photos for posts (see "Photographs" below)
+index.html        ← homepage (hand-edited; the Action only inserts cards)
+about.html        ← about page (edit manually)
 .github/
   workflows/
     generate-post.yml   ← the Action
   scripts/
-    generate_post.py    ← calls Claude API, writes post HTML
-    update_index.py     ← rebuilds index.html from _posts/
+    generate_post.py    ← calls the Claude API, writes post HTML + sidecar
+    update_index.py     ← inserts a card for a post into index.html
+    onfoot.py           ← shared helpers (nav bar, meta tags)
 ```
+
+## Photographs
+
+Posts can carry photos styled by `assets/post.css`. Put a web-sized copy (about 1600px on the long edge) in `images/<slug>/` and link it to its Getty Images page:
+
+```html
+<figure class="photo">
+  <img src="../images/<slug>/<file>.jpg" alt="Describe the picture" loading="lazy" width="1600" height="1067">
+  <figcaption>Caption text.
+    <a class="photo-licence" href="https://www.gettyimages.co.uk/detail/news-photo/…">Licence on Getty Images</a>
+  </figcaption>
+</figure>
+```
+
+Use `class="photo wide"` to let an image run wider than the text column.
 
 ## Transcript tips
 

@@ -1,302 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <title>Helsinki City Centre — A Walking Tour with Fabio</title>
+<meta name="description" content="A town no Swedish noble wanted to live in becomes a tsar&#x27;s showpiece capital — then Fabio walks it from Engel&#x27;s Senate Square past Agricola&#x27;s alphabet, a scarred plinth…">
+<link rel="canonical" href="https://gpmdyg9b4z-spec.github.io/on-foot-blog/_posts/helsinki-city-centre-2026.html">
+<meta property="og:site_name" content="On Foot — Walking Tour Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Helsinki City Centre — A Walking Tour with Fabio">
+<meta property="og:description" content="A town no Swedish noble wanted to live in becomes a tsar&#x27;s showpiece capital — then Fabio walks it from Engel&#x27;s Senate Square past Agricola&#x27;s alphabet, a scarred plinth…">
+<meta property="og:url" content="https://gpmdyg9b4z-spec.github.io/on-foot-blog/_posts/helsinki-city-centre-2026.html">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/post.css">
 <style>
-  :root {
-    --ink: #141218;
-    --paper: #f4f0e6;
-    --aged: #e6dcc8;
-    --sepia: #7a6045;
-    --crimson: #8c1f28;
-    --gold: #a8832a;
-    --ash: #635c52;
-    --highlight-yellow: #eece58;
-    --highlight-blue: #a0bcd4;
-    --highlight-green: #aacca0;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html {
-    color-scheme: light;
-    background: var(--paper);
-  }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
+/* Overrides specific to this post */
   p, li, .post-excerpt { color: #241c14; }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 100;
-  }
-
-  header {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 4rem 2rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  header::before {
-    content: '✦';
-    position: absolute;
-    font-size: 22rem;
-    opacity: 0.035;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .header-label {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-
-  header h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-
-  header h1 em { font-style: italic; color: var(--gold); }
-
-  .header-sub {
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #a08870;
-    margin-bottom: 2rem;
-  }
-
-  .header-meta {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: #6b6459;
-    border-top: 1px solid #2a2420;
-    padding-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .toc {
-    background: var(--aged);
-    border-left: 4px solid var(--gold);
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 1.5rem 2rem;
-  }
-
-  .toc-title {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 1rem;
-  }
-
-  .toc ol { padding-left: 1.5rem; }
-  .toc li { margin: 0.35rem 0; }
-  .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
-  .toc a:hover { color: var(--crimson); }
-
-  main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
-
-  .section {
-    margin-bottom: 4rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid #cfc3ab;
-  }
-
-  .section:last-child { border-bottom: none; }
-
-  .section-tag {
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.6rem;
-  }
-
-  .section h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
-
-  .section h2 em { font-style: italic; color: var(--crimson); }
-
-  p { margin-bottom: 1.1rem; color: #241c14; }
-
-  .highlight { display: inline; background: var(--highlight-yellow); padding: 0.05em 0.15em; border-radius: 2px; }
-  .highlight-blue { background: var(--highlight-blue); }
-  .highlight-green { background: var(--highlight-green); }
-
-  blockquote {
-    border-left: 3px solid var(--crimson);
-    margin: 2rem 0;
-    padding: 0.8rem 1.5rem;
-    background: rgba(140, 31, 40, 0.05);
-  }
-
-  blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
-
-  blockquote cite {
-    display: block;
-    font-style: normal;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--ash);
-    margin-top: 0.5rem;
-  }
-
-  .story-box {
-    background: var(--aged);
-    border: 1px solid #cec2a6;
-    border-top: 3px solid var(--gold);
-    padding: 1.8rem 2rem;
-    margin: 2.5rem 0;
-    position: relative;
-  }
-
-  .story-box::before {
-    content: attr(data-label);
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    position: absolute;
-    top: -0.8rem;
-    left: 1.5rem;
-    background: var(--aged);
-    padding: 0 0.5rem;
-  }
-
-  .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
-  .story-box p:last-child { margin-bottom: 0; }
-
-  .key-fact {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin: 1.5rem 0;
-    padding: 1rem 1.5rem;
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .key-fact-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--gold);
-    white-space: nowrap;
-    line-height: 1;
-  }
-
-  .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
-
-  .fabio-says {
-    font-style: italic;
-    color: var(--sepia);
-    border-left: 2px solid var(--sepia);
-    padding-left: 1rem;
-    margin: 1.2rem 0;
-    font-size: 1.05rem;
-  }
-
-  .location {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 1rem;
-  }
-
-  .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
-
-  .practical {
-    background: #1e1a16;
-    color: #c4baaa;
-    padding: 1.2rem 1.6rem;
-    margin: 1.5rem 0;
-    border-left: 3px solid var(--gold);
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
-
-  .practical strong { color: var(--gold); font-weight: 500; }
-
-  .divider {
-    text-align: center;
-    color: var(--gold);
-    font-size: 1.2rem;
-    letter-spacing: 0.8em;
-    margin: 2rem 0;
-  }
-
-  footer {
-    background: var(--ink);
-    color: #6b6459;
-    text-align: center;
-    padding: 2.5rem;
-    font-family: 'Overpass Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-  }
-
-  footer span { color: var(--gold); }
-
-  @media (max-width: 600px) {
-    header { padding: 3rem 1.5rem 2.5rem; }
-    main { padding: 1.5rem 1.2rem 4rem; }
-    .key-fact { flex-direction: column; gap: 0.5rem; }
-    .header-meta { gap: 1.5rem; }
-  }
+  .fabio-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
 </style>
 </head>
 <body>
+<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a><span class="home-title">Walking Tour Notes</span><span class="home-links"><a href="../about.html">About</a></span></nav>
 
 <header>
-  <div class="header-label">Walking Tour Transcript — Senate Square to Citizens' Square, Helsinki</div>
+  <div class="header-label">Walking Tour Notes — Senate Square to Citizens' Square, Helsinki</div>
   <h1>A Capital Built to Look<br>Like <em>Somewhere Else</em></h1>
   <div class="header-sub">Helsinki Free Walking Tour with Guide Fabio · Red Umbrella Tours</div>
   <div class="header-meta">

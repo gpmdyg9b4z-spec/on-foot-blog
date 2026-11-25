@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>On Foot — Walking Tour Notes</title>
+<meta name="description" content="A personal record of guided walking tours in London and further afield — what the guide said, what was noticed, and what lingered.">
+<link rel="canonical" href="{{SITE_URL}}/">
+<meta property="og:site_name" content="On Foot — Walking Tour Notes">
+<meta property="og:type" content="website">
+<meta property="og:title" content="On Foot — Walking Tour Notes">
+<meta property="og:description" content="A personal record of guided walking tours in London and further afield — what the guide said, what was noticed, and what lingered.">
+<meta property="og:url" content="{{SITE_URL}}/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<!-- GENERATED FILE: edit .github/templates/index.html and run .github/scripts/build_site.py -->
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --gold-ink: #7d5f17; --ash: #635c52; --meta-on-ink: #a39a88; --rule: #cfc3ab; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { color-scheme: light; background: var(--paper); }
+  body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .mono { font-family: 'Overpass Mono', monospace; text-transform: uppercase; }
+
+  /* ── Header ── */
+  header { background: var(--ink); color: var(--paper); padding: 1.4rem 2rem; display: flex; align-items: baseline; gap: 1.5rem; position: sticky; top: 0; z-index: 200; }
+  .site-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; line-height: 1; white-space: nowrap; }
+  .site-name em { font-style: italic; color: var(--gold); }
+  .site-tagline { font-style: italic; font-size: 0.95rem; color: var(--meta-on-ink); display: none; }
+  .site-links { margin-left: auto; display: flex; gap: 1.5rem; align-self: center; }
+  .site-links a { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--meta-on-ink); text-decoration: none; }
+  .site-links a:hover { color: var(--gold); }
+
+  /* ── Layout ── */
+  .page-wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 60px); }
+
+  /* ── Sidebar ── */
+  .sidebar { background: var(--aged); border-right: 1px solid var(--rule); padding: 1.8rem 1.4rem; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
+  .filters > summary { display: none; }
+  .sidebar-section { margin-bottom: 1.8rem; }
+  .sidebar-label { font-family: 'Overpass Mono', monospace; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ash); margin-bottom: 0.5rem; display: block; }
+  .filter-sub { font-family: 'Overpass Mono', monospace; font-size: 0.64rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sepia); margin: 0.7rem 0 0.2rem 0.6rem; display: block; }
+  .filter-buttons { display: flex; flex-direction: column; gap: 0.15rem; }
+  .filter-btn { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; border: none; background: transparent; color: var(--sepia); padding: 0.3rem 0.6rem; cursor: pointer; text-align: left; transition: background 0.12s, color 0.12s; border-radius: 2px; display: flex; justify-content: space-between; gap: 0.6rem; }
+  .filter-btn .n { color: var(--ash); opacity: 0.8; }
+  .filter-btn:hover { background: rgba(122,96,69,0.12); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); color: var(--gold); }
+  .filter-btn.active .n { color: var(--meta-on-ink); }
+  .filter-btn.empty { opacity: 0.4; }
+  .search-input { width: 100%; font-family: 'EB Garamond', serif; font-size: 1rem; background: var(--paper); border: 1px solid var(--rule); color: var(--ink); padding: 0.4rem 0.7rem; outline: none; border-radius: 2px; }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--ash); font-style: italic; }
+
+  /* ── Posts ── */
+  .posts-area { padding: 2rem 2.5rem 4rem; }
+  .results-bar { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+  .results-count { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--ash); text-transform: uppercase; }
+  .clear-filters { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson); background: none; border: none; cursor: pointer; padding: 0; }
+  .clear-filters:hover { color: var(--gold-ink); }
+  .clear-filters[hidden] { display: none; }
+
+  .post-card { display: grid; grid-template-columns: 70px 1fr; gap: 0 1.6rem; padding: 1.6rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit; transition: background 0.1s; }
+  .post-card:first-child { border-top: 1px solid var(--rule); }
+  .post-card:hover { background: rgba(168,131,42,0.05); }
+  .post-card[hidden] { display: none; }
+  .post-date { text-align: right; padding-top: 0.1rem; }
+  .date-day { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--gold); line-height: 1; display: block; }
+  .date-monthyear { font-family: 'Overpass Mono', monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ash); display: block; margin-top: 0.25rem; }
+  .post-location-label { font-family: 'Overpass Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.2rem; }
+  .post-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 2.5vw, 1.65rem); font-weight: 300; line-height: 1.2; margin-bottom: 0.25rem; color: var(--ink); }
+  .post-title em { font-style: italic; color: var(--crimson); }
+  .post-subtitle { font-style: italic; font-size: 0.95rem; color: var(--sepia); margin-bottom: 0.5rem; }
+  .post-excerpt { font-size: 0.95rem; color: #4a3f30; line-height: 1.6; margin-bottom: 0.6rem; }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  .tag { font-family: 'Overpass Mono', monospace; font-size: 0.64rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ash); border: 1px solid var(--rule); padding: 0.1rem 0.45rem; }
+  .read-link { font-family: 'Overpass Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-ink); margin-left: auto; }
+  .no-results { font-style: italic; color: var(--ash); padding: 3rem 0; text-align: center; }
+
+  footer { background: var(--ink); color: var(--meta-on-ink); text-align: center; padding: 2rem; font-family: 'Overpass Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; }
+  footer span { color: var(--gold); }
+
+  /* ── Mobile ── */
+  @media (max-width: 720px) {
+    header { padding: 1.1rem 1rem; }
+    .page-wrap { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--rule); padding: 0.9rem 1rem; }
+    .filters > summary { display: block; cursor: pointer; font-family: 'Overpass Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); padding: 0.3rem 0; }
+    .filters[open] > summary { margin-bottom: 1rem; }
+    .filter-buttons { flex-direction: row; flex-wrap: wrap; gap: 0.3rem; }
+    .filter-btn { border: 1px solid var(--rule); padding: 0.3rem 0.55rem; }
+    .filter-sub { width: 100%; margin: 0.5rem 0 0; }
+    .posts-area { padding: 1.4rem 1rem 3rem; }
+    .post-card { grid-template-columns: 52px 1fr; gap: 0 1rem; }
+    .date-day { font-size: 1.5rem; }
+  }
+  @media (min-width: 900px) { .site-tagline { display: block; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">On <em>Foot</em></div>
+  <div class="site-tagline">Notes from the street, the square and the river's edge</div>
+  <nav class="site-links"><a href="about.html">About</a></nav>
+</header>
+
+<div class="page-wrap">
+
+  <aside class="sidebar">
+    <details class="filters" id="filters" open>
+      <summary>Search &amp; filter walks</summary>
+
+      <div class="sidebar-section">
+        <label class="sidebar-label" for="search-input">Search</label>
+        <input class="search-input" type="search" id="search-input" placeholder="Place, guide, subject…">
+      </div>
+
+{{FILTERS}}
+    </details>
+  </aside>
+
+  <main class="posts-area">
+    <div class="results-bar">
+      <div class="results-count" id="results-count">{{COUNT}} walks</div>
+      <button class="clear-filters" id="clear-filters" hidden>Clear filters ×</button>
+    </div>
+    <div class="posts-list" id="posts-list">
+{{CARDS}}
+    </div>
+    <div class="no-results" id="no-results" hidden>No walks match. Try clearing a filter.</div>
+  </main>
+
+</div>
+
+<footer>
+  <span>ON FOOT — WALKING TOUR NOTES</span> · Notes from the street, the square and the river's edge · Est. 2026
+</footer>
+
+<script>
+  const cards = Array.from(document.querySelectorAll('.post-card'));
+  const active = { place: '', theme: '', series: '' };
+  const searchInput = document.getElementById('search-input');
+  const clearBtn = document.getElementById('clear-filters');
+  const total = cards.length;
+
+  function placeMatches(cardPlace, value) {
+    return !value || cardPlace === value || cardPlace.startsWith(value + '/');
+  }
+  function matches(card, except) {
+    const q = searchInput.value.toLowerCase().trim();
+    const d = card.dataset;
+    if (except !== 'place' && !placeMatches(d.place, active.place)) return false;
+    if (except !== 'theme' && active.theme && !d.themes.split(' ').includes(active.theme)) return false;
+    if (except !== 'series' && active.series && !d.series.split(' ').includes(active.series)) return false;
+    if (q && !(d.search + ' ' + card.textContent.toLowerCase()).includes(q)) return false;
+    return true;
+  }
+  function update() {
+    let visible = 0;
+    cards.forEach(c => { const ok = matches(c); c.hidden = !ok; if (ok) visible++; });
+    // live counts: how many walks each button would show, given the other filters
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+      const f = btn.dataset.filter, v = btn.dataset.value;
+      const n = cards.filter(c => matches(c, f) && (f === 'place' ? placeMatches(c.dataset.place, v)
+                 : !v || c.dataset[f === 'theme' ? 'themes' : 'series'].split(' ').includes(v))).length;
+      btn.querySelector('.n').textContent = n;
+      btn.classList.toggle('empty', n === 0 && !btn.classList.contains('active'));
+    });
+    document.getElementById('results-count').textContent =
+      visible === total ? `${total} walks` : `${visible} of ${total} walks`;
+    document.getElementById('no-results').hidden = visible > 0;
+    clearBtn.hidden = !(active.place || active.theme || active.series || searchInput.value.trim());
+  }
+  function select(filter, value) {
+    active[filter] = value;
+    document.querySelectorAll(`.filter-btn[data-filter="${filter}"]`).forEach(b =>
+      b.classList.toggle('active', b.dataset.value === value));
+    update();
+  }
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(btn =>
+    btn.addEventListener('click', () => select(btn.dataset.filter, btn.dataset.value)));
+  searchInput.addEventListener('input', update);
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    ['place', 'theme', 'series'].forEach(f => select(f, ''));
+  });
+  // filters start collapsed on phones
+  if (window.matchMedia('(max-width: 720px)').matches) document.getElementById('filters').open = false;
+  update();
+</script>
+</body>
+</html>

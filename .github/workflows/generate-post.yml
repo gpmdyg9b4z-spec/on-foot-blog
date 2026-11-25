@@ -1,18 +1,25 @@
-name: Generate blog post from transcript
+name: Build site
 
-# Push one or more .txt transcripts to _transcripts/ on main, or run manually
-# from the Actions tab with a slug (re-generates that post from its transcript).
+# Runs on every push to main that touches posts, transcripts or the build files.
+# - New or changed transcripts in _transcripts/ are turned into posts by Claude.
+# - Then the homepage, filters and "More walks" links are rebuilt from the posts,
+#   so hand-uploaded posts are picked up too.
+# Run it manually from the Actions tab to rebuild, optionally regenerating one post.
 
 on:
   push:
     branches: [main]
     paths:
       - '_transcripts/**.txt'
+      - '_posts/**'
+      - 'assets/**'
+      - '.github/templates/**'
+      - '.github/scripts/**'
   workflow_dispatch:
     inputs:
       slug:
-        description: 'Transcript slug to (re)generate, e.g. wandsworth-lfa-2026'
-        required: true
+        description: 'Optional: transcript slug to regenerate, e.g. wandsworth-lfa-2026'
+        required: false
 
 concurrency:
   group: generate-post
@@ -59,7 +66,6 @@ jobs:
           echo "slugs=$SLUGS" >> "$GITHUB_OUTPUT"
 
       - name: Set up Python
-        if: steps.find.outputs.slugs != ''
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -78,14 +84,10 @@ jobs:
             TRANSCRIPT_PATH="_transcripts/$s.txt" SLUG="$s" python .github/scripts/generate_post.py
           done
 
-      - name: Add cards to the index
-        if: steps.find.outputs.slugs != ''
-        env:
-          SLUGS: ${{ steps.find.outputs.slugs }}
-        run: python .github/scripts/update_index.py $SLUGS
+      - name: Rebuild homepage and walk links
+        run: python .github/scripts/build_site.py
 
       - name: Commit and push
-        if: steps.find.outputs.slugs != ''
         env:
           SLUGS: ${{ steps.find.outputs.slugs }}
         run: |
@@ -96,6 +98,6 @@ jobs:
             echo "Nothing to commit."
             exit 0
           fi
-          git commit -m "Generate post: $SLUGS"
+          git commit -m "Build site${SLUGS:+: generate $SLUGS}"
           git pull --rebase origin main
           git push origin HEAD:main

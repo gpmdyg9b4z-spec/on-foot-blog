@@ -1,5 +1,5 @@
 /* On Foot — shared post styles. Per-post <style> blocks hold only overrides. */
-:root { --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
+:root { --gold-ink: #7d5f17; --meta-on-ink: #a39a88; --ink: #141218; --paper: #f4f0e6; --aged: #e6dcc8; --sepia: #7a6045; --crimson: #8c1f28; --gold: #a8832a; --ash: #635c52; --highlight-yellow: #eece58; --highlight-blue: #a0bcd4; --highlight-green: #aacca0; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--paper); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; }
 body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
@@ -9,9 +9,9 @@ header::before { content: '✦'; position: absolute; font-size: 22rem; opacity: 
 header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
 header h1 em { font-style: italic; color: var(--gold); }
 .header-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: #a08870; margin-bottom: 2rem; }
-.header-meta { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: #6b6459; border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.header-meta { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 0.98rem; letter-spacing: 0.01em; line-height: 1.5; color: var(--meta-on-ink); border-top: 1px solid #2a2420; padding-top: 1.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
 .toc { background: var(--aged); border-left: 4px solid var(--gold); max-width: 700px; margin: 3rem auto; padding: 1.5rem 2rem; }
-.toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+.toc-title { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
 .toc ol { padding-left: 1.5rem; }
 .toc li { margin: 0.35rem 0; }
 .toc a { color: var(--sepia); text-decoration: none; font-style: italic; font-size: 0.95rem; }
@@ -19,7 +19,7 @@ header h1 em { font-style: italic; color: var(--gold); }
 main { max-width: 760px; margin: 0 auto; padding: 2rem 2rem 6rem; }
 .section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #cfc3ab; }
 .section:last-child { border-bottom: none; }
-.section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+.section-tag { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-ink); margin-bottom: 0.6rem; }
 .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
 .section h2 em { font-style: italic; color: var(--crimson); }
 p { margin-bottom: 1.1rem; color: #241c14; }
@@ -28,21 +28,21 @@ p { margin-bottom: 1.1rem; color: #241c14; }
 .highlight-green { background: var(--highlight-green); }
 blockquote { border-left: 3px solid var(--crimson); margin: 2rem 0; padding: 0.8rem 1.5rem; background: rgba(140, 31, 40, 0.05); }
 blockquote p { font-style: italic; font-size: 1.15rem; color: var(--crimson); margin: 0; }
-blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
+blockquote cite { display: block; font-style: normal; font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; color: var(--ash); margin-top: 0.5rem; }
 .story-box { background: var(--aged); border: 1px solid #cec2a6; border-top: 3px solid var(--gold); padding: 1.8rem 2rem; margin: 2.5rem 0; position: relative; }
-.story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
+.story-box::before { content: attr(data-label); font-family: 'Overpass Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-ink); position: absolute; top: -0.8rem; left: 1.5rem; background: var(--aged); padding: 0 0.5rem; }
 .story-box p { margin-bottom: 0.8rem; font-size: 0.97rem; }
 .story-box p:last-child { margin-bottom: 0; }
 .key-fact { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0; padding: 1rem 1.5rem; background: var(--ink); color: var(--paper); }
 .key-fact-number { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold); white-space: nowrap; line-height: 1; }
 .key-fact-text { font-size: 0.9rem; line-height: 1.5; color: #c4baaa; }
 .guide-says { font-style: italic; color: var(--sepia); border-left: 2px solid var(--sepia); padding-left: 1rem; margin: 1.2rem 0; font-size: 1.05rem; }
-.location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
+.location { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 1rem; }
 .location::before { content: '◉'; color: var(--crimson); font-size: 0.8rem; }
 .practical { background: #1e1a16; color: #c4baaa; padding: 1.2rem 1.6rem; margin: 1.5rem 0; border-left: 3px solid var(--gold); font-size: 0.88rem; line-height: 1.6; }
 .practical strong { color: var(--gold); font-weight: 500; }
 .divider { text-align: center; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.8em; margin: 2rem 0; }
-footer { background: var(--ink); color: #6b6459; text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; }
+footer { background: var(--ink); color: var(--meta-on-ink); text-align: center; padding: 2.5rem; font-family: 'Overpass Mono', monospace; font-size: 0.72rem; line-height: 1.9; letter-spacing: 0.2em; }
 footer span { color: var(--gold); }
 html { color-scheme: light; background: var(--paper); }
 @media (max-width: 600px) {
@@ -55,12 +55,12 @@ html { color-scheme: light; background: var(--paper); }
 /* ── Site navigation (standardised across all posts) ── */
 html { color-scheme: light; background: var(--paper); }
 .home-nav { background: var(--ink); padding: 0.7rem 2rem; display: flex; align-items: center; position: sticky; top: 0; z-index: 200; }
-.home-link { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+.home-link { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
 .home-link:hover { color: var(--paper); }
 .home-link::before { content: '←'; font-size: 0.9rem; }
-.home-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: #6b6459; margin-left: 1.5rem; font-style: italic; }
+.home-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 300; color: var(--meta-on-ink); margin-left: 1.5rem; font-style: italic; }
 .home-links { margin-left: auto; display: flex; gap: 1.5rem; }
-.home-links a { font-family: 'Overpass Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8f8676; text-decoration: none; }
+.home-links a { font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--meta-on-ink); text-decoration: none; }
 .home-links a:hover { color: var(--gold); }
 @media (max-width: 600px) {
   .home-nav { padding: 0.7rem 1rem; }
@@ -80,8 +80,27 @@ html { color-scheme: light; background: var(--paper); }
 .photo img { display: block; width: 100%; height: auto; background: var(--aged); border: 1px solid #cfc3ab; }
 .photo.wide { margin-left: -4rem; margin-right: -4rem; }
 .photo figcaption { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 0.9rem; line-height: 1.5; color: var(--sepia); margin-top: 0.6rem; padding-left: 0.8rem; border-left: 2px solid var(--gold); }
-.photo-licence { display: inline-block; margin-left: 0.4rem; font-family: 'Overpass Mono', monospace; font-style: normal; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--crimson); text-decoration: none; white-space: nowrap; }
+.photo-licence { display: inline-block; margin-left: 0.4rem; font-family: 'Overpass Mono', monospace; font-style: normal; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); text-decoration: none; white-space: nowrap; }
 .photo-licence::after { content: ' →'; }
 .photo-licence:hover { color: var(--gold); }
-.photo-credit { display: block; font-family: 'Overpass Mono', monospace; font-style: normal; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); margin-top: 0.3rem; }
+.photo-credit { display: block; font-family: 'Overpass Mono', monospace; font-style: normal; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash); margin-top: 0.3rem; }
 @media (max-width: 860px) { .photo.wide { margin-left: 0; margin-right: 0; } }
+
+/* ── Header meta: one item per line on phones ── */
+@media (max-width: 600px) { .header-meta { flex-direction: column; gap: 0.6rem; } }
+
+/* ── More walks (generated by build_site.py) ── */
+.walk-links { max-width: 760px; margin: 0 auto; padding: 0 2rem 4rem; }
+.walk-links h2 { font-family: 'Overpass Mono', monospace; font-weight: 400; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ash); border-top: 1px solid #cfc3ab; padding-top: 2rem; margin-bottom: 1.2rem; }
+.walk-pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.4rem; }
+.walk-pn a, .walk-related a { display: block; text-decoration: none; color: var(--ink); background: var(--aged); border-left: 2px solid var(--gold); padding: 0.9rem 1.1rem; transition: background 0.12s; }
+.walk-pn a:hover, .walk-related a:hover { background: #ddd1b9; }
+.walk-pn .next { text-align: right; border-left: none; border-right: 2px solid var(--gold); grid-column: 2; }
+.walk-kicker { display: block; font-family: 'Overpass Mono', monospace; font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-ink); margin-bottom: 0.25rem; }
+.walk-name { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; line-height: 1.25; }
+.walk-name em { font-style: italic; color: var(--crimson); }
+.walk-where { display: block; font-size: 0.9rem; font-style: italic; color: var(--sepia); margin-top: 0.2rem; }
+.walk-related { display: grid; gap: 0.8rem; }
+.walk-index { display: inline-block; margin-top: 2rem; font-family: 'Overpass Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); text-decoration: none; }
+.walk-index:hover { color: var(--gold-ink); }
+@media (max-width: 600px) { .walk-links { padding: 0 1.2rem 3rem; } .walk-pn { grid-template-columns: 1fr; } .walk-pn .next { grid-column: 1; } }

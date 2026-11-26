@@ -1,6 +1,6 @@
 # On Foot — Walking Tour Notes
 
-A static blog generated from walking tour transcripts via GitHub Actions + Claude API.
+A static blog written up from walking tour notes via GitHub Actions + Claude API.
 
 ## How it works
 
@@ -15,7 +15,7 @@ Every post carries a small data block in its `<head>` that drives its homepage c
  "place": "uk/sussex",
  "location_label": "Hastings Old Town · East Sussex",
  "title_html": "Nets, Tar &amp; the <em>Ghost of Dunkirk</em>",
- "subtitle": "The Stade Historic Fishing Quarter Walk · Guide: Jan · Old Hastings Preservation Society",
+ "subtitle": "The Stade Historic Fishing Quarter Walk · Old Hastings Preservation Society",
  "excerpt": "Two or three sentences for the homepage card and link previews.",
  "themes": ["water", "industry", "war"],
  "series": [],
@@ -34,7 +34,7 @@ Labels for these codes live in `.github/scripts/onfoot.py`; a new code works str
 
 **Upload a finished post** to `_posts/` (include the data block above). On push to `main`, the Action rebuilds the homepage and walk links and commits the result. A post without a data block still appears, at the bottom, with a warning in the Action log.
 
-**Or push a transcript** to `_transcripts/<slug>.txt`. The Action sends it to Claude, which writes the post (using the newest post as its template), the data block, and a metadata sidecar in `_data/<slug>.json` for Getty captioning; then it rebuilds the site. To regenerate a post, run the workflow manually from the **Actions** tab with its slug.
+**Or push your notes** to `_notes/<slug>.txt`. The Action sends it to Claude, which writes the post (using the newest post as its template), the data block, and a metadata sidecar in `_data/<slug>.json` for Getty captioning; then it rebuilds the site. To regenerate a post, run the workflow manually from the **Actions** tab with its slug.
 
 To build locally: `python .github/scripts/build_site.py` from the repo root.
 
@@ -56,21 +56,21 @@ Go to **Settings → Pages**
 
 Your blog will be live at `https://gpmdyg9b4z-spec.github.io/on-foot-blog/`
 
-### 3. Push a transcript
+### 3. Push your notes
 
 Name your file descriptively — the filename becomes the post slug and URL:
 
 ```
-_transcripts/wandsworth-lfa-2026.txt   →   _posts/wandsworth-lfa-2026.html
-_transcripts/hampstead-garden-suburb.txt →  _posts/hampstead-garden-suburb.html
+_notes/wandsworth-lfa-2026.txt   →   _posts/wandsworth-lfa-2026.html
+_notes/hampstead-garden-suburb.txt →  _posts/hampstead-garden-suburb.html
 ```
 
-The Action infers the title, guide name, location, date, and route from the transcript content.
+The Action infers the title, organiser, location, date, and route from the notes. Guides and members of the public are not named in posts.
 
 ## File structure
 
 ```
-_transcripts/     ← drop .txt transcripts here
+_notes/           ← drop .txt notes here
 _posts/           ← posts (hand-uploaded or written by the Action)
 _data/            ← Getty metadata sidecars written by the Action
 assets/post.css   ← shared post styles; a post's own <style> holds only overrides
@@ -107,8 +107,8 @@ Put the credit before the link: `<span class="photo-credit">Sergio Amiti / Getty
 
 The homepage card shows the post's first photo. If `images/<slug>/card.jpg` exists (960×640), it is used instead, which keeps the homepage light. Photos and card thumbnails ignore right-click, drag and long-press, which deters casual saving but cannot prevent screenshots.
 
-## Transcript tips
+## Notes tips
 
-- Raw audio transcripts work fine — Claude cleans up transcription errors
-- The longer and richer the transcript, the better the post
-- No need to add metadata — guide name, location, distance etc. are inferred
+- Rough notes work fine — Claude tidies them up
+- The fuller the notes, the better the post
+- No need to add metadata — location, distance etc. are inferred

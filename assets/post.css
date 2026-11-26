@@ -83,6 +83,8 @@ html { color-scheme: light; background: var(--paper); }
 .photo-licence { display: inline-block; margin-left: 0.4rem; font-family: 'Overpass Mono', monospace; font-style: normal; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); text-decoration: none; white-space: nowrap; }
 .photo-licence::after { content: ' →'; }
 .photo-licence:hover { color: var(--gold); }
+/* photo-guard */ .photo img { pointer-events: none; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+.photo { -webkit-touch-callout: none; }
 .photo-credit { display: block; font-family: 'Overpass Mono', monospace; font-style: normal; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash); margin-top: 0.3rem; }
 @media (max-width: 860px) { .photo.wide { margin-left: 0; margin-right: 0; } }
 

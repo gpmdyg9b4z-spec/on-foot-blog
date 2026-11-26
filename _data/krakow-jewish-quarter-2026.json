@@ -3,10 +3,10 @@
   "walk_meta": {
     "date": "2026-04-12",
     "place": "abroad/poland",
-    "location_label": "Kraków · Kazimierz",
-    "title_html": "The Quarter That <em>Survived</em>",
-    "subtitle": "Kazimierz — Kraków's Jewish District · Guide: Jacob, Walkative Tours",
-    "excerpt": "Jacob leads a walk through nine centuries of Jewish life in Kraków — from the Remu Synagogue to the Hasidic legend of Lilith, from Helena Rubinstein's birthplace to the chairs memorial on Ghetto Heroes Square — covering everything Schindler's List got right, and what it simplified.",
+    "location_label": "Kraków · Kazimierz & Podgórze",
+    "title_html": "A Thousand Years <em>in One Afternoon</em>",
+    "subtitle": "Jewish Quarter Tour · Guide: Jacob · Walkative Tours",
+    "excerpt": "Jacob walks from the Old Synagogue on Szeroka Street to the bronze chairs of Ghetto Heroes Square: a thousand years of Jewish Kraków, the Holocaust that ended it, and the revival nobody expected.",
     "themes": [
       "faith",
       "migration",
@@ -15,6 +15,6 @@
     "series": [
       "free-tours"
     ],
-    "search": "krakow kazimierz jewish quarter jacob walkative schindler ghetto synagogue remu hasidic helena rubinstein"
+    "search": "krakow kazimierz podgorze jewish quarter jacob walkative old synagogue remu szeroka tempel helena rubinstein sarah schenirer beit yaakov ghetto schindler gusta draenger jcc chairs ghetto heroes square"
   }
 }

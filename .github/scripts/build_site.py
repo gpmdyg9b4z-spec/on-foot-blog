@@ -53,6 +53,7 @@ def load_walks():
         if meta.get("translation_of"):
             continue
         meta["slug"] = slug
+        meta["lead_photo"] = lead_photo(slug, page)
         meta["title_html"] = re.sub(r"\s*<br\s*/?>\s*", " ", meta.get("title_html", slug))
         walks.append(meta)
     for side in glob.glob("_data/*.json"):
@@ -63,6 +64,15 @@ def load_walks():
     return walks
 
 
+def lead_photo(slug, page):
+    """The post's first photo, for its homepage card: (src, alt), preferring images/<slug>/card.jpg."""
+    m = re.search(r'<figure class="photo[^"]*"[^>]*>\s*<img src="\.\./(images/[^"]+)" alt="([^"]*)"', page)
+    if not m:
+        return None
+    card = f"images/{slug}/card.jpg"
+    return (card if os.path.exists(card) else m.group(1)), m.group(2)
+
+
 def fmt_date(iso):
     y, m, d = iso.split("-")
     return int(d), f"{MONTHS[int(m) - 1]} {y}"
@@ -71,8 +81,12 @@ def fmt_date(iso):
 def card_html(w):
     day, monthyear = fmt_date(w["date"])
     tags = "".join(f'<span class="tag">{e(label(THEMES, t))}</span>' for t in w.get("themes", []))
-    return f'''      <a class="post-card" href="_posts/{w["slug"]}.html" data-place="{e(w.get("place"))}" data-themes="{e(" ".join(w.get("themes", [])))}" data-series="{e(" ".join(w.get("series", [])))}" data-search="{e(w.get("search", "").lower())}">
-        <div class="post-date"><span class="date-day">{day}</span><span class="date-monthyear">{monthyear}</span></div>
+    photo = w.get("lead_photo")
+    thumb = (f'\n        <img class="post-thumb" src="{photo[0]}" alt="" loading="lazy" width="480" height="320">'
+             if photo else "")
+    cls = "post-card has-photo" if photo else "post-card"
+    return f'''      <a class="{cls}" href="_posts/{w["slug"]}.html" data-place="{e(w.get("place"))}" data-themes="{e(" ".join(w.get("themes", [])))}" data-series="{e(" ".join(w.get("series", [])))}" data-search="{e(w.get("search", "").lower())}">
+        <div class="post-date"><span class="date-day">{day}</span><span class="date-monthyear">{monthyear}</span></div>{thumb}
         <div class="post-body">
           <div class="post-location-label">{e(w.get("location_label"))}</div>
           <h2 class="post-title">{w["title_html"]}</h2>

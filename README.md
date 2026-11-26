@@ -103,6 +103,10 @@ Posts can carry photos styled by `assets/post.css`. Put a web-sized copy (about 
 
 Use `class="photo wide"` to let an image run wider than the text column.
 
+Put the credit before the link: `<span class="photo-credit">Sergio Amiti / Getty Images</span>`. Add `og:image` (the lead photo) to the post's `<head>` so shared links show it.
+
+The homepage card shows the post's first photo. If `images/<slug>/card.jpg` exists (960×640), it is used instead, which keeps the homepage light. Photos and card thumbnails ignore right-click, drag and long-press, which deters casual saving but cannot prevent screenshots.
+
 ## Transcript tips
 
 - Raw audio transcripts work fine — Claude cleans up transcription errors

@@ -64,7 +64,7 @@ def load_walks():
 
 def lead_photo(slug, page):
     """The post's first photo, for its homepage card: (src, alt), preferring images/<slug>/card.jpg."""
-    m = re.search(r'<figure class="photo[^"]*"[^>]*>\s*<img src="\.\./(images/[^"]+)" alt="([^"]*)"', page)
+    m = re.search(r'<figure class="photo[^"]*"[^>]*>\s*<img src="\.\./(images/[^"]+)"[^>]*? alt="([^"]*)"', page)
     if not m:
         return None
     card = f"images/{slug}/card.jpg"

@@ -48,7 +48,9 @@ def main():
             nonlocal made
             head, wide, base, rest, close = m.groups()
             if 'srcset=' in rest:
-                return m.group(0)
+                # keep sizes in step with the figure's class (a lead may have moved)
+                want = SIZES['wide' if wide else 'normal']
+                return re.sub(r'sizes="[^"]*"', f'sizes="{want}"', m.group(0))
             src = ROOT / f'{base}.jpg'
             if not src.exists():
                 return m.group(0)

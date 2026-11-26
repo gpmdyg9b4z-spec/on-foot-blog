@@ -1,7 +1,7 @@
 name: Build site
 
-# Runs on every push to main that touches posts, transcripts or the build files.
-# - New or changed transcripts in _transcripts/ are turned into posts by Claude.
+# Runs on every push to main that touches posts, notes or the build files.
+# - New or changed notes in _notes/ are turned into posts by Claude.
 # - Then the homepage, filters and "More walks" links are rebuilt from the posts,
 #   so hand-uploaded posts are picked up too.
 # Run it manually from the Actions tab to rebuild, optionally regenerating one post.
@@ -10,7 +10,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '_transcripts/**.txt'
+      - '_notes/**.txt'
       - '_posts/**'
       - 'assets/**'
       - '.github/templates/**'
@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
     inputs:
       slug:
-        description: 'Optional: transcript slug to regenerate, e.g. wandsworth-lfa-2026'
+        description: 'Optional: notes slug to regenerate, e.g. wandsworth-lfa-2026'
         required: false
 
 concurrency:
@@ -37,7 +37,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Work out which transcripts to process
+      - name: Work out which notes to process
         id: find
         env:
           BEFORE: ${{ github.event.before }}
@@ -51,17 +51,17 @@ jobs:
             else
               RANGE="$BEFORE..HEAD"
             fi
-            SLUGS=$(git diff --name-only --diff-filter=AM $RANGE -- '_transcripts/*.txt' \
+            SLUGS=$(git diff --name-only --diff-filter=AM $RANGE -- '_notes/*.txt' \
                     | xargs -r -n1 basename | sed 's/\.txt$//' | tr '\n' ' ')
           fi
           SLUGS=$(echo $SLUGS)
           if [ -z "$SLUGS" ]; then
-            echo "No new or changed transcripts in this push."
+            echo "No new or changed notes in this push."
           else
             for s in $SLUGS; do
-              [ -f "_transcripts/$s.txt" ] || { echo "Missing _transcripts/$s.txt"; exit 1; }
+              [ -f "_notes/$s.txt" ] || { echo "Missing _notes/$s.txt"; exit 1; }
             done
-            echo "Transcripts to process: $SLUGS"
+            echo "Notes to process: $SLUGS"
           fi
           echo "slugs=$SLUGS" >> "$GITHUB_OUTPUT"
 
@@ -81,7 +81,7 @@ jobs:
           SLUGS: ${{ steps.find.outputs.slugs }}
         run: |
           for s in $SLUGS; do
-            TRANSCRIPT_PATH="_transcripts/$s.txt" SLUG="$s" python .github/scripts/generate_post.py
+            NOTES_PATH="_notes/$s.txt" SLUG="$s" python .github/scripts/generate_post.py
           done
 
       - name: Rebuild homepage and walk links

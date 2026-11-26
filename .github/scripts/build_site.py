@@ -50,8 +50,6 @@ def load_walks():
                     "title_html": re.sub(r"\s*<br\s*/?>\s*", " ", h1.group(1)).strip() if h1 else slug,
                     "subtitle": html.unescape(re.sub(r"<[^>]+>", "", sub.group(1))).strip() if sub else "",
                     "excerpt": "", "search": ""}
-        if meta.get("translation_of"):
-            continue
         meta["slug"] = slug
         meta["lead_photo"] = lead_photo(slug, page)
         meta["title_html"] = re.sub(r"\s*<br\s*/?>\s*", " ", meta.get("title_html", slug))
@@ -211,11 +209,6 @@ def main():
         if write_if_changed(path, page):
             changed.append(path)
 
-    for path in glob.glob("_posts/*-it.html"):
-        slug = os.path.basename(path)[:-5]
-        page = open(path, encoding="utf-8").read()
-        if write_if_changed(path, finalise_post(slug, page, "")):
-            changed.append(path)
 
     print(f"{len(walks)} walks; {len(changed)} files updated.")
     for c in changed:

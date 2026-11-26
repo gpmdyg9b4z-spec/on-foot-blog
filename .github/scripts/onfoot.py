@@ -11,18 +11,10 @@ MODEL = "claude-opus-5-5"
 
 
 def nav_html(slug: str) -> str:
-    """Standard top bar for a post: back to index, optional language switch, About."""
-    if slug.endswith("-it"):
-        base = slug[:-3]
-        return ('<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a>'
-                '<span class="home-title">Appunti di camminate guidate</span><span class="home-links">'
-                f'<a href="{base}.html" hreflang="en" lang="en">English</a>'
-                '<a href="../about.html">Chi sono</a></span></nav>')
-    italian = (f'<a href="{slug}-it.html" hreflang="it" lang="it">Italiano</a>'
-               if os.path.exists(f"_posts/{slug}-it.html") else "")
+    """Standard top bar for a post: back to index and About."""
     return ('<nav class="home-nav"><a class="home-link" href="../index.html">On Foot</a>'
             '<span class="home-title">Walking Tour Notes</span><span class="home-links">'
-            f'{italian}<a href="../about.html">About</a></span></nav>')
+            '<a href="../about.html">About</a></span></nav>')
 
 
 def trim_description(text: str, limit: int = 170) -> str:
@@ -44,7 +36,7 @@ def meta_tags(slug: str, title: str, description: str) -> str:
         f'<meta property="og:title" content="{e(title)}">',
         f'<meta property="og:description" content="{e(d)}">',
         f'<meta property="og:url" content="{url}">',
-        f'<meta property="og:locale" content="{"it_IT" if slug.endswith("-it") else "en_GB"}">',
+        '<meta property="og:locale" content="en_GB">',
         '<meta name="twitter:card" content="summary">',
     ]
     return "\n".join(tags)

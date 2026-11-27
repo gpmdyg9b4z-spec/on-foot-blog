@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gpmdyg9b4z-spec.github.io/on-foot-blog/sitemap.xml

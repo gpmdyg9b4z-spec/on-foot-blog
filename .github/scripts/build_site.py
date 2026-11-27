@@ -184,6 +184,55 @@ def write_if_changed(path, text):
     return False
 
 
+def plain(html_text):
+    return html.unescape(re.sub(r"<[^>]+>", "", html_text or "")).strip()
+
+
+def sitemap_xml(walks):
+    """sitemap.xml: the homepage, the about page and every walk, so search engines find them all."""
+    rows = [f"  <url><loc>{SITE_URL}/</loc><lastmod>{walks[0]['date']}</lastmod></url>" if walks else "",
+            f"  <url><loc>{SITE_URL}/about.html</loc></url>"]
+    rows += [f"  <url><loc>{SITE_URL}/_posts/{w['slug']}.html</loc><lastmod>{w['date']}</lastmod></url>"
+             for w in walks if w["date"] > "1900"]
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "\n".join(r for r in rows if r) + "\n</urlset>\n")
+
+
+def feed_xml(walks, limit=20):
+    """feed.xml: RSS 2.0 of the newest walks, with the lead photo, for feed readers and newsletters."""
+    from email.utils import format_datetime
+    from datetime import datetime, timezone
+    items = []
+    for w in [w for w in walks if w["date"] > "1900"][:limit]:
+        url = f"{SITE_URL}/_posts/{w['slug']}.html"
+        when = format_datetime(datetime.fromisoformat(w["date"]).replace(hour=12, tzinfo=timezone.utc))
+        photo = w.get("lead_photo")
+        enc = (f'\n      <enclosure url="{SITE_URL}/{e(photo[0])}" type="image/jpeg" length="0"/>' if photo else "")
+        items.append(f"""    <item>
+      <title>{e(plain(w["title_html"]))} — {e(w.get("location_label", ""))}</title>
+      <link>{url}</link>
+      <guid isPermaLink="true">{url}</guid>
+      <pubDate>{when}</pubDate>
+      <description>{e(w.get("excerpt", ""))}</description>{enc}
+    </item>""")
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>On Foot — Walking Tour Notes</title>
+    <link>{SITE_URL}/</link>
+    <atom:link href="{SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Guided walking tours in London and further afield, written up from notes and photographed for Getty Images.</description>
+    <language>en-gb</language>
+{chr(10).join(items)}
+  </channel>
+</rss>
+"""
+
+
+ROBOTS = f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
+
+
 def main():
     walks = load_walks()
     changed = []
@@ -207,6 +256,10 @@ def main():
             if not n:
                 page = page.replace("</body>", block + "</body>", 1)
         if write_if_changed(path, page):
+            changed.append(path)
+
+    for path, text in (("sitemap.xml", sitemap_xml(walks)), ("feed.xml", feed_xml(walks)), ("robots.txt", ROBOTS)):
+        if write_if_changed(path, text):
             changed.append(path)
 
 

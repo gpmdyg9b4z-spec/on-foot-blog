@@ -38,7 +38,9 @@ Labels for these codes live in `.github/scripts/onfoot.py`; a new code works str
 
 To build locally: `python .github/scripts/build_site.py` from the repo root.
 
-After adding photos, run `python3 .github/scripts/make_variants.py` (macOS, uses `sips`) before building. It writes 800px and 1200px copies next to each 1600px photo and adds `srcset`, so phones download a smaller file.
+Photos need no local step: on push, the Action runs `.github/scripts/make_variants.py`, which writes 800px and 1200px copies next to each 1600px photo and adds `srcset`, so phones download a smaller file. You can still run it locally (Pillow, or macOS `sips`) before building.
+
+The build also writes `sitemap.xml`, `robots.txt` and an RSS feed, `feed.xml`, of the 20 newest walks.
 
 ## Setup
 
@@ -85,7 +87,7 @@ about.html        ← about page (edit manually)
   scripts/
     generate_post.py    ← calls the Claude API, writes post HTML + sidecar
     build_site.py       ← builds index.html and the "More walks" links from the posts
-    make_variants.py    ← 800/1200px photo copies + srcset (run locally after adding photos)
+    make_variants.py    ← 800/1200px photo copies + srcset (run by the Action)
     onfoot.py           ← shared helpers and the theme/place/series vocabularies
   templates/
     index.html          ← homepage template

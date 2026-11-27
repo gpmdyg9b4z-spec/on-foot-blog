@@ -30,6 +30,9 @@ e = lambda t: html.escape(t or "", quote=True)
 warnings = []
 
 
+unlinked = []   # (slug, photos without a Getty link, photos)
+
+
 def load_walks():
     walks = []
     for path in sorted(glob.glob("_posts/*.html")):
@@ -52,6 +55,9 @@ def load_walks():
                     "excerpt": "", "search": ""}
         meta["slug"] = slug
         meta["lead_photo"] = lead_photo(slug, page)
+        photos, linked = page.count('<figure class="photo'), page.count('class="photo-licence"')
+        if photos > linked:
+            unlinked.append((slug, photos - linked, photos))
         meta["title_html"] = re.sub(r"\s*<br\s*/?>\s*", " ", meta.get("title_html", slug))
         walks.append(meta)
     for side in glob.glob("_data/*.json"):
@@ -268,6 +274,11 @@ def main():
         print("  updated", c)
     for w_ in warnings:
         print("  note:", w_)
+    if unlinked:
+        print(f"Photos with no Getty link: {sum(n for _, n, _ in unlinked)} in {len(unlinked)} posts "
+              "(submit them, or add the link):")
+        for slug, n, total in sorted(unlinked, key=lambda x: -x[1]):
+            print(f"  {slug}: {n} of {total}")
 
 
 if __name__ == "__main__":
